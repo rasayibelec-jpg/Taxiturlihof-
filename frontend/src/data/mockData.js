@@ -71,7 +71,7 @@ export const coverageAreas = [
 ];
 
 export const contactInfo = {
-  phone: "041 123 45 67",
+  phone: "076 611 31 31",
   email: "info@taxitürlihof.ch",
   website: "www.taxitürlihof.ch",
   address: "Musterstrasse 123, 6003 Luzern",
