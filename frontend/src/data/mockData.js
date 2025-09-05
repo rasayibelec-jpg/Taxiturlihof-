@@ -72,8 +72,8 @@ export const coverageAreas = [
 
 export const contactInfo = {
   phone: "041 123 45 67",
-  email: "info@taxiturlihof.ch",
-  website: "www.taxiturlihof.ch",
+  email: "info@taxitürlihof.ch",
+  website: "www.taxitürlihof.ch",
   address: "Musterstrasse 123, 6003 Luzern",
   hours: "24/7 Service"
 };
