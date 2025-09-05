@@ -37,7 +37,7 @@ export const paymentMethods = [
     description: "Mobile Payment App",
     icon: "smartphone",
     available: true,
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Twint_logo.svg/512px-Twint_logo.svg.png"
+    logoUrl: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/wziyes8t_Screenshot_20250905_093910_Google.jpg"
   },
   {
     id: 6,
@@ -46,6 +46,48 @@ export const paymentMethods = [
     icon: "wallet",
     available: true,
     logoUrl: "https://images.unsplash.com/photo-1648091854674-59abf26bbf39?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHxQYXlQYWx8ZW58MHx8fHwxNzU3MDU3NzI4fDA&ixlib=rb-4.1.0&q=85"
+  }
+];
+
+export const pricingStructure = {
+  basicRate: {
+    price: "CHF 6.60",
+    description: "Grundtarif pro Fahrt"
+  },
+  perKilometer: {
+    price: "CHF 4.20",
+    description: "Pro Kilometer"
+  },
+  waitingTime: {
+    price: "CHF 73.00",
+    description: "Wartezeit pro Stunde"
+  }
+};
+
+export const pricingExamples = [
+  {
+    route: "Luzern Bahnhof → Flughafen Zürich",
+    distance: "47 km",
+    estimatedPrice: "CHF 203.00",
+    description: "Grundtarif + 47km × CHF 4.20"
+  },
+  {
+    route: "Zug Zentrum → Bahnhof Zug",
+    distance: "3 km",
+    estimatedPrice: "CHF 19.20",
+    description: "Grundtarif + 3km × CHF 4.20"
+  },
+  {
+    route: "Schwyz → Brunnen",
+    distance: "8 km",
+    estimatedPrice: "CHF 40.20",
+    description: "Grundtarif + 8km × CHF 4.20"
+  },
+  {
+    route: "Stadtfahrt Luzern (mit 10 Min. Wartezeit)",
+    distance: "5 km",
+    estimatedPrice: "CHF 39.43",
+    description: "Grundtarif + 5km × CHF 4.20 + 10 Min. Wartezeit"
   }
 ];
 
