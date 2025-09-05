@@ -1,8 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
-import { Phone, MapPin, Clock } from "lucide-react";
+import { Phone, MapPin, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 
 const Hero = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const heroImages = [
+    {
+      url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/cnf61ude_image_1756460531381.jpeg",
+      title: "Taxi Celebi - Premium Service"
+    },
+    {
+      url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/yomelklg_20240712121846_edited_1732630664532.png",
+      title: "Mercedes mit Bergpanorama"
+    },
+    {
+      url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/p68khw91_20240707_163617.jpg",
+      title: "Mercedes E-Klasse"
+    },
+    {
+      url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/nq4c2nhv_20240712_121059.jpg",
+      title: "E-Klasse Frontalansicht"
+    }
+  ];
+
+  // Auto-rotate images every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  };
+
   return (
     <section id="home" className="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white py-20">
       <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -67,14 +105,82 @@ const Hero = () => {
             </div>
           </div>
 
+          {/* Hero Image Carousel */}
           <div className="lg:flex justify-center items-center hidden">
             <div className="relative">
+              <div className="relative overflow-hidden rounded-lg shadow-2xl">
+                <img
+                  src={heroImages[currentImageIndex].url}
+                  alt={heroImages[currentImageIndex].title}
+                  className="w-full h-96 object-cover transform transition-transform duration-300 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-30 rounded-lg"></div>
+                
+                {/* Navigation Buttons */}
+                <Button
+                  onClick={prevImage}
+                  className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white border-0 p-2"
+                  size="sm"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </Button>
+                <Button
+                  onClick={nextImage}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white border-0 p-2"
+                  size="sm"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </Button>
+
+                {/* Image Title Overlay */}
+                <div className="absolute bottom-4 left-4 right-4">
+                  <h3 className="text-white font-semibold text-lg mb-2">
+                    {heroImages[currentImageIndex].title}
+                  </h3>
+                </div>
+              </div>
+
+              {/* Image Dots Indicator */}
+              <div className="flex justify-center mt-4 space-x-2">
+                {heroImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                      index === currentImageIndex 
+                        ? 'bg-yellow-500' 
+                        : 'bg-gray-400 hover:bg-gray-300'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Image Display */}
+          <div className="lg:hidden">
+            <div className="relative">
               <img
-                src="https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/cnf61ude_image_1756460531381.jpeg"
-                alt="Taxi Türlihof"
-                className="rounded-lg shadow-2xl max-w-full h-auto transform transition-transform duration-300 hover:scale-105"
+                src={heroImages[currentImageIndex].url}
+                alt={heroImages[currentImageIndex].title}
+                className="w-full h-64 object-cover rounded-lg shadow-2xl"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-30 rounded-lg"></div>
+              
+              {/* Mobile Dots */}
+              <div className="flex justify-center mt-4 space-x-2">
+                {heroImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                      index === currentImageIndex 
+                        ? 'bg-yellow-500' 
+                        : 'bg-gray-400'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
