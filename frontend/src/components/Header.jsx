@@ -104,6 +104,12 @@ const Header = () => {
                 Dienstleistungen
               </button>
               <button
+                onClick={() => scrollToSection("pricing")}
+                className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
+              >
+                Preise
+              </button>
+              <button
                 onClick={() => scrollToSection("fleet")}
                 className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
               >
