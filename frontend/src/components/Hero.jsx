@@ -55,7 +55,7 @@ const Hero = () => {
                 className="bg-yellow-600 hover:bg-yellow-700 text-white transform transition-all duration-200 hover:scale-105"
               >
                 <Phone className="w-5 h-5 mr-2" />
-                Jetzt Buchen: 041 123 45 67
+                Jetzt Buchen: 076 611 31 31
               </Button>
               <Button 
                 size="lg" 
