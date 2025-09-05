@@ -57,6 +57,31 @@ const Services = () => {
                       </li>
                     ))}
                   </ul>
+                  
+                  {/* Spezielle Preisdetails für Flughafentransfer */}
+                  {service.priceDetails && (
+                    <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                      <h4 className="font-semibold text-sm text-gray-900 mb-2">Preise:</h4>
+                      <div className="space-y-2 text-xs text-gray-600">
+                        <div>
+                          <strong>Flughafen Zürich:</strong>
+                          <div className="ml-2">
+                            • Von Luzern: {service.priceDetails.zurich.luzern}<br/>
+                            • Von Schwyz: {service.priceDetails.zurich.schwyz}<br/>
+                            • Von Zug: {service.priceDetails.zurich.zug}
+                          </div>
+                        </div>
+                        <div>
+                          <strong>Flughafen Basel:</strong>
+                          <div className="ml-2">
+                            • Von Luzern: {service.priceDetails.basel.luzern}<br/>
+                            • Von Schwyz: {service.priceDetails.basel.schwyz}<br/>
+                            • Von Zug: {service.priceDetails.basel.zug}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             );
