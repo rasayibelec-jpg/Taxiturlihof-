@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "./Header";
 import Hero from "./Hero";
 import Services from "./Services";
+import Pricing from "./Pricing";
 import FleetGallery from "./FleetGallery";
 import PaymentMethods from "./PaymentMethods";
 import Coverage from "./Coverage";
@@ -14,7 +15,8 @@ const HomePage = () => {
       <Header />
       <Hero />
       <Services />
-      <FleetGallery />
+      <Pricing />
+      <FleetGallery />  
       <PaymentMethods />
       <Coverage />
       <Contact />
