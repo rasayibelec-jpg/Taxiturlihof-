@@ -4,42 +4,48 @@ export const paymentMethods = [
     name: "Bargeld",
     description: "Klassische Barzahlung",
     icon: "banknote",
-    available: true
+    available: true,
+    logoUrl: null
   },
   {
     id: 2,
-    name: "Kreditkarten",
-    description: "Visa, Mastercard, American Express",
+    name: "Visa",
+    description: "Visa Kreditkarte",
     icon: "credit-card",
-    available: true
+    available: true,
+    logoUrl: "https://images.unsplash.com/photo-1609429019995-8c40f49535a5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwyfHxjcmVkaXQlMjBjYXJkfGVufDB8fHx8MTc1NzA1Nzc1MXww&ixlib=rb-4.1.0&q=85"
   },
   {
     id: 3,
-    name: "Girocard",
-    description: "EC-Karte / Debitkarte",
+    name: "Mastercard",
+    description: "Mastercard Kreditkarte",
     icon: "credit-card",
-    available: true
+    available: true,
+    logoUrl: "https://images.pexels.com/photos/210742/pexels-photo-210742.jpeg"
   },
   {
     id: 4,
     name: "SumUp",
     description: "Mobile Kartenzahlung",
     icon: "smartphone",
-    available: true
+    available: true,
+    logoUrl: "https://images.unsplash.com/photo-1726137065519-c9a1b9eca951?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwyfHxwYXltZW50JTIwbWV0aG9kc3xlbnwwfHx8fDE3NTcwNTc3NjF8MA&ixlib=rb-4.1.0&q=85"
   },
   {
     id: 5,
     name: "TWINT",
     description: "Mobile Payment App",
     icon: "smartphone",
-    available: true
+    available: true,
+    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Twint_logo.svg/512px-Twint_logo.svg.png"
   },
   {
     id: 6,
     name: "PayPal",
     description: "Online-Bezahlung",
     icon: "wallet",
-    available: true
+    available: true,
+    logoUrl: "https://images.unsplash.com/photo-1648091854674-59abf26bbf39?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHxQYXlQYWx8ZW58MHx8fHwxNzU3MDU3NzI4fDA&ixlib=rb-4.1.0&q=85"
   }
 ];
 
