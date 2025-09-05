@@ -1,3 +1,48 @@
+export const paymentMethods = [
+  {
+    id: 1,
+    name: "Bargeld",
+    description: "Klassische Barzahlung",
+    icon: "banknote",
+    available: true
+  },
+  {
+    id: 2,
+    name: "Kreditkarten",
+    description: "Visa, Mastercard, American Express",
+    icon: "credit-card",
+    available: true
+  },
+  {
+    id: 3,
+    name: "Girocard",
+    description: "EC-Karte / Debitkarte",
+    icon: "credit-card",
+    available: true
+  },
+  {
+    id: 4,
+    name: "SumUp",
+    description: "Mobile Kartenzahlung",
+    icon: "smartphone",
+    available: true
+  },
+  {
+    id: 5,
+    name: "TWINT",
+    description: "Mobile Payment App",
+    icon: "smartphone",
+    available: true
+  },
+  {
+    id: 6,
+    name: "PayPal",
+    description: "Online-Bezahlung",
+    icon: "wallet",
+    available: true
+  }
+];
+
 export const services = [
   {
     id: 1,
