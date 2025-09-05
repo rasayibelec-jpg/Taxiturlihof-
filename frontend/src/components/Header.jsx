@@ -92,6 +92,12 @@ const Header = () => {
                 Dienstleistungen
               </button>
               <button
+                onClick={() => scrollToSection("payment")}
+                className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
+              >
+                Zahlungsmethoden
+              </button>
+              <button
                 onClick={() => scrollToSection("coverage")}
                 className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
               >
