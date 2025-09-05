@@ -29,11 +29,26 @@ const PaymentMethods = () => {
           {paymentMethods.map((method) => {
             const IconComponent = iconMap[method.icon];
             return (
-              <Card key={method.id} className="group hover:shadow-lg transition-all duration-300 transform hover:scale-105 border-gray-200">
+              <Card key={method.id} className="group hover:shadow-lg transition-all duration-300 transform hover:scale-105 border-gray-200 overflow-hidden">
                 <CardHeader className="text-center pb-4">
-                  <div className="mx-auto bg-yellow-100 p-4 rounded-full mb-4 group-hover:bg-yellow-200 transition-colors duration-300">
-                    <IconComponent className="w-8 h-8 text-yellow-600" />
-                  </div>
+                  {method.logoUrl ? (
+                    <div className="mx-auto mb-4 w-20 h-16 flex items-center justify-center bg-white rounded-lg shadow-sm overflow-hidden">
+                      <img 
+                        src={method.logoUrl} 
+                        alt={`${method.name} Logo`}
+                        className="max-w-full max-h-full object-contain"
+                        onError={(e) => {
+                          // Fallback to icon if image fails to load
+                          e.target.style.display = 'none';
+                          e.target.parentNode.innerHTML = `<div class="bg-yellow-100 p-4 rounded-full"><${IconComponent.name} class="w-8 h-8 text-yellow-600" /></div>`;
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <div className="mx-auto bg-yellow-100 p-4 rounded-full mb-4 w-16 h-16 flex items-center justify-center group-hover:bg-yellow-200 transition-colors duration-300">
+                      <IconComponent className="w-8 h-8 text-yellow-600" />
+                    </div>
+                  )}
                   <CardTitle className="text-xl font-semibold text-gray-900 group-hover:text-yellow-600 transition-colors duration-300 flex items-center justify-center">
                     {method.name}
                     {method.available && (
