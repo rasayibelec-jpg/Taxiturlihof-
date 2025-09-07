@@ -1246,7 +1246,7 @@ class BackendTester:
                     "customer_phone": "076 123 45 67",
                     "pickup_location": "Luzern",
                     "destination": "Zürich",
-                    "pickup_datetime": "2024-12-10T14:30:00"
+                    "pickup_datetime": "2025-12-10T14:30:00"
                 },
                 "expected_status": 422
             },
@@ -1258,7 +1258,7 @@ class BackendTester:
                     "customer_phone": "076 123 45 67",
                     "pickup_location": "Luzern",
                     "destination": "Zürich",
-                    "pickup_datetime": "2024-12-10T14:30:00"
+                    "pickup_datetime": "2025-12-10T14:30:00"
                 },
                 "expected_status": 422
             },
@@ -1270,7 +1270,7 @@ class BackendTester:
                     "customer_phone": "076 123 45 67",
                     "pickup_location": "Luzern",
                     "destination": "Zürich",
-                    "pickup_datetime": "2024-12-10T14:30:00",
+                    "pickup_datetime": "2025-12-10T14:30:00",
                     "passenger_count": 0
                 },
                 "expected_status": 422
@@ -1282,7 +1282,7 @@ class BackendTester:
                     "customer_email": "test@example.com",
                     "customer_phone": "076 123 45 67",
                     "destination": "Zürich",
-                    "pickup_datetime": "2024-12-10T14:30:00"
+                    "pickup_datetime": "2025-12-10T14:30:00"
                 },
                 "expected_status": 422
             }
