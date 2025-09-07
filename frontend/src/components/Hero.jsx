@@ -111,7 +111,7 @@ const Hero = () => {
               <div className="relative overflow-hidden rounded-lg shadow-2xl">
                 <img
                   src={heroImages[currentImageIndex].url}
-                  alt={heroImages[currentImageIndex].title}
+                  alt={`Taxi Türlihof - ${heroImages[currentImageIndex].title} - Mercedes Taxi Service in Luzern, Schwyz, Zug`}
                   className="w-full h-96 object-cover transform transition-transform duration-300 hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-30 rounded-lg"></div>
