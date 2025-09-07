@@ -11,9 +11,25 @@ const FloatingActionButtons = () => {
   };
 
   const handleWhatsApp = () => {
-    const phoneNumber = contactInfo.phone.replace(/\s/g, '').replace(/^0/, '+41');
-    const message = encodeURIComponent("Hallo! Ich möchte gerne ein Taxi buchen.");
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    // Korrekte Schweizer Telefonnummer-Formatierung für WhatsApp
+    const phoneNumber = "41766113131"; // +41 766 11 31 31 ohne Leerzeichen und Plus
+    const message = encodeURIComponent("Hallo! Ich möchte gerne ein Taxi buchen. 🚕");
+    
+    // Versuche zuerst WhatsApp App zu öffnen, dann WhatsApp Web
+    const whatsappAppUrl = `whatsapp://send?phone=${phoneNumber}&text=${message}`;
+    const whatsappWebUrl = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
+    
+    // Für mobile Geräte: versuche App zuerst
+    if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      window.location.href = whatsappAppUrl;
+      // Fallback zu Web nach kurzer Zeit
+      setTimeout(() => {
+        window.open(whatsappWebUrl, '_blank');
+      }, 1000);
+    } else {
+      // Für Desktop: öffne WhatsApp Web
+      window.open(whatsappWebUrl, '_blank');
+    }
   };
 
   const handleEmail = () => {
