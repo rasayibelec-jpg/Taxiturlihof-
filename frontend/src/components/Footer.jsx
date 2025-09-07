@@ -43,8 +43,6 @@ const Footer = () => {
               <li className="hover:text-yellow-500 transition-colors duration-200 cursor-pointer">Flughafentransfer</li>
               <li className="hover:text-yellow-500 transition-colors duration-200 cursor-pointer">Stadtfahrten</li>
               <li className="hover:text-yellow-500 transition-colors duration-200 cursor-pointer">Geschäftsfahrten</li>
-              <li className="hover:text-yellow-500 transition-colors duration-200 cursor-pointer">Krankenfahrten</li>
-              <li className="hover:text-yellow-500 transition-colors duration-200 cursor-pointer">Eventfahrten</li>
               <li className="hover:text-yellow-500 transition-colors duration-200 cursor-pointer">Kurierfahrten</li>
             </ul>
           </div>
