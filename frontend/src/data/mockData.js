@@ -131,7 +131,7 @@ export const coverageAreas = [
     id: 1,
     city: "Luzern",
     description: "Komplette Abdeckung der Stadt Luzern und aller Stadtteile",
-    zones: ["Altstadt", "Neustadt", "Littau", "Reussbühl", "Emmen"]
+    zones: ["Altstadt", "Neustadt", "Littau", "Reussbühl", "Emmen", "Meggen", "Weggis", "Vitznau", "Ebikon", "Root", "Kriens", "Horw"]
   },
   {
     id: 2,
