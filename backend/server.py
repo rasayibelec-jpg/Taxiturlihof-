@@ -76,6 +76,14 @@ class PriceCalculationResponse(BaseModel):
     route_info: dict
     calculation_source: str
 
+# Booking Models (imported from booking_service)
+class AvailabilityRequest(BaseModel):
+    date: str  # ISO format date string (YYYY-MM-DD)
+
+class AvailabilityResponse(BaseModel):
+    date: str
+    available_slots: List[str]
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
