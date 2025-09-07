@@ -151,8 +151,10 @@ export const contactInfo = {
   phone: "076 611 31 31",
   email: "info@taxitürlihof.ch",
   website: "www.taxitürlihof.ch",
-  address: "Musterstrasse 123, 6003 Luzern",
-  hours: "24/7 Service"
+  address: "Türlihof 4, 6414 Arth, Switzerland",
+  hours: "24/7 Service",
+  googleRating: 5.0,
+  reviewCount: 39
 };
 
 export const testimonials = [
