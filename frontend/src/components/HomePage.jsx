@@ -7,6 +7,7 @@ import Pricing from "./Pricing";
 import FleetGallery from "./FleetGallery";
 import PaymentMethods from "./PaymentMethods";
 import Coverage from "./Coverage";
+import Reviews from "./Reviews";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import FloatingActionButtons from "./FloatingActionButtons";
@@ -22,6 +23,7 @@ const HomePage = () => {
       <FleetGallery />  
       <PaymentMethods />
       <Coverage />
+      <Reviews />
       <Contact />
       <Footer />
       <FloatingActionButtons />
