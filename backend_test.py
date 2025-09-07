@@ -1362,21 +1362,21 @@ class BackendTester:
             )
             return False
 
-    async def test_gmail_smtp_email_system(self):
-        """Test Gmail SMTP email system with new credentials by creating a test booking"""
+    async def test_gmail_smtp_email_system_final(self):
+        """Test Gmail SMTP email system with correct App Password by creating the final test booking"""
         try:
             # Test booking data as specified in the review request
             test_booking_data = {
-                "customer_name": "Test E-Mail System",
-                "customer_email": "test.kunde@example.com",
-                "customer_phone": "076 999 88 77",
+                "customer_name": "Email Test Final",
+                "customer_email": "kunde.test@example.com",
+                "customer_phone": "076 888 99 00",
                 "pickup_location": "Luzern",
-                "destination": "Zürich",
+                "destination": "Zürich Flughafen",
                 "booking_type": "scheduled",
-                "pickup_datetime": "2025-12-10T15:00:00",
-                "passenger_count": 1,
+                "pickup_datetime": "2025-12-10T16:00:00",
+                "passenger_count": 2,
                 "vehicle_type": "standard",
-                "special_requests": "E-Mail Test"
+                "special_requests": "Final Email Test"
             }
             
             headers = {"Content-Type": "application/json"}
