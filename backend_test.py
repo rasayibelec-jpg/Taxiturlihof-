@@ -730,6 +730,643 @@ class BackendTester:
             )
             return False
     
+    async def test_booking_creation_standard(self):
+        """Test Case 1: Standard Scheduled Booking Creation"""
+        try:
+            test_data = {
+                "customer_name": "Max Mustermann",
+                "customer_email": "max.mustermann@example.com",
+                "customer_phone": "076 123 45 67",
+                "pickup_location": "Luzern",
+                "destination": "Zürich Flughafen",
+                "booking_type": "scheduled",
+                "pickup_datetime": "2024-12-10T14:30:00",
+                "passenger_count": 2,
+                "vehicle_type": "standard",
+                "special_requests": "Kindersitz benötigt"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/bookings",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    # Validate response structure
+                    required_fields = ['success', 'booking_id', 'message', 'booking_details']
+                    missing_fields = [field for field in required_fields if field not in data]
+                    
+                    if missing_fields:
+                        self.log_result(
+                            "Booking Creation - Standard",
+                            False,
+                            f"Missing required fields: {missing_fields}"
+                        )
+                        return None
+                    
+                    if data['success'] and data['booking_details']:
+                        booking = data['booking_details']
+                        
+                        # Validate booking details
+                        booking_valid = (
+                            booking['customer_name'] == test_data['customer_name'] and
+                            booking['vehicle_type'] == 'standard' and
+                            booking['passenger_count'] == 2 and
+                            'total_fare' in booking and
+                            'booking_fee' in booking and
+                            booking['booking_fee'] == 5.0
+                        )
+                        
+                        if booking_valid:
+                            self.log_result(
+                                "Booking Creation - Standard",
+                                True,
+                                f"Standard booking created successfully - ID: {data['booking_id'][:8]}, Total: CHF {booking['total_fare']}",
+                                {
+                                    "booking_id": data['booking_id'],
+                                    "total_fare": booking['total_fare'],
+                                    "distance_km": booking['estimated_distance_km'],
+                                    "vehicle_type": booking['vehicle_type'],
+                                    "booking_fee": booking['booking_fee']
+                                }
+                            )
+                            return data['booking_id']
+                        else:
+                            self.log_result(
+                                "Booking Creation - Standard",
+                                False,
+                                f"Booking validation failed: {booking}"
+                            )
+                            return None
+                    else:
+                        self.log_result(
+                            "Booking Creation - Standard",
+                            False,
+                            f"Booking creation failed: {data['message']}"
+                        )
+                        return None
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Booking Creation - Standard",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return None
+                    
+        except Exception as e:
+            self.log_result(
+                "Booking Creation - Standard",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return None
+
+    async def test_booking_creation_premium_van(self):
+        """Test Case 2: Premium Van Booking with Additional Stops"""
+        try:
+            test_data = {
+                "customer_name": "Anna Schmidt",
+                "customer_email": "anna.schmidt@example.com",
+                "customer_phone": "077 987 65 43",
+                "pickup_location": "Zug",
+                "destination": "Basel Flughafen",
+                "additional_stops": ["Luzern Bahnhof"],
+                "booking_type": "scheduled",
+                "pickup_datetime": "2024-12-11T08:00:00",
+                "passenger_count": 6,
+                "vehicle_type": "van"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/bookings",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    if data['success'] and data['booking_details']:
+                        booking = data['booking_details']
+                        
+                        # Validate van pricing (should be 1.5x multiplier)
+                        van_pricing_valid = (
+                            booking['vehicle_type'] == 'van' and
+                            booking['passenger_count'] == 6 and
+                            len(booking['additional_stops']) == 1 and
+                            booking['additional_stops'][0] == "Luzern Bahnhof"
+                        )
+                        
+                        if van_pricing_valid:
+                            self.log_result(
+                                "Booking Creation - Premium Van",
+                                True,
+                                f"Van booking created successfully - ID: {data['booking_id'][:8]}, Total: CHF {booking['total_fare']}",
+                                {
+                                    "booking_id": data['booking_id'],
+                                    "total_fare": booking['total_fare'],
+                                    "vehicle_type": booking['vehicle_type'],
+                                    "passenger_count": booking['passenger_count'],
+                                    "additional_stops": booking['additional_stops']
+                                }
+                            )
+                            return data['booking_id']
+                        else:
+                            self.log_result(
+                                "Booking Creation - Premium Van",
+                                False,
+                                f"Van booking validation failed: {booking}"
+                            )
+                            return None
+                    else:
+                        self.log_result(
+                            "Booking Creation - Premium Van",
+                            False,
+                            f"Van booking creation failed: {data['message']}"
+                        )
+                        return None
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Booking Creation - Premium Van",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return None
+                    
+        except Exception as e:
+            self.log_result(
+                "Booking Creation - Premium Van",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return None
+
+    async def test_booking_creation_immediate(self):
+        """Test Case 3: Immediate Premium Booking"""
+        try:
+            test_data = {
+                "customer_name": "Hans Müller",
+                "customer_email": "hans@example.com",
+                "customer_phone": "078 555 44 33",
+                "pickup_location": "Schwyz",
+                "destination": "Luzern",
+                "booking_type": "immediate",
+                "pickup_datetime": "2024-09-07T20:00:00",
+                "vehicle_type": "premium"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/bookings",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    if data['success'] and data['booking_details']:
+                        booking = data['booking_details']
+                        
+                        # Validate premium pricing (should be 1.3x multiplier)
+                        premium_pricing_valid = (
+                            booking['vehicle_type'] == 'premium' and
+                            booking['booking_type'] == 'immediate'
+                        )
+                        
+                        if premium_pricing_valid:
+                            self.log_result(
+                                "Booking Creation - Immediate Premium",
+                                True,
+                                f"Immediate premium booking created - ID: {data['booking_id'][:8]}, Total: CHF {booking['total_fare']}",
+                                {
+                                    "booking_id": data['booking_id'],
+                                    "total_fare": booking['total_fare'],
+                                    "vehicle_type": booking['vehicle_type'],
+                                    "booking_type": booking['booking_type']
+                                }
+                            )
+                            return data['booking_id']
+                        else:
+                            self.log_result(
+                                "Booking Creation - Immediate Premium",
+                                False,
+                                f"Premium booking validation failed: {booking}"
+                            )
+                            return None
+                    else:
+                        self.log_result(
+                            "Booking Creation - Immediate Premium",
+                            False,
+                            f"Immediate booking creation failed: {data['message']}"
+                        )
+                        return None
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Booking Creation - Immediate Premium",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return None
+                    
+        except Exception as e:
+            self.log_result(
+                "Booking Creation - Immediate Premium",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return None
+
+    async def test_booking_retrieval(self, booking_id: str):
+        """Test booking retrieval by ID"""
+        if not booking_id:
+            self.log_result(
+                "Booking Retrieval",
+                False,
+                "No booking ID provided for retrieval test"
+            )
+            return False
+            
+        try:
+            async with self.session.get(f"{BACKEND_URL}/bookings/{booking_id}") as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    # Validate retrieved booking structure
+                    required_fields = ['id', 'customer_name', 'pickup_location', 'destination', 'total_fare']
+                    missing_fields = [field for field in required_fields if field not in data]
+                    
+                    if not missing_fields and data['id'] == booking_id:
+                        self.log_result(
+                            "Booking Retrieval",
+                            True,
+                            f"Booking retrieved successfully - {data['customer_name']}, CHF {data['total_fare']}",
+                            {
+                                "booking_id": data['id'],
+                                "customer_name": data['customer_name'],
+                                "total_fare": data['total_fare']
+                            }
+                        )
+                        return True
+                    else:
+                        self.log_result(
+                            "Booking Retrieval",
+                            False,
+                            f"Invalid booking data or ID mismatch: {data}"
+                        )
+                        return False
+                elif response.status == 404:
+                    self.log_result(
+                        "Booking Retrieval",
+                        False,
+                        "Booking not found (404) - possible database issue"
+                    )
+                    return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Booking Retrieval",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Booking Retrieval",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_booking_status_update(self, booking_id: str):
+        """Test booking status update"""
+        if not booking_id:
+            self.log_result(
+                "Booking Status Update",
+                False,
+                "No booking ID provided for status update test"
+            )
+            return False
+            
+        try:
+            # Test updating status to confirmed
+            status_data = "confirmed"
+            headers = {"Content-Type": "application/json"}
+            
+            async with self.session.put(
+                f"{BACKEND_URL}/bookings/{booking_id}/status",
+                json=status_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    if data.get('success'):
+                        self.log_result(
+                            "Booking Status Update",
+                            True,
+                            f"Booking status updated successfully: {data['message']}",
+                            {"booking_id": booking_id, "new_status": "confirmed"}
+                        )
+                        return True
+                    else:
+                        self.log_result(
+                            "Booking Status Update",
+                            False,
+                            f"Status update failed: {data}"
+                        )
+                        return False
+                elif response.status == 404:
+                    self.log_result(
+                        "Booking Status Update",
+                        False,
+                        "Booking not found for status update (404)"
+                    )
+                    return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Booking Status Update",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Booking Status Update",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_booking_cancellation(self, booking_id: str):
+        """Test booking cancellation"""
+        if not booking_id:
+            self.log_result(
+                "Booking Cancellation",
+                False,
+                "No booking ID provided for cancellation test"
+            )
+            return False
+            
+        try:
+            async with self.session.delete(f"{BACKEND_URL}/bookings/{booking_id}") as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    if data.get('success'):
+                        self.log_result(
+                            "Booking Cancellation",
+                            True,
+                            f"Booking cancelled successfully: {data['message']}",
+                            {"booking_id": booking_id}
+                        )
+                        return True
+                    else:
+                        self.log_result(
+                            "Booking Cancellation",
+                            False,
+                            f"Cancellation failed: {data}"
+                        )
+                        return False
+                elif response.status == 404:
+                    self.log_result(
+                        "Booking Cancellation",
+                        False,
+                        "Booking not found for cancellation (404)"
+                    )
+                    return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Booking Cancellation",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Booking Cancellation",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_availability_endpoint(self):
+        """Test availability endpoint"""
+        try:
+            test_date = "2024-12-10"
+            async with self.session.get(f"{BACKEND_URL}/availability?date={test_date}") as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    # Validate response structure
+                    if 'date' in data and 'available_slots' in data:
+                        slots = data['available_slots']
+                        
+                        if isinstance(slots, list) and len(slots) > 0:
+                            # Validate slot format (should be HH:MM)
+                            valid_slots = all(
+                                isinstance(slot, str) and len(slot) == 5 and slot[2] == ':'
+                                for slot in slots[:3]  # Check first 3 slots
+                            )
+                            
+                            if valid_slots:
+                                self.log_result(
+                                    "Availability Endpoint",
+                                    True,
+                                    f"Retrieved {len(slots)} available time slots for {test_date}",
+                                    {
+                                        "date": data['date'],
+                                        "slot_count": len(slots),
+                                        "sample_slots": slots[:5]
+                                    }
+                                )
+                                return True
+                            else:
+                                self.log_result(
+                                    "Availability Endpoint",
+                                    False,
+                                    f"Invalid slot format: {slots[:3]}"
+                                )
+                                return False
+                        else:
+                            self.log_result(
+                                "Availability Endpoint",
+                                False,
+                                f"No slots returned or invalid format: {slots}"
+                            )
+                            return False
+                    else:
+                        self.log_result(
+                            "Availability Endpoint",
+                            False,
+                            f"Invalid response structure: {data}"
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Availability Endpoint",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Availability Endpoint",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_booking_validation(self):
+        """Test booking validation with invalid data"""
+        test_cases = [
+            {
+                "name": "Missing Customer Name",
+                "data": {
+                    "customer_email": "test@example.com",
+                    "customer_phone": "076 123 45 67",
+                    "pickup_location": "Luzern",
+                    "destination": "Zürich",
+                    "pickup_datetime": "2024-12-10T14:30:00"
+                },
+                "expected_status": 422
+            },
+            {
+                "name": "Invalid Email Format",
+                "data": {
+                    "customer_name": "Test User",
+                    "customer_email": "invalid-email",
+                    "customer_phone": "076 123 45 67",
+                    "pickup_location": "Luzern",
+                    "destination": "Zürich",
+                    "pickup_datetime": "2024-12-10T14:30:00"
+                },
+                "expected_status": 422
+            },
+            {
+                "name": "Invalid Passenger Count",
+                "data": {
+                    "customer_name": "Test User",
+                    "customer_email": "test@example.com",
+                    "customer_phone": "076 123 45 67",
+                    "pickup_location": "Luzern",
+                    "destination": "Zürich",
+                    "pickup_datetime": "2024-12-10T14:30:00",
+                    "passenger_count": 0
+                },
+                "expected_status": 422
+            },
+            {
+                "name": "Missing Pickup Location",
+                "data": {
+                    "customer_name": "Test User",
+                    "customer_email": "test@example.com",
+                    "customer_phone": "076 123 45 67",
+                    "destination": "Zürich",
+                    "pickup_datetime": "2024-12-10T14:30:00"
+                },
+                "expected_status": 422
+            }
+        ]
+        
+        validation_results = []
+        
+        for test_case in test_cases:
+            try:
+                headers = {"Content-Type": "application/json"}
+                async with self.session.post(
+                    f"{BACKEND_URL}/bookings",
+                    json=test_case["data"],
+                    headers=headers
+                ) as response:
+                    
+                    if response.status == test_case["expected_status"]:
+                        validation_results.append(f"✅ {test_case['name']}")
+                    else:
+                        validation_results.append(f"❌ {test_case['name']} (got {response.status}, expected {test_case['expected_status']})")
+                        
+            except Exception as e:
+                validation_results.append(f"❌ {test_case['name']} (error: {str(e)})")
+        
+        all_passed = all("✅" in result for result in validation_results)
+        self.log_result(
+            "Booking Validation",
+            all_passed,
+            f"Validation tests: {len([r for r in validation_results if '✅' in r])}/{len(validation_results)} passed",
+            validation_results
+        )
+        
+        return all_passed
+
+    async def test_all_bookings_retrieval(self):
+        """Test retrieving all bookings (admin endpoint)"""
+        try:
+            async with self.session.get(f"{BACKEND_URL}/bookings") as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    if isinstance(data, list):
+                        self.log_result(
+                            "All Bookings Retrieval",
+                            True,
+                            f"Retrieved {len(data)} bookings from database",
+                            {
+                                "booking_count": len(data),
+                                "sample_bookings": [
+                                    {
+                                        "id": booking.get("id", "")[:8],
+                                        "customer_name": booking.get("customer_name", ""),
+                                        "total_fare": booking.get("total_fare", 0)
+                                    }
+                                    for booking in data[:3]
+                                ]
+                            }
+                        )
+                        return True
+                    else:
+                        self.log_result(
+                            "All Bookings Retrieval",
+                            False,
+                            f"Expected list, got: {type(data)}"
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "All Bookings Retrieval",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "All Bookings Retrieval",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
     async def run_all_tests(self):
         """Run all backend tests"""
         print("🚀 Starting Backend Test Suite for Taxi Türlihof")
@@ -783,6 +1420,40 @@ class BackendTester:
         # Test 12: Price calculation validation
         await self.test_price_calculation_validation()
         
+        # Online Booking System Tests
+        print("\n🚖 ONLINE BOOKING SYSTEM TESTS")
+        print("-" * 40)
+        
+        # Test 13: Standard Booking Creation
+        standard_booking_id = await self.test_booking_creation_standard()
+        
+        # Test 14: Premium Van Booking Creation
+        van_booking_id = await self.test_booking_creation_premium_van()
+        
+        # Test 15: Immediate Premium Booking Creation
+        immediate_booking_id = await self.test_booking_creation_immediate()
+        
+        # Test 16: Booking Retrieval
+        if standard_booking_id:
+            await self.test_booking_retrieval(standard_booking_id)
+        
+        # Test 17: Booking Status Update
+        if van_booking_id:
+            await self.test_booking_status_update(van_booking_id)
+        
+        # Test 18: Booking Cancellation
+        if immediate_booking_id:
+            await self.test_booking_cancellation(immediate_booking_id)
+        
+        # Test 19: Availability Endpoint
+        await self.test_availability_endpoint()
+        
+        # Test 20: Booking Validation
+        await self.test_booking_validation()
+        
+        # Test 21: All Bookings Retrieval
+        await self.test_all_bookings_retrieval()
+        
         # Summary
         print("\n" + "=" * 60)
         print("📊 TEST SUMMARY")
@@ -811,6 +1482,12 @@ class BackendTester:
         swiss_passed = [r for r in swiss_tests if r["success"]]
         if swiss_tests:
             print(f"   🗺️  Swiss Distance Calculation: {len(swiss_passed)}/{len(swiss_tests)} tests passed")
+        
+        # Check for booking system results
+        booking_tests = [r for r in self.results if "Booking" in r["test"]]
+        booking_passed = [r for r in booking_tests if r["success"]]
+        if booking_tests:
+            print(f"   🚖 Online Booking System: {len(booking_passed)}/{len(booking_tests)} tests passed")
         
         # Check for email-related failures
         email_config_failed = any("Email Service Configuration" in r["test"] and not r["success"] for r in self.results)
