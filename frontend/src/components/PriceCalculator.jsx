@@ -49,7 +49,7 @@ const PriceCalculator = () => {
     const grundtarif = 6.60;
     const pricePerKm = 4.20;
     const totalPrice = grundtarif + (distanceKm * pricePerKm);
-    return totalPrice;
+    return Math.round(totalPrice * 100) / 100; // Runde auf 2 Dezimalstellen
   };
 
   const handleCalculate = () => {
