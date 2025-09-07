@@ -135,7 +135,7 @@ const Reviews = () => {
               Lesen Sie alle {contactInfo.reviewCount} Bewertungen oder schreiben Sie Ihre eigene Erfahrung auf Google.
             </p>
             <a
-              href="https://g.page/r/Cd4uwDyM0UStEAE/review"
+              href="https://www.google.com/search?q=Taxi+T%C3%BCrlihof+Arth&rlz=1C1GCEU_deDE832DE832&oq=Taxi+T%C3%BCrlihof+Arth&aqs=chrome..69i57.3627j0j7&sourceid=chrome&ie=UTF-8#lrd=0x478ff4df4c3c8cfe:0xad40e1d0cc2e40ad,1"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 font-semibold"
