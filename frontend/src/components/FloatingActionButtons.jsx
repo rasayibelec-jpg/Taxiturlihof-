@@ -73,7 +73,7 @@ const FloatingActionButtons = () => {
       </Button>
 
       {/* Quick Phone Button (Always Visible) */}
-      <div className="absolute bottom-20 left-0">
+      <div className="absolute bottom-24 left-0">
         <Button
           onClick={handlePhoneCall}
           className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-r-full shadow-lg hover:shadow-xl transition-all duration-300 group"
