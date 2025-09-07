@@ -19,6 +19,7 @@ const HomePage = () => {
       <Header />
       <Hero />
       <PriceCalculator />
+      <BookingSystem />
       <Services />
       <Pricing />
       <FleetGallery />  
