@@ -201,7 +201,6 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Online Booking System Backend"
     - "Online Booking System Frontend"
   stuck_tasks: []
   test_all: false
