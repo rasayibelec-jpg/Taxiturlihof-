@@ -12,43 +12,64 @@ const PriceCalculator = () => {
   const [startAddress, setStartAddress] = useState("");
   const [endAddress, setEndAddress] = useState("");
   const [calculatedPrice, setCalculatedPrice] = useState(null);
-  const [distance, setDistance] = useState(null);
   const [isCalculating, setIsCalculating] = useState(false);
+  const [calculationStatus, setCalculationStatus] = useState(null);
   const { toast } = useToast();
 
-  // Einfache und effektive Schweizer Distanzberechnung
-  const calculateDistance = (start, end) => {
-    if (!start || !end) return 0;
-    
-    const startLower = start.toLowerCase().trim();
-    const endLower = end.toLowerCase().trim();
-    
-    // Einfache, aber exakte Schweizer Routen
-    const routes = [
-      // Luzern Routen
-      { start: 'luzern', end: 'zurich', km: 47 },
-      { start: 'luzern', end: 'flughafen zurich', km: 47 },
-      { start: 'luzern', end: 'basel', km: 85 },
-      { start: 'luzern', end: 'flughafen basel', km: 95 },
-      { start: 'luzern', end: 'zug', km: 23 },
-      { start: 'luzern', end: 'schwyz', km: 30 },
-      { start: 'luzern', end: 'weggis', km: 18 },
-      { start: 'luzern', end: 'vitznau', km: 22 },
+  const handleCalculatePrice = async () => {
+    if (!startAddress.trim() || !endAddress.trim()) {
+      toast({
+        title: "Fehlende Eingaben",
+        description: "Bitte geben Sie sowohl Start- als auch Zieladresse ein.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsCalculating(true);
+    setCalculationStatus(null);
+
+    try {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
       
-      // Zug Routen
-      { start: 'zug', end: 'zurich', km: 25 },
-      { start: 'zug', end: 'flughafen zurich', km: 30 },
-      { start: 'zug', end: 'luzern', km: 23 },
-      { start: 'zug', end: 'schwyz', km: 18 },
+      const response = await axios.post(`${backendUrl}/api/calculate-price`, {
+        origin: startAddress,
+        destination: endAddress,
+        departure_time: new Date().toISOString()
+      });
+
+      if (response.data) {
+        setCalculatedPrice(response.data);
+        setCalculationStatus({
+          type: 'success',
+          message: 'Preis erfolgreich berechnet!'
+        });
+        
+        toast({
+          title: "✅ Preis berechnet!",
+          description: `Geschätzte Kosten: CHF ${response.data.total_fare}`,
+        });
+      }
       
-      // Schwyz Routen  
-      { start: 'schwyz', end: 'zurich', km: 50 },
-      { start: 'schwyz', end: 'flughafen zurich', km: 55 },
-      { start: 'schwyz', end: 'luzern', km: 30 },
-      { start: 'schwyz', end: 'brunnen', km: 10 },
+    } catch (error) {
+      const errorMessage = error.response?.data?.detail || 
+                          error.message || 
+                          'Fehler bei der Preisberechnung. Bitte versuchen Sie es erneut.';
       
-      // Goldau/Arth Routen
-      { start: 'goldau', end: 'zurich', km: 45 },
+      setCalculationStatus({
+        type: 'error',
+        message: errorMessage
+      });
+      
+      toast({
+        title: "❌ Berechnungsfehler",
+        description: errorMessage,
+        variant: "destructive"
+      });
+    } finally {
+      setIsCalculating(false);
+    }
+  };
       { start: 'goldau', end: 'flughafen zurich', km: 48 },
       { start: 'arth', end: 'zurich', km: 45 },
       { start: 'arth', end: 'flughafen zurich', km: 48 },
