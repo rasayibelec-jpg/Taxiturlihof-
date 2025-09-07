@@ -805,12 +805,22 @@ class BackendTester:
         if contact_id:
             print("   ✅ Contact form submission works and saves to database")
         
+        # Check for Swiss distance calculation results
+        swiss_tests = [r for r in self.results if "Swiss Distance" in r["test"]]
+        swiss_passed = [r for r in swiss_tests if r["success"]]
+        if swiss_tests:
+            print(f"   🗺️  Swiss Distance Calculation: {len(swiss_passed)}/{len(swiss_tests)} tests passed")
+        
         # Check for email-related failures
         email_config_failed = any("Email Service Configuration" in r["test"] and not r["success"] for r in self.results)
         if email_config_failed:
             print("   ⚠️  Email service needs proper SMTP credentials (expected)")
         
-        return len(failed_tests) == 0 or (len(failed_tests) == 1 and email_config_failed)
+        # Determine overall success (allow email config failure as it's expected)
+        critical_failures = [r for r in failed_tests if "Email Service Configuration" not in r["test"]]
+        overall_success = len(critical_failures) == 0
+        
+        return overall_success
 
 async def main():
     """Main test runner"""
