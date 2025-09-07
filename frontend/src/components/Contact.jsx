@@ -168,6 +168,24 @@ const Contact = () => {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Status Message */}
+                {submitStatus && (
+                  <div className={`p-4 rounded-lg border ${
+                    submitStatus.type === 'success' 
+                      ? 'bg-green-50 border-green-200 text-green-800' 
+                      : 'bg-red-50 border-red-200 text-red-800'
+                  }`}>
+                    <div className="flex items-center space-x-2">
+                      {submitStatus.type === 'success' ? (
+                        <CheckCircle className="w-5 h-5" />
+                      ) : (
+                        <AlertCircle className="w-5 h-5" />
+                      )}
+                      <p className="font-medium">{submitStatus.message}</p>
+                    </div>
+                  </div>
+                )}
+                
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -179,6 +197,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
+                      disabled={isSubmitting}
                       placeholder="Ihr Name"
                       className="transition-all duration-200 focus:ring-2 focus:ring-yellow-500"
                     />
@@ -193,6 +212,7 @@ const Contact = () => {
                       type="tel"
                       value={formData.phone}
                       onChange={handleInputChange}
+                      disabled={isSubmitting}
                       placeholder="Ihre Telefonnummer"
                       className="transition-all duration-200 focus:ring-2 focus:ring-yellow-500"
                     />
@@ -209,6 +229,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
+                    disabled={isSubmitting}
                     placeholder="ihre.email@beispiel.ch"
                     className="transition-all duration-200 focus:ring-2 focus:ring-yellow-500"
                   />
@@ -223,6 +244,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
+                    disabled={isSubmitting}
                     rows={4}
                     placeholder="Beschreiben Sie Ihren Transportbedarf oder stellen Sie Ihre Frage..."
                     className="transition-all duration-200 focus:ring-2 focus:ring-yellow-500"
@@ -230,10 +252,22 @@ const Contact = () => {
                 </div>
                 <Button 
                   type="submit" 
-                  className="w-full bg-yellow-600 hover:bg-yellow-700 text-white transform transition-all duration-200 hover:scale-105"
+                  disabled={isSubmitting}
+                  className={`w-full text-white transform transition-all duration-200 hover:scale-105 ${
+                    isSubmitting 
+                      ? 'bg-gray-400 cursor-not-allowed' 
+                      : 'bg-yellow-600 hover:bg-yellow-700'
+                  }`}
                   size="lg"
                 >
-                  Nachricht senden
+                  {isSubmitting ? (
+                    <div className="flex items-center space-x-2">
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Wird gesendet...</span>
+                    </div>
+                  ) : (
+                    'Nachricht senden'
+                  )}
                 </Button>
               </form>
             </CardContent>
