@@ -85,6 +85,17 @@ const FloatingActionButtons = () => {
           </div>
         </Button>
       </div>
+
+      {/* Quick WhatsApp Button (Always Visible) - Next to Phone Button */}
+      <div className="absolute bottom-6 left-72">
+        <Button
+          onClick={handleWhatsApp}
+          className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+        >
+          <MessageCircle className="w-5 h-5 mr-2" />
+          <span className="text-sm font-semibold">WhatsApp</span>
+        </Button>
+      </div>
     </div>
   );
 };
