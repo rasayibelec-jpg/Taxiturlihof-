@@ -918,7 +918,7 @@ class BackendTester:
                 "pickup_location": "Schwyz",
                 "destination": "Luzern",
                 "booking_type": "immediate",
-                "pickup_datetime": "2024-09-07T20:00:00",
+                "pickup_datetime": "2025-09-07T20:00:00",
                 "vehicle_type": "premium"
             }
             
