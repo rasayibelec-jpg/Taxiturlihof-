@@ -731,7 +731,7 @@ class BackendTester:
     
     async def run_all_tests(self):
         """Run all backend tests"""
-        print("🚀 Starting Backend Test Suite for Contact Form Integration")
+        print("🚀 Starting Backend Test Suite for Taxi Türlihof")
         print("=" * 60)
         
         # Test 1: API Health Check
@@ -740,6 +740,10 @@ class BackendTester:
         if not api_healthy:
             print("\n❌ API is not accessible. Stopping tests.")
             return False
+        
+        # Contact Form Tests
+        print("\n📧 CONTACT FORM TESTS")
+        print("-" * 40)
         
         # Test 2: Contact Form Submission
         contact_id = await self.test_contact_form_submission()
@@ -752,6 +756,31 @@ class BackendTester:
         
         # Test 5: Email Service Configuration
         await self.test_email_service_configuration()
+        
+        # Swiss Distance Calculation Tests
+        print("\n🗺️  SWISS DISTANCE CALCULATION TESTS")
+        print("-" * 40)
+        
+        # Test 6: Luzern to Zürich (Highway route)
+        await self.test_swiss_distance_luzern_to_zurich()
+        
+        # Test 7: Luzern to Schwyz (Inter-city route)
+        await self.test_swiss_distance_luzern_to_schwyz()
+        
+        # Test 8: Zug to Zürich Airport (Airport route)
+        await self.test_swiss_distance_zug_to_airport()
+        
+        # Test 9: Unknown location fallback
+        await self.test_swiss_distance_unknown_location()
+        
+        # Test 10: Popular destinations endpoint
+        await self.test_popular_destinations_endpoint()
+        
+        # Test 11: Price calculation with time factors
+        await self.test_price_calculation_with_time()
+        
+        # Test 12: Price calculation validation
+        await self.test_price_calculation_validation()
         
         # Summary
         print("\n" + "=" * 60)
