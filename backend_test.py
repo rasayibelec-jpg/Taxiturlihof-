@@ -1646,6 +1646,13 @@ class BackendTester:
         # Test 21: All Bookings Retrieval
         await self.test_all_bookings_retrieval()
         
+        # Gmail SMTP Email System Tests
+        print("\n📧 GMAIL SMTP EMAIL SYSTEM TESTS")
+        print("-" * 40)
+        
+        # Test 22: Gmail SMTP Email System with New Credentials
+        await self.test_gmail_smtp_email_system()
+        
         # Summary
         print("\n" + "=" * 60)
         print("📊 TEST SUMMARY")
