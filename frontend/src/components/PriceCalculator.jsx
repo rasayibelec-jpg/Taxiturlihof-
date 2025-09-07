@@ -25,80 +25,51 @@ const PriceCalculator = () => {
     { name: "Einsiedeln", distance: 35, fromCity: "Schwyz" }
   ];
 
-  // Realistische Distanzberechnung basierend auf echten Schweizer Strecken
+  // Realistische Distanzberechnung mit direktem String-Matching
   const calculateDistance = (start, end) => {
     if (!start || !end) return 0;
     
-    // Normalisiere die Eingaben
-    const normalizeLocation = (location) => {
-      return location.toLowerCase()
-        .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue')
-        .replace(/\s+/g, ' ').trim();
-    };
-    
-    const startNorm = normalizeLocation(start);
-    const endNorm = normalizeLocation(end);
-    
-    // Echte Schweizer Distanzen (basierend auf realen Taxi-Calculatoren)
-    const getDistance = (from, to) => {
-      // Goldau/Arth-Goldau Routen
-      if ((from.includes('goldau') || from.includes('arth')) && to.includes('flughafen') && to.includes('zurich')) return 68;
-      if ((from.includes('goldau') || from.includes('arth')) && to.includes('zurich') && !to.includes('flughafen')) return 65;
-      if ((from.includes('goldau') || from.includes('arth')) && to.includes('luzern')) return 40;
-      if ((from.includes('goldau') || from.includes('arth')) && to.includes('zug')) return 25;
+    // Direkte Routen-Definitionen (case-insensitive)
+    const routes = [
+      // Goldau Routen
+      { from: 'goldau', to: 'flughafen zürich', distance: 68 },
+      { from: 'goldau', to: 'zurich', distance: 65 },
+      { from: 'arth goldau', to: 'flughafen zürich', distance: 68 },
+      { from: 'arth-goldau', to: 'flughafen zürich', distance: 68 },
       
-      // Luzern Routen  
-      if (from.includes('luzern') && to.includes('flughafen') && to.includes('zurich')) return 65;
-      if (from.includes('luzern') && to.includes('zurich') && !to.includes('flughafen')) return 60;
-      if (from.includes('luzern') && to.includes('basel') && to.includes('flughafen')) return 95;
-      if (from.includes('luzern') && to.includes('basel') && !to.includes('flughafen')) return 85;
-      if (from.includes('luzern') && to.includes('zug')) return 25;
-      if (from.includes('luzern') && to.includes('schwyz')) return 35;
-      if (from.includes('luzern') && to.includes('brunnen')) return 30;
-      
-      // Zug Routen
-      if (from.includes('zug') && to.includes('flughafen') && to.includes('zurich')) return 45;
-      if (from.includes('zug') && to.includes('zurich') && !to.includes('flughafen')) return 40;
-      if (from.includes('zug') && to.includes('luzern')) return 25;
-      if (from.includes('zug') && to.includes('schwyz')) return 20;
+      // Luzern Routen
+      { from: 'luzern', to: 'flughafen zürich', distance: 65 },
+      { from: 'luzern', to: 'zurich', distance: 60 },
+      { from: 'luzern', to: 'flughafen basel', distance: 95 },
+      { from: 'luzern', to: 'basel', distance: 85 },
       
       // Schwyz Routen
-      if (from.includes('schwyz') && to.includes('flughafen') && to.includes('zurich')) return 75;
-      if (from.includes('schwyz') && to.includes('zurich') && !to.includes('flughafen')) return 70;
-      if (from.includes('schwyz') && to.includes('luzern')) return 35;
-      if (from.includes('schwyz') && to.includes('zug')) return 20;
-      if (from.includes('schwyz') && to.includes('brunnen')) return 12;
-      if (from.includes('schwyz') && to.includes('einsiedeln')) return 18;
+      { from: 'schwyz', to: 'flughafen zürich', distance: 75 },
+      { from: 'schwyz', to: 'zurich', distance: 70 },
+      { from: 'schwyz', to: 'luzern', distance: 35 },
       
-      // Brunnen Routen
-      if (from.includes('brunnen') && to.includes('luzern')) return 30;
-      if (from.includes('brunnen') && to.includes('zurich')) return 75;
-      if (from.includes('brunnen') && to.includes('schwyz')) return 12;
-      
-      // Einsiedeln Routen
-      if (from.includes('einsiedeln') && to.includes('zurich')) return 65;
-      if (from.includes('einsiedeln') && to.includes('luzern')) return 50;
-      if (from.includes('einsiedeln') && to.includes('schwyz')) return 18;
-      
-      // Weggis/Vitznau Routen
-      if ((from.includes('weggis') || from.includes('vitznau')) && to.includes('luzern')) return 20;
-      if ((from.includes('weggis') || from.includes('vitznau')) && to.includes('zurich')) return 65;
-      
-      return null;
-    };
+      // Zug Routen
+      { from: 'zug', to: 'flughafen zürich', distance: 45 },
+      { from: 'zug', to: 'zurich', distance: 40 },
+      { from: 'zug', to: 'luzern', distance: 25 },
+    ];
     
-    // Versuche beide Richtungen
-    let distance = getDistance(startNorm, endNorm);
-    if (!distance) {
-      distance = getDistance(endNorm, startNorm);
+    const startLower = start.toLowerCase().trim();
+    const endLower = end.toLowerCase().trim();
+    
+    // Suche nach exakten Matches
+    for (const route of routes) {
+      if (startLower.includes(route.from) && endLower.includes(route.to)) {
+        return route.distance;
+      }
+      // Auch umgekehrte Richtung testen
+      if (startLower.includes(route.to) && endLower.includes(route.from)) {
+        return route.distance;
+      }
     }
     
-    if (distance) {
-      return distance;
-    }
-    
-    // Fallback für unbekannte Routen: realistische Schweizer Schätzung
-    return Math.max(20, Math.min(120, Math.round((start.length + end.length) * 2.5)));
+    // Fallback
+    return Math.max(25, Math.min(100, Math.round((start.length + end.length) * 2)));
   };
 
   const calculatePrice = (distanceKm) => {
