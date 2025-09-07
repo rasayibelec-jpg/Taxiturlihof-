@@ -133,7 +133,7 @@ export const services = [
     title: "Kurierfahrten",
     description: "Schneller Transport von Dokumenten und Paketen",
     icon: "package",
-    price: "Ab CHF 25",
+    price: "Nach Vereinbarung",
     features: ["Express-Service", "Sicherer Transport", "Quittung"]
   }
 ];
