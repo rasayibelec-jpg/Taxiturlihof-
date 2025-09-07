@@ -70,191 +70,239 @@ const PriceCalculator = () => {
       setIsCalculating(false);
     }
   };
-      { start: 'goldau', end: 'flughafen zurich', km: 48 },
-      { start: 'arth', end: 'zurich', km: 45 },
-      { start: 'arth', end: 'flughafen zurich', km: 48 },
-    ];
-    
-    // Suche passende Route
-    for (const route of routes) {
-      // Teste beide Richtungen
-      if ((startLower.includes(route.start) && endLower.includes(route.end)) ||
-          (startLower.includes(route.end) && endLower.includes(route.start))) {
-        return route.km;
-      }
-    }
-    
-    // Fallback für unbekannte Routen
-    return 35;
-  };
-
-  const calculatePrice = (distanceKm) => {
-    const grundtarif = 6.60;
-    const pricePerKm = 4.20;
-    const totalPrice = grundtarif + (distanceKm * pricePerKm);
-    return Math.round(totalPrice * 100) / 100; // Runde auf 2 Dezimalstellen
-  };
-
-  const handleCalculate = () => {
-    if (!startAddress.trim() || !endAddress.trim()) {
-      toast({
-        title: "Eingabe erforderlich",
-        description: "Bitte geben Sie Start- und Zieladresse ein.",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    setIsCalculating(true);
-    
-    // Simuliere API-Aufruf
-    setTimeout(() => {
-      const estimatedDistance = calculateDistance(startAddress, endAddress);
-      const estimatedPrice = calculatePrice(estimatedDistance);
-      
-      setDistance(estimatedDistance);
-      setCalculatedPrice(estimatedPrice);
-      setIsCalculating(false);
-
-      toast({
-        title: "Berechnung abgeschlossen!",
-        description: `Geschätzte Distanz: ${estimatedDistance} km`,
-      });
-    }, 1500);
-  };
 
   const handleBookNow = () => {
-    const message = `Hallo! Ich möchte eine Fahrt buchen:\n\nVon: ${startAddress}\nNach: ${endAddress}\nGeschätzte Distanz: ${distance} km\nGeschätzter Preis: CHF ${calculatedPrice?.toFixed(2)}\n\nVielen Dank!`;
-    const phoneNumber = contactInfo.phone.replace(/\s/g, '').replace(/^0/, '+41');
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+    if (!calculatedPrice) return;
+
+    const message = `Hallo! Ich möchte eine Fahrt buchen:%0A%0A` +
+                   `Von: ${calculatedPrice.origin}%0A` +
+                   `Nach: ${calculatedPrice.destination}%0A` +
+                   `Geschätzte Kosten: CHF ${calculatedPrice.total_fare}%0A` +
+                   `Distanz: ${calculatedPrice.distance_km} km%0A%0A` +
+                   `Bitte bestätigen Sie die Buchung.`;
+
+    const whatsappUrl = `https://wa.me/41766113131?text=${message}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
-    <section id="calculator" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section id="calculator" className="py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Preisrechner
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Berechnen Sie den geschätzten Preis für Ihre Fahrt. 
-            Geben Sie einfach Start- und Zieladresse ein.
+            Berechnen Sie den geschätzten Fahrpreis für Ihre Route in der Zentralschweiz.
+            Unsere intelligente Berechnung berücksichtigt Distanz, Verkehr und Tageszeit.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <Card className="shadow-2xl border-0 bg-white">
-            <CardHeader className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-t-lg">
-              <CardTitle className="text-2xl font-bold flex items-center">
-                <Calculator className="w-7 h-7 mr-3" />
-                Fahrtkosten berechnen
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Calculator Form */}
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-2xl font-bold text-gray-900 flex items-center">
+                <Calculator className="w-6 h-6 text-yellow-600 mr-3" />
+                Fahrpreis berechnen
               </CardTitle>
-              <CardDescription className="text-yellow-100">
-                Basierend auf: Grundtarif CHF 6.60 + CHF 4.20 pro Kilometer
+              <CardDescription>
+                Geben Sie Start- und Zieladresse ein für eine präzise Kostenschätzung.
               </CardDescription>
             </CardHeader>
-            
-            <CardContent className="p-8">
-              {/* Eingabefelder */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold text-gray-700 flex items-center">
-                    <MapPin className="w-4 h-4 mr-2 text-green-600" />
-                    Startadresse
-                  </label>
-                  <Input
-                    placeholder="z.B. Bahnhofstrasse 1, Luzern"
-                    value={startAddress}
-                    onChange={(e) => setStartAddress(e.target.value)}
-                    className="h-12 text-lg border-2 border-gray-200 focus:border-yellow-500"
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold text-gray-700 flex items-center">
-                    <Navigation className="w-4 h-4 mr-2 text-red-600" />
-                    Zieladresse
-                  </label>
-                  <Input
-                    placeholder="z.B. Flughafen Zürich"
-                    value={endAddress}
-                    onChange={(e) => setEndAddress(e.target.value)}
-                    className="h-12 text-lg border-2 border-gray-200 focus:border-yellow-500"
-                  />
-                </div>
-              </div>
-
-              {/* Berechnen Button */}
-              <div className="text-center mb-8">
-                <Button
-                  onClick={handleCalculate}
-                  disabled={isCalculating}
-                  className="bg-yellow-600 hover:bg-yellow-700 text-white h-14 px-8 text-lg font-semibold"
-                  size="lg"
-                >
-                  {isCalculating ? (
-                    <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
-                      Berechnung läuft...
-                    </>
-                  ) : (
-                    <>
-                      <Calculator className="w-5 h-5 mr-3" />
-                      BERECHNUNG STARTEN
-                    </>
-                  )}
-                </Button>
-              </div>
-
-              {/* Ergebnis */}
-              {calculatedPrice && distance && (
-                <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6 border-2 border-green-200">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-                    <div className="text-center">
-                      <div className="text-sm text-gray-600 mb-1">Geschätzte Distanz</div>
-                      <div className="text-2xl font-bold text-gray-900">{distance} km</div>
-                    </div>
-                    
-                    <div className="text-center">
-                      <div className="text-sm text-gray-600 mb-1">Geschätzter Preis</div>
-                      <div className="text-3xl font-bold text-green-600">CHF {calculatedPrice.toFixed(2)}</div>
-                      <div className="text-xs text-gray-500 mt-1">
-                        (CHF 6.60 + {distance} × CHF 4.20)
-                      </div>
-                    </div>
-                    
-                    <div className="text-center">
-                      <Button
-                        onClick={handleBookNow}
-                        className="bg-green-600 hover:bg-green-700 text-white w-full h-12"
-                      >
-                        <Phone className="w-4 h-4 mr-2" />
-                        Jetzt Buchen
-                      </Button>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-4 text-center">
-                    <Badge className="bg-blue-100 text-blue-800 px-4 py-2">
-                      💡 Dies ist eine Schätzung. Der finale Preis wird bei der Fahrt berechnet.
-                    </Badge>
+            <CardContent className="space-y-6">
+              {/* Status Message */}
+              {calculationStatus && (
+                <div className={`p-4 rounded-lg border ${
+                  calculationStatus.type === 'success' 
+                    ? 'bg-green-50 border-green-200 text-green-800' 
+                    : 'bg-red-50 border-red-200 text-red-800'
+                }`}>
+                  <div className="flex items-center space-x-2">
+                    {calculationStatus.type === 'success' ? (
+                      <CheckCircle className="w-5 h-5" />
+                    ) : (
+                      <AlertCircle className="w-5 h-5" />
+                    )}
+                    <p className="font-medium">{calculationStatus.message}</p>
                   </div>
                 </div>
               )}
 
-              {/* Hinweise */}
-              <div className="mt-8 bg-gray-50 rounded-lg p-4">
-                <h4 className="font-semibold text-gray-900 mb-2">Hinweise zur Preisberechnung:</h4>
-                <ul className="text-sm text-gray-600 space-y-1">
-                  <li>• Grundtarif: CHF 6.60 (bei jeder Fahrt)</li>
-                  <li>• Kilometerpreis: CHF 4.20 pro km</li>
-                  <li>• Wartezeit: CHF 73.00 pro Stunde (falls erforderlich)</li>
-                  <li>• Alle Preise verstehen sich inklusive MwSt.</li>
-                  <li>• Festpreise für Flughafentransfers verfügbar</li>
-                </ul>
+              <div className="space-y-4">
+                <div>
+                  <label htmlFor="start" className="block text-sm font-medium text-gray-700 mb-2">
+                    <MapPin className="w-4 h-4 inline mr-1" />
+                    Startadresse
+                  </label>
+                  <Input
+                    id="start"
+                    value={startAddress}
+                    onChange={(e) => setStartAddress(e.target.value)}
+                    placeholder="z.B. Luzern, Bahnhofstrasse 1"
+                    disabled={isCalculating}
+                    className="transition-all duration-200 focus:ring-2 focus:ring-yellow-500"
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="end" className="block text-sm font-medium text-gray-700 mb-2">
+                    <Navigation className="w-4 h-4 inline mr-1" />
+                    Zieladresse
+                  </label>
+                  <Input
+                    id="end"
+                    value={endAddress}
+                    onChange={(e) => setEndAddress(e.target.value)}
+                    placeholder="z.B. Zürich Flughafen"
+                    disabled={isCalculating}
+                    className="transition-all duration-200 focus:ring-2 focus:ring-yellow-500"
+                  />
+                </div>
               </div>
+
+              <Button 
+                onClick={handleCalculatePrice}
+                disabled={isCalculating || !startAddress.trim() || !endAddress.trim()}
+                className={`w-full text-white transform transition-all duration-200 hover:scale-105 ${
+                  isCalculating 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-yellow-600 hover:bg-yellow-700'
+                }`}
+                size="lg"
+              >
+                {isCalculating ? (
+                  <div className="flex items-center space-x-2">
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Berechnung läuft...</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center space-x-2">
+                    <Calculator className="w-5 h-5" />
+                    <span>Preis berechnen</span>
+                  </div>
+                )}
+              </Button>
             </CardContent>
           </Card>
+
+          {/* Results */}
+          <div className="space-y-6">
+            {calculatedPrice ? (
+              <Card className="shadow-lg border-yellow-200 bg-gradient-to-br from-yellow-50 to-orange-50">
+                <CardHeader>
+                  <CardTitle className="text-2xl font-bold text-gray-900">
+                    Berechnungsergebnis
+                  </CardTitle>
+                  <CardDescription className="text-gray-700">
+                    Geschätzte Kosten für Ihre Fahrt
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-white p-4 rounded-lg">
+                      <div className="text-sm text-gray-600 mb-1">Distanz</div>
+                      <div className="text-2xl font-bold text-gray-900">
+                        {calculatedPrice.distance_km} km
+                      </div>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg">
+                      <div className="text-sm text-gray-600 mb-1">Fahrzeit</div>
+                      <div className="text-2xl font-bold text-gray-900 flex items-center">
+                        <Clock className="w-5 h-5 mr-1" />
+                        {calculatedPrice.estimated_duration_minutes} min
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-6 rounded-lg border-2 border-yellow-300">
+                    <div className="text-center">
+                      <div className="text-sm text-gray-600 mb-2">Geschätzte Gesamtkosten</div>
+                      <div className="text-4xl font-bold text-yellow-600 mb-2">
+                        CHF {calculatedPrice.total_fare}
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        Grundtarif CHF {calculatedPrice.base_fare} + Distanz CHF {calculatedPrice.distance_fare}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-600">Route:</span>
+                      <Badge variant="secondary">
+                        <Route className="w-3 h-3 mr-1" />
+                        {calculatedPrice.route_info?.route_type || 'Standard'}
+                      </Badge>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-600">Von:</span>
+                      <span className="font-medium">{calculatedPrice.origin}</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-600">Nach:</span>
+                      <span className="font-medium">{calculatedPrice.destination}</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-600">Berechnung:</span>
+                      <Badge variant="outline" className="text-green-700 border-green-300">
+                        Intelligente Schätzung
+                      </Badge>
+                    </div>
+                  </div>
+
+                  <Button 
+                    onClick={handleBookNow}
+                    className="w-full bg-green-600 hover:bg-green-700 text-white transform transition-all duration-200 hover:scale-105"
+                    size="lg"
+                  >
+                    <Phone className="w-5 h-5 mr-2" />
+                    Jetzt über WhatsApp buchen
+                  </Button>
+                </CardContent>
+              </Card>
+            ) : (
+              <Card className="shadow-lg">
+                <CardContent className="flex flex-col items-center justify-center py-12 text-center">
+                  <Calculator className="w-16 h-16 text-gray-300 mb-4" />
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    Bereit für die Berechnung
+                  </h3>
+                  <p className="text-gray-600 max-w-sm">
+                    Geben Sie Start- und Zieladresse ein, um eine genaue Kostenschätzung zu erhalten.
+                  </p>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Pricing Info */}
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-lg font-bold text-gray-900">
+                  Tarifübersicht
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Grundtarif</span>
+                  <span className="font-semibold">CHF 6.80</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Pro Kilometer</span>
+                  <span className="font-semibold">CHF 4.20</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Wartezeit</span>
+                  <span className="font-semibold">CHF 73.00/Std</span>
+                </div>
+                <hr className="my-3" />
+                <div className="text-sm text-gray-500">
+                  * Preise können je nach Tageszeit, Verkehrslage und besonderen Umständen variieren.
+                  Nacht- und Wochenendzuschläge möglich.
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>
