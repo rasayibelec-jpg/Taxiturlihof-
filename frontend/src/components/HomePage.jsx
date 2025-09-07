@@ -7,6 +7,7 @@ import Pricing from "./Pricing";
 import FleetGallery from "./FleetGallery";
 import PaymentMethods from "./PaymentMethods";
 import Coverage from "./Coverage";
+import BookingSystem from "./BookingSystem";
 import Reviews from "./Reviews";
 import Contact from "./Contact";
 import Footer from "./Footer";
