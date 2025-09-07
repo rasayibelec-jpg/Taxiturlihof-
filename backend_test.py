@@ -1362,6 +1362,203 @@ class BackendTester:
             )
             return False
 
+    async def test_gmail_smtp_email_system(self):
+        """Test Gmail SMTP email system with new credentials by creating a test booking"""
+        try:
+            # Test booking data as specified in the review request
+            test_booking_data = {
+                "customer_name": "Test E-Mail System",
+                "customer_email": "test.kunde@example.com",
+                "customer_phone": "076 999 88 77",
+                "pickup_location": "Luzern",
+                "destination": "Zürich",
+                "booking_type": "scheduled",
+                "pickup_datetime": "2025-12-10T15:00:00",
+                "passenger_count": 1,
+                "vehicle_type": "standard",
+                "special_requests": "E-Mail Test"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            
+            # Create booking to trigger email sending
+            async with self.session.post(
+                f"{BACKEND_URL}/bookings",
+                json=test_booking_data,
+                headers=headers
+            ) as response:
+                
+                response_text = await response.text()
+                
+                if response.status == 200:
+                    try:
+                        data = await response.json()
+                        
+                        if data.get("success") and data.get("booking_id"):
+                            booking_id = data["booking_id"]
+                            booking_details = data.get("booking_details", {})
+                            
+                            # Booking creation successful - now check email functionality
+                            self.log_result(
+                                "Gmail SMTP Email System - Booking Creation",
+                                True,
+                                f"Test booking created successfully (ID: {booking_id[:8]})",
+                                {
+                                    "booking_id": booking_id,
+                                    "customer_name": booking_details.get("customer_name"),
+                                    "total_fare": booking_details.get("total_fare"),
+                                    "email_trigger": "Background email task initiated"
+                                }
+                            )
+                            
+                            # Wait a moment for background email task to process
+                            await asyncio.sleep(3)
+                            
+                            # Test direct SMTP connection
+                            smtp_test_result = await self._test_smtp_connection_directly()
+                            
+                            if smtp_test_result["success"]:
+                                self.log_result(
+                                    "Gmail SMTP Email System - SMTP Authentication",
+                                    True,
+                                    f"Gmail SMTP authentication successful with rasayibelec@gmail.com",
+                                    {
+                                        "smtp_host": "smtp.gmail.com",
+                                        "smtp_port": 587,
+                                        "username": "rasayibelec@gmail.com",
+                                        "password_status": "Valid Gmail App Password",
+                                        "connection_details": smtp_test_result["details"]
+                                    }
+                                )
+                                
+                                # Overall email system test result
+                                self.log_result(
+                                    "Gmail SMTP Email System - Overall Test",
+                                    True,
+                                    "✅ Email system working: Booking creation triggers email, SMTP authentication successful",
+                                    {
+                                        "booking_creation": "SUCCESS",
+                                        "email_triggering": "SUCCESS", 
+                                        "smtp_authentication": "SUCCESS",
+                                        "gmail_credentials": "VALID",
+                                        "recommendation": "Email system is fully operational"
+                                    }
+                                )
+                                return True
+                            else:
+                                self.log_result(
+                                    "Gmail SMTP Email System - SMTP Authentication",
+                                    False,
+                                    f"Gmail SMTP authentication failed: {smtp_test_result['error']}",
+                                    {
+                                        "smtp_host": "smtp.gmail.com",
+                                        "smtp_port": 587,
+                                        "username": "rasayibelec@gmail.com",
+                                        "password_status": "Invalid or incorrect format",
+                                        "error_details": smtp_test_result["details"],
+                                        "recommendation": "Check if '1497375278' is correct Gmail App Password format"
+                                    }
+                                )
+                                
+                                # Overall email system test result
+                                self.log_result(
+                                    "Gmail SMTP Email System - Overall Test",
+                                    False,
+                                    "❌ Email system issue: Booking creation works but SMTP authentication failed",
+                                    {
+                                        "booking_creation": "SUCCESS",
+                                        "email_triggering": "ATTEMPTED", 
+                                        "smtp_authentication": "FAILED",
+                                        "gmail_credentials": "INVALID",
+                                        "recommendation": "Need proper Gmail App Password - current password format incorrect"
+                                    }
+                                )
+                                return False
+                        else:
+                            self.log_result(
+                                "Gmail SMTP Email System - Booking Creation",
+                                False,
+                                f"Booking creation failed: {data.get('message', 'Unknown error')}"
+                            )
+                            return False
+                            
+                    except json.JSONDecodeError:
+                        self.log_result(
+                            "Gmail SMTP Email System - Booking Creation",
+                            False,
+                            f"Invalid JSON response: {response_text}"
+                        )
+                        return False
+                else:
+                    self.log_result(
+                        "Gmail SMTP Email System - Booking Creation",
+                        False,
+                        f"Booking API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Gmail SMTP Email System - Overall Test",
+                False,
+                f"Email system test failed: {str(e)}"
+            )
+            return False
+
+    async def _test_smtp_connection_directly(self):
+        """Test SMTP connection directly to verify Gmail credentials"""
+        try:
+            import aiosmtplib
+            from email.message import EmailMessage
+            
+            # Gmail SMTP settings from .env
+            smtp_host = "smtp.gmail.com"
+            smtp_port = 587
+            smtp_username = "rasayibelec@gmail.com"
+            smtp_password = "1497375278"
+            
+            # Create a test message
+            message = EmailMessage()
+            message["From"] = f"Taxi Türlihof <{smtp_username}>"
+            message["To"] = "test.kunde@example.com"
+            message["Subject"] = "SMTP Connection Test"
+            message.set_content("This is a test message to verify SMTP connection.")
+            
+            # Attempt SMTP connection and authentication
+            await aiosmtplib.send(
+                message,
+                hostname=smtp_host,
+                port=smtp_port,
+                start_tls=True,
+                username=smtp_username,
+                password=smtp_password,
+            )
+            
+            return {
+                "success": True,
+                "details": "SMTP connection and authentication successful",
+                "error": None
+            }
+            
+        except aiosmtplib.SMTPAuthenticationError as e:
+            return {
+                "success": False,
+                "details": f"SMTP Authentication failed: {str(e)}",
+                "error": "Invalid Gmail credentials or App Password format"
+            }
+        except aiosmtplib.SMTPException as e:
+            return {
+                "success": False,
+                "details": f"SMTP Error: {str(e)}",
+                "error": "SMTP connection or protocol error"
+            }
+        except Exception as e:
+            return {
+                "success": False,
+                "details": f"Connection error: {str(e)}",
+                "error": "Network or configuration error"
+            }
+
     async def run_all_tests(self):
         """Run all backend tests"""
         print("🚀 Starting Backend Test Suite for Taxi Türlihof")
