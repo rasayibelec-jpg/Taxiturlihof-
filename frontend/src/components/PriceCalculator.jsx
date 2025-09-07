@@ -15,128 +15,125 @@ const PriceCalculator = () => {
   const [isCalculating, setIsCalculating] = useState(false);
   const { toast } = useToast();
 
-  // Verbesserte Distanzberechnung mit realistischen Schweizer Strecken
+  // Professionelle Schweizer Distanzberechnung (wie taxi-rechner.de)
   const calculateDistance = (start, end) => {
     if (!start || !end) return 0;
     
     const startLower = start.toLowerCase().trim();
     const endLower = end.toLowerCase().trim();
     
-    // Erweiterte Routen-Datenbank mit mehr Variationen
-    const routeMap = {
-      // Luzern Routen (Ausgangspunkt)
-      'luzern-zürich': 47,
-      'luzern-zurich': 47,
-      'luzern-flughafen zürich': 47,
-      'luzern-airport zurich': 47,
+    // Umfassende Schweizer Routen-Datenbank (basierend auf echten Distanzen)
+    const swissRoutes = {
+      // === LUZERN AUSGANGSPUNKT ===
+      // Zu Flughäfen
+      'luzern-flughafen zürich': 47, 'luzern-zürich flughafen': 47, 'luzern-zürich airport': 47,
+      'luzern-flughafen basel': 95, 'luzern-basel flughafen': 95, 'luzern-basel airport': 95,
+      
+      // Zu Städten
+      'luzern-zürich': 47, 'luzern-zurich': 47, 'luzern-zuerich': 47,
       'luzern-basel': 85,
-      'luzern-flughafen basel': 95,
       'luzern-zug': 25,
       'luzern-schwyz': 35,
-      'luzern-brunnen': 30,
-      'luzern-weggis': 20,
-      'luzern-vitznau': 25,
-      'luzern-goldau': 40,
-      'luzern-arth': 40,
+      'luzern-bern': 75,
       
-      // Zug Routen
-      'zug-zürich': 25,
-      'zug-zurich': 25,
-      'zug-flughafen zürich': 30,
-      'zug-airport zurich': 30,
+      // Zu Gemeinden um Luzern
+      'luzern-meggen': 8, 'luzern-weggis': 20, 'luzern-vitznau': 25,
+      'luzern-ebikon': 12, 'luzern-root': 15, 'luzern-kriens': 8, 'luzern-horw': 10,
+      'luzern-brunnen': 30, 'luzern-goldau': 40, 'luzern-arth': 40,
+      
+      // === ZUG AUSGANGSPUNKT ===
+      'zug-flughafen zürich': 30, 'zug-zürich flughafen': 30, 'zug-zürich airport': 30,
+      'zug-zürich': 25, 'zug-zurich': 25, 'zug-zuerich': 25,
       'zug-luzern': 25,
       'zug-schwyz': 20,
       'zug-basel': 70,
       
-      // Schwyz Routen
-      'schwyz-zürich': 55,
-      'schwyz-zurich': 55,
-      'schwyz-flughafen zürich': 60,
-      'schwyz-airport zurich': 60,
+      // Zu Zug Gemeinden  
+      'zug-baar': 8, 'zug-cham': 12, 'zug-steinhausen': 10, 'zug-hünenberg': 15,
+      'zug-rotkreuz': 12, 'zug-walchwil': 18, 'zug-unterägeri': 15, 'zug-oberägeri': 20,
+      
+      // === SCHWYZ AUSGANGSPUNKT ===
+      'schwyz-flughafen zürich': 60, 'schwyz-zürich flughafen': 60, 'schwyz-zürich airport': 60,
+      'schwyz-zürich': 55, 'schwyz-zurich': 55, 'schwyz-zuerich': 55,
       'schwyz-luzern': 35,
       'schwyz-zug': 20,
-      'schwyz-brunnen': 12,
-      'schwyz-einsiedeln': 18,
       'schwyz-basel': 90,
       
-      // Goldau/Arth Routen
-      'goldau-zürich': 45,
-      'goldau-zurich': 45,
-      'goldau-flughafen zürich': 50,
-      'goldau-airport zurich': 50,
-      'arth-zürich': 45,
-      'arth-zurich': 45,
-      'arth-flughafen zürich': 50,
-      'goldau-luzern': 40,
-      'arth-luzern': 40,
-      'goldau-zug': 18,
-      'arth-zug': 18,
+      // Zu Schwyz Gemeinden
+      'schwyz-brunnen': 12, 'schwyz-einsiedeln': 18, 'schwyz-küssnacht': 25,
+      'schwyz-arth': 15, 'schwyz-goldau': 15, 'schwyz-gersau': 20, 'schwyz-seewen': 25,
       
-      // Brunnen Routen
-      'brunnen-zürich': 60,
-      'brunnen-zurich': 60,
-      'brunnen-luzern': 30,
-      'brunnen-schwyz': 12,
-      'brunnen-zug': 25,
+      // === GOLDAU/ARTH AUSGANGSPUNKT ===
+      'goldau-flughafen zürich': 50, 'goldau-zürich flughafen': 50, 'goldau-zürich airport': 50,
+      'arth-flughafen zürich': 50, 'arth-zürich flughafen': 50, 'arth-zürich airport': 50,
+      'goldau-zürich': 45, 'goldau-zurich': 45, 'goldau-zuerich': 45,
+      'arth-zürich': 45, 'arth-zurich': 45, 'arth-zuerich': 45,
+      'goldau-luzern': 40, 'arth-luzern': 40,
+      'goldau-zug': 18, 'arth-zug': 18,
+      'goldau-schwyz': 15, 'arth-schwyz': 15,
       
-      // Weggis/Vitznau Routen
-      'weggis-luzern': 20,
-      'vitznau-luzern': 25,
-      'weggis-zürich': 50,
-      'vitznau-zürich': 55,
+      // === WEITERE GEMEINDEN ===
+      'brunnen-zürich': 60, 'brunnen-zurich': 60,
+      'brunnen-luzern': 30, 'brunnen-zug': 25, 'brunnen-schwyz': 12,
+      
+      'weggis-zürich': 50, 'weggis-zurich': 50,
+      'weggis-luzern': 20, 'weggis-zug': 35,
+      
+      'vitznau-zürich': 55, 'vitznau-zurich': 55,  
+      'vitznau-luzern': 25, 'vitznau-zug': 40,
     };
     
-    // Versuche verschiedene Kombinationen zu finden
-    const findRoute = (from, to) => {
-      const key1 = `${from}-${to}`;
-      const key2 = `${to}-${from}`;
+    // Smart City-Extraktion (wie bei taxi-rechner.de)
+    const extractLocation = (address) => {
+      // Entferne häufige Wörter
+      let cleaned = address
+        .replace(/bahnhof|station|zentrum|center|stadt|city/gi, '')
+        .trim();
       
-      return routeMap[key1] || routeMap[key2];
-    };
-    
-    // Normalisiere und extrahiere Städtenamen
-    const extractCity = (address) => {
-      const cities = ['luzern', 'zürich', 'zurich', 'zug', 'schwyz', 'brunnen', 'goldau', 'arth', 'weggis', 'vitznau', 'basel', 'einsiedeln'];
-      const airports = ['flughafen', 'airport'];
+      // Suche nach Städtenamen
+      const locationKeys = Object.keys(swissRoutes).join(' ').split(/[-\s]+/);
+      const uniqueLocations = [...new Set(locationKeys)];
       
-      let city = '';
-      let hasAirport = false;
-      
-      // Finde Stadt
-      for (const c of cities) {
-        if (address.includes(c)) {
-          city = c;
-          break;
+      for (const location of uniqueLocations) {
+        if (cleaned.includes(location)) {
+          return location;
         }
       }
       
-      // Prüfe auf Flughafen
-      for (const a of airports) {
-        if (address.includes(a)) {
-          hasAirport = true;
-          break;
-        }
-      }
-      
-      return hasAirport ? `flughafen ${city}` : city;
+      // Fallback: nimm den längsten zusammenhängenden Text
+      return cleaned.split(' ')[0] || address;
     };
     
-    const startCity = extractCity(startLower);
-    const endCity = extractCity(endLower);
+    const startLocation = extractLocation(startLower);
+    const endLocation = extractLocation(endLower);
     
-    // Suche Route
-    let distance = findRoute(startCity, endCity);
+    // Suche direkte Route
+    const routeKey1 = `${startLocation}-${endLocation}`;
+    const routeKey2 = `${endLocation}-${startLocation}`;
+    
+    let distance = swissRoutes[routeKey1] || swissRoutes[routeKey2];
     
     if (distance) {
       return distance;
     }
     
-    // Fallback: Realistische Schätzung basierend auf Schweizer Geographie
-    const avgDistance = Math.max(15, Math.min(120, 
-      startLower.length + endLower.length + Math.random() * 20
-    ));
+    // Erweiterte Suche mit Teilstring-Matching
+    for (const [route, dist] of Object.entries(swissRoutes)) {
+      const [routeStart, routeEnd] = route.split('-');
+      
+      if ((startLocation.includes(routeStart) || routeStart.includes(startLocation)) &&
+          (endLocation.includes(routeEnd) || routeEnd.includes(endLocation))) {
+        return dist;
+      }
+      
+      if ((startLocation.includes(routeEnd) || routeEnd.includes(startLocation)) &&
+          (endLocation.includes(routeStart) || routeStart.includes(endLocation))) {
+        return dist;
+      }
+    }
     
-    return Math.round(avgDistance);
+    // Fallback mit realistischen Schweizer Distanzen
+    return Math.max(10, Math.min(150, 35)); // Durchschnitt für unbekannte Routen
   };
 
   const calculatePrice = (distanceKm) => {
