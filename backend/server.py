@@ -228,6 +228,141 @@ async def get_popular_destinations(origin: str):
         logger.error(f"Failed to get popular destinations: {str(e)}")
         raise HTTPException(status_code=400, detail="Fehler beim Abrufen beliebter Ziele")
 
+# Booking System Endpoints
+@api_router.post("/bookings", response_model=BookingResponse)
+async def create_booking(request: BookingRequest, background_tasks: BackgroundTasks):
+    """Create a new taxi booking"""
+    try:
+        # Create the booking
+        booking_response = await booking_service.create_booking(request)
+        
+        if booking_response.success and booking_response.booking_details:
+            # Save booking to database
+            booking_dict = booking_response.booking_details.dict()
+            await db.bookings.insert_one(booking_dict)
+            
+            # Send confirmation emails in background
+            background_tasks.add_task(
+                booking_service.send_booking_confirmation,
+                booking_response.booking_details
+            )
+            
+            logger.info(f"Booking created successfully: {booking_response.booking_id}")
+        
+        return booking_response
+        
+    except Exception as e:
+        logger.error(f"Booking creation failed: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail="Buchung konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
+        )
+
+@api_router.get("/bookings/{booking_id}", response_model=Booking)
+async def get_booking(booking_id: str):
+    """Get booking details by ID"""
+    try:
+        booking_data = await db.bookings.find_one({"id": booking_id})
+        if not booking_data:
+            raise HTTPException(status_code=404, detail="Buchung nicht gefunden")
+        
+        return Booking(**booking_data)
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to retrieve booking: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Abrufen der Buchung")
+
+@api_router.get("/bookings", response_model=List[Booking])
+async def get_all_bookings(status: Optional[str] = None, limit: int = 50):
+    """Get all bookings (admin endpoint)"""
+    try:
+        query = {}
+        if status:
+            query["status"] = status
+        
+        bookings = await db.bookings.find(query).sort("pickup_datetime", -1).limit(limit).to_list(length=None)
+        return [Booking(**booking) for booking in bookings]
+        
+    except Exception as e:
+        logger.error(f"Failed to retrieve bookings: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Abrufen der Buchungen")
+
+@api_router.put("/bookings/{booking_id}/status")
+async def update_booking_status(booking_id: str, status: BookingStatus):
+    """Update booking status"""
+    try:
+        result = await db.bookings.update_one(
+            {"id": booking_id},
+            {
+                "$set": {
+                    "status": status.value,
+                    "updated_at": datetime.now()
+                }
+            }
+        )
+        
+        if result.matched_count == 0:
+            raise HTTPException(status_code=404, detail="Buchung nicht gefunden")
+        
+        return {"success": True, "message": f"Buchungsstatus auf '{status.value}' aktualisiert"}
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to update booking status: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Aktualisieren des Buchungsstatus")
+
+@api_router.delete("/bookings/{booking_id}")
+async def cancel_booking(booking_id: str):
+    """Cancel a booking"""
+    try:
+        # Update booking status to cancelled
+        result = await db.bookings.update_one(
+            {"id": booking_id},
+            {
+                "$set": {
+                    "status": BookingStatus.CANCELLED.value,
+                    "updated_at": datetime.now()
+                }
+            }
+        )
+        
+        if result.matched_count == 0:
+            raise HTTPException(status_code=404, detail="Buchung nicht gefunden")
+        
+        # TODO: Send cancellation notification email
+        
+        return {"success": True, "message": "Buchung erfolgreich storniert"}
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to cancel booking: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Stornieren der Buchung")
+
+@api_router.get("/availability", response_model=AvailabilityResponse)
+async def get_availability(date: str):
+    """Get available time slots for a specific date"""
+    try:
+        # Parse date string
+        booking_date = datetime.fromisoformat(date)
+        
+        # Get available slots from booking service
+        available_slots = await booking_service.get_available_time_slots(booking_date)
+        
+        return AvailabilityResponse(
+            date=date,
+            available_slots=available_slots
+        )
+        
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Ungültiges Datumsformat. Verwenden Sie YYYY-MM-DD.")
+    except Exception as e:
+        logger.error(f"Failed to get availability: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Abrufen der Verfügbarkeit")
+
 # Include the router in the main app
 app.include_router(api_router)
 
