@@ -74,9 +74,9 @@ const PriceCalculator = () => {
     const startNorm = normalizeLocation(start);
     const endNorm = normalizeLocation(end);
     
-    // Suche nach exakten Route-Matches
-    const routeKey1 = `${startNorm}-${endNorm}`;
-    const routeKey2 = `${endNorm}-${startNorm}`; // Auch umgekehrte Richtung
+    // Suche nach exakten Route-Matches (ohne Bindestriche)
+    const routeKey1 = `${startNorm} ${endNorm}`;
+    const routeKey2 = `${endNorm} ${startNorm}`; // Auch umgekehrte Richtung
     
     if (routeDistances[routeKey1]) {
       return routeDistances[routeKey1];
