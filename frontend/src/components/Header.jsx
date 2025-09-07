@@ -73,6 +73,12 @@ const Header = () => {
               Abdeckung
             </button>
             <button
+              onClick={() => scrollToSection("reviews")}
+              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
+            >
+              Bewertungen
+            </button>
+            <button
               onClick={() => scrollToSection("contact")}
               className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
             >
