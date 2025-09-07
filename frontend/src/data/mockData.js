@@ -97,7 +97,7 @@ export const services = [
     title: "Flughafentransfer",
     description: "Zuverlässiger Transport zum und vom Flughafen Zürich und Basel",
     icon: "plane",
-    price: "Ab CHF 200",
+    price: "Nach Vereinbarung",
     features: ["Pünktlich", "Komfortabel", "Direktfahrt"],
     priceDetails: {
       zurich: {
