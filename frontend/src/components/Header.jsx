@@ -37,6 +37,12 @@ const Header = () => {
               Home
             </button>
             <button
+              onClick={() => scrollToSection("calculator")}
+              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
+            >
+              Preisrechner
+            </button>
+            <button
               onClick={() => scrollToSection("services")}
               className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
             >
