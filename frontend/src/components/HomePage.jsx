@@ -8,6 +8,7 @@ import PaymentMethods from "./PaymentMethods";
 import Coverage from "./Coverage";
 import Contact from "./Contact";
 import Footer from "./Footer";
+import FloatingActionButtons from "./FloatingActionButtons";
 
 const HomePage = () => {
   return (
@@ -21,6 +22,7 @@ const HomePage = () => {
       <Coverage />
       <Contact />
       <Footer />
+      <FloatingActionButtons />
     </div>
   );
 };
