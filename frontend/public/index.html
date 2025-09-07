@@ -1,27 +1,145 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="description" content="A product of emergent.sh" />
-        <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-        <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-        <title>Emergent | Fullstack App</title>
+        <meta name="theme-color" content="#EAB308" />
+        
+        <!-- SEO Meta Tags -->
+        <title>Taxi Türlihof | Zuverlässiger Taxi-Service in Luzern, Schwyz, Zug | 24/7 Service</title>
+        <meta name="description" content="Taxi Türlihof - Ihr zuverlässiger Taxi-Service in der Zentralschweiz. Mercedes-Flotte, 24/7 Service, Flughafentransfer, Stadtfahrten in Luzern, Schwyz, Zug. ☎️ 076 611 31 31" />
+        <meta name="keywords" content="Taxi Luzern, Taxi Schwyz, Taxi Zug, Flughafentransfer Zürich, Basel, Mercedes Taxi, 24/7 Taxi Service, Taxi buchen, Geschäftsfahrten, Kurierfahrten, Zentralschweiz" />
+        <meta name="author" content="Taxi Türlihof" />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="de" />
+        <meta name="geo.region" content="CH-LU" />
+        <meta name="geo.placename" content="Luzern, Schwyz, Zug" />
+        <meta name="geo.position" content="47.0502;8.3093" />
+        <meta name="ICBM" content="47.0502, 8.3093" />
+        
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.taxitürlihof.ch/" />
+        <meta property="og:title" content="Taxi Türlihof | Zuverlässiger Taxi-Service in Luzern, Schwyz, Zug" />
+        <meta property="og:description" content="Mercedes-Flotte, 24/7 Service, Flughafentransfer. Ihr vertrauensvoller Partner für alle Transportbedürfnisse in der Zentralschweiz. ☎️ 076 611 31 31" />
+        <meta property="og:image" content="https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/lxvw2ugl_Notes_250207_194337_224.jpg" />
+        <meta property="og:locale" content="de_CH" />
+        <meta property="og:site_name" content="Taxi Türlihof" />
+        
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://www.taxitürlihof.ch/" />
+        <meta property="twitter:title" content="Taxi Türlihof | Zuverlässiger Taxi-Service in Luzern, Schwyz, Zug" />
+        <meta property="twitter:description" content="Mercedes-Flotte, 24/7 Service, Flughafentransfer. Ihr vertrauensvoller Partner für alle Transportbedürfnisse in der Zentralschweiz. ☎️ 076 611 31 31" />
+        <meta property="twitter:image" content="https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/lxvw2ugl_Notes_250207_194337_224.jpg" />
+        
+        <!-- Local Business Schema.org Structured Data -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "@id": "https://www.taxitürlihof.ch/#organization",
+          "name": "Taxi Türlihof",
+          "image": "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/lxvw2ugl_Notes_250207_194337_224.jpg",
+          "url": "https://www.taxitürlihof.ch",
+          "telephone": "+41766113131",
+          "email": "info@taxitürlihof.ch",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Musterstrasse 123",
+            "addressLocality": "Luzern",
+            "postalCode": "6003",
+            "addressCountry": "CH"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 47.0502,
+            "longitude": 8.3093
+          },
+          "openingHours": "Mo-Su 00:00-23:59",
+          "priceRange": "CHF 6.60 - CHF 300",
+          "currenciesAccepted": "CHF",
+          "paymentAccepted": ["Cash", "Credit Card", "TWINT", "PayPal"],
+          "areaServed": [
+            {
+              "@type": "City",
+              "name": "Luzern",
+              "addressCountry": "CH"
+            },
+            {
+              "@type": "City", 
+              "name": "Schwyz",
+              "addressCountry": "CH"
+            },
+            {
+              "@type": "City",
+              "name": "Zug",
+              "addressCountry": "CH"
+            }
+          ],
+          "serviceType": [
+            "Taxi Service",
+            "Airport Transfer",
+            "Business Transportation",
+            "Courier Service"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Taxi Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Flughafentransfer",
+                  "description": "Zuverlässiger Transport zum und vom Flughafen Zürich und Basel"
+                },
+                "priceSpecification": {
+                  "@type": "PriceSpecification",
+                  "price": "200-300",
+                  "priceCurrency": "CHF"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service", 
+                  "name": "Stadtfahrten",
+                  "description": "Schnelle Fahrten innerhalb der Stadt und Umgebung"
+                },
+                "priceSpecification": {
+                  "@type": "PriceSpecification",
+                  "price": "6.60",
+                  "priceCurrency": "CHF"
+                }
+              }
+            ]
+          },
+          "sameAs": [
+            "https://wa.me/41766113131"
+          ]
+        }
+        </script>
+        
+        <!-- Favicon -->
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+        
+        <!-- Preload Critical Resources -->
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></noscript>
+        
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://www.taxitürlihof.ch/" />
+        
+        <!-- Alternate Languages -->
+        <link rel="alternate" hreflang="de-ch" href="https://www.taxitürlihof.ch/" />
+        <link rel="alternate" hreflang="de" href="https://www.taxitürlihof.ch/" />
+        <link rel="alternate" hreflang="x-default" href="https://www.taxitürlihof.ch/" />
     </head>
     <body>
-        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <noscript>Sie müssen JavaScript aktivieren, um diese Anwendung auszuführen.</noscript>
         <div id="root"></div>
         <!--
       This HTML file is a template.
