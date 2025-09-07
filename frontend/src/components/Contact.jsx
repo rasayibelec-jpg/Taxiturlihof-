@@ -15,6 +15,8 @@ const Contact = () => {
     phone: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
   const { toast } = useToast();
 
   const handleInputChange = (e) => {
@@ -25,14 +27,56 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock form submission
-    toast({
-      title: "Nachricht gesendet!",
-      description: "Wir werden uns schnellstmöglich bei Ihnen melden.",
-    });
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      
+      const response = await axios.post(`${backendUrl}/api/contact`, {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || null,
+        message: formData.message
+      });
+
+      if (response.data.success) {
+        setSubmitStatus({
+          type: 'success',
+          message: response.data.message
+        });
+        
+        toast({
+          title: "✅ Nachricht gesendet!",
+          description: "Wir werden uns schnellstmöglich bei Ihnen melden.",
+        });
+        
+        // Reset form
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        throw new Error(response.data.message || 'Unbekannter Fehler');
+      }
+      
+    } catch (error) {
+      const errorMessage = error.response?.data?.detail || 
+                          error.message || 
+                          'Es gab einen Fehler beim Senden Ihrer Nachricht. Bitte versuchen Sie es erneut.';
+      
+      setSubmitStatus({
+        type: 'error',
+        message: errorMessage
+      });
+      
+      toast({
+        title: "❌ Fehler beim Senden",
+        description: "Bitte versuchen Sie es erneut oder rufen Sie uns direkt an: 076 611 31 31",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
