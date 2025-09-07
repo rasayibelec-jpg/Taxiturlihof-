@@ -94,7 +94,7 @@ Datum: {datetime.now().strftime('%d.%m.%Y %H:%M')}
 Nachricht:
 {message}
 
-Diese E-Mail wurde automatisch über das Kontaktformular auf taxitürlihof.ch gesendet.
+Diese E-Mail wurde automatisch über das Kontaktformular auf taxiturlihof.ch gesendet.
         """
         
         # Send notification to business owner
