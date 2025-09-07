@@ -210,6 +210,7 @@ class EmailSystemTester:
         """Test SMTP connection with the correct Gmail App Password"""
         try:
             import aiosmtplib
+            from email.message import EmailMessage
             
             # Use the correct Gmail App Password from .env
             smtp_config = {
@@ -219,16 +220,22 @@ class EmailSystemTester:
                 "password": "supo ifpu xrno lfsp"  # Correct App Password format
             }
             
-            # Test SMTP connection
-            smtp = aiosmtplib.SMTP(
-                hostname=smtp_config["hostname"],
-                port=smtp_config["port"]
-            )
+            # Create a test message
+            message = EmailMessage()
+            message["From"] = f"Taxi Türlihof <{smtp_config['username']}>"
+            message["To"] = "rasayibelec@gmail.com"
+            message["Subject"] = "SMTP Connection Test"
+            message.set_content("This is a test message to verify SMTP connection.")
             
-            await smtp.connect()
-            await smtp.starttls()
-            await smtp.login(smtp_config["username"], smtp_config["password"])
-            await smtp.quit()
+            # Test SMTP connection using aiosmtplib.send
+            await aiosmtplib.send(
+                message,
+                hostname=smtp_config["hostname"],
+                port=smtp_config["port"],
+                start_tls=True,
+                username=smtp_config["username"],
+                password=smtp_config["password"],
+            )
             
             return {
                 "success": True,
@@ -236,7 +243,8 @@ class EmailSystemTester:
                     "connection": "Successful",
                     "authentication": "Successful",
                     "app_password_format": "Valid (supo ifpu xrno lfsp)",
-                    "smtp_server": "smtp.gmail.com:587"
+                    "smtp_server": "smtp.gmail.com:587",
+                    "test_email_sent": "Successfully"
                 }
             }
             
