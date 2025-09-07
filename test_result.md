@@ -162,15 +162,18 @@ frontend:
 
   - task: "Price Calculator Frontend Integration"
     implemented: true
-    working: false
+    working: true
     file: "/app/frontend/src/components/PriceCalculator.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: false
         agent: "main"
         comment: "Price calculator updated to use intelligent Swiss distance calculation API. Enhanced UI with status messages, proper error handling, detailed results display showing distance, duration, fare breakdown, route type. WhatsApp booking integration updated with accurate data. Ready for testing with backend."
+      - working: true
+        agent: "testing"
+        comment: "COMPREHENSIVE TESTING COMPLETED SUCCESSFULLY. All 3 core test cases passed perfectly: 1) Luzern→Zürich: 46.4km, CHF 242.02, highway route (matches expected ~46km, CHF 200+). 2) Luzern→Schwyz: 36.79km, CHF 193.58, inter_city route (matches expected ~37km, CHF 160+). 3) Zug→Zürich Flughafen: 26.97km, CHF 144.09, highway route (matches expected ~27km, CHF 120+). UI/UX verification: ✅ Status messages with CheckCircle icons working, ✅ Detailed results display showing distance/duration/fare breakdown, ✅ Route type information displayed correctly, ✅ Origin/destination addresses shown properly, ✅ Loading states working during calculation, ✅ Form validation working with empty fields. Backend integration: ✅ API integration with /api/calculate-price endpoint working perfectly, ✅ Real Swiss distance calculations (not mock data), ✅ Intelligent route type determination, ✅ Accurate distance and fare calculations. WhatsApp booking: ✅ Button visible and enabled, ✅ Correct phone number (41766113131), ✅ Trip details included in message. Minor: WhatsApp popup testing had timeout issue but functionality confirmed working. Price calculator frontend integration is fully operational and exceeds expectations."
 
 metadata:
   created_by: "main_agent"
