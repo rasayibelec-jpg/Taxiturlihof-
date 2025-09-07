@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
-import { Plane, Car, Briefcase, HeartPulse, Calendar, Package } from "lucide-react";
+import { Plane, Car, Briefcase, Package } from "lucide-react";
 import { services } from "../data/mockData";
 
 const iconMap = {
