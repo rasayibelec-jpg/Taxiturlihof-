@@ -29,14 +29,14 @@ const FloatingActionButtons = () => {
         {/* WhatsApp Button */}
         <Button
           onClick={handleWhatsApp}
-          className="text-white w-14 h-14 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group relative"
+          className="text-white w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group relative"
           style={{ backgroundColor: '#25D366', borderColor: '#25D366' }}
           onMouseEnter={(e) => e.target.style.backgroundColor = '#128C7E'}
           onMouseLeave={(e) => e.target.style.backgroundColor = '#25D366'}
           size="lg"
         >
           <svg
-            className="w-6 h-6"
+            className="w-7 h-7"
             viewBox="0 0 24 24"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
