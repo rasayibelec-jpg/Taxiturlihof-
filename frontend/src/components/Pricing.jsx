@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Calculator, MapPin, Clock, Route } from "lucide-react";
-import { pricingStructure, pricingExamples } from "../data/mockData";
+import { pricingStructure } from "../data/mockData";
 
 const Pricing = () => {
   return (
