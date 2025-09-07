@@ -8,8 +8,6 @@ const iconMap = {
   plane: Plane,
   car: Car,
   briefcase: Briefcase,
-  "heart-pulse": HeartPulse,
-  calendar: Calendar,
   package: Package,
 };
 
