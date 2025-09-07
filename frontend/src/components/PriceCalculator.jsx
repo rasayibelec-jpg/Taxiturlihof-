@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Badge } from "./ui/badge";
-import { MapPin, Calculator, Navigation, Star, Phone } from "lucide-react";
+import { MapPin, Calculator, Navigation, Phone } from "lucide-react";
 import { contactInfo } from "../data/mockData";
 import { useToast } from "../hooks/use-toast";
 
