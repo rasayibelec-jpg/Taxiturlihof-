@@ -158,29 +158,6 @@ const PriceCalculator = () => {
                 </div>
               </div>
 
-              {/* Favoriten */}
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <Star className="w-5 h-5 mr-2 text-yellow-500" />
-                  Häufige Ziele
-                </h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {favoriteDestinations.map((destination, index) => (
-                    <Button
-                      key={index}
-                      variant="outline"
-                      onClick={() => handleFavoriteClick(destination)}
-                      className="h-auto p-3 hover:bg-yellow-50 hover:border-yellow-500 text-left"
-                    >
-                      <div>
-                        <div className="font-semibold text-sm">{destination.name}</div>
-                        <div className="text-xs text-gray-500">von {destination.fromCity}</div>
-                      </div>
-                    </Button>
-                  ))}
-                </div>
-              </div>
-
               {/* Berechnen Button */}
               <div className="text-center mb-8">
                 <Button
