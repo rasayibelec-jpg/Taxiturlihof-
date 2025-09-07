@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "./Header";
 import Hero from "./Hero";
+import PriceCalculator from "./PriceCalculator";
 import Services from "./Services";
 import Pricing from "./Pricing";
 import FleetGallery from "./FleetGallery";
@@ -15,6 +16,7 @@ const HomePage = () => {
     <div className="min-h-screen bg-gray-50">
       <Header />
       <Hero />
+      <PriceCalculator />
       <Services />
       <Pricing />
       <FleetGallery />  
