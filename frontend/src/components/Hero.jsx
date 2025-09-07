@@ -7,8 +7,8 @@ const Hero = () => {
 
   const heroImages = [
     {
-      url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/cnf61ude_image_1756460531381.jpeg",
-      title: "Taxi Türlihof - Premium Service"
+      url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/50r7ds6f_20250504_053743.jpg",
+      title: "Mercedes-Flotte bei Nacht"
     },
     {
       url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/yomelklg_20240712121846_edited_1732630664532.png",
