@@ -45,7 +45,7 @@ const FloatingActionButtons = () => {
           size="lg"
         >
           <Phone className="w-6 h-6" />
-          <div className="absolute right-16 top-1/2 transform -translate-y-1/2 bg-black text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          <div className="absolute left-16 top-1/2 transform -translate-y-1/2 bg-black text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
             Anrufen
           </div>
         </Button>
