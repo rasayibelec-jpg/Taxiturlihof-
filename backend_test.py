@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Backend Test Suite for Taxi Türlihof Contact Form Integration
-Tests the contact form API endpoints and email functionality
+Backend Test Suite for Taxi Türlihof
+Tests the contact form API endpoints, email functionality, and Swiss distance calculation system
 """
 
 import asyncio
