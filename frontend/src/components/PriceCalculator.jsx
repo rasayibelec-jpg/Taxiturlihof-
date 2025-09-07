@@ -38,9 +38,9 @@ const PriceCalculator = () => {
       'arth goldau flughafen zürich': 50,
       
       // Von Luzern
-      'luzern-flughafen zürich': 47,
-      'luzern-zürich': 45,
-      'luzern-flughafen basel': 85,
+      'luzern flughafen zürich': 47,
+      'luzern zürich': 43,
+      'luzern flughafen basel': 85,
       'luzern-zug': 23,
       'luzern-schwyz': 30,
       'luzern-brunnen': 25,
