@@ -238,7 +238,444 @@ class BackendTester:
             )
             return False
     
-    async def test_email_service_configuration(self):
+    async def test_swiss_distance_luzern_to_zurich(self):
+        """Test Case 1: Luzern to Zürich - Expected ~47km distance, highway route type"""
+        try:
+            test_data = {
+                "origin": "Luzern",
+                "destination": "Zürich"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/calculate-price",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    # Validate response structure
+                    required_fields = ['distance_km', 'estimated_duration_minutes', 'total_fare', 'route_info']
+                    missing_fields = [field for field in required_fields if field not in data]
+                    
+                    if missing_fields:
+                        self.log_result(
+                            "Swiss Distance - Luzern to Zürich",
+                            False,
+                            f"Missing required fields: {missing_fields}"
+                        )
+                        return False
+                    
+                    distance = data['distance_km']
+                    route_type = data['route_info'].get('route_type', 'unknown')
+                    
+                    # Validate distance is reasonable (40-55km range)
+                    distance_ok = 40 <= distance <= 55
+                    # Validate route type is highway (for long distance to major city)
+                    route_ok = route_type in ['highway', 'inter_city']
+                    
+                    if distance_ok and route_ok:
+                        self.log_result(
+                            "Swiss Distance - Luzern to Zürich",
+                            True,
+                            f"Distance: {distance}km, Route: {route_type}, Fare: CHF {data['total_fare']}",
+                            {
+                                "distance_km": distance,
+                                "route_type": route_type,
+                                "duration_minutes": data['estimated_duration_minutes'],
+                                "total_fare": data['total_fare']
+                            }
+                        )
+                        return True
+                    else:
+                        self.log_result(
+                            "Swiss Distance - Luzern to Zürich",
+                            False,
+                            f"Unexpected values - Distance: {distance}km (expected 40-55), Route: {route_type} (expected highway/inter_city)"
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Swiss Distance - Luzern to Zürich",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Swiss Distance - Luzern to Zürich",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_swiss_distance_luzern_to_schwyz(self):
+        """Test Case 2: Luzern to Schwyz - Expected ~30km distance, inter_city route type"""
+        try:
+            test_data = {
+                "origin": "Luzern",
+                "destination": "Schwyz"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/calculate-price",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    distance = data['distance_km']
+                    route_type = data['route_info'].get('route_type', 'unknown')
+                    
+                    # Validate distance is reasonable (25-35km range)
+                    distance_ok = 25 <= distance <= 35
+                    # Validate route type is inter_city (between different regions)
+                    route_ok = route_type in ['inter_city', 'suburban']
+                    
+                    if distance_ok and route_ok:
+                        self.log_result(
+                            "Swiss Distance - Luzern to Schwyz",
+                            True,
+                            f"Distance: {distance}km, Route: {route_type}, Fare: CHF {data['total_fare']}",
+                            {
+                                "distance_km": distance,
+                                "route_type": route_type,
+                                "duration_minutes": data['estimated_duration_minutes'],
+                                "total_fare": data['total_fare']
+                            }
+                        )
+                        return True
+                    else:
+                        self.log_result(
+                            "Swiss Distance - Luzern to Schwyz",
+                            False,
+                            f"Unexpected values - Distance: {distance}km (expected 25-35), Route: {route_type} (expected inter_city/suburban)"
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Swiss Distance - Luzern to Schwyz",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Swiss Distance - Luzern to Schwyz",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_swiss_distance_zug_to_airport(self):
+        """Test Case 3: Zug to Zürich Flughafen - Expected ~30km distance, highway route type"""
+        try:
+            test_data = {
+                "origin": "Zug",
+                "destination": "Zürich Flughafen"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/calculate-price",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    distance = data['distance_km']
+                    route_type = data['route_info'].get('route_type', 'unknown')
+                    
+                    # Validate distance is reasonable (25-35km range)
+                    distance_ok = 25 <= distance <= 35
+                    # Validate route type is highway (airport routes typically use highways)
+                    route_ok = route_type in ['highway', 'inter_city']
+                    
+                    if distance_ok and route_ok:
+                        self.log_result(
+                            "Swiss Distance - Zug to Zürich Airport",
+                            True,
+                            f"Distance: {distance}km, Route: {route_type}, Fare: CHF {data['total_fare']}",
+                            {
+                                "distance_km": distance,
+                                "route_type": route_type,
+                                "duration_minutes": data['estimated_duration_minutes'],
+                                "total_fare": data['total_fare']
+                            }
+                        )
+                        return True
+                    else:
+                        self.log_result(
+                            "Swiss Distance - Zug to Zürich Airport",
+                            False,
+                            f"Unexpected values - Distance: {distance}km (expected 25-35), Route: {route_type} (expected highway/inter_city)"
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Swiss Distance - Zug to Zürich Airport",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Swiss Distance - Zug to Zürich Airport",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_swiss_distance_unknown_location(self):
+        """Test Case 4: Unknown Location - Expected fallback calculation"""
+        try:
+            test_data = {
+                "origin": "Unknown Place",
+                "destination": "Luzern"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/calculate-price",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    # Should still return a valid response with fallback calculation
+                    distance = data['distance_km']
+                    calculation_source = data.get('calculation_source', 'unknown')
+                    
+                    # Fallback should provide reasonable default values
+                    fallback_ok = distance > 0 and 'estimation' in calculation_source
+                    
+                    if fallback_ok:
+                        self.log_result(
+                            "Swiss Distance - Unknown Location Fallback",
+                            True,
+                            f"Fallback calculation successful - Distance: {distance}km, Source: {calculation_source}",
+                            {
+                                "distance_km": distance,
+                                "calculation_source": calculation_source,
+                                "total_fare": data['total_fare']
+                            }
+                        )
+                        return True
+                    else:
+                        self.log_result(
+                            "Swiss Distance - Unknown Location Fallback",
+                            False,
+                            f"Fallback calculation failed - Distance: {distance}km, Source: {calculation_source}"
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Swiss Distance - Unknown Location Fallback",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Swiss Distance - Unknown Location Fallback",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_popular_destinations_endpoint(self):
+        """Test Popular Destinations Endpoint - GET /api/popular-destinations/luzern"""
+        try:
+            async with self.session.get(f"{BACKEND_URL}/popular-destinations/luzern") as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    # Validate response structure
+                    if 'origin' in data and 'destinations' in data:
+                        destinations = data['destinations']
+                        
+                        if isinstance(destinations, list) and len(destinations) > 0:
+                            # Check if destinations have required fields
+                            sample_dest = destinations[0]
+                            required_fields = ['name', 'distance_km', 'duration_minutes']
+                            has_required_fields = all(field in sample_dest for field in required_fields)
+                            
+                            if has_required_fields:
+                                self.log_result(
+                                    "Popular Destinations Endpoint",
+                                    True,
+                                    f"Retrieved {len(destinations)} popular destinations from Luzern",
+                                    {
+                                        "origin": data['origin'],
+                                        "destination_count": len(destinations),
+                                        "sample_destinations": destinations[:3]
+                                    }
+                                )
+                                return True
+                            else:
+                                self.log_result(
+                                    "Popular Destinations Endpoint",
+                                    False,
+                                    f"Destinations missing required fields: {sample_dest}"
+                                )
+                                return False
+                        else:
+                            self.log_result(
+                                "Popular Destinations Endpoint",
+                                False,
+                                f"No destinations returned or invalid format: {destinations}"
+                            )
+                            return False
+                    else:
+                        self.log_result(
+                            "Popular Destinations Endpoint",
+                            False,
+                            f"Invalid response structure: {data}"
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Popular Destinations Endpoint",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Popular Destinations Endpoint",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_price_calculation_with_time(self):
+        """Test price calculation with departure time (traffic multipliers)"""
+        try:
+            # Test with peak time (8 AM on weekday)
+            test_data = {
+                "origin": "Luzern",
+                "destination": "Zug",
+                "departure_time": "2024-01-15T08:00:00Z"  # Monday 8 AM
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/calculate-price",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    # Should have traffic factor applied
+                    traffic_factor = data['route_info'].get('traffic_factor', 1.0)
+                    
+                    # Peak time should have higher traffic factor
+                    if traffic_factor >= 1.0:
+                        self.log_result(
+                            "Price Calculation with Time",
+                            True,
+                            f"Time-based calculation successful - Traffic factor: {traffic_factor}",
+                            {
+                                "traffic_factor": traffic_factor,
+                                "total_fare": data['total_fare'],
+                                "departure_time": test_data['departure_time']
+                            }
+                        )
+                        return True
+                    else:
+                        self.log_result(
+                            "Price Calculation with Time",
+                            False,
+                            f"Invalid traffic factor: {traffic_factor}"
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Price Calculation with Time",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Price Calculation with Time",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_price_calculation_validation(self):
+        """Test price calculation endpoint validation"""
+        test_cases = [
+            {
+                "name": "Missing Origin",
+                "data": {"destination": "Zürich"},
+                "expected_status": 422
+            },
+            {
+                "name": "Missing Destination", 
+                "data": {"origin": "Luzern"},
+                "expected_status": 422
+            },
+            {
+                "name": "Empty Origin",
+                "data": {"origin": "", "destination": "Zürich"},
+                "expected_status": 422
+            }
+        ]
+        
+        validation_results = []
+        
+        for test_case in test_cases:
+            try:
+                headers = {"Content-Type": "application/json"}
+                async with self.session.post(
+                    f"{BACKEND_URL}/calculate-price",
+                    json=test_case["data"],
+                    headers=headers
+                ) as response:
+                    
+                    if response.status == test_case["expected_status"]:
+                        validation_results.append(f"✅ {test_case['name']}")
+                    else:
+                        validation_results.append(f"❌ {test_case['name']} (got {response.status}, expected {test_case['expected_status']})")
+                        
+            except Exception as e:
+                validation_results.append(f"❌ {test_case['name']} (error: {str(e)})")
+        
+        all_passed = all("✅" in result for result in validation_results)
+        self.log_result(
+            "Price Calculation Validation",
+            all_passed,
+            f"Validation tests: {len([r for r in validation_results if '✅' in r])}/{len(validation_results)} passed",
+            validation_results
+        )
+        
+        return all_passed
         """Test email service configuration (without actually sending emails)"""
         try:
             # Import email service to check configuration
