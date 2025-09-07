@@ -58,6 +58,23 @@ class ContactFormResponse(BaseModel):
     message: str
     id: Optional[str] = None
 
+# Price Calculator Models
+class PriceCalculationRequest(BaseModel):
+    origin: str = Field(..., description="Start location")
+    destination: str = Field(..., description="Destination location")
+    departure_time: Optional[str] = Field(None, description="ISO format datetime")
+
+class PriceCalculationResponse(BaseModel):
+    origin: str
+    destination: str
+    distance_km: float
+    estimated_duration_minutes: int
+    base_fare: float = 6.80
+    distance_fare: float
+    total_fare: float
+    route_info: dict
+    calculation_source: str
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
