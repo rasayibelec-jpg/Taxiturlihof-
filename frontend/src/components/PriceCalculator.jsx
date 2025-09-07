@@ -15,16 +15,6 @@ const PriceCalculator = () => {
   const [isCalculating, setIsCalculating] = useState(false);
   const { toast } = useToast();
 
-  // Häufige Ziele mit geschätzten Distanzen von Luzern
-  const favoriteDestinations = [
-    { name: "Flughafen Zürich", distance: 47, fromCity: "Luzern" },
-    { name: "Flughafen Basel", distance: 85, fromCity: "Luzern" },
-    { name: "Bahnhof Luzern", distance: 2, fromCity: "Luzern" },
-    { name: "Bahnhof Zug", distance: 23, fromCity: "Zug" },
-    { name: "Brunnen", distance: 25, fromCity: "Schwyz" },
-    { name: "Einsiedeln", distance: 35, fromCity: "Schwyz" }
-  ];
-
   // Realistische Distanzberechnung mit direktem String-Matching
   const calculateDistance = (start, end) => {
     if (!start || !end) return 0;
