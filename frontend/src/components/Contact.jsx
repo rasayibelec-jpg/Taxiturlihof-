@@ -3,9 +3,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { Phone, Mail, MapPin, Clock, Globe } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Globe, CheckCircle, AlertCircle } from "lucide-react";
 import { contactInfo } from "../data/mockData";
 import { useToast } from "../hooks/use-toast";
+import axios from "axios";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
