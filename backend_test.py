@@ -676,7 +676,8 @@ class BackendTester:
         )
         
         return all_passed
-        """Test email service configuration (without actually sending emails)"""
+    
+    async def test_email_service_configuration(self):
         try:
             # Import email service to check configuration
             from email_service import email_service
