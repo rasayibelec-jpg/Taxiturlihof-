@@ -837,7 +837,7 @@ class BackendTester:
                 "destination": "Basel Flughafen",
                 "additional_stops": ["Luzern Bahnhof"],
                 "booking_type": "scheduled",
-                "pickup_datetime": "2024-12-11T08:00:00",
+                "pickup_datetime": "2025-12-11T08:00:00",
                 "passenger_count": 6,
                 "vehicle_type": "van"
             }
