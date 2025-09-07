@@ -19,7 +19,7 @@ const Pricing = () => {
         </div>
 
         {/* Preisstruktur */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-16">
           <Card className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-yellow-200 bg-gradient-to-br from-yellow-50 to-orange-50">
             <CardHeader className="text-center pb-4">
               <div className="mx-auto bg-yellow-100 p-4 rounded-full mb-4 group-hover:bg-yellow-200 transition-colors duration-300">
