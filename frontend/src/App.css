@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 * {
   box-sizing: border-box;
@@ -9,10 +9,35 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
+  font-weight: 500; /* Standardschrift etwas fetter */
 }
 
 .App {
   min-height: 100vh;
+}
+
+/* Allgemeine Schrift-Verbesserungen */
+p, span, div {
+  font-weight: 500; /* Etwas fetter für bessere Lesbarkeit */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700; /* Überschriften noch fetter */
+}
+
+/* Button Text fetter */
+button {
+  font-weight: 600;
+}
+
+/* Card Titles fetter */
+.card-title {
+  font-weight: 700;
+}
+
+/* Descriptions etwas fetter */
+.card-description {
+  font-weight: 500;
 }
 
 /* Smooth scrolling */
