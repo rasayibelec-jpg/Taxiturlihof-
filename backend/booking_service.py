@@ -380,7 +380,7 @@ Türlihof 4, 6414 Arth, Switzerland
             """
             
             await email_service.send_email(
-                "info@taxitürlihof.ch",
+                "info@taxiturlihof.ch",
                 subject,
                 html_content
             )
