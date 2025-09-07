@@ -8,9 +8,10 @@ from pathlib import Path
 from pydantic import BaseModel, Field, EmailStr
 from typing import List, Optional
 import uuid
-from datetime import datetime
+from datetime import datetime, date
 from email_service import email_service
 from swiss_distance_service import swiss_distance_service
+from booking_service import booking_service, BookingRequest, BookingResponse, Booking, BookingStatus
 
 
 ROOT_DIR = Path(__file__).parent
