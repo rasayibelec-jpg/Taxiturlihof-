@@ -137,7 +137,7 @@ export const coverageAreas = [
     id: 2,
     city: "Schwyz",
     description: "Umfassender Service im ganzen Kanton Schwyz",
-    zones: ["Schwyz Stadt", "Brunnen", "Einsiedeln", "Küssnacht", "Arth"]
+    zones: ["Schwyz Stadt", "Brunnen", "Einsiedeln", "Küssnacht", "Arth", "Arth Goldau", "Gersau", "Seewen"]
   },
   {
     id: 3,
