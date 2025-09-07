@@ -140,6 +140,85 @@ async def get_contact_forms():
         logger.error(f"Failed to retrieve contact forms: {str(e)}")
         raise HTTPException(status_code=500, detail="Fehler beim Abrufen der Kontaktformulare")
 
+# Price Calculator Endpoints
+@api_router.post("/calculate-price", response_model=PriceCalculationResponse)
+async def calculate_taxi_price(request: PriceCalculationRequest):
+    """Calculate taxi price using intelligent Swiss distance estimation"""
+    try:
+        # Parse departure time if provided
+        departure_time = None
+        if request.departure_time:
+            try:
+                departure_time = datetime.fromisoformat(request.departure_time.replace('Z', '+00:00'))
+            except ValueError:
+                pass  # Use current time as fallback
+        
+        # Get distance calculation from Swiss service
+        distance_result = swiss_distance_service.calculate_intelligent_distance(
+            origin=request.origin,
+            destination=request.destination,
+            departure_time=departure_time
+        )
+        
+        # Swiss taxi fare calculation
+        base_fare = 6.80  # CHF
+        distance_rate = 4.20  # CHF per km
+        
+        distance_km = distance_result['distance_km']
+        distance_fare = distance_km * distance_rate
+        total_fare = base_fare + distance_fare
+        
+        # Apply time-based multipliers
+        traffic_factor = distance_result.get('traffic_factor', 1.0)
+        if traffic_factor > 1.2:  # Peak time
+            total_fare *= 1.1  # 10% peak surcharge
+        
+        # Weekend/night surcharges
+        if departure_time:
+            hour = departure_time.hour
+            is_weekend = departure_time.weekday() >= 5
+            
+            if hour >= 22 or hour <= 6:  # Night surcharge
+                total_fare *= 1.5
+            elif is_weekend:  # Weekend surcharge
+                total_fare *= 1.2
+        
+        return PriceCalculationResponse(
+            origin=distance_result['origin_address'],
+            destination=distance_result['destination_address'],
+            distance_km=distance_km,
+            estimated_duration_minutes=distance_result['duration_minutes'],
+            distance_fare=round(distance_fare, 2),
+            total_fare=round(total_fare, 2),
+            route_info={
+                'route_type': distance_result.get('route_type', 'unknown'),
+                'traffic_factor': traffic_factor,
+                'straight_line_km': distance_result.get('straight_line_km', 0),
+                'calculation_source': distance_result.get('source', 'estimation')
+            },
+            calculation_source=distance_result.get('source', 'estimation')
+        )
+        
+    except Exception as e:
+        logger.error(f"Price calculation failed: {str(e)}")
+        raise HTTPException(
+            status_code=400,
+            detail=f"Preisberechnung fehlgeschlagen: {str(e)}"
+        )
+
+@api_router.get("/popular-destinations/{origin}")
+async def get_popular_destinations(origin: str):
+    """Get popular destinations from a given origin"""
+    try:
+        destinations = swiss_distance_service.get_popular_destinations_from_location(origin)
+        return {
+            "origin": origin,
+            "destinations": destinations
+        }
+    except Exception as e:
+        logger.error(f"Failed to get popular destinations: {str(e)}")
+        raise HTTPException(status_code=400, detail="Fehler beim Abrufen beliebter Ziele")
+
 # Include the router in the main app
 app.include_router(api_router)
 
