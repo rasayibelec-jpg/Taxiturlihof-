@@ -97,13 +97,6 @@ const PriceCalculator = () => {
     }, 1500);
   };
 
-  const handleFavoriteClick = (destination) => {
-    setEndAddress(destination.name);
-    if (!startAddress.trim()) {
-      setStartAddress(destination.fromCity + " Zentrum");
-    }
-  };
-
   const handleBookNow = () => {
     const message = `Hallo! Ich möchte eine Fahrt buchen:\n\nVon: ${startAddress}\nNach: ${endAddress}\nGeschätzte Distanz: ${distance} km\nGeschätzter Preis: CHF ${calculatedPrice?.toFixed(2)}\n\nVielen Dank!`;
     const phoneNumber = contactInfo.phone.replace(/\s/g, '').replace(/^0/, '+41');
