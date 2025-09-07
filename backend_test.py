@@ -1059,14 +1059,9 @@ class BackendTester:
             return False
             
         try:
-            # Test updating status to confirmed
-            status_data = "confirmed"
-            headers = {"Content-Type": "application/json"}
-            
+            # Test updating status to confirmed using query parameter
             async with self.session.put(
-                f"{BACKEND_URL}/bookings/{booking_id}/status",
-                json=status_data,
-                headers=headers
+                f"{BACKEND_URL}/bookings/{booking_id}/status?status=confirmed"
             ) as response:
                 
                 if response.status == 200:
