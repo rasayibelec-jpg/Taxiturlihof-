@@ -139,8 +139,8 @@ Diese E-Mail wurde automatisch über das Kontaktformular auf taxiturlihof.ch ges
                     <p style="margin: 5px 0;"><strong>Taxi Türlihof</strong></p>
                     <p style="margin: 5px 0; color: #666;">Türlihof 4, 6414 Arth, Switzerland</p>
                     <p style="margin: 5px 0; color: #666;">
-                        📧 <a href="mailto:info@taxitürlihof.ch" style="color: #FFA500;">info@taxitürlihof.ch</a> | 
-                        🌐 <a href="https://www.taxitürlihof.ch" style="color: #FFA500;">www.taxitürlihof.ch</a>
+                        📧 <a href="mailto:info@taxiturlihof.ch" style="color: #FFA500;">info@taxiturlihof.ch</a> | 
+                        🌐 <a href="https://www.taxiturlihof.ch" style="color: #FFA500;">www.taxiturlihof.ch</a>
                     </p>
                 </div>
             </div>
