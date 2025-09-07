@@ -98,19 +98,7 @@ export const services = [
     description: "Zuverlässiger Transport zum und vom Flughafen Zürich und Basel",
     icon: "plane",
     price: "Nach Vereinbarung",
-    features: ["Pünktlich", "Komfortabel", "Direktfahrt"],
-    priceDetails: {
-      zurich: {
-        luzern: "Ab CHF 200",
-        schwyz: "Ab CHF 250", 
-        zug: "Ab CHF 200"
-      },
-      basel: {
-        luzern: "Ab CHF 300",
-        schwyz: "Ab CHF 300",
-        zug: "Ab CHF 300"
-      }
-    }
+    features: ["Pünktlich", "Komfortabel", "Direktfahrt"]
   },
   {
     id: 2,
