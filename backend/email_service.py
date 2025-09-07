@@ -74,7 +74,7 @@ class EmailService:
                 
                 <div style="text-align: center; margin-top: 30px;">
                     <p style="color: #666; font-size: 14px;">
-                        Diese E-Mail wurde automatisch über das Kontaktformular auf taxitürlihof.ch gesendet.
+                        Diese E-Mail wurde automatisch über das Kontaktformular auf taxiturlihof.ch gesendet.
                     </p>
                 </div>
             </div>
