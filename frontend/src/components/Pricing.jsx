@@ -72,46 +72,6 @@ const Pricing = () => {
           </Card>
         </div>
 
-        {/* Preisbeispiele */}
-        <div className="mb-12">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
-              Preisbeispiele
-            </h3>
-            <p className="text-lg text-gray-600">
-              Hier finden Sie einige Beispiele für häufige Fahrtstrecken
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {pricingExamples.map((example, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-gray-200">
-                <CardHeader className="pb-4">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <CardTitle className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-yellow-600 transition-colors duration-300">
-                        {example.route}
-                      </CardTitle>
-                      <div className="flex items-center text-gray-600 mb-2">
-                        <MapPin className="w-4 h-4 mr-2" />
-                        <span className="text-sm">{example.distance}</span>
-                      </div>
-                    </div>
-                    <Badge className="bg-yellow-600 text-white text-lg px-3 py-1">
-                      {example.estimatedPrice}
-                    </Badge>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-gray-600 italic">
-                    {example.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
         {/* Zusatzinformationen */}
         <div className="bg-gray-50 rounded-2xl p-8">
           <div className="text-center mb-6">
