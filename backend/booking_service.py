@@ -323,7 +323,7 @@ Wichtige Hinweise:
 
 Taxi Türlihof
 Türlihof 4, 6414 Arth, Switzerland
-076 611 31 31 | info@taxitürlihof.ch
+076 611 31 31 | info@taxiturlihof.ch
             """
             
             # Send confirmation to customer
