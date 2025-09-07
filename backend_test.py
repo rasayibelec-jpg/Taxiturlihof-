@@ -740,7 +740,7 @@ class BackendTester:
                 "pickup_location": "Luzern",
                 "destination": "Zürich Flughafen",
                 "booking_type": "scheduled",
-                "pickup_datetime": "2024-12-10T14:30:00",
+                "pickup_datetime": "2025-12-10T14:30:00",
                 "passenger_count": 2,
                 "vehicle_type": "standard",
                 "special_requests": "Kindersitz benötigt"
