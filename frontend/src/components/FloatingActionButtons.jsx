@@ -100,7 +100,7 @@ const FloatingActionButtons = () => {
       <div className="absolute bottom-6 left-72">
         <Button
           onClick={handleWhatsApp}
-          className="text-white w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group flex items-center justify-center"
+          className="text-white w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
           style={{ backgroundColor: '#25D366', borderColor: '#25D366' }}
           onMouseEnter={(e) => e.target.style.backgroundColor = '#128C7E'}
           onMouseLeave={(e) => e.target.style.backgroundColor = '#25D366'}
