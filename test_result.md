@@ -122,15 +122,18 @@ backend:
 
   - task: "Intelligent Swiss Distance Calculation"
     implemented: true
-    working: false
+    working: true
     file: "/app/backend/server.py, /app/backend/swiss_distance_service.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: false
         agent: "main"
         comment: "Swiss Distance Service implemented with comprehensive geographic database covering Luzern, Schwyz, Zug regions. Intelligent algorithms include: Haversine distance calculation, route type determination (inner_city, suburban, inter_city, highway), traffic multipliers based on time/day, speed calculations for different route types. API endpoint /api/calculate-price created. Supports popular destinations lookup."
+      - working: true
+        agent: "testing"
+        comment: "Swiss distance calculation system tested successfully. All 4 core test cases passed: Luzern to Zürich (46.4km, highway route), Luzern to Schwyz (36.79km, inter_city route), Zug to Zürich Airport (26.97km, highway route), and unknown location fallback (15km default). Geographic location matching is accurate, route type determination is intelligent, traffic multipliers work correctly (1.4x for peak times), and fare calculations are precise. Popular destinations endpoint returns 8 destinations with proper distance/duration data. System handles Swiss locations excellently with proper fallback for unknown places."
 
 frontend:
   - task: "Reviews Section Integration"
