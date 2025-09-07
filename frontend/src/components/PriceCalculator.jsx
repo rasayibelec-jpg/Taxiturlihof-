@@ -29,42 +29,7 @@ const PriceCalculator = () => {
   const calculateDistance = (start, end) => {
     if (!start || !end) return 0;
     
-    // Realistische Distanzen für häufige Strecken
-    const routeDistances = {
-      // Von Goldau/Arth-Goldau
-      'goldau zürich': 45,
-      'arth goldau zürich': 45,
-      'goldau flughafen zürich': 50,
-      'arth goldau flughafen zürich': 50,
-      
-      // Von Luzern
-      'luzern flughafen zürich': 47,
-      'luzern zürich': 43,
-      'luzern flughafen basel': 85,
-      'luzern-zug': 23,
-      'luzern-schwyz': 30,
-      'luzern-brunnen': 25,
-      
-      // Von Zug
-      'zug-zürich': 25,
-      'zug-flughafen zürich': 30,
-      'zug-luzern': 23,
-      'zug-schwyz': 18,
-      
-      // Von Schwyz
-      'schwyz-luzern': 30,
-      'schwyz-zürich': 40,
-      'schwyz-zug': 18,
-      'schwyz-brunnen': 8,
-      'schwyz-einsiedeln': 15,
-      
-      // Weitere wichtige Strecken
-      'arth-goldau-zürich': 45,
-      'brunnen-luzern': 25,
-      'einsiedeln-zürich': 55,
-    };
-    
-    // Normalisiere die Eingaben für bessere Suche
+    // Normalisiere die Eingaben
     const normalizeLocation = (location) => {
       return location.toLowerCase()
         .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue')
@@ -74,33 +39,42 @@ const PriceCalculator = () => {
     const startNorm = normalizeLocation(start);
     const endNorm = normalizeLocation(end);
     
-    // Suche nach exakten Route-Matches (ohne Bindestriche)
-    const routeKey1 = `${startNorm} ${endNorm}`;
-    const routeKey2 = `${endNorm} ${startNorm}`; // Auch umgekehrte Richtung
+    // Definiere Schlüsselwörter und deren Distanzen
+    const getDistance = (from, to) => {
+      // Goldau/Arth-Goldau Routen
+      if ((from.includes('goldau') || from.includes('arth')) && to.includes('zurich')) return 45;
+      if ((from.includes('goldau') || from.includes('arth')) && to.includes('flughafen') && to.includes('zurich')) return 50;
+      
+      // Luzern Routen  
+      if (from.includes('luzern') && to.includes('flughafen') && to.includes('zurich')) return 47;
+      if (from.includes('luzern') && to.includes('zurich') && !to.includes('flughafen')) return 43;
+      if (from.includes('luzern') && to.includes('basel')) return 85;
+      if (from.includes('luzern') && to.includes('zug')) return 23;
+      
+      // Zug Routen
+      if (from.includes('zug') && to.includes('zurich')) return 25;
+      if (from.includes('zug') && to.includes('flughafen')) return 30;
+      
+      // Schwyz Routen
+      if (from.includes('schwyz') && to.includes('zurich')) return 40;
+      if (from.includes('schwyz') && to.includes('luzern')) return 30;
+      if (from.includes('schwyz') && to.includes('brunnen')) return 8;
+      
+      return null;
+    };
     
-    if (routeDistances[routeKey1]) {
-      return routeDistances[routeKey1];
-    }
-    if (routeDistances[routeKey2]) {
-      return routeDistances[routeKey2];
-    }
-    
-    // Suche nach Teilübereinstimmungen
-    for (const [route, distance] of Object.entries(routeDistances)) {
-      const [routeStart, routeEnd] = route.split('-');
-      if ((startNorm.includes(routeStart) || routeStart.includes(startNorm)) &&
-          (endNorm.includes(routeEnd) || routeEnd.includes(endNorm))) {
-        return distance;
-      }
-      if ((startNorm.includes(routeEnd) || routeEnd.includes(startNorm)) &&
-          (endNorm.includes(routeStart) || routeStart.includes(endNorm))) {
-        return distance;
-      }
+    // Versuche beide Richtungen
+    let distance = getDistance(startNorm, endNorm);
+    if (!distance) {
+      distance = getDistance(endNorm, startNorm);
     }
     
-    // Fallback: Realistische Schätzung basierend auf Schweizer Geographie
-    const estimatedDistance = Math.max(10, Math.min(100, (start.length + end.length) * 2));
-    return Math.round(estimatedDistance);
+    if (distance) {
+      return distance;
+    }
+    
+    // Fallback für unbekannte Routen: realistische Schätzung
+    return Math.max(15, Math.min(80, Math.round((start.length + end.length) * 1.5)));
   };
 
   const calculatePrice = (distanceKm) => {
