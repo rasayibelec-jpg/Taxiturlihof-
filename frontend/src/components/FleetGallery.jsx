@@ -9,11 +9,6 @@ const FleetGallery = () => {
 
   const fleetImages = [
     {
-      url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/50r7ds6f_20250504_053743.jpg",
-      title: "Mercedes-Flotte bei Nacht",
-      description: "Unsere professionellen Taxis bereit für den 24/7 Service"
-    },
-    {
       url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/p68khw91_20240707_163617.jpg", 
       title: "Mercedes E-Klasse",
       description: "Komfort und Sicherheit auf höchstem Niveau"
