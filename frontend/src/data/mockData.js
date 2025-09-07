@@ -129,22 +129,6 @@ export const services = [
     features: ["Rechnungsstellung", "Regelmässige Termine", "Diskretion"]
   },
   {
-    id: 4,
-    title: "Krankenfahrten",
-    description: "Medizinische Transporte mit besonderer Sorgfalt",
-    icon: "heart-pulse",
-    price: "Krankenkasse abrechenbar",
-    features: ["Rollstuhlgerecht", "Geschultes Personal", "Termingenau"]
-  },
-  {
-    id: 5,
-    title: "Eventfahrten",
-    description: "Transport zu besonderen Anlässen und Veranstaltungen",
-    icon: "calendar",
-    price: "Nach Vereinbarung",
-    features: ["Gruppenrabatte", "Warteservice", "Flexible Zeiten"]
-  },
-  {
     id: 6,
     title: "Kurierfahrten",
     description: "Schneller Transport von Dokumenten und Paketen",
