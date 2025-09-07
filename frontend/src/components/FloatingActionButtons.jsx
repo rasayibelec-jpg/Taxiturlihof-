@@ -15,21 +15,11 @@ const FloatingActionButtons = () => {
     const phoneNumber = "41766113131"; // +41 766 11 31 31 ohne Leerzeichen und Plus
     const message = encodeURIComponent("Hallo! Ich möchte gerne ein Taxi buchen. 🚕");
     
-    // Versuche zuerst WhatsApp App zu öffnen, dann WhatsApp Web
-    const whatsappAppUrl = `whatsapp://send?phone=${phoneNumber}&text=${message}`;
-    const whatsappWebUrl = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
+    // Verwende wa.me für bessere Kompatibilität
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     
-    // Für mobile Geräte: versuche App zuerst
-    if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      window.location.href = whatsappAppUrl;
-      // Fallback zu Web nach kurzer Zeit
-      setTimeout(() => {
-        window.open(whatsappWebUrl, '_blank');
-      }, 1000);
-    } else {
-      // Für Desktop: öffne WhatsApp Web
-      window.open(whatsappWebUrl, '_blank');
-    }
+    // Öffne WhatsApp (funktioniert auf allen Geräten)
+    window.open(whatsappUrl, '_blank');
   };
 
   const handleEmail = () => {
