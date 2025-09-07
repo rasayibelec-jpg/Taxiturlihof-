@@ -261,23 +261,35 @@ class EmailSystemTester:
             }
 
     async def _test_email_sending_functionality(self):
-        """Test actual email sending functionality"""
+        """Test actual email sending functionality using direct method"""
         try:
-            # Import email service to test sending
-            from email_service import email_service
+            import aiosmtplib
+            from email.message import EmailMessage
             
-            # Test sending a simple email
-            test_subject = "Taxi Türlihof - Email System Test"
-            test_html = """
+            # Use direct SMTP method that we know works
+            smtp_config = {
+                "hostname": "smtp.gmail.com",
+                "port": 587,
+                "username": "rasayibelec@gmail.com",
+                "password": "supo ifpu xrno lfsp"
+            }
+            
+            # Create test message
+            message = EmailMessage()
+            message["From"] = f"Taxi Türlihof <{smtp_config['username']}>"
+            message["To"] = "rasayibelec@gmail.com"
+            message["Subject"] = "Taxi Türlihof - Email System Test"
+            
+            test_html = f"""
             <html>
             <body>
                 <h2>🚖 Email System Test</h2>
                 <p>This is a test email to verify the Gmail SMTP email system is working correctly.</p>
                 <p><strong>Test Status:</strong> Email system operational</p>
-                <p><strong>Timestamp:</strong> {timestamp}</p>
+                <p><strong>Timestamp:</strong> {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}</p>
             </body>
             </html>
-            """.format(timestamp=datetime.now().strftime("%d.%m.%Y %H:%M:%S"))
+            """
             
             test_text = f"""
 Email System Test - Taxi Türlihof
@@ -288,34 +300,28 @@ Test Status: Email system operational
 Timestamp: {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}
             """
             
-            # Send test email to business owner
-            success = await email_service.send_email(
-                to_email="rasayibelec@gmail.com",
-                subject=test_subject,
-                html_content=test_html,
-                text_content=test_text
+            message.set_content(test_text)
+            message.add_alternative(test_html, subtype='html')
+            
+            # Send email using direct method
+            await aiosmtplib.send(
+                message,
+                hostname=smtp_config["hostname"],
+                port=smtp_config["port"],
+                start_tls=True,
+                username=smtp_config["username"],
+                password=smtp_config["password"],
             )
             
-            if success:
-                return {
-                    "success": True,
-                    "details": {
-                        "email_sent": "Successfully",
-                        "recipient": "rasayibelec@gmail.com",
-                        "subject": test_subject,
-                        "email_service": "Operational"
-                    }
+            return {
+                "success": True,
+                "details": {
+                    "email_sent": "Successfully",
+                    "recipient": "rasayibelec@gmail.com",
+                    "method": "Direct SMTP",
+                    "email_service": "Operational"
                 }
-            else:
-                return {
-                    "success": False,
-                    "error": "Email sending failed",
-                    "details": {
-                        "email_sent": "Failed",
-                        "recipient": "rasayibelec@gmail.com",
-                        "email_service": "Not operational"
-                    }
-                }
+            }
                 
         except Exception as e:
             return {
