@@ -31,11 +31,11 @@ const PriceCalculator = () => {
     
     // Realistische Distanzen für häufige Strecken
     const routeDistances = {
-      // Von Goldau
-      'goldau-zürich': 45,
-      'goldau-flughafen zürich': 50,
-      'goldau-luzern': 35,
-      'goldau-zug': 15,
+      // Von Goldau/Arth-Goldau
+      'goldau zürich': 45,
+      'arth goldau zürich': 45,
+      'goldau flughafen zürich': 50,
+      'arth goldau flughafen zürich': 50,
       
       // Von Luzern
       'luzern-flughafen zürich': 47,
