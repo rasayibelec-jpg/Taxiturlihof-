@@ -1169,7 +1169,7 @@ class BackendTester:
     async def test_availability_endpoint(self):
         """Test availability endpoint"""
         try:
-            test_date = "2024-12-10"
+            test_date = "2025-12-10"
             async with self.session.get(f"{BACKEND_URL}/availability?date={test_date}") as response:
                 
                 if response.status == 200:
