@@ -143,7 +143,7 @@ export const coverageAreas = [
     id: 3,
     city: "Zug",
     description: "Vollständige Abdeckung von Zug und Umgebung",
-    zones: ["Zug Stadt", "Baar", "Cham", "Steinhausen", "Hünenberg"]
+    zones: ["Zug Stadt", "Baar", "Cham", "Steinhausen", "Hünenberg", "Rotkreuz", "Walchwil", "Unterägeri", "Oberägeri"]
   }
 ];
 
