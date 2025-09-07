@@ -117,7 +117,7 @@ export const services = [
     title: "Stadtfahrten",
     description: "Schnelle Fahrten innerhalb der Stadt und Umgebung",
     icon: "car",
-    price: "Ab CHF 30",
+    price: "Nach Vereinbarung",
     features: ["24/7 verfügbar", "Kurze Wartezeiten", "Lokale Kenntnisse"]
   },
   {
