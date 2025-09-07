@@ -74,6 +74,54 @@ async def get_status_checks():
     status_checks = await db.status_checks.find().to_list(1000)
     return [StatusCheck(**status_check) for status_check in status_checks]
 
+# Contact Form Endpoints
+@api_router.post("/contact", response_model=ContactFormResponse)
+async def submit_contact_form(request: ContactFormRequest, background_tasks: BackgroundTasks):
+    """Submit contact form and send emails"""
+    try:
+        # Create contact form entry in database
+        contact_data = ContactFormData(
+            name=request.name,
+            email=request.email,
+            phone=request.phone,
+            message=request.message
+        )
+        
+        # Save to database
+        await db.contact_forms.insert_one(contact_data.dict())
+        
+        # Send emails in background
+        background_tasks.add_task(
+            email_service.send_contact_form_email,
+            request.name,
+            request.email,
+            request.phone,
+            request.message
+        )
+        
+        return ContactFormResponse(
+            success=True,
+            message="Ihre Nachricht wurde erfolgreich gesendet! Wir melden uns schnellstmöglich bei Ihnen.",
+            id=contact_data.id
+        )
+        
+    except Exception as e:
+        logger.error(f"Contact form submission failed: {str(e)}")
+        raise HTTPException(
+            status_code=500, 
+            detail="Es gab einen Fehler beim Senden Ihrer Nachricht. Bitte versuchen Sie es erneut oder rufen Sie uns direkt an: 076 611 31 31"
+        )
+
+@api_router.get("/contact", response_model=List[ContactFormData])
+async def get_contact_forms():
+    """Get all contact form submissions (admin only)"""
+    try:
+        contact_forms = await db.contact_forms.find().sort("timestamp", -1).to_list(100)
+        return [ContactFormData(**form) for form in contact_forms]
+    except Exception as e:
+        logger.error(f"Failed to retrieve contact forms: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Abrufen der Kontaktformulare")
+
 # Include the router in the main app
 app.include_router(api_router)
 
