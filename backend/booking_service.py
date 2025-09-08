@@ -4,7 +4,7 @@ from enum import Enum
 import uuid
 import logging
 from pydantic import BaseModel, Field, EmailStr
-from swiss_distance_service import swiss_distance_service
+from google_maps_service import google_maps_service
 from email_service import email_service
 
 logger = logging.getLogger(__name__)
@@ -114,7 +114,7 @@ class BookingService:
                     )
             
             # Calculate distance and pricing
-            distance_result = swiss_distance_service.calculate_intelligent_distance(
+            distance_result = google_maps_service.calculate_intelligent_distance(
                 origin=booking_request.pickup_location,
                 destination=booking_request.destination,
                 departure_time=pickup_datetime
