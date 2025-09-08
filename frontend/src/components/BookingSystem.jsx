@@ -222,11 +222,11 @@ const BookingSystem = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Online Buchungssystem
+            Online Buchen
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Buchen Sie Ihre Taxi-Fahrt einfach und bequem online. 
-            Sofortbuchung oder Terminbuchung - Sie entscheiden!
+            Wählen Sie Datum, Uhrzeit und alle Details für Ihre Fahrt.
           </p>
         </div>
 
