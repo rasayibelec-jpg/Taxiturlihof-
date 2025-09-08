@@ -203,18 +203,17 @@ async def calculate_taxi_price(request: PriceCalculationRequest):
             detail=f"Preisberechnung fehlgeschlagen: {str(e)}"
         )
 
-@api_router.get("/popular-destinations/{origin}")
-async def get_popular_destinations(origin: str):
-    """Get popular destinations from a given origin"""
+@api_router.get("/test-google-maps")
+async def test_google_maps_connection():
+    """Test Google Maps API connection"""
     try:
-        destinations = google_maps_service.get_popular_destinations_from_location(origin)
-        return {
-            "origin": origin,
-            "destinations": destinations
-        }
+        success = google_maps_service.test_api_connection()
+        if success:
+            return {"status": "success", "message": "Google Maps API connection successful"}
+        else:
+            return {"status": "error", "message": "Google Maps API connection failed"}
     except Exception as e:
-        logger.error(f"Failed to get popular destinations: {str(e)}")
-        raise HTTPException(status_code=400, detail="Fehler beim Abrufen beliebter Ziele")
+        raise HTTPException(status_code=500, detail=f"Google Maps API test failed: {str(e)}")
 
 # Booking System Endpoints
 @api_router.post("/bookings", response_model=BookingResponse)
