@@ -120,25 +120,15 @@ class BookingService:
                 departure_time=pickup_datetime
             )
             
-            # Calculate pricing with vehicle type multiplier
+            # Calculate pricing with vehicle type multiplier (NO TIME-BASED SURCHARGES)
             vehicle_multiplier = self.vehicle_multipliers[booking_request.vehicle_type]
             base_fare = self.base_fares[booking_request.vehicle_type]
             
             distance_km = distance_result['distance_km']
             distance_fare = distance_km * 4.20 * vehicle_multiplier  # CHF 4.20 per km
             
-            # Apply time-based surcharges
+            # Simple pricing: Base + Distance (no time-based surcharges)
             total_base = base_fare + distance_fare
-            
-            # Night surcharge (22:00 - 06:00)
-            if pickup_datetime.hour >= 22 or pickup_datetime.hour <= 6:
-                total_base *= 1.5
-            # Weekend surcharge
-            elif pickup_datetime.weekday() >= 5:
-                total_base *= 1.2
-            # Peak hours (07:00-09:00, 17:00-19:00)
-            elif (7 <= pickup_datetime.hour <= 9) or (17 <= pickup_datetime.hour <= 19):
-                total_base *= 1.1
             
             booking_fee = 5.0  # CHF 5 booking fee
             total_fare = total_base + booking_fee
