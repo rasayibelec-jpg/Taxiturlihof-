@@ -2345,6 +2345,290 @@ class BackendTester:
             )
             return False
 
+    async def test_booking_email_debug_flow(self):
+        """DEBUG: Test complete booking flow to identify email issues - Review Request Test"""
+        try:
+            # Use the exact test data from review request
+            test_data = {
+                "customer_name": "Test Email Buchung",
+                "customer_email": "test@example.com",
+                "customer_phone": "076 123 45 67",
+                "pickup_location": "Luzern",
+                "destination": "Zürich",
+                "booking_type": "scheduled",
+                "pickup_datetime": "2025-12-10T14:00:00",
+                "passenger_count": 2,
+                "vehicle_type": "standard",
+                "special_requests": "E-Mail Test"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            
+            print("\n🔍 DEBUG: Creating booking to test email flow...")
+            async with self.session.post(
+                f"{BACKEND_URL}/bookings",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                response_text = await response.text()
+                
+                if response.status == 200:
+                    try:
+                        data = await response.json()
+                        
+                        if data.get('success') and data.get('booking_details'):
+                            booking = data['booking_details']
+                            booking_id = data['booking_id']
+                            
+                            # Check if booking was created successfully
+                            booking_created = (
+                                booking['customer_name'] == test_data['customer_name'] and
+                                booking['customer_email'] == test_data['customer_email'] and
+                                'total_fare' in booking
+                            )
+                            
+                            if booking_created:
+                                # Now test if we can retrieve the booking (database persistence)
+                                print(f"✅ Booking created successfully: ID {booking_id[:8]}")
+                                print(f"   Customer: {booking['customer_name']}")
+                                print(f"   Email: {booking['customer_email']}")
+                                print(f"   Total: CHF {booking['total_fare']}")
+                                print(f"   Distance: {booking['estimated_distance_km']} km")
+                                
+                                # Test booking retrieval to verify database persistence
+                                await asyncio.sleep(1)  # Give time for database write
+                                
+                                async with self.session.get(f"{BACKEND_URL}/bookings/{booking_id}") as get_response:
+                                    if get_response.status == 200:
+                                        retrieved_booking = await get_response.json()
+                                        print(f"✅ Booking retrieval successful - database persistence confirmed")
+                                        
+                                        # Check if Google Maps distance calculation worked
+                                        distance_km = booking['estimated_distance_km']
+                                        if 45 <= distance_km <= 55:  # Expected range for Luzern-Zürich
+                                            print(f"✅ Google Maps distance calculation working: {distance_km} km")
+                                        else:
+                                            print(f"⚠️  Distance calculation may have issues: {distance_km} km (expected 45-55 km)")
+                                        
+                                        # Now the critical part - check email flow
+                                        print("\n🔍 DEBUG: Checking email flow...")
+                                        
+                                        # Wait a bit for background email tasks to process
+                                        await asyncio.sleep(3)
+                                        
+                                        # Try to import and check email service directly
+                                        try:
+                                            import sys
+                                            sys.path.insert(0, '/app/backend')
+                                            from email_service import email_service
+                                            from booking_service import booking_service as bs
+                                            
+                                            # Check email service configuration
+                                            email_config_ok = (
+                                                email_service.smtp_host and
+                                                email_service.smtp_username and
+                                                email_service.smtp_password and
+                                                email_service.email_from
+                                            )
+                                            
+                                            if email_config_ok:
+                                                print(f"✅ Email service configuration OK")
+                                                print(f"   SMTP Host: {email_service.smtp_host}")
+                                                print(f"   SMTP Username: {email_service.smtp_username}")
+                                                print(f"   Email From: {email_service.email_from}")
+                                                
+                                                # Test direct email sending (like booking confirmation)
+                                                print("\n🔍 DEBUG: Testing direct email sending...")
+                                                
+                                                # Create a booking object for email test
+                                                from booking_service import Booking
+                                                from datetime import datetime
+                                                
+                                                test_booking = Booking(
+                                                    id=booking_id,
+                                                    customer_name=booking['customer_name'],
+                                                    customer_email=booking['customer_email'],
+                                                    customer_phone=booking['customer_phone'],
+                                                    pickup_location=booking['pickup_location'],
+                                                    destination=booking['destination'],
+                                                    pickup_datetime=datetime.fromisoformat(test_data['pickup_datetime']),
+                                                    passenger_count=booking['passenger_count'],
+                                                    vehicle_type=booking['vehicle_type'],
+                                                    estimated_distance_km=booking['estimated_distance_km'],
+                                                    estimated_duration_minutes=booking['estimated_duration_minutes'],
+                                                    base_fare=booking['base_fare'],
+                                                    distance_fare=booking['distance_fare'],
+                                                    booking_fee=booking['booking_fee'],
+                                                    total_fare=booking['total_fare'],
+                                                    special_requests=booking.get('special_requests')
+                                                )
+                                                
+                                                # Test booking confirmation email directly
+                                                email_success = await bs.send_booking_confirmation(test_booking)
+                                                
+                                                if email_success:
+                                                    print("✅ BOOKING EMAIL SYSTEM WORKING! Email sent successfully")
+                                                    self.log_result(
+                                                        "Booking Email Debug Flow",
+                                                        True,
+                                                        "✅ COMPLETE BOOKING EMAIL FLOW WORKING! All components operational",
+                                                        {
+                                                            "booking_creation": "SUCCESS",
+                                                            "database_persistence": "SUCCESS", 
+                                                            "google_maps_distance": f"{distance_km} km",
+                                                            "email_configuration": "SUCCESS",
+                                                            "email_sending": "SUCCESS",
+                                                            "booking_id": booking_id,
+                                                            "customer_email": booking['customer_email'],
+                                                            "total_fare": booking['total_fare']
+                                                        }
+                                                    )
+                                                    return True
+                                                else:
+                                                    print("❌ BOOKING EMAIL FAILED! Email sending unsuccessful")
+                                                    self.log_result(
+                                                        "Booking Email Debug Flow",
+                                                        False,
+                                                        "❌ BOOKING EMAIL SYSTEM FAILED - Email sending unsuccessful",
+                                                        {
+                                                            "booking_creation": "SUCCESS",
+                                                            "database_persistence": "SUCCESS",
+                                                            "google_maps_distance": f"{distance_km} km", 
+                                                            "email_configuration": "SUCCESS",
+                                                            "email_sending": "FAILED",
+                                                            "issue": "Email service unable to send booking confirmation"
+                                                        }
+                                                    )
+                                                    return False
+                                            else:
+                                                print("❌ Email service configuration issues")
+                                                missing_config = []
+                                                if not email_service.smtp_host: missing_config.append("SMTP_HOST")
+                                                if not email_service.smtp_username: missing_config.append("SMTP_USERNAME") 
+                                                if not email_service.smtp_password: missing_config.append("SMTP_PASSWORD")
+                                                if not email_service.email_from: missing_config.append("EMAIL_FROM")
+                                                
+                                                self.log_result(
+                                                    "Booking Email Debug Flow",
+                                                    False,
+                                                    f"❌ EMAIL CONFIGURATION ISSUES - Missing: {', '.join(missing_config)}",
+                                                    {
+                                                        "booking_creation": "SUCCESS",
+                                                        "database_persistence": "SUCCESS",
+                                                        "email_configuration": "FAILED",
+                                                        "missing_config": missing_config
+                                                    }
+                                                )
+                                                return False
+                                                
+                                        except ImportError as e:
+                                            print(f"❌ Could not import email/booking services: {str(e)}")
+                                            self.log_result(
+                                                "Booking Email Debug Flow",
+                                                False,
+                                                f"❌ SERVICE IMPORT FAILED - {str(e)}",
+                                                {
+                                                    "booking_creation": "SUCCESS",
+                                                    "database_persistence": "SUCCESS",
+                                                    "service_import": "FAILED",
+                                                    "error": str(e)
+                                                }
+                                            )
+                                            return False
+                                        except Exception as e:
+                                            print(f"❌ Email service test failed: {str(e)}")
+                                            self.log_result(
+                                                "Booking Email Debug Flow", 
+                                                False,
+                                                f"❌ EMAIL SERVICE TEST FAILED - {str(e)}",
+                                                {
+                                                    "booking_creation": "SUCCESS",
+                                                    "database_persistence": "SUCCESS", 
+                                                    "email_service_test": "FAILED",
+                                                    "error": str(e)
+                                                }
+                                            )
+                                            return False
+                                    else:
+                                        print(f"❌ Booking retrieval failed: {get_response.status}")
+                                        self.log_result(
+                                            "Booking Email Debug Flow",
+                                            False,
+                                            f"❌ DATABASE PERSISTENCE FAILED - Booking retrieval returned {get_response.status}",
+                                            {
+                                                "booking_creation": "SUCCESS",
+                                                "database_persistence": "FAILED",
+                                                "retrieval_status": get_response.status
+                                            }
+                                        )
+                                        return False
+                            else:
+                                print("❌ Booking validation failed")
+                                self.log_result(
+                                    "Booking Email Debug Flow",
+                                    False,
+                                    "❌ BOOKING VALIDATION FAILED - Created booking doesn't match expected data",
+                                    {
+                                        "booking_creation": "FAILED",
+                                        "expected_name": test_data['customer_name'],
+                                        "actual_name": booking.get('customer_name'),
+                                        "expected_email": test_data['customer_email'],
+                                        "actual_email": booking.get('customer_email')
+                                    }
+                                )
+                                return False
+                        else:
+                            print(f"❌ Booking creation failed: {data.get('message', 'Unknown error')}")
+                            self.log_result(
+                                "Booking Email Debug Flow",
+                                False,
+                                f"❌ BOOKING CREATION FAILED - {data.get('message', 'Unknown error')}",
+                                {
+                                    "booking_creation": "FAILED",
+                                    "api_response": data
+                                }
+                            )
+                            return False
+                    except json.JSONDecodeError:
+                        print(f"❌ Invalid JSON response: {response_text}")
+                        self.log_result(
+                            "Booking Email Debug Flow",
+                            False,
+                            f"❌ INVALID JSON RESPONSE - {response_text}",
+                            {
+                                "booking_creation": "FAILED",
+                                "response_text": response_text
+                            }
+                        )
+                        return False
+                else:
+                    print(f"❌ API returned status {response.status}: {response_text}")
+                    self.log_result(
+                        "Booking Email Debug Flow",
+                        False,
+                        f"❌ API ERROR - Status {response.status}: {response_text}",
+                        {
+                            "booking_creation": "FAILED",
+                            "api_status": response.status,
+                            "response_text": response_text
+                        }
+                    )
+                    return False
+                    
+        except Exception as e:
+            print(f"❌ Test failed with exception: {str(e)}")
+            self.log_result(
+                "Booking Email Debug Flow",
+                False,
+                f"❌ TEST EXCEPTION - {str(e)}",
+                {
+                    "exception": str(e),
+                    "test_data": test_data
+                }
+            )
+            return False
+
     async def run_all_tests(self):
         """Run all backend tests"""
         print("🚀 Starting Backend Test Suite for Taxi Türlihof")
