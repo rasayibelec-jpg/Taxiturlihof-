@@ -28,7 +28,16 @@ const Services = () => {
           {services.map((service) => {
             const IconComponent = iconMap[service.icon];
             return (
-              <Card key={service.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-gray-200">
+              <Card key={service.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-gray-200 overflow-hidden">
+                {/* Service Image */}
+                <div className="h-48 overflow-hidden">
+                  <img 
+                    src={service.image} 
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                
                 <CardHeader className="pb-4">
                   <div className="flex items-center justify-between mb-4">
                     <div className="bg-yellow-100 p-3 rounded-full group-hover:bg-yellow-200 transition-colors duration-300">
