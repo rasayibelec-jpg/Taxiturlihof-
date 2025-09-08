@@ -2144,10 +2144,21 @@ class BackendTester:
             print("\n❌ API is not accessible. Stopping tests.")
             return False
         
-        # PRIORITY TEST: Corrected Luzern → Zürich Distance Calculation (as requested in review)
-        print("\n🎯 PRIORITY: Corrected Luzern → Zürich Distance Calculation")
-        print("-" * 60)
+        # PRIORITY TESTS: Review Request - Corrected Distance Calculation and Weekend Surcharge Removal
+        print("\n🎯 PRIORITY: REVIEW REQUEST TESTS - Distance Correction & Weekend Surcharge Removal")
+        print("-" * 80)
+        
+        # Test 1: Reference Route Verification (Luzern → Zürich)
+        await self.test_reference_route_luzern_zurich_verification()
+        
+        # Test 2: Corrected Distance Calculation
         await self.test_corrected_luzern_zurich_distance_calculation()
+        
+        # Test 3: Weekend Surcharge Removal Verification
+        await self.test_weekend_surcharge_removal_verification()
+        
+        # Test 4: Additional Swiss Routes Consistency
+        await self.test_additional_swiss_routes_consistency()
         
         # Contact Form Tests
         print("\n📧 CONTACT FORM TESTS")
