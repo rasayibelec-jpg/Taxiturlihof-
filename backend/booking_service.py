@@ -98,10 +98,13 @@ class BookingService:
     async def create_booking(self, booking_request: BookingRequest) -> BookingResponse:
         """Create a new taxi booking"""
         try:
-            # Parse pickup datetime
-            pickup_datetime = datetime.fromisoformat(
-                booking_request.pickup_datetime.replace('Z', '+00:00')
-            )
+            # Parse pickup datetime and ensure it's timezone-aware
+            pickup_datetime_str = booking_request.pickup_datetime.replace('Z', '+00:00')
+            pickup_datetime = datetime.fromisoformat(pickup_datetime_str)
+            
+            # If pickup_datetime is timezone-naive, make it timezone-aware (assume UTC)
+            if pickup_datetime.tzinfo is None:
+                pickup_datetime = pickup_datetime.replace(tzinfo=timezone.utc)
             
             # Validate pickup time (must be at least 30 minutes in future for scheduled bookings)
             if booking_request.booking_type == BookingType.SCHEDULED:
