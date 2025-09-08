@@ -1362,14 +1362,58 @@ class BackendTester:
             )
             return False
 
-    async def test_corrected_luzern_zurich_distance_calculation(self):
-        """Test corrected distance calculation for Luzern → Zürich with updated train station coordinates"""
+    async def test_google_maps_api_connection(self):
+        """Test Google Maps API connection and authentication"""
         try:
-            # Test with Monday date to avoid weekend surcharge as specified in review request
+            async with self.session.get(f"{BACKEND_URL}/test-google-maps") as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    if data.get('status') == 'success':
+                        self.log_result(
+                            "Google Maps API Connection Test",
+                            True,
+                            f"✅ Google Maps API connection successful: {data.get('message')}",
+                            {
+                                "api_status": data.get('status'),
+                                "message": data.get('message'),
+                                "api_key_configured": "Yes"
+                            }
+                        )
+                        return True
+                    else:
+                        self.log_result(
+                            "Google Maps API Connection Test",
+                            False,
+                            f"❌ Google Maps API connection failed: {data.get('message')}",
+                            data
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Google Maps API Connection Test",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Google Maps API Connection Test",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_real_google_maps_luzern_zurich_distance(self):
+        """Test REAL Google Maps distance calculation for Luzern → Zürich - Expected exactly 51km"""
+        try:
             test_data = {
                 "origin": "Luzern",
                 "destination": "Zürich",
-                "departure_time": "2024-09-09T10:00:00"  # Monday to avoid weekend pricing
+                "departure_time": "2024-09-08T10:00:00"
             }
             
             headers = {"Content-Type": "application/json"}
@@ -1384,59 +1428,56 @@ class BackendTester:
                     
                     # Extract key values
                     distance = data['distance_km']
-                    base_fare = data.get('base_fare', 6.80)
-                    distance_fare = data['distance_fare']
+                    calculation_source = data.get('calculation_source', 'unknown')
+                    origin_address = data.get('origin', '')
+                    destination_address = data.get('destination', '')
                     total_fare = data['total_fare']
                     
-                    # Expected results with corrected distance (~51km)
-                    expected_distance_min = 50.0
-                    expected_distance_max = 52.0
-                    expected_base_fare = 6.80
-                    expected_distance_fare = 51 * 4.20  # 51km × CHF 4.20 = CHF 214.20
-                    expected_total_fare = expected_base_fare + expected_distance_fare  # CHF 221.00
+                    # Expected results with REAL Google Maps (exactly 51km as per user reference)
+                    expected_distance = 51.0
+                    distance_tolerance = 1.0  # Allow ±1km tolerance for real Google Maps
                     
-                    # Validate corrected distance calculation
-                    distance_corrected = expected_distance_min <= distance <= expected_distance_max
-                    base_fare_correct = abs(base_fare - expected_base_fare) < 0.01
+                    # Validate REAL Google Maps distance
+                    distance_accurate = abs(distance - expected_distance) <= distance_tolerance
+                    is_google_maps = 'google_maps' in calculation_source.lower()
+                    has_real_addresses = len(origin_address) > 10 and len(destination_address) > 10
                     
-                    # Allow some tolerance for calculation variations
-                    distance_fare_correct = abs(distance_fare - expected_distance_fare) < 10.0
-                    total_fare_correct = abs(total_fare - expected_total_fare) < 15.0
-                    
-                    if distance_corrected and base_fare_correct:
+                    if distance_accurate and is_google_maps and has_real_addresses:
                         self.log_result(
-                            "Corrected Luzern → Zürich Distance Calculation",
+                            "REAL Google Maps - Luzern → Zürich Distance",
                             True,
-                            f"✅ CORRECTED: Distance now {distance}km (was 46.4km), Total: CHF {total_fare} (Monday, no surcharge)",
+                            f"✅ REAL Google Maps: {distance}km (target: 51km), Total: CHF {total_fare}",
                             {
-                                "corrected_distance_km": distance,
-                                "previous_distance_km": 46.4,
-                                "distance_improvement": f"{distance - 46.4:.1f}km increase",
-                                "base_fare": base_fare,
-                                "distance_fare": distance_fare,
+                                "real_distance_km": distance,
+                                "expected_distance_km": expected_distance,
+                                "accuracy_difference": f"{abs(distance - expected_distance):.2f}km",
+                                "calculation_source": calculation_source,
+                                "origin_address": origin_address,
+                                "destination_address": destination_address,
                                 "total_fare": total_fare,
-                                "expected_total": expected_total_fare,
-                                "monday_pricing": "No weekend surcharge applied",
-                                "calculation_accuracy": "Matches reference app expectations"
+                                "google_maps_status": "REAL API - No more estimation"
                             }
                         )
                         return True
                     else:
                         issues = []
-                        if not distance_corrected:
-                            issues.append(f"Distance {distance}km not in expected range {expected_distance_min}-{expected_distance_max}km")
-                        if not base_fare_correct:
-                            issues.append(f"Base fare {base_fare} != expected {expected_base_fare}")
+                        if not distance_accurate:
+                            issues.append(f"Distance {distance}km differs from expected 51km by {abs(distance - expected_distance):.2f}km")
+                        if not is_google_maps:
+                            issues.append(f"Not using Google Maps API: {calculation_source}")
+                        if not has_real_addresses:
+                            issues.append(f"Addresses too short - may not be real Google results")
                         
                         self.log_result(
-                            "Corrected Luzern → Zürich Distance Calculation",
+                            "REAL Google Maps - Luzern → Zürich Distance",
                             False,
-                            f"❌ Distance correction issues: {'; '.join(issues)}",
+                            f"❌ Google Maps accuracy issues: {'; '.join(issues)}",
                             {
                                 "actual_distance_km": distance,
-                                "expected_distance_range": f"{expected_distance_min}-{expected_distance_max}km",
-                                "actual_total_fare": total_fare,
-                                "expected_total_fare": expected_total_fare,
+                                "expected_distance_km": expected_distance,
+                                "calculation_source": calculation_source,
+                                "origin_address": origin_address,
+                                "destination_address": destination_address,
                                 "issues": issues
                             }
                         )
@@ -1444,7 +1485,7 @@ class BackendTester:
                 else:
                     response_text = await response.text()
                     self.log_result(
-                        "Corrected Luzern → Zürich Distance Calculation",
+                        "REAL Google Maps - Luzern → Zürich Distance",
                         False,
                         f"API returned status {response.status}: {response_text}"
                     )
@@ -1452,7 +1493,178 @@ class BackendTester:
                     
         except Exception as e:
             self.log_result(
-                "Corrected Luzern → Zürich Distance Calculation",
+                "REAL Google Maps - Luzern → Zürich Distance",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_real_google_maps_additional_swiss_routes(self):
+        """Test additional Swiss routes with REAL Google Maps for accuracy verification"""
+        
+        test_routes = [
+            {
+                "name": "Zug → Basel",
+                "origin": "Zug",
+                "destination": "Basel",
+                "expected_min_km": 80,
+                "expected_max_km": 120,
+                "route_description": "Real highway distance"
+            },
+            {
+                "name": "Schwyz → Luzern", 
+                "origin": "Schwyz",
+                "destination": "Luzern",
+                "expected_min_km": 25,
+                "expected_max_km": 45,
+                "route_description": "Real regional distance"
+            },
+            {
+                "name": "Luzern → Zürich Flughafen",
+                "origin": "Luzern",
+                "destination": "Zürich Flughafen",
+                "expected_min_km": 45,
+                "expected_max_km": 60,
+                "route_description": "Real airport route"
+            }
+        ]
+        
+        all_routes_passed = True
+        route_results = []
+        
+        for route in test_routes:
+            try:
+                test_data = {
+                    "origin": route["origin"],
+                    "destination": route["destination"],
+                    "departure_time": "2024-09-08T10:00:00"
+                }
+                
+                headers = {"Content-Type": "application/json"}
+                async with self.session.post(
+                    f"{BACKEND_URL}/calculate-price",
+                    json=test_data,
+                    headers=headers
+                ) as response:
+                    
+                    if response.status == 200:
+                        data = await response.json()
+                        
+                        distance = data['distance_km']
+                        calculation_source = data.get('calculation_source', 'unknown')
+                        total_fare = data['total_fare']
+                        
+                        # Validate distance is within expected range
+                        distance_valid = route["expected_min_km"] <= distance <= route["expected_max_km"]
+                        is_google_maps = 'google_maps' in calculation_source.lower()
+                        
+                        if distance_valid and is_google_maps:
+                            route_results.append(f"✅ {route['name']}: {distance}km, CHF {total_fare}")
+                        else:
+                            route_results.append(f"❌ {route['name']}: {distance}km (expected {route['expected_min_km']}-{route['expected_max_km']}km)")
+                            all_routes_passed = False
+                    else:
+                        route_results.append(f"❌ {route['name']}: API error {response.status}")
+                        all_routes_passed = False
+                        
+            except Exception as e:
+                route_results.append(f"❌ {route['name']}: Exception {str(e)}")
+                all_routes_passed = False
+        
+        self.log_result(
+            "REAL Google Maps - Additional Swiss Routes",
+            all_routes_passed,
+            f"Swiss routes accuracy: {len([r for r in route_results if '✅' in r])}/{len(route_results)} passed",
+            {
+                "route_results": route_results,
+                "all_routes_passed": all_routes_passed,
+                "google_maps_status": "Testing real Google Maps routing accuracy"
+            }
+        )
+        
+        return all_routes_passed
+
+    async def test_google_maps_vs_previous_system_comparison(self):
+        """Compare Google Maps results with previous estimation system"""
+        try:
+            test_data = {
+                "origin": "Luzern",
+                "destination": "Zürich",
+                "departure_time": "2024-09-08T10:00:00"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/calculate-price",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    current_distance = data['distance_km']
+                    calculation_source = data.get('calculation_source', 'unknown')
+                    total_fare = data['total_fare']
+                    
+                    # Previous system results (from test_result.md)
+                    previous_estimation_distance = 50.86  # Previous corrected estimation
+                    google_maps_expected = 51.0  # Real Google Maps target
+                    
+                    # Calculate improvements
+                    estimation_accuracy = abs(current_distance - google_maps_expected)
+                    previous_accuracy = abs(previous_estimation_distance - google_maps_expected)
+                    
+                    is_google_maps = 'google_maps' in calculation_source.lower()
+                    is_more_accurate = estimation_accuracy <= previous_accuracy
+                    
+                    if is_google_maps and is_more_accurate:
+                        self.log_result(
+                            "Google Maps vs Previous System Comparison",
+                            True,
+                            f"✅ Google Maps improvement: {current_distance}km vs {previous_estimation_distance}km estimation",
+                            {
+                                "google_maps_distance": current_distance,
+                                "previous_estimation": previous_estimation_distance,
+                                "target_distance": google_maps_expected,
+                                "google_maps_accuracy": f"±{estimation_accuracy:.2f}km",
+                                "previous_accuracy": f"±{previous_accuracy:.2f}km",
+                                "improvement": "Real Google Maps eliminates estimation errors",
+                                "calculation_source": calculation_source,
+                                "total_fare": total_fare
+                            }
+                        )
+                        return True
+                    else:
+                        issues = []
+                        if not is_google_maps:
+                            issues.append(f"Not using Google Maps: {calculation_source}")
+                        if not is_more_accurate:
+                            issues.append(f"Less accurate than previous system: ±{estimation_accuracy:.2f}km vs ±{previous_accuracy:.2f}km")
+                        
+                        self.log_result(
+                            "Google Maps vs Previous System Comparison",
+                            False,
+                            f"❌ Google Maps integration issues: {'; '.join(issues)}",
+                            {
+                                "current_distance": current_distance,
+                                "calculation_source": calculation_source,
+                                "issues": issues
+                            }
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Google Maps vs Previous System Comparison",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Google Maps vs Previous System Comparison",
                 False,
                 f"Request failed: {str(e)}"
             )
