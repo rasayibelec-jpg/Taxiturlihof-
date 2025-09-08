@@ -1571,6 +1571,11 @@ class BackendTester:
             print("\n❌ API is not accessible. Stopping tests.")
             return False
         
+        # PRIORITY TEST: Luzern → Zürich Price Analysis (as requested in review)
+        print("\n🎯 PRIORITY: Luzern → Zürich Price Calculation Analysis")
+        print("-" * 60)
+        await self.test_luzern_zurich_price_analysis()
+        
         # Contact Form Tests
         print("\n📧 CONTACT FORM TESTS")
         print("-" * 40)
