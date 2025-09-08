@@ -113,8 +113,8 @@ class BookingService:
                         message="Terminbuchungen müssen mindestens 30 Minuten im Voraus erfolgen."
                     )
             
-            # Calculate distance and pricing
-            distance_result = google_maps_service.calculate_intelligent_distance(
+            # Calculate distance and pricing with Google Maps
+            distance_result = await google_maps_service.calculate_real_distance(
                 origin=booking_request.pickup_location,
                 destination=booking_request.destination,
                 departure_time=pickup_datetime
