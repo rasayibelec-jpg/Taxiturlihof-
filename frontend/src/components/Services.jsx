@@ -20,8 +20,7 @@ const Services = () => {
             Unsere Dienstleistungen
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Von Flughafentransfers bis zu Krankenfahrten - wir bieten 
-            professionelle Taxi-Services für alle Ihre Bedürfnisse.
+            Von der historischen Stadt Luzern bis zu den malerischen Bergdörfern - wir bringen Sie sicher an Ihr Ziel in der schönsten Region der Schweiz.
           </p>
         </div>
 
