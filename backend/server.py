@@ -10,7 +10,7 @@ from typing import List, Optional
 import uuid
 from datetime import datetime, date
 from email_service import email_service
-from swiss_distance_service import swiss_distance_service
+from google_maps_service import google_maps_service
 from booking_service import booking_service, BookingRequest, BookingResponse, Booking, BookingStatus
 
 
@@ -163,7 +163,7 @@ async def calculate_taxi_price(request: PriceCalculationRequest):
                 pass  # Use current time as fallback
         
         # Get distance calculation from Swiss service
-        distance_result = swiss_distance_service.calculate_intelligent_distance(
+        distance_result = google_maps_service.calculate_intelligent_distance(
             origin=request.origin,
             destination=request.destination,
             departure_time=departure_time
@@ -207,7 +207,7 @@ async def calculate_taxi_price(request: PriceCalculationRequest):
 async def get_popular_destinations(origin: str):
     """Get popular destinations from a given origin"""
     try:
-        destinations = swiss_distance_service.get_popular_destinations_from_location(origin)
+        destinations = google_maps_service.get_popular_destinations_from_location(origin)
         return {
             "origin": origin,
             "destinations": destinations
