@@ -98,7 +98,8 @@ export const services = [
     description: "Zuverlässiger Transport zum und vom Flughafen Zürich und Basel",
     icon: "plane",
     price: "Nach Vereinbarung",
-    features: ["Pünktlich", "Komfortabel", "Direktfahrt"]
+    features: ["Pünktlich", "Komfortabel", "Direktfahrt"],
+    image: "https://images.unsplash.com/photo-1658942445212-8781e4c66b06?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwyfHxhaXJwb3J0JTIwdGF4aXxlbnwwfHx8fDE3NTczMjkyOTZ8MA&ixlib=rb-4.1.0&q=85"
   },
   {
     id: 2,
@@ -106,7 +107,8 @@ export const services = [
     description: "Schnelle Fahrten innerhalb der Stadt und Umgebung",
     icon: "car",
     price: "Nach Vereinbarung",
-    features: ["24/7 verfügbar", "Kurze Wartezeiten", "Lokale Kenntnisse"]
+    features: ["24/7 verfügbar", "Kurze Wartezeiten", "Lokale Kenntnisse"],
+    image: "https://images.unsplash.com/photo-1641230011140-322910168cc4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwzfHxjaXR5JTIwdGF4aXxlbnwwfHx8fDE3NTczMjkzODN8MA&ixlib=rb-4.1.0&q=85"
   },
   {
     id: 3,
@@ -114,7 +116,8 @@ export const services = [
     description: "Professioneller Service für Geschäftskunden",
     icon: "briefcase",
     price: "Nach Vereinbarung",
-    features: ["Rechnungsstellung", "Regelmässige Termine", "Diskretion"]
+    features: ["Rechnungsstellung", "Regelmässige Termine", "Diskretion"],
+    image: "https://images.unsplash.com/photo-1631142482439-511789c7c5d5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwyfHxidXNpbmVzc21hbiUyMGNhcnxlbnwwfHx8fDE3NTczMjkzMjl8MA&ixlib=rb-4.1.0&q=85"
   },
   {
     id: 6,
@@ -122,7 +125,8 @@ export const services = [
     description: "Schneller Transport von Dokumenten und Paketen",
     icon: "package",
     price: "Nach Vereinbarung",
-    features: ["Express-Service", "Sicherer Transport", "Quittung"]
+    features: ["Express-Service", "Sicherer Transport", "Quittung"],
+    image: "https://images.unsplash.com/photo-1620455800201-7f00aeef12ed?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwyfHxwYWNrYWdlc3xlbnwwfHx8fDE3NTczMjkzNTZ8MA&ixlib=rb-4.1.0&q=85"
   }
 ];
 
