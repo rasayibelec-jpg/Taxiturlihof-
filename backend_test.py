@@ -2356,21 +2356,24 @@ class BackendTester:
             print("\n❌ API is not accessible. Stopping tests.")
             return False
         
-        # PRIORITY TESTS: Review Request - Corrected Distance Calculation and Weekend Surcharge Removal
-        print("\n🎯 PRIORITY: REVIEW REQUEST TESTS - Distance Correction & Weekend Surcharge Removal")
+        # PRIORITY TESTS: Review Request - REAL Google Maps Distance Matrix API Integration
+        print("\n🎯 PRIORITY: REVIEW REQUEST TESTS - REAL Google Maps Distance Matrix API Integration")
         print("-" * 80)
         
-        # Test 1: Reference Route Verification (Luzern → Zürich)
-        await self.test_reference_route_luzern_zurich_verification()
+        # Test 1: Google Maps API Connection Test
+        google_maps_connected = await self.test_google_maps_api_connection()
         
-        # Test 2: Corrected Distance Calculation
-        await self.test_corrected_luzern_zurich_distance_calculation()
-        
-        # Test 3: Weekend Surcharge Removal Verification
-        await self.test_weekend_surcharge_removal_verification()
-        
-        # Test 4: Additional Swiss Routes Consistency
-        await self.test_additional_swiss_routes_consistency()
+        if google_maps_connected:
+            # Test 2: REAL Google Maps Distance Calculation (Luzern → Zürich = exactly 51km)
+            await self.test_real_google_maps_luzern_zurich_distance()
+            
+            # Test 3: Additional Swiss Routes with REAL Google Maps
+            await self.test_real_google_maps_additional_swiss_routes()
+            
+            # Test 4: Google Maps vs Previous System Comparison
+            await self.test_google_maps_vs_previous_system_comparison()
+        else:
+            print("⚠️  Skipping Google Maps distance tests due to API connection failure")
         
         # Contact Form Tests
         print("\n📧 CONTACT FORM TESTS")
