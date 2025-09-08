@@ -62,13 +62,14 @@ class SwissDistanceService:
         }
         
         # Route-Faktoren basierend auf Straßentypen (Luftlinie * Faktor = geschätzte Straßendistanz)
+        # Angepasst für realistische Schweizer Distanzen
         self.route_factors = {
-            "inner_city": 1.3,       # Stadtverkehr mit vielen Kurven
-            "suburban": 1.25,        # Vororte mit mäßigem Routing
-            "inter_city": 1.4,       # Zwischen Städten
-            "highway": 1.26,         # Autobahn-dominierte Routen (updated for accurate Luzern-Zürich distance)
-            "mountain": 1.6,         # Bergige Gebiete mit Kurven
-            "lakeside": 1.45         # Seeufer-Routen mit Umwegen
+            "inner_city": 1.35,      # Stadtverkehr mit vielen Kurven (erhöht für Genauigkeit)
+            "suburban": 1.30,        # Vororte mit mäßigem Routing (erhöht)
+            "inter_city": 1.45,      # Zwischen Städten (erhöht)
+            "highway": 1.26,         # Autobahn-dominierte Routen (korrigiert für Luzern-Zürich)
+            "mountain": 1.65,        # Bergige Gebiete mit Kurven (erhöht)
+            "lakeside": 1.50         # Seeufer-Routen mit Umwegen (erhöht)
         }
         
         # Durchschnittsgeschwindigkeiten (km/h) basierend auf Tageszeit
