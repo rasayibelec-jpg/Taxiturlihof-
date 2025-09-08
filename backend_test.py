@@ -2240,7 +2240,7 @@ class BackendTester:
         print("-" * 40)
         
         # Test 22: Gmail SMTP Email System with New Credentials
-        await self.test_gmail_smtp_email_system()
+        await self.test_gmail_smtp_email_system_final()
         
         # Summary
         print("\n" + "=" * 60)
