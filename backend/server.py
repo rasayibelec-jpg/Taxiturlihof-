@@ -177,20 +177,8 @@ async def calculate_taxi_price(request: PriceCalculationRequest):
         distance_fare = distance_km * distance_rate
         total_fare = base_fare + distance_fare
         
-        # Apply time-based multipliers
-        traffic_factor = distance_result.get('traffic_factor', 1.0)
-        if traffic_factor > 1.2:  # Peak time
-            total_fare *= 1.1  # 10% peak surcharge
-        
-        # Weekend/night surcharges
-        if departure_time:
-            hour = departure_time.hour
-            is_weekend = departure_time.weekday() >= 5
-            
-            if hour >= 22 or hour <= 6:  # Night surcharge
-                total_fare *= 1.5
-            elif is_weekend:  # Weekend surcharge
-                total_fare *= 1.2
+        # NO TIME-BASED SURCHARGES - Simple uniform pricing
+        # Removed: traffic_factor, weekend surcharge, night surcharge, peak surcharge
         
         return PriceCalculationResponse(
             origin=distance_result['origin_address'],
@@ -201,7 +189,7 @@ async def calculate_taxi_price(request: PriceCalculationRequest):
             total_fare=round(total_fare, 2),
             route_info={
                 'route_type': distance_result.get('route_type', 'unknown'),
-                'traffic_factor': traffic_factor,
+                'traffic_factor': distance_result.get('traffic_factor', 1.0),
                 'straight_line_km': distance_result.get('straight_line_km', 0),
                 'calculation_source': distance_result.get('source', 'estimation')
             },
