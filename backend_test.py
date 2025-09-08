@@ -1808,10 +1808,10 @@ class BackendTester:
             print("\n❌ API is not accessible. Stopping tests.")
             return False
         
-        # PRIORITY TEST: Luzern → Zürich Price Analysis (as requested in review)
-        print("\n🎯 PRIORITY: Luzern → Zürich Price Calculation Analysis")
+        # PRIORITY TEST: Corrected Luzern → Zürich Distance Calculation (as requested in review)
+        print("\n🎯 PRIORITY: Corrected Luzern → Zürich Distance Calculation")
         print("-" * 60)
-        await self.test_luzern_zurich_price_analysis()
+        await self.test_corrected_luzern_zurich_distance_calculation()
         
         # Contact Form Tests
         print("\n📧 CONTACT FORM TESTS")
