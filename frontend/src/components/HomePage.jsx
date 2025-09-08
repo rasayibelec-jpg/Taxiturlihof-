@@ -21,7 +21,6 @@ const HomePage = () => {
       <PriceCalculator />
       <BookingSystem />
       <Services />
-      <Pricing />
       <FleetGallery />  
       <PaymentMethods />
       <Coverage />
