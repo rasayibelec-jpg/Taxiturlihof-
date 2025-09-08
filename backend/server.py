@@ -162,8 +162,8 @@ async def calculate_taxi_price(request: PriceCalculationRequest):
             except ValueError:
                 pass  # Use current time as fallback
         
-        # Get distance calculation from Swiss service
-        distance_result = google_maps_service.calculate_intelligent_distance(
+        # Get distance calculation from Google Maps API
+        distance_result = await google_maps_service.calculate_real_distance(
             origin=request.origin,
             destination=request.destination,
             departure_time=departure_time
