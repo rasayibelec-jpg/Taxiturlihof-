@@ -66,7 +66,7 @@ class SwissDistanceService:
             "inner_city": 1.3,       # Stadtverkehr mit vielen Kurven
             "suburban": 1.25,        # Vororte mit mäßigem Routing
             "inter_city": 1.4,       # Zwischen Städten
-            "highway": 1.15,         # Autobahn-dominierte Routen
+            "highway": 1.26,         # Autobahn-dominierte Routen (updated for accurate Luzern-Zürich distance)
             "mountain": 1.6,         # Bergige Gebiete mit Kurven
             "lakeside": 1.45         # Seeufer-Routen mit Umwegen
         }
