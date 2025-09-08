@@ -183,7 +183,7 @@ async def calculate_taxi_price(request: PriceCalculationRequest):
         return PriceCalculationResponse(
             origin=distance_result['origin_address'],
             destination=distance_result['destination_address'],
-            distance_km=distance_km,
+            distance_km=distance_result['distance_km'],
             estimated_duration_minutes=distance_result['duration_minutes'],
             distance_fare=round(distance_fare, 2),
             total_fare=round(total_fare, 2),
@@ -191,9 +191,9 @@ async def calculate_taxi_price(request: PriceCalculationRequest):
                 'route_type': distance_result.get('route_type', 'unknown'),
                 'traffic_factor': distance_result.get('traffic_factor', 1.0),
                 'straight_line_km': distance_result.get('straight_line_km', 0),
-                'calculation_source': distance_result.get('source', 'estimation')
+                'calculation_source': distance_result.get('source', 'google_maps_api')
             },
-            calculation_source=distance_result.get('source', 'estimation')
+            calculation_source=distance_result.get('source', 'google_maps_api')
         )
         
     except Exception as e:
