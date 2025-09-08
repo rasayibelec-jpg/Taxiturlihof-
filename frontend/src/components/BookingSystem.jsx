@@ -602,7 +602,11 @@ const BookingSystem = () => {
               <CardContent className="space-y-3 text-sm text-gray-600">
                 <div className="flex items-start space-x-2">
                   <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>Terminbuchungen mindestens 30 Minuten im Voraus</span>
+                  <span>Buchungen mindestens 30 Minuten im Voraus</span>
+                </div>
+                <div className="flex items-start space-x-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>Datum und Uhrzeit frei wählbar</span>
                 </div>
                 <div className="flex items-start space-x-2">
                   <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
