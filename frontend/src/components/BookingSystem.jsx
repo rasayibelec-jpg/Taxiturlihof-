@@ -133,24 +133,16 @@ const BookingSystem = () => {
     setSubmitStatus(null);
 
     try {
-      // Validate required fields
-      const requiredFields = ['customerName', 'customerEmail', 'customerPhone', 'pickupLocation', 'destination'];
-      if (bookingData.bookingType === 'scheduled') {
-        requiredFields.push('pickupDate', 'pickupTime');
-      }
+      // Validate required fields - always requires date/time since it's always scheduled
+      const requiredFields = ['customerName', 'customerEmail', 'customerPhone', 'pickupLocation', 'destination', 'pickupDate', 'pickupTime'];
 
       const missingFields = requiredFields.filter(field => !bookingData[field]);
       if (missingFields.length > 0) {
         throw new Error(`Bitte füllen Sie alle Pflichtfelder aus: ${missingFields.join(', ')}`);
       }
 
-      // Create pickup datetime
-      let pickupDatetime;
-      if (bookingData.bookingType === 'immediate') {
-        pickupDatetime = new Date().toISOString();
-      } else {
-        pickupDatetime = new Date(`${bookingData.pickupDate}T${bookingData.pickupTime}:00`).toISOString();
-      }
+      // Create pickup datetime - always scheduled
+      const pickupDatetime = new Date(`${bookingData.pickupDate}T${bookingData.pickupTime}:00`).toISOString();
 
       const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
       const response = await axios.post(`${backendUrl}/api/bookings`, {
