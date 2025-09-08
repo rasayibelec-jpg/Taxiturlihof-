@@ -2,7 +2,6 @@ import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { MapPin, Waves, Mountain, TreePine, Train } from "lucide-react";
-import { coverageAreas } from "../data/mockData";
 
 const Coverage = () => {
   return (
