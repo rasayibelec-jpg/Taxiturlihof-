@@ -386,46 +386,44 @@ const BookingSystem = () => {
                     </div>
                   </div>
 
-                  {/* Date and Time (for scheduled bookings) */}
-                  {bookingData.bookingType === 'scheduled' && (
-                    <div className="border-t pt-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Datum und Uhrzeit</h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label htmlFor="pickupDate" className="block text-sm font-medium text-gray-700 mb-2">
-                            Datum *
-                          </label>
-                          <Input
-                            id="pickupDate"
-                            type="date"
-                            value={bookingData.pickupDate}
-                            onChange={(e) => handleInputChange('pickupDate', e.target.value)}
-                            min={today}
-                            disabled={isSubmitting}
-                            required
-                          />
-                        </div>
-                        <div>
-                          <label htmlFor="pickupTime" className="block text-sm font-medium text-gray-700 mb-2">
-                            Uhrzeit *
-                          </label>
-                          <select
-                            id="pickupTime"
-                            value={bookingData.pickupTime}
-                            onChange={(e) => handleInputChange('pickupTime', e.target.value)}
-                            disabled={isSubmitting || !bookingData.pickupDate}
-                            required
-                            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                          >
-                            <option value="">Uhrzeit wählen</option>
-                            {availableSlots.map(slot => (
-                              <option key={slot} value={slot}>{slot}</option>
-                            ))}
-                          </select>
-                        </div>
+                  {/* Date and Time - Always required */}
+                  <div className="border-t pt-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Datum und Uhrzeit</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="pickupDate" className="block text-sm font-medium text-gray-700 mb-2">
+                          Datum *
+                        </label>
+                        <Input
+                          id="pickupDate"
+                          type="date"
+                          value={bookingData.pickupDate}
+                          onChange={(e) => handleInputChange('pickupDate', e.target.value)}
+                          min={today}
+                          disabled={isSubmitting}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="pickupTime" className="block text-sm font-medium text-gray-700 mb-2">
+                          Uhrzeit *
+                        </label>
+                        <select
+                          id="pickupTime"
+                          value={bookingData.pickupTime}
+                          onChange={(e) => handleInputChange('pickupTime', e.target.value)}
+                          disabled={isSubmitting || !bookingData.pickupDate}
+                          required
+                          className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        >
+                          <option value="">Uhrzeit wählen</option>
+                          {availableSlots.map(slot => (
+                            <option key={slot} value={slot}>{slot}</option>
+                          ))}
+                        </select>
                       </div>
                     </div>
-                  )}
+                  </div>
 
                   {/* Vehicle and Passengers */}
                   <div className="border-t pt-6">
