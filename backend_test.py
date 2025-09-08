@@ -3230,6 +3230,20 @@ class BackendTester:
             print("\n❌ API is not accessible. Stopping tests.")
             return False
         
+        # PRIORITY TEST: Review Request - Timezone Fix Booking Email System
+        print("\n🎯 PRIORITY: REVIEW REQUEST TEST - Timezone Fix Booking Email System")
+        print("-" * 80)
+        
+        # Test: Timezone Fix Booking Email System
+        timezone_booking_id = await self.test_timezone_fix_booking_email_system()
+        
+        # Test: Email Verification After Timezone Fix
+        if timezone_booking_id:
+            await self.test_email_verification_after_timezone_fix(timezone_booking_id)
+        
+        # Test: Complete Email Flow After Timezone Fix
+        await self.test_complete_email_flow_after_timezone_fix()
+        
         # PRIORITY TEST: Review Request - Scheduled vs Immediate Booking Debug
         print("\n🎯 PRIORITY: REVIEW REQUEST TEST - Scheduled vs Immediate Booking Debug")
         print("-" * 80)
