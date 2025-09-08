@@ -10,11 +10,10 @@ const Coverage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Unser Einzugsgebiet
+            Unsere Servicegebiete
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Wir bedienen die gesamte Zentralschweiz mit zuverlässigen 
-            Taxi-Services in Luzern, Schwyz und Zug.
+            Von der historischen Stadt Luzern bis zu den malerischen Bergdörfern - wir bringen Sie sicher an Ihr Ziel in der schönsten Region der Schweiz.
           </p>
         </div>
 
