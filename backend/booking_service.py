@@ -90,7 +90,7 @@ class BookingService:
         }
         
         self.base_fares = {
-            VehicleType.STANDARD: 6.80,
+            VehicleType.STANDARD: 6.60,
             VehicleType.PREMIUM: 6.60,
             VehicleType.VAN: 6.60
         }
