@@ -15,9 +15,10 @@ class SwissDistanceService:
     def __init__(self):
         # Schweizer Städte und ihre Koordinaten
         self.swiss_locations = {
-            # Luzern Region
-            "luzern": {"lat": 47.0502, "lng": 8.3093, "region": "luzern", "type": "city"},
-            "lucerne": {"lat": 47.0502, "lng": 8.3093, "region": "luzern", "type": "city"},
+            # Luzern Region (Bahnhof-Koordinaten für präzise Taxi-Berechnung)
+            "luzern": {"lat": 47.0502, "lng": 8.3103, "region": "luzern", "type": "city"},
+            "luzern bahnhof": {"lat": 47.0502, "lng": 8.3103, "region": "luzern", "type": "station"},
+            "lucerne": {"lat": 47.0502, "lng": 8.3103, "region": "luzern", "type": "city"},
             "kriens": {"lat": 47.0357, "lng": 8.2785, "region": "luzern", "type": "town"},
             "emmen": {"lat": 47.0806, "lng": 8.3006, "region": "luzern", "type": "town"},
             "horw": {"lat": 47.0173, "lng": 8.3089, "region": "luzern", "type": "town"},
