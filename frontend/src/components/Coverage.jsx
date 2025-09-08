@@ -28,9 +28,18 @@ const Coverage = () => {
                 </CardTitle>
               </CardHeader>
             </Card>
-            <p className="text-gray-600 leading-relaxed px-4">
+            <p className="text-gray-600 leading-relaxed px-4 mb-3">
               Mit Taxi Turlihof, Ihrem Taxi in der Nähe, erreichen Sie die Altstadt, die Kapellbrücke und alle Sehenswürdigkeiten bequem und pünktlich.
             </p>
+            <a 
+              href="https://www.google.com/maps/place/Luzern,+Switzerland" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-2 text-yellow-600 hover:text-yellow-700 font-medium transition-colors duration-200"
+            >
+              <MapPin className="w-4 h-4" />
+              <span>Karte öffnen</span>
+            </a>
           </div>
 
           <div className="text-center">
