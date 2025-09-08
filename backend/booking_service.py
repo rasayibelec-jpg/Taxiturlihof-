@@ -134,9 +134,10 @@ class BookingService:
             # Calculate pricing with vehicle type multiplier (NO TIME-BASED SURCHARGES)
             vehicle_multiplier = self.vehicle_multipliers[booking_request.vehicle_type]
             base_fare = self.base_fares[booking_request.vehicle_type]
+            distance_rate = self.distance_rates[booking_request.vehicle_type]
             
             distance_km = distance_result['distance_km']
-            distance_fare = distance_km * 4.20 * vehicle_multiplier  # CHF 4.20 per km
+            distance_fare = distance_km * distance_rate * vehicle_multiplier
             
             # Simple pricing: Base + Distance (no time-based surcharges)
             total_base = base_fare + distance_fare
