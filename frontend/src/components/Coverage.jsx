@@ -78,9 +78,18 @@ const Coverage = () => {
                 </CardTitle>
               </CardHeader>
             </Card>
-            <p className="text-gray-600 leading-relaxed px-4">
+            <p className="text-gray-600 leading-relaxed px-4 mb-3">
               Ob Bahnhof, Hotel oder Seeufer – mit Taxi Turlihof sind Sie in Weggis & Vitznau jederzeit mobil.
             </p>
+            <a 
+              href="https://www.google.com/maps/place/Weggis,+Switzerland" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-2 text-green-600 hover:text-green-700 font-medium transition-colors duration-200"
+            >
+              <MapPin className="w-4 h-4" />
+              <span>Karte öffnen</span>
+            </a>
           </div>
 
           <div className="text-center">
