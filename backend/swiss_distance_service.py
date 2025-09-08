@@ -50,8 +50,10 @@ class SwissDistanceService:
             "menzingen": {"lat": 47.1833, "lng": 8.5833, "region": "zug", "type": "town"},
             "walchwil": {"lat": 47.1000, "lng": 8.5167, "region": "zug", "type": "town"},
             
-            # Wichtige externe Ziele
-            "zürich": {"lat": 47.3769, "lng": 8.5417, "region": "external", "type": "city"},
+            # Wichtige externe Ziele (Bahnhof-Koordinaten)
+            "zürich": {"lat": 47.3781, "lng": 8.5397, "region": "external", "type": "city"},
+            "zürich hauptbahnhof": {"lat": 47.3781, "lng": 8.5397, "region": "external", "type": "station"},
+            "zürich hb": {"lat": 47.3781, "lng": 8.5397, "region": "external", "type": "station"},
             "basel": {"lat": 47.5596, "lng": 7.5886, "region": "external", "type": "city"},
             "bern": {"lat": 46.9481, "lng": 7.4474, "region": "external", "type": "city"},
             "geneva": {"lat": 46.2044, "lng": 6.1432, "region": "external", "type": "city"},
