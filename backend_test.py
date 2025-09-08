@@ -2802,6 +2802,13 @@ class BackendTester:
             print("\n❌ API is not accessible. Stopping tests.")
             return False
         
+        # PRIORITY TEST: Review Request - Scheduled vs Immediate Booking Debug
+        print("\n🎯 PRIORITY: REVIEW REQUEST TEST - Scheduled vs Immediate Booking Debug")
+        print("-" * 80)
+        
+        # Test: Debug scheduled booking issue
+        await self.test_scheduled_vs_immediate_booking_debug()
+        
         # PRIORITY TEST: Review Request - Booking Email Debug Flow
         print("\n🎯 PRIORITY: REVIEW REQUEST TEST - Booking Email Debug Flow")
         print("-" * 80)
