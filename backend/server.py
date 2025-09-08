@@ -170,7 +170,7 @@ async def calculate_taxi_price(request: PriceCalculationRequest):
         )
         
         # Swiss taxi fare calculation with vehicle-specific rates
-        base_fare = 6.80  # CHF Standard
+        base_fare = 6.60  # CHF Standard (updated)
         distance_rate = 4.20  # CHF per km Standard
         
         distance_km = distance_result['distance_km']
