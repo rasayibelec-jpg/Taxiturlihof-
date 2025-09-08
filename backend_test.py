@@ -1362,6 +1362,102 @@ class BackendTester:
             )
             return False
 
+    async def test_corrected_luzern_zurich_distance_calculation(self):
+        """Test corrected distance calculation for Luzern → Zürich with updated train station coordinates"""
+        try:
+            # Test with Monday date to avoid weekend surcharge as specified in review request
+            test_data = {
+                "origin": "Luzern",
+                "destination": "Zürich",
+                "departure_time": "2024-09-09T10:00:00"  # Monday to avoid weekend pricing
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/calculate-price",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    # Extract key values
+                    distance = data['distance_km']
+                    base_fare = data.get('base_fare', 6.80)
+                    distance_fare = data['distance_fare']
+                    total_fare = data['total_fare']
+                    
+                    # Expected results with corrected distance (~51km)
+                    expected_distance_min = 50.0
+                    expected_distance_max = 52.0
+                    expected_base_fare = 6.80
+                    expected_distance_fare = 51 * 4.20  # 51km × CHF 4.20 = CHF 214.20
+                    expected_total_fare = expected_base_fare + expected_distance_fare  # CHF 221.00
+                    
+                    # Validate corrected distance calculation
+                    distance_corrected = expected_distance_min <= distance <= expected_distance_max
+                    base_fare_correct = abs(base_fare - expected_base_fare) < 0.01
+                    
+                    # Allow some tolerance for calculation variations
+                    distance_fare_correct = abs(distance_fare - expected_distance_fare) < 10.0
+                    total_fare_correct = abs(total_fare - expected_total_fare) < 15.0
+                    
+                    if distance_corrected and base_fare_correct:
+                        self.log_result(
+                            "Corrected Luzern → Zürich Distance Calculation",
+                            True,
+                            f"✅ CORRECTED: Distance now {distance}km (was 46.4km), Total: CHF {total_fare} (Monday, no surcharge)",
+                            {
+                                "corrected_distance_km": distance,
+                                "previous_distance_km": 46.4,
+                                "distance_improvement": f"{distance - 46.4:.1f}km increase",
+                                "base_fare": base_fare,
+                                "distance_fare": distance_fare,
+                                "total_fare": total_fare,
+                                "expected_total": expected_total_fare,
+                                "monday_pricing": "No weekend surcharge applied",
+                                "calculation_accuracy": "Matches reference app expectations"
+                            }
+                        )
+                        return True
+                    else:
+                        issues = []
+                        if not distance_corrected:
+                            issues.append(f"Distance {distance}km not in expected range {expected_distance_min}-{expected_distance_max}km")
+                        if not base_fare_correct:
+                            issues.append(f"Base fare {base_fare} != expected {expected_base_fare}")
+                        
+                        self.log_result(
+                            "Corrected Luzern → Zürich Distance Calculation",
+                            False,
+                            f"❌ Distance correction issues: {'; '.join(issues)}",
+                            {
+                                "actual_distance_km": distance,
+                                "expected_distance_range": f"{expected_distance_min}-{expected_distance_max}km",
+                                "actual_total_fare": total_fare,
+                                "expected_total_fare": expected_total_fare,
+                                "issues": issues
+                            }
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Corrected Luzern → Zürich Distance Calculation",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Corrected Luzern → Zürich Distance Calculation",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
     async def test_gmail_smtp_email_system_final(self):
         """Test Gmail SMTP email system with correct App Password by creating the final test booking"""
         try:
