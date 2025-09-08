@@ -237,7 +237,7 @@ const BookingSystem = () => {
               <CardHeader>
                 <CardTitle className="text-2xl font-bold text-gray-900 flex items-center">
                   <Calendar className="w-6 h-6 text-blue-600 mr-3" />
-                  Fahrt buchen
+                  Taxi online buchen
                 </CardTitle>
                 <CardDescription>
                   Füllen Sie das Formular aus für Ihre Taxi-Buchung
