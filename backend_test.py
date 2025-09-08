@@ -1500,6 +1500,167 @@ class BackendTester:
             )
             return False
 
+    async def test_scheduled_vs_immediate_booking_debug(self):
+        """Debug scheduled booking issue - test why scheduled bookings fail while immediate bookings work"""
+        print("\n🔍 DEBUGGING SCHEDULED BOOKING ISSUE")
+        print("=" * 60)
+        
+        # Test Case 1: Scheduled Booking (failing scenario)
+        scheduled_booking_data = {
+            "customer_name": "Terminbuchung Test",
+            "customer_email": "termin@example.com",
+            "customer_phone": "076 999 88 77",
+            "pickup_location": "Luzern",
+            "destination": "Zürich",
+            "booking_type": "scheduled",
+            "pickup_datetime": "2025-12-15T15:30:00",
+            "passenger_count": 2,
+            "vehicle_type": "standard",
+            "special_requests": "Terminbuchung Test"
+        }
+        
+        # Test Case 2: Immediate Booking (working scenario for comparison)
+        immediate_booking_data = {
+            "customer_name": "Sofortbuchung Test", 
+            "customer_email": "sofort@example.com",
+            "customer_phone": "076 888 77 66",
+            "pickup_location": "Luzern",
+            "destination": "Zürich", 
+            "booking_type": "immediate",
+            "pickup_datetime": "2024-09-08T12:00:00",
+            "passenger_count": 1,
+            "vehicle_type": "standard"
+        }
+        
+        scheduled_success = False
+        immediate_success = False
+        scheduled_response = None
+        immediate_response = None
+        
+        # Test Scheduled Booking
+        try:
+            print(f"\n📅 Testing SCHEDULED booking:")
+            print(f"   Customer: {scheduled_booking_data['customer_name']}")
+            print(f"   Pickup Time: {scheduled_booking_data['pickup_datetime']}")
+            print(f"   Booking Type: {scheduled_booking_data['booking_type']}")
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/bookings",
+                json=scheduled_booking_data,
+                headers=headers
+            ) as response:
+                scheduled_response = {
+                    "status": response.status,
+                    "data": await response.json() if response.status == 200 else await response.text()
+                }
+                
+                if response.status == 200:
+                    data = scheduled_response["data"]
+                    if data.get("success"):
+                        scheduled_success = True
+                        print(f"   ✅ SUCCESS: Booking ID {data['booking_id'][:8]}")
+                        print(f"   💰 Total Fare: CHF {data['booking_details']['total_fare']}")
+                    else:
+                        print(f"   ❌ FAILED: {data.get('message', 'Unknown error')}")
+                else:
+                    print(f"   ❌ HTTP ERROR {response.status}: {scheduled_response['data']}")
+                    
+        except Exception as e:
+            print(f"   ❌ EXCEPTION: {str(e)}")
+            scheduled_response = {"error": str(e)}
+        
+        # Test Immediate Booking
+        try:
+            print(f"\n⚡ Testing IMMEDIATE booking:")
+            print(f"   Customer: {immediate_booking_data['customer_name']}")
+            print(f"   Pickup Time: {immediate_booking_data['pickup_datetime']}")
+            print(f"   Booking Type: {immediate_booking_data['booking_type']}")
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/bookings",
+                json=immediate_booking_data,
+                headers=headers
+            ) as response:
+                immediate_response = {
+                    "status": response.status,
+                    "data": await response.json() if response.status == 200 else await response.text()
+                }
+                
+                if response.status == 200:
+                    data = immediate_response["data"]
+                    if data.get("success"):
+                        immediate_success = True
+                        print(f"   ✅ SUCCESS: Booking ID {data['booking_id'][:8]}")
+                        print(f"   💰 Total Fare: CHF {data['booking_details']['total_fare']}")
+                    else:
+                        print(f"   ❌ FAILED: {data.get('message', 'Unknown error')}")
+                else:
+                    print(f"   ❌ HTTP ERROR {response.status}: {immediate_response['data']}")
+                    
+        except Exception as e:
+            print(f"   ❌ EXCEPTION: {str(e)}")
+            immediate_response = {"error": str(e)}
+        
+        # Analysis and Diagnosis
+        print(f"\n🔬 DIAGNOSIS:")
+        print(f"   Scheduled Booking: {'✅ SUCCESS' if scheduled_success else '❌ FAILED'}")
+        print(f"   Immediate Booking: {'✅ SUCCESS' if immediate_success else '❌ FAILED'}")
+        
+        if not scheduled_success and immediate_success:
+            print(f"\n🚨 ROOT CAUSE ANALYSIS:")
+            print(f"   Issue: Scheduled bookings fail while immediate bookings work")
+            
+            # Check for specific validation issues
+            if scheduled_response and "data" in scheduled_response:
+                error_msg = scheduled_response["data"]
+                if isinstance(error_msg, dict):
+                    error_msg = error_msg.get("message", str(error_msg))
+                
+                print(f"   Error Message: {error_msg}")
+                
+                # Analyze common issues
+                if "30 Minuten" in str(error_msg):
+                    print(f"   🎯 IDENTIFIED: 30-minute minimum validation issue")
+                    print(f"   📅 Scheduled pickup: 2025-12-15T15:30:00 (future date)")
+                    print(f"   ⏰ Current time check may be failing")
+                elif "datetime" in str(error_msg).lower() or "time" in str(error_msg).lower():
+                    print(f"   🎯 IDENTIFIED: Date/time parsing or validation issue")
+                elif "past" in str(error_msg).lower():
+                    print(f"   🎯 IDENTIFIED: Past date validation incorrectly triggered")
+                else:
+                    print(f"   🎯 UNKNOWN: Need deeper investigation")
+        
+        elif scheduled_success and immediate_success:
+            print(f"   ✅ Both booking types working correctly")
+        elif not scheduled_success and not immediate_success:
+            print(f"   ❌ Both booking types failing - system-wide issue")
+        else:
+            print(f"   ⚠️  Unexpected result pattern")
+        
+        # Log detailed results
+        self.log_result(
+            "Scheduled vs Immediate Booking Debug",
+            scheduled_success and immediate_success,
+            f"Scheduled: {'SUCCESS' if scheduled_success else 'FAILED'}, Immediate: {'SUCCESS' if immediate_success else 'FAILED'}",
+            {
+                "scheduled_booking": {
+                    "success": scheduled_success,
+                    "response": scheduled_response,
+                    "test_data": scheduled_booking_data
+                },
+                "immediate_booking": {
+                    "success": immediate_success,
+                    "response": immediate_response,
+                    "test_data": immediate_booking_data
+                },
+                "diagnosis": "Scheduled booking validation issue identified" if not scheduled_success and immediate_success else "Both working or both failing"
+            }
+        )
+        
+        return scheduled_success and immediate_success
+
     async def test_real_google_maps_additional_swiss_routes(self):
         """Test additional Swiss routes with REAL Google Maps for accuracy verification"""
         
