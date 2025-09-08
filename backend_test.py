@@ -1559,6 +1559,147 @@ class BackendTester:
                 "error": "Network or configuration error"
             }
 
+    async def test_luzern_zurich_price_analysis(self):
+        """Comprehensive Price Analysis for Luzern → Zürich Route as requested in review"""
+        try:
+            # Test data as specified in review request
+            test_data = {
+                "origin": "Luzern",
+                "destination": "Zürich", 
+                "departure_time": "2024-09-08T10:00:00"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/calculate-price",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    # Extract price components
+                    distance_km = data.get('distance_km', 0)
+                    base_fare = data.get('base_fare', 0)
+                    distance_fare = data.get('distance_fare', 0)
+                    total_fare = data.get('total_fare', 0)
+                    route_info = data.get('route_info', {})
+                    
+                    # Expected Swiss taxi rates
+                    expected_base_fare = 6.80  # CHF
+                    expected_distance_rate = 4.20  # CHF per km
+                    expected_distance_range = (40, 55)  # km for Luzern-Zürich
+                    
+                    # Calculate expected fare
+                    expected_distance_fare = distance_km * expected_distance_rate
+                    expected_total_basic = expected_base_fare + expected_distance_fare
+                    
+                    # Analysis results
+                    analysis = {
+                        "route": "Luzern → Zürich",
+                        "actual_calculation": {
+                            "distance_km": distance_km,
+                            "base_fare": base_fare,
+                            "distance_rate_used": round(distance_fare / distance_km, 2) if distance_km > 0 else 0,
+                            "distance_fare": distance_fare,
+                            "total_fare": total_fare,
+                            "route_type": route_info.get('route_type', 'unknown'),
+                            "traffic_factor": route_info.get('traffic_factor', 1.0)
+                        },
+                        "expected_swiss_standards": {
+                            "distance_range_km": expected_distance_range,
+                            "base_fare": expected_base_fare,
+                            "distance_rate": expected_distance_rate,
+                            "expected_distance_fare": round(expected_distance_fare, 2),
+                            "expected_total_basic": round(expected_total_basic, 2)
+                        },
+                        "calculation_breakdown": {
+                            "formula": f"Base ({base_fare}) + (Distance {distance_km}km × Rate {round(distance_fare/distance_km, 2) if distance_km > 0 else 0}) = {total_fare}",
+                            "expected_formula": f"Base ({expected_base_fare}) + (Distance {distance_km}km × Rate {expected_distance_rate}) = {round(expected_total_basic, 2)}"
+                        }
+                    }
+                    
+                    # Validation checks
+                    distance_valid = expected_distance_range[0] <= distance_km <= expected_distance_range[1]
+                    base_fare_valid = abs(base_fare - expected_base_fare) < 0.01
+                    distance_rate_valid = abs((distance_fare / distance_km) - expected_distance_rate) < 0.01 if distance_km > 0 else False
+                    
+                    # Identify discrepancies
+                    discrepancies = []
+                    if not distance_valid:
+                        discrepancies.append(f"Distance {distance_km}km outside expected range {expected_distance_range}")
+                    if not base_fare_valid:
+                        discrepancies.append(f"Base fare {base_fare} differs from Swiss standard {expected_base_fare}")
+                    if not distance_rate_valid:
+                        actual_rate = round(distance_fare / distance_km, 2) if distance_km > 0 else 0
+                        discrepancies.append(f"Distance rate {actual_rate} differs from Swiss standard {expected_distance_rate}")
+                    
+                    # Check for surcharges
+                    surcharge_applied = total_fare > (base_fare + distance_fare)
+                    if surcharge_applied:
+                        surcharge_amount = round(total_fare - (base_fare + distance_fare), 2)
+                        analysis["surcharges"] = {
+                            "applied": True,
+                            "amount": surcharge_amount,
+                            "possible_reasons": ["Peak time (10:00 AM)", "Traffic factor", "Weekend/Holiday"]
+                        }
+                    else:
+                        analysis["surcharges"] = {"applied": False}
+                    
+                    # Overall assessment
+                    calculation_accurate = len(discrepancies) == 0
+                    
+                    self.log_result(
+                        "Luzern → Zürich Price Analysis",
+                        calculation_accurate,
+                        f"Price calculation analysis completed - {'✅ Accurate' if calculation_accurate else '❌ Discrepancies found'}",
+                        {
+                            "detailed_analysis": analysis,
+                            "discrepancies": discrepancies if discrepancies else ["None - calculation matches Swiss standards"],
+                            "recommendation": "Pricing appears accurate for Swiss taxi standards" if calculation_accurate else "Review pricing algorithm for Swiss compliance"
+                        }
+                    )
+                    
+                    # Print detailed breakdown for review
+                    print(f"\n📊 DETAILED PRICE BREAKDOWN:")
+                    print(f"   Route: {analysis['route']}")
+                    print(f"   Distance: {distance_km}km (Expected: {expected_distance_range[0]}-{expected_distance_range[1]}km)")
+                    print(f"   Base Fare: CHF {base_fare} (Swiss Standard: CHF {expected_base_fare})")
+                    print(f"   Distance Rate: CHF {round(distance_fare/distance_km, 2) if distance_km > 0 else 0}/km (Swiss Standard: CHF {expected_distance_rate}/km)")
+                    print(f"   Distance Fare: CHF {distance_fare}")
+                    print(f"   Total Fare: CHF {total_fare}")
+                    if surcharge_applied:
+                        print(f"   Surcharge: CHF {surcharge_amount} (Reason: {', '.join(analysis['surcharges']['possible_reasons'])})")
+                    print(f"   Route Type: {route_info.get('route_type', 'unknown')}")
+                    print(f"   Traffic Factor: {route_info.get('traffic_factor', 1.0)}")
+                    
+                    if discrepancies:
+                        print(f"\n⚠️  DISCREPANCIES IDENTIFIED:")
+                        for i, discrepancy in enumerate(discrepancies, 1):
+                            print(f"   {i}. {discrepancy}")
+                    else:
+                        print(f"\n✅ PRICING ACCURATE: Matches Swiss taxi fare standards")
+                    
+                    return calculation_accurate
+                    
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Luzern → Zürich Price Analysis",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Luzern → Zürich Price Analysis",
+                False,
+                f"Price analysis failed: {str(e)}"
+            )
+            return False
+
     async def run_all_tests(self):
         """Run all backend tests"""
         print("🚀 Starting Backend Test Suite for Taxi Türlihof")
