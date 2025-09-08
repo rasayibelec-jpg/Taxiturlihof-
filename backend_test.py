@@ -1458,6 +1458,342 @@ class BackendTester:
             )
             return False
 
+    async def test_weekend_surcharge_removal_verification(self):
+        """Test that weekend surcharges have been completely removed - Sunday vs Monday pricing should be identical"""
+        try:
+            # Test same route on Sunday vs Monday
+            sunday_data = {
+                "origin": "Luzern",
+                "destination": "Zürich",
+                "departure_time": "2024-09-08T10:00:00"  # Sunday
+            }
+            
+            monday_data = {
+                "origin": "Luzern", 
+                "destination": "Zürich",
+                "departure_time": "2024-09-09T10:00:00"  # Monday
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            
+            # Get Sunday pricing
+            async with self.session.post(
+                f"{BACKEND_URL}/calculate-price",
+                json=sunday_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    sunday_result = await response.json()
+                else:
+                    self.log_result(
+                        "Weekend Surcharge Removal - Sunday Test",
+                        False,
+                        f"Sunday API call failed with status {response.status}"
+                    )
+                    return False
+            
+            # Get Monday pricing
+            async with self.session.post(
+                f"{BACKEND_URL}/calculate-price",
+                json=monday_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    monday_result = await response.json()
+                else:
+                    self.log_result(
+                        "Weekend Surcharge Removal - Monday Test",
+                        False,
+                        f"Monday API call failed with status {response.status}"
+                    )
+                    return False
+            
+            # Compare pricing - should be identical
+            sunday_fare = sunday_result['total_fare']
+            monday_fare = monday_result['total_fare']
+            sunday_distance = sunday_result['distance_km']
+            monday_distance = monday_result['distance_km']
+            
+            # Prices should be identical (no weekend surcharge)
+            prices_identical = abs(sunday_fare - monday_fare) < 0.01
+            distances_identical = abs(sunday_distance - monday_distance) < 0.01
+            
+            if prices_identical and distances_identical:
+                self.log_result(
+                    "Weekend Surcharge Removal Verification",
+                    True,
+                    f"✅ UNIFORM PRICING CONFIRMED: Sunday CHF {sunday_fare} = Monday CHF {monday_fare} (No weekend surcharge)",
+                    {
+                        "sunday_total_fare": sunday_fare,
+                        "monday_total_fare": monday_fare,
+                        "price_difference": abs(sunday_fare - monday_fare),
+                        "sunday_distance_km": sunday_distance,
+                        "monday_distance_km": monday_distance,
+                        "weekend_surcharge_removed": True,
+                        "uniform_pricing": "Confirmed - same price regardless of day"
+                    }
+                )
+                return True
+            else:
+                self.log_result(
+                    "Weekend Surcharge Removal Verification",
+                    False,
+                    f"❌ PRICING INCONSISTENCY: Sunday CHF {sunday_fare} ≠ Monday CHF {monday_fare} (Weekend surcharge still present?)",
+                    {
+                        "sunday_total_fare": sunday_fare,
+                        "monday_total_fare": monday_fare,
+                        "price_difference": abs(sunday_fare - monday_fare),
+                        "prices_identical": prices_identical,
+                        "distances_identical": distances_identical,
+                        "issue": "Weekend surcharge may still be applied"
+                    }
+                )
+                return False
+                
+        except Exception as e:
+            self.log_result(
+                "Weekend Surcharge Removal Verification",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_additional_swiss_routes_consistency(self):
+        """Test additional Swiss routes for consistency: Zug → Basel, Schwyz → Luzern, Luzern → Zürich Flughafen"""
+        try:
+            test_routes = [
+                {
+                    "name": "Zug → Basel (Inter-city route factor)",
+                    "origin": "Zug",
+                    "destination": "Basel",
+                    "expected_route_type": "highway",
+                    "expected_distance_min": 80,
+                    "expected_distance_max": 120
+                },
+                {
+                    "name": "Schwyz → Luzern (Suburban route factor)",
+                    "origin": "Schwyz", 
+                    "destination": "Luzern",
+                    "expected_route_type": "inter_city",
+                    "expected_distance_min": 25,
+                    "expected_distance_max": 40
+                },
+                {
+                    "name": "Luzern → Zürich Flughafen (Highway route factor)",
+                    "origin": "Luzern",
+                    "destination": "Zürich Flughafen", 
+                    "expected_route_type": "highway",
+                    "expected_distance_min": 50,
+                    "expected_distance_max": 65
+                }
+            ]
+            
+            headers = {"Content-Type": "application/json"}
+            all_routes_passed = True
+            route_results = []
+            
+            for route in test_routes:
+                test_data = {
+                    "origin": route["origin"],
+                    "destination": route["destination"],
+                    "departure_time": "2024-09-09T10:00:00"  # Monday to ensure no surcharge
+                }
+                
+                async with self.session.post(
+                    f"{BACKEND_URL}/calculate-price",
+                    json=test_data,
+                    headers=headers
+                ) as response:
+                    
+                    if response.status == 200:
+                        data = await response.json()
+                        
+                        distance = data['distance_km']
+                        route_type = data['route_info'].get('route_type', 'unknown')
+                        total_fare = data['total_fare']
+                        base_fare = data.get('base_fare', 6.80)
+                        distance_fare = data['distance_fare']
+                        
+                        # Validate distance range
+                        distance_valid = route["expected_distance_min"] <= distance <= route["expected_distance_max"]
+                        
+                        # Validate route type (allow some flexibility)
+                        route_type_valid = route_type in [route["expected_route_type"], "inter_city", "highway"]
+                        
+                        # Validate pricing calculation (base + distance, no surcharges)
+                        expected_total = base_fare + distance_fare
+                        pricing_valid = abs(total_fare - expected_total) < 0.01
+                        
+                        route_passed = distance_valid and route_type_valid and pricing_valid
+                        
+                        if not route_passed:
+                            all_routes_passed = False
+                        
+                        route_results.append({
+                            "route": route["name"],
+                            "distance_km": distance,
+                            "route_type": route_type,
+                            "total_fare": total_fare,
+                            "base_fare": base_fare,
+                            "distance_fare": distance_fare,
+                            "distance_valid": distance_valid,
+                            "route_type_valid": route_type_valid,
+                            "pricing_valid": pricing_valid,
+                            "passed": route_passed
+                        })
+                    else:
+                        all_routes_passed = False
+                        route_results.append({
+                            "route": route["name"],
+                            "error": f"API returned status {response.status}",
+                            "passed": False
+                        })
+            
+            if all_routes_passed:
+                self.log_result(
+                    "Additional Swiss Routes Consistency",
+                    True,
+                    f"✅ ALL ROUTES CONSISTENT: {len(route_results)}/3 routes passed with accurate distances and uniform pricing",
+                    {
+                        "routes_tested": len(route_results),
+                        "routes_passed": len([r for r in route_results if r.get("passed", False)]),
+                        "route_details": route_results,
+                        "uniform_pricing_confirmed": True,
+                        "route_factors_accurate": True
+                    }
+                )
+                return True
+            else:
+                failed_routes = [r for r in route_results if not r.get("passed", False)]
+                self.log_result(
+                    "Additional Swiss Routes Consistency",
+                    False,
+                    f"❌ ROUTE INCONSISTENCIES: {len(failed_routes)}/3 routes failed validation",
+                    {
+                        "routes_tested": len(route_results),
+                        "routes_passed": len([r for r in route_results if r.get("passed", False)]),
+                        "failed_routes": failed_routes,
+                        "all_route_details": route_results
+                    }
+                )
+                return False
+                
+        except Exception as e:
+            self.log_result(
+                "Additional Swiss Routes Consistency",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_reference_route_luzern_zurich_verification(self):
+        """Test the reference route Luzern → Zürich as specified in review request"""
+        try:
+            # Exact test case from review request
+            test_data = {
+                "origin": "Luzern",
+                "destination": "Zürich", 
+                "departure_time": "2024-09-08T10:00:00"  # Sunday as specified in review
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/calculate-price",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    distance = data['distance_km']
+                    total_fare = data['total_fare']
+                    base_fare = data.get('base_fare', 6.80)
+                    distance_fare = data['distance_fare']
+                    route_type = data['route_info'].get('route_type', 'unknown')
+                    
+                    # Expected results from review request: ~51km, CHF 220.41
+                    expected_distance = 51.0
+                    expected_total_fare = 220.41
+                    
+                    # Validate distance accuracy (allow ±1km tolerance)
+                    distance_accurate = abs(distance - expected_distance) <= 1.0
+                    
+                    # Validate total fare (allow ±5 CHF tolerance)
+                    fare_accurate = abs(total_fare - expected_total_fare) <= 5.0
+                    
+                    # Validate no surcharge applied (base + distance only)
+                    calculated_total = base_fare + distance_fare
+                    no_surcharge = abs(total_fare - calculated_total) < 0.01
+                    
+                    # Validate highway route type for long distance
+                    route_type_correct = route_type == "highway"
+                    
+                    if distance_accurate and fare_accurate and no_surcharge and route_type_correct:
+                        self.log_result(
+                            "Reference Route Luzern → Zürich Verification",
+                            True,
+                            f"✅ REFERENCE ROUTE VERIFIED: {distance}km, CHF {total_fare}, Highway route, No surcharge (Sunday)",
+                            {
+                                "actual_distance_km": distance,
+                                "expected_distance_km": expected_distance,
+                                "distance_accuracy": f"±{abs(distance - expected_distance):.1f}km",
+                                "actual_total_fare": total_fare,
+                                "expected_total_fare": expected_total_fare,
+                                "fare_accuracy": f"±CHF {abs(total_fare - expected_total_fare):.2f}",
+                                "base_fare": base_fare,
+                                "distance_fare": distance_fare,
+                                "route_type": route_type,
+                                "no_weekend_surcharge": no_surcharge,
+                                "sunday_pricing": "Same as weekday pricing",
+                                "reference_match": "Matches review expectations"
+                            }
+                        )
+                        return True
+                    else:
+                        issues = []
+                        if not distance_accurate:
+                            issues.append(f"Distance {distance}km vs expected {expected_distance}km")
+                        if not fare_accurate:
+                            issues.append(f"Fare CHF {total_fare} vs expected CHF {expected_total_fare}")
+                        if not no_surcharge:
+                            issues.append(f"Surcharge detected: {total_fare} ≠ {calculated_total}")
+                        if not route_type_correct:
+                            issues.append(f"Route type {route_type} vs expected highway")
+                        
+                        self.log_result(
+                            "Reference Route Luzern → Zürich Verification",
+                            False,
+                            f"❌ REFERENCE ROUTE ISSUES: {'; '.join(issues)}",
+                            {
+                                "actual_distance_km": distance,
+                                "expected_distance_km": expected_distance,
+                                "actual_total_fare": total_fare,
+                                "expected_total_fare": expected_total_fare,
+                                "route_type": route_type,
+                                "issues": issues
+                            }
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Reference Route Luzern → Zürich Verification",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Reference Route Luzern → Zürich Verification",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
     async def test_gmail_smtp_email_system_final(self):
         """Test Gmail SMTP email system with correct App Password by creating the final test booking"""
         try:
