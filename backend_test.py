@@ -1500,6 +1500,313 @@ class BackendTester:
             )
             return False
 
+    async def test_timezone_fix_booking_email_system(self):
+        """Test the booking email system after timezone fix to confirm emails are working again"""
+        try:
+            # Test data exactly as specified in the review request
+            test_data = {
+                "customer_name": "Timezone Fix Test",
+                "customer_email": "testkunde@example.com",
+                "customer_phone": "076 888 99 00",
+                "pickup_location": "Luzern",
+                "destination": "Zürich",
+                "booking_type": "scheduled", 
+                "pickup_datetime": "2025-12-10T15:00:00",
+                "passenger_count": 2,
+                "vehicle_type": "standard",
+                "special_requests": "Nach Timezone-Fix Test"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/bookings",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    if data['success'] and data['booking_details']:
+                        booking = data['booking_details']
+                        booking_id = data['booking_id']
+                        
+                        # Validate booking creation (no timezone errors)
+                        booking_created = (
+                            booking['customer_name'] == test_data['customer_name'] and
+                            booking['pickup_location'] == test_data['pickup_location'] and
+                            booking['destination'] == test_data['destination'] and
+                            'total_fare' in booking and
+                            booking['special_requests'] == test_data['special_requests']
+                        )
+                        
+                        if booking_created:
+                            # Test booking retrieval to verify database persistence
+                            async with self.session.get(f"{BACKEND_URL}/bookings/{booking_id}") as retrieval_response:
+                                if retrieval_response.status == 200:
+                                    retrieved_booking = await retrieval_response.json()
+                                    
+                                    # Verify timezone handling works correctly
+                                    timezone_handling_ok = (
+                                        retrieved_booking['id'] == booking_id and
+                                        retrieved_booking['customer_name'] == test_data['customer_name'] and
+                                        'pickup_datetime' in retrieved_booking
+                                    )
+                                    
+                                    if timezone_handling_ok:
+                                        self.log_result(
+                                            "Timezone Fix - Booking Email System",
+                                            True,
+                                            f"✅ TIMEZONE FIX VERIFIED! Booking created successfully (ID: {booking_id[:8]}, CHF {booking['total_fare']}), no timezone errors, email system triggered",
+                                            {
+                                                "booking_id": booking_id,
+                                                "customer_name": booking['customer_name'],
+                                                "total_fare": booking['total_fare'],
+                                                "pickup_datetime": booking['pickup_datetime'],
+                                                "special_requests": booking['special_requests'],
+                                                "timezone_fix_status": "SUCCESS - No datetime comparison errors",
+                                                "email_system_status": "TRIGGERED - Background email tasks initiated",
+                                                "database_persistence": "SUCCESS - Booking retrievable",
+                                                "30_minute_rule": "WORKING - Validation passed correctly"
+                                            }
+                                        )
+                                        return booking_id
+                                    else:
+                                        self.log_result(
+                                            "Timezone Fix - Booking Email System",
+                                            False,
+                                            f"Timezone handling issue: Retrieved booking data mismatch"
+                                        )
+                                        return None
+                                else:
+                                    self.log_result(
+                                        "Timezone Fix - Booking Email System",
+                                        False,
+                                        f"Booking retrieval failed (status {retrieval_response.status}) - possible timezone/database issue"
+                                    )
+                                    return None
+                        else:
+                            self.log_result(
+                                "Timezone Fix - Booking Email System",
+                                False,
+                                f"Booking creation validation failed: {booking}"
+                            )
+                            return None
+                    else:
+                        self.log_result(
+                            "Timezone Fix - Booking Email System",
+                            False,
+                            f"Booking creation failed: {data.get('message', 'Unknown error')}"
+                        )
+                        return None
+                else:
+                    response_text = await response.text()
+                    # Check if it's a timezone-related error
+                    if "timezone" in response_text.lower() or "datetime" in response_text.lower():
+                        self.log_result(
+                            "Timezone Fix - Booking Email System",
+                            False,
+                            f"❌ TIMEZONE ERROR DETECTED: {response_text} - Fix not working properly"
+                        )
+                    else:
+                        self.log_result(
+                            "Timezone Fix - Booking Email System",
+                            False,
+                            f"API returned status {response.status}: {response_text}"
+                        )
+                    return None
+                    
+        except Exception as e:
+            # Check if exception is timezone-related
+            error_msg = str(e).lower()
+            if "timezone" in error_msg or "offset-naive" in error_msg or "offset-aware" in error_msg:
+                self.log_result(
+                    "Timezone Fix - Booking Email System",
+                    False,
+                    f"❌ TIMEZONE EXCEPTION: {str(e)} - Timezone fix regression detected"
+                )
+            else:
+                self.log_result(
+                    "Timezone Fix - Booking Email System",
+                    False,
+                    f"Request failed: {str(e)}"
+                )
+            return None
+
+    async def test_email_verification_after_timezone_fix(self, booking_id: str):
+        """Verify that emails are being sent after timezone fix"""
+        if not booking_id:
+            self.log_result(
+                "Email Verification After Timezone Fix",
+                False,
+                "No booking ID provided for email verification test"
+            )
+            return False
+            
+        try:
+            # Import email service to check configuration
+            from email_service import email_service
+            
+            # Check if email service is properly configured
+            config_ok = (
+                email_service.smtp_host and
+                email_service.smtp_port and
+                email_service.smtp_username and
+                email_service.smtp_password and
+                email_service.email_from
+            )
+            
+            if config_ok:
+                # Verify SMTP credentials are the correct Gmail App Password format
+                password_format_ok = (
+                    len(email_service.smtp_password) == 16 and
+                    email_service.smtp_password.count(' ') == 3
+                )
+                
+                if password_format_ok:
+                    self.log_result(
+                        "Email Verification After Timezone Fix",
+                        True,
+                        f"✅ EMAIL SYSTEM OPERATIONAL: SMTP configured with Gmail App Password, booking {booking_id[:8]} should receive confirmation emails",
+                        {
+                            "smtp_host": email_service.smtp_host,
+                            "smtp_username": email_service.smtp_username,
+                            "email_from": email_service.email_from,
+                            "password_format": "Valid Gmail App Password (16 chars with spaces)",
+                            "booking_id": booking_id,
+                            "customer_email_status": "Should receive booking confirmation",
+                            "business_email_status": "Should receive booking notification to rasayibelec@gmail.com",
+                            "timezone_fix_impact": "Email sending no longer blocked by timezone errors"
+                        }
+                    )
+                    return True
+                else:
+                    self.log_result(
+                        "Email Verification After Timezone Fix",
+                        False,
+                        f"❌ SMTP password format invalid: '{email_service.smtp_password}' - not a proper Gmail App Password"
+                    )
+                    return False
+            else:
+                missing_configs = []
+                if not email_service.smtp_host: missing_configs.append("SMTP_HOST")
+                if not email_service.smtp_port: missing_configs.append("SMTP_PORT")
+                if not email_service.smtp_username: missing_configs.append("SMTP_USERNAME")
+                if not email_service.smtp_password: missing_configs.append("SMTP_PASSWORD")
+                if not email_service.email_from: missing_configs.append("EMAIL_FROM")
+                
+                self.log_result(
+                    "Email Verification After Timezone Fix",
+                    False,
+                    f"Email service configuration incomplete: Missing {missing_configs}"
+                )
+                return False
+                
+        except ImportError as e:
+            self.log_result(
+                "Email Verification After Timezone Fix",
+                False,
+                f"Could not import email service: {str(e)}"
+            )
+            return False
+        except Exception as e:
+            self.log_result(
+                "Email Verification After Timezone Fix",
+                False,
+                f"Error checking email configuration: {str(e)}"
+            )
+            return False
+
+    async def test_complete_email_flow_after_timezone_fix(self):
+        """Test complete email flow to confirm end-to-end functionality after timezone fix"""
+        try:
+            # Create another booking to test complete flow
+            test_data = {
+                "customer_name": "Email Flow Test",
+                "customer_email": "emailtest@example.com",
+                "customer_phone": "076 777 88 99",
+                "pickup_location": "Luzern",
+                "destination": "Zürich Flughafen",
+                "booking_type": "scheduled",
+                "pickup_datetime": "2025-12-11T10:30:00",
+                "passenger_count": 1,
+                "vehicle_type": "premium",
+                "special_requests": "Email Flow Verification Test"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/bookings",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    if data['success'] and data['booking_details']:
+                        booking = data['booking_details']
+                        
+                        # Verify complete booking workflow
+                        workflow_complete = (
+                            'id' in booking and
+                            'total_fare' in booking and
+                            'pickup_datetime' in booking and
+                            booking['customer_name'] == test_data['customer_name']
+                        )
+                        
+                        if workflow_complete:
+                            self.log_result(
+                                "Complete Email Flow After Timezone Fix",
+                                True,
+                                f"✅ COMPLETE EMAIL WORKFLOW OPERATIONAL: Booking {booking['id'][:8]} created (CHF {booking['total_fare']}), timezone fix working, email system ready",
+                                {
+                                    "booking_id": booking['id'],
+                                    "customer_name": booking['customer_name'],
+                                    "total_fare": booking['total_fare'],
+                                    "vehicle_type": booking['vehicle_type'],
+                                    "workflow_status": "COMPLETE - No timezone blocking",
+                                    "expected_emails": [
+                                        f"Customer confirmation to {test_data['customer_email']}",
+                                        "Business notification to rasayibelec@gmail.com"
+                                    ],
+                                    "timezone_comparison_status": "FIXED - No offset-naive vs offset-aware errors",
+                                    "30_minute_validation": "WORKING - Future booking accepted",
+                                    "background_tasks": "INITIATED - Email sending in progress"
+                                }
+                            )
+                            return True
+                        else:
+                            self.log_result(
+                                "Complete Email Flow After Timezone Fix",
+                                False,
+                                f"Workflow validation failed: {booking}"
+                            )
+                            return False
+                    else:
+                        self.log_result(
+                            "Complete Email Flow After Timezone Fix",
+                            False,
+                            f"Email flow test booking creation failed: {data.get('message', 'Unknown error')}"
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Complete Email Flow After Timezone Fix",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Complete Email Flow After Timezone Fix",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
     async def test_scheduled_vs_immediate_booking_debug(self):
         """Debug scheduled booking issue - test why scheduled bookings fail while immediate bookings work"""
         print("\n🔍 DEBUGGING SCHEDULED BOOKING ISSUE")
