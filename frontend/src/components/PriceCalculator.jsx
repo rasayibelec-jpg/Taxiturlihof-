@@ -285,7 +285,7 @@ const PriceCalculator = () => {
               <CardContent className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-gray-600">Grundtarif</span>
-                  <span className="font-semibold">CHF 6.80</span>
+                  <span className="font-semibold">CHF 6.60</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-600">Pro Kilometer</span>
