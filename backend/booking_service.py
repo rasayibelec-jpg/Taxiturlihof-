@@ -106,7 +106,8 @@ class BookingService:
             # Validate pickup time (must be at least 30 minutes in future for scheduled bookings)
             if booking_request.booking_type == BookingType.SCHEDULED:
                 min_booking_time = datetime.now() + timedelta(minutes=30)
-                if pickup_datetime < min_booking_time:
+                # Add a small buffer (10 seconds) to account for processing time
+                if pickup_datetime < (min_booking_time - timedelta(seconds=10)):
                     return BookingResponse(
                         success=False,
                         booking_id="",
