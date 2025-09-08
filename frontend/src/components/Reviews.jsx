@@ -128,12 +128,20 @@ const Reviews = () => {
         {/* Call-to-Action für mehr Bewertungen */}
         <div className="text-center mt-16">
           <div className="bg-gray-50 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Mehr Bewertungen auf Google
-            </h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Lesen Sie alle {contactInfo.reviewCount} Bewertungen oder schreiben Sie Ihre eigene Erfahrung auf Google.
+            <h4 className="text-lg font-semibold text-gray-900 mb-4">
+              📱 Schnell bewerten mit QR-Code
+            </h4>
+            <div className="bg-white p-4 rounded-lg shadow-sm border inline-block mb-4">
+              <img 
+                src="https://customer-assets.emergentagent.com/job_taxi-service-ui/artifacts/pluhaqa9_Download.png"
+                alt="QR-Code für Google Bewertungen"
+                className="w-32 h-32 mx-auto"
+              />
+            </div>
+            <p className="text-sm text-gray-600 mb-4">
+              Scannen Sie den QR-Code mit Ihrem Smartphone für eine schnelle Bewertung
             </p>
+            
             <a
               href="https://www.google.com/search?q=Taxi+Türlihof+Arth+Bewertungen"
               target="_blank"
