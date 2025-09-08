@@ -2641,6 +2641,13 @@ class BackendTester:
             print("\n❌ API is not accessible. Stopping tests.")
             return False
         
+        # PRIORITY TEST: Review Request - Booking Email Debug Flow
+        print("\n🎯 PRIORITY: REVIEW REQUEST TEST - Booking Email Debug Flow")
+        print("-" * 80)
+        
+        # Test: Complete Booking Email Flow Debug
+        await self.test_booking_email_debug_flow()
+        
         # PRIORITY TESTS: Review Request - REAL Google Maps Distance Matrix API Integration
         print("\n🎯 PRIORITY: REVIEW REQUEST TESTS - REAL Google Maps Distance Matrix API Integration")
         print("-" * 80)
