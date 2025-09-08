@@ -103,9 +103,18 @@ const Coverage = () => {
                 </CardTitle>
               </CardHeader>
             </Card>
-            <p className="text-gray-600 leading-relaxed px-4">
+            <p className="text-gray-600 leading-relaxed px-4 mb-3">
               Mit Taxi Turlihof gelangen Sie sicher durch die Berglandschaft und erreichen jedes Ziel in Schwyz und Brunnen.
             </p>
+            <a 
+              href="https://www.google.com/maps/place/Schwyz,+Switzerland" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-2 text-purple-600 hover:text-purple-700 font-medium transition-colors duration-200"
+            >
+              <MapPin className="w-4 h-4" />
+              <span>Karte öffnen</span>
+            </a>
           </div>
 
           <div className="text-center">
