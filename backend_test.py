@@ -1660,6 +1660,127 @@ class BackendTester:
         )
         
         return scheduled_success and immediate_success
+    async def test_scheduled_booking_edge_cases(self):
+        """Test scheduled booking edge cases to identify potential validation issues"""
+        print("\n🔍 TESTING SCHEDULED BOOKING EDGE CASES")
+        print("=" * 60)
+        
+        edge_case_results = []
+        
+        # Edge Case 1: Booking exactly 30 minutes in future (should work)
+        future_30min = (datetime.now() + timedelta(minutes=30)).strftime("%Y-%m-%dT%H:%M:%S")
+        test_case_1 = {
+            "customer_name": "Edge Case 30min",
+            "customer_email": "edge30@example.com",
+            "customer_phone": "076 111 11 11",
+            "pickup_location": "Luzern",
+            "destination": "Zürich",
+            "booking_type": "scheduled",
+            "pickup_datetime": future_30min,
+            "passenger_count": 1,
+            "vehicle_type": "standard"
+        }
+        
+        # Edge Case 2: Booking 29 minutes in future (should fail)
+        future_29min = (datetime.now() + timedelta(minutes=29)).strftime("%Y-%m-%dT%H:%M:%S")
+        test_case_2 = {
+            "customer_name": "Edge Case 29min",
+            "customer_email": "edge29@example.com",
+            "customer_phone": "076 222 22 22",
+            "pickup_location": "Luzern",
+            "destination": "Zürich",
+            "booking_type": "scheduled",
+            "pickup_datetime": future_29min,
+            "passenger_count": 1,
+            "vehicle_type": "standard"
+        }
+        
+        # Edge Case 3: Booking in the past (should fail)
+        past_time = (datetime.now() - timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M:%S")
+        test_case_3 = {
+            "customer_name": "Edge Case Past",
+            "customer_email": "edgepast@example.com",
+            "customer_phone": "076 333 33 33",
+            "pickup_location": "Luzern",
+            "destination": "Zürich",
+            "booking_type": "scheduled",
+            "pickup_datetime": past_time,
+            "passenger_count": 1,
+            "vehicle_type": "standard"
+        }
+        
+        # Edge Case 4: Invalid datetime format
+        test_case_4 = {
+            "customer_name": "Edge Case Invalid",
+            "customer_email": "edgeinvalid@example.com",
+            "customer_phone": "076 444 44 44",
+            "pickup_location": "Luzern",
+            "destination": "Zürich",
+            "booking_type": "scheduled",
+            "pickup_datetime": "invalid-datetime",
+            "passenger_count": 1,
+            "vehicle_type": "standard"
+        }
+        
+        test_cases = [
+            ("30 minutes future (should work)", test_case_1, True),
+            ("29 minutes future (should fail)", test_case_2, False),
+            ("Past time (should fail)", test_case_3, False),
+            ("Invalid datetime format (should fail)", test_case_4, False)
+        ]
+        
+        for case_name, test_data, should_succeed in test_cases:
+            try:
+                print(f"\n🧪 Testing: {case_name}")
+                print(f"   Pickup Time: {test_data['pickup_datetime']}")
+                
+                headers = {"Content-Type": "application/json"}
+                async with self.session.post(
+                    f"{BACKEND_URL}/bookings",
+                    json=test_data,
+                    headers=headers
+                ) as response:
+                    
+                    response_data = await response.json() if response.status == 200 else await response.text()
+                    success = response.status == 200 and (isinstance(response_data, dict) and response_data.get("success", False))
+                    
+                    if success and should_succeed:
+                        print(f"   ✅ EXPECTED SUCCESS: Booking created")
+                        edge_case_results.append(f"✅ {case_name}")
+                    elif not success and not should_succeed:
+                        error_msg = response_data.get("message", str(response_data)) if isinstance(response_data, dict) else str(response_data)
+                        print(f"   ✅ EXPECTED FAILURE: {error_msg}")
+                        edge_case_results.append(f"✅ {case_name}")
+                    elif success and not should_succeed:
+                        print(f"   ❌ UNEXPECTED SUCCESS: Should have failed but succeeded")
+                        edge_case_results.append(f"❌ {case_name} (unexpected success)")
+                    else:
+                        error_msg = response_data.get("message", str(response_data)) if isinstance(response_data, dict) else str(response_data)
+                        print(f"   ❌ UNEXPECTED FAILURE: {error_msg}")
+                        edge_case_results.append(f"❌ {case_name} (unexpected failure)")
+                        
+            except Exception as e:
+                print(f"   ❌ EXCEPTION: {str(e)}")
+                edge_case_results.append(f"❌ {case_name} (exception)")
+        
+        all_passed = all("✅" in result for result in edge_case_results)
+        
+        print(f"\n📊 EDGE CASE RESULTS:")
+        for result in edge_case_results:
+            print(f"   {result}")
+        
+        self.log_result(
+            "Scheduled Booking Edge Cases",
+            all_passed,
+            f"Edge case validation: {len([r for r in edge_case_results if '✅' in r])}/{len(edge_case_results)} passed",
+            {
+                "test_results": edge_case_results,
+                "validation_working": all_passed,
+                "30_min_rule_status": "Working correctly" if all_passed else "Issues detected"
+            }
+        )
+        
+        return all_passed
 
     async def test_real_google_maps_additional_swiss_routes(self):
         """Test additional Swiss routes with REAL Google Maps for accuracy verification"""
