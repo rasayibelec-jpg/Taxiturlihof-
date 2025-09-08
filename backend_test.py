@@ -2809,6 +2809,9 @@ class BackendTester:
         # Test: Debug scheduled booking issue
         await self.test_scheduled_vs_immediate_booking_debug()
         
+        # Test: Edge cases for scheduled booking validation
+        await self.test_scheduled_booking_edge_cases()
+        
         # PRIORITY TEST: Review Request - Booking Email Debug Flow
         print("\n🎯 PRIORITY: REVIEW REQUEST TEST - Booking Email Debug Flow")
         print("-" * 80)
