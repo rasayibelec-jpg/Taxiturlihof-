@@ -179,7 +179,7 @@ const BookingSystem = () => {
           pickupLocation: "",
           destination: "",
           additionalStops: [],
-          bookingType: "scheduled",
+          bookingType: "scheduled", // Always scheduled
           pickupDate: "",
           pickupTime: "",
           passengerCount: 1,
