@@ -53,9 +53,18 @@ const Coverage = () => {
                 </CardTitle>
               </CardHeader>
             </Card>
-            <p className="text-gray-600 leading-relaxed px-4">
+            <p className="text-gray-600 leading-relaxed px-4 mb-3">
               Ihr zuverlässiger Taxi Service am Vierwaldstättersee – Taxi Turlihof bringt Sie entspannt zu Ausflügen rund um den See.
             </p>
+            <a 
+              href="https://www.google.com/maps/place/Lake+Lucerne,+Switzerland" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
+            >
+              <MapPin className="w-4 h-4" />
+              <span>Karte öffnen</span>
+            </a>
           </div>
 
           <div className="text-center">
