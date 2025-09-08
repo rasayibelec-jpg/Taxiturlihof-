@@ -102,6 +102,70 @@ const Coverage = () => {
           </Card>
         </div>
 
+        {/* Zusätzliche Informationen unter den Karten */}
+        <div className="mt-16 text-center">
+          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-8 border border-yellow-200">
+            <div className="max-w-4xl mx-auto">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                🚖 Ihr zuverlässiger Partner in der Zentralschweiz
+              </h3>
+              <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                Taxi Turlihof steht für Pünktlichkeit, Komfort und lokale Expertise. 
+                Egal ob Geschäftstermin, Flughafentransfer oder Ausflug zu den schönsten 
+                Orten der Region – wir bringen Sie sicher ans Ziel.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                <div className="text-center">
+                  <div className="bg-yellow-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
+                    <span className="text-xl font-bold">24</span>
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-2">24/7 Service</h4>
+                  <p className="text-sm text-gray-600">Rund um die Uhr für Sie da</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="bg-yellow-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
+                    <span className="text-xl">🌟</span>
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-2">Lokale Expertise</h4>
+                  <p className="text-sm text-gray-600">Wir kennen jeden Winkel der Region</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="bg-yellow-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
+                    <span className="text-xl">✓</span>
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-2">Zuverlässig</h4>
+                  <p className="text-sm text-gray-600">Pünktlich und professionell</p>
+                </div>
+              </div>
+              
+              <div className="mt-8 p-6 bg-white rounded-xl shadow-sm border border-gray-200">
+                <p className="text-center text-gray-600 mb-4">
+                  <strong>Kontaktieren Sie uns für eine unverbindliche Beratung:</strong>
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <a 
+                    href="tel:076 611 31 31" 
+                    className="flex items-center space-x-2 bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg transition-colors duration-200 font-semibold"
+                  >
+                    <span>📞</span>
+                    <span>076 611 31 31</span>
+                  </a>
+                  <a 
+                    href="mailto:info@taxiturlihof.ch" 
+                    className="flex items-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors duration-200 font-semibold"
+                  >
+                    <span>✉️</span>
+                    <span>info@taxiturlihof.ch</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="bg-white rounded-2xl shadow-lg p-8">
           <div className="text-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
