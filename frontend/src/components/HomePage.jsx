@@ -3,7 +3,6 @@ import Header from "./Header";
 import Hero from "./Hero";
 import PriceCalculator from "./PriceCalculator";
 import Services from "./Services";
-import Pricing from "./Pricing";
 import FleetGallery from "./FleetGallery";
 import PaymentMethods from "./PaymentMethods";
 import Coverage from "./Coverage";
