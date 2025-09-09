@@ -113,6 +113,12 @@ const Header = () => {
             >
               FAQ
             </button>
+            <Link
+              to="/blog"
+              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
+            >
+              Blog
+            </Link>
             <button
               onClick={() => scrollToSection("contact")}
               className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
