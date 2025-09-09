@@ -32,12 +32,12 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => scrollToSection("home")}
+            <Link
+              to="/"
               className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
             >
               Home
-            </button>
+            </Link>
             <button
               onClick={() => scrollToSection("calculator")}
               className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
@@ -50,6 +50,51 @@ const Header = () => {
             >
               Buchen
             </button>
+            
+            {/* Städte Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setIsStadteDropdownOpen(!isStadteDropdownOpen)}
+                className="flex items-center text-gray-700 hover:text-yellow-600 transition-colors duration-200"
+              >
+                Städte
+                <ChevronDown className="w-4 h-4 ml-1" />
+              </button>
+              
+              {isStadteDropdownOpen && (
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                  <Link
+                    to="/taxi-luzern"
+                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
+                    onClick={() => setIsStadteDropdownOpen(false)}
+                  >
+                    Taxi Luzern
+                  </Link>
+                  <Link
+                    to="/taxi-schwyz"
+                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
+                    onClick={() => setIsStadteDropdownOpen(false)}
+                  >
+                    Taxi Schwyz
+                  </Link>
+                  <Link
+                    to="/taxi-zug"
+                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
+                    onClick={() => setIsStadteDropdownOpen(false)}
+                  >
+                    Taxi Zug
+                  </Link>
+                  <Link
+                    to="/flughafentransfer"
+                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
+                    onClick={() => setIsStadteDropdownOpen(false)}
+                  >
+                    Flughafentransfer
+                  </Link>
+                </div>
+              )}
+            </div>
+
             <button
               onClick={() => scrollToSection("services")}
               className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
@@ -57,28 +102,16 @@ const Header = () => {
               Dienstleistungen
             </button>
             <button
-              onClick={() => scrollToSection("fleet")}
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-            >
-              Unsere Flotte
-            </button>
-            <button
-              onClick={() => scrollToSection("payment")}
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-            >
-              Zahlungsmethoden
-            </button>
-            <button
-              onClick={() => scrollToSection("coverage")}
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-            >
-              Abdeckung
-            </button>
-            <button
               onClick={() => scrollToSection("reviews")}
               className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
             >
               Bewertungen
+            </button>
+            <button
+              onClick={() => scrollToSection("faq")}
+              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
+            >
+              FAQ
             </button>
             <button
               onClick={() => scrollToSection("contact")}
