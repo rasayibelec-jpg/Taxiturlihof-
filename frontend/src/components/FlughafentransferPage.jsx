@@ -197,19 +197,19 @@ const FlughafentransferPage = () => {
               <div className="space-y-3">
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span>Luzern → Flughafen Basel</span>
-                  <Badge className="bg-green-100 text-green-800">ab CHF 280</Badge>
+                  <Badge className="bg-blue-100 text-blue-800">auf Anfrage</Badge>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span>Schwyz → Flughafen Basel</span>
-                  <Badge className="bg-green-100 text-green-800">ab CHF 300</Badge>
+                  <Badge className="bg-blue-100 text-blue-800">auf Anfrage</Badge>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span>Zug → Flughafen Basel</span>
-                  <Badge className="bg-green-100 text-green-800">ab CHF 270</Badge>
+                  <Badge className="bg-blue-100 text-blue-800">auf Anfrage</Badge>
                 </div>
                 <div className="flex justify-between items-center py-2">
                   <span>Brunnen → Flughafen Basel</span>
-                  <Badge className="bg-green-100 text-green-800">ab CHF 320</Badge>
+                  <Badge className="bg-blue-100 text-blue-800">auf Anfrage</Badge>
                 </div>
               </div>
             </Card>
