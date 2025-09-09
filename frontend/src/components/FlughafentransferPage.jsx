@@ -259,7 +259,7 @@ const FlughafentransferPage = () => {
                 Sind die Preise fix oder gibt es Aufschläge?
               </h3>
               <p className="text-gray-600">
-                Unsere Flughafentransfer-Preise sind Festpreise. Keine versteckten Kosten, keine Aufschläge für Nachts oder Wochenenden.
+                Unsere Flughafentransfer-Preise werden individuell kalkuliert und sind abhängig von Strecke, Fahrzeugtyp und Uhrzeit. Kontaktieren Sie uns für ein unverbindliches Angebot.
               </p>
             </Card>
           </div>
