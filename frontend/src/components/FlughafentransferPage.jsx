@@ -95,8 +95,8 @@ const FlughafentransferPage = () => {
                     <Badge className="bg-purple-100 text-purple-800">ca. 1.5 Stunden</Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-500">Preis ab:</span>
-                    <Badge className="bg-green-100 text-green-800">CHF 280</Badge>
+                    <span className="text-sm text-gray-500">Preis:</span>
+                    <Badge className="bg-blue-100 text-blue-800">auf Anfrage</Badge>
                   </div>
                   <div className="mt-4">
                     <h4 className="font-semibold text-gray-900 mb-2">Abfahrtsorte:</h4>
