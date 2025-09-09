@@ -14,6 +14,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/taxi-luzern" element={<TaxiLuzernPage />} />
+          <Route path="/taxi-schwyz" element={<TaxiSchwyzPage />} />
+          <Route path="/taxi-zug" element={<TaxiZugPage />} />
+          <Route path="/flughafentransfer" element={<FlughafentransferPage />} />
         </Routes>
       </BrowserRouter>
       <Toaster />
