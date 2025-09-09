@@ -8,6 +8,7 @@ import PaymentMethods from "./PaymentMethods";
 import Coverage from "./Coverage";
 import BookingSystem from "./BookingSystem";
 import Reviews from "./Reviews";
+import FAQ from "./FAQ";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import FloatingActionButtons from "./FloatingActionButtons";
