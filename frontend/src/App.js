@@ -19,6 +19,7 @@ function App() {
           <Route path="/taxi-schwyz" element={<TaxiSchwyzPage />} />
           <Route path="/taxi-zug" element={<TaxiZugPage />} />
           <Route path="/flughafentransfer" element={<FlughafentransferPage />} />
+          <Route path="/blog" element={<BlogPage />} />
         </Routes>
       </BrowserRouter>
       <Toaster />
