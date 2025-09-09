@@ -7,6 +7,7 @@ import TaxiLuzernPage from './components/TaxiLuzernPage';
 import TaxiSchwyzPage from './components/TaxiSchwyzPage';
 import TaxiZugPage from './components/TaxiZugPage';
 import FlughafentransferPage from './components/FlughafentransferPage';
+import BlogPage from './components/BlogPage';
 
 function App() {
   return (
