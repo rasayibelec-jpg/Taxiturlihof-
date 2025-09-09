@@ -3,6 +3,10 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import { Toaster } from "./components/ui/toaster";
+import TaxiLuzernPage from './components/TaxiLuzernPage';
+import TaxiSchwyzPage from './components/TaxiSchwyzPage';
+import TaxiZugPage from './components/TaxiZugPage';
+import FlughafentransferPage from './components/FlughafentransferPage';
 
 function App() {
   return (
