@@ -175,8 +175,84 @@ const TaxiLuzernPage = () => {
         </div>
       </section>
 
-      {/* Bewertungen */}
+      {/* Andere Städte */}
       <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Weitere Servicegebiete von Taxi Türlihof
+            </h2>
+            <p className="text-xl text-gray-600">
+              Wir sind auch in anderen Städten der Zentralschweiz für Sie da
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="text-center hover:shadow-lg transition-shadow duration-300">
+              <CardHeader>
+                <div className="bg-green-100 p-3 rounded-full w-fit mx-auto mb-4">
+                  <MapPin className="w-8 h-8 text-green-600" />
+                </div>
+                <CardTitle className="text-xl text-gray-900">Taxi Schwyz</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  Sicher durch die Berglandschaft - Ihr Taxi-Service in Schwyz und Brunnen
+                </p>
+                <a 
+                  href="/taxi-schwyz"
+                  className="inline-flex items-center text-green-600 hover:text-green-700 font-medium transition-colors duration-200"
+                >
+                  Mehr erfahren
+                  <MapPin className="w-4 h-4 ml-2" />
+                </a>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center hover:shadow-lg transition-shadow duration-300">
+              <CardHeader>
+                <div className="bg-teal-100 p-3 rounded-full w-fit mx-auto mb-4">
+                  <MapPin className="w-8 h-8 text-teal-600" />
+                </div>
+                <CardTitle className="text-xl text-gray-900">Taxi Zug</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  Stressfrei am Zugersee - Ihr Bahnhof-Taxi und zuverlässiger Partner
+                </p>
+                <a 
+                  href="/taxi-zug"
+                  className="inline-flex items-center text-teal-600 hover:text-teal-700 font-medium transition-colors duration-200"
+                >
+                  Mehr erfahren
+                  <MapPin className="w-4 h-4 ml-2" />
+                </a>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center hover:shadow-lg transition-shadow duration-300">
+              <CardHeader>
+                <div className="bg-blue-100 p-3 rounded-full w-fit mx-auto mb-4">
+                  <Car className="w-8 h-8 text-blue-600" />
+                </div>
+                <CardTitle className="text-xl text-gray-900">Flughafentransfer</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  Zuverlässiger Transfer zu allen Schweizer Flughäfen
+                </p>
+                <a 
+                  href="/flughafentransfer"
+                  className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
+                >
+                  Mehr erfahren
+                  <Car className="w-4 h-4 ml-2" />
+                </a>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
