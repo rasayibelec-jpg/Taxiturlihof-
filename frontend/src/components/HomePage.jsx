@@ -25,6 +25,7 @@ const HomePage = () => {
       <PaymentMethods />
       <Coverage />
       <Reviews />
+      <FAQ />
       <Contact />
       <Footer />
       <FloatingActionButtons />
