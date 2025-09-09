@@ -138,12 +138,13 @@ const Header = () => {
         {isMenuOpen && (
           <nav className="md:hidden py-4 border-t">
             <div className="flex flex-col space-y-4">
-              <button
-                onClick={() => scrollToSection("home")}
+              <Link
+                to="/"
                 className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Home
-              </button>
+              </Link>
               <button
                 onClick={() => scrollToSection("calculator")}
                 className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
@@ -156,6 +157,40 @@ const Header = () => {
               >
                 Buchen
               </button>
+              
+              {/* Mobile Städte Links */}
+              <div className="pl-4 space-y-2">
+                <p className="text-sm font-semibold text-gray-900">Städte:</p>
+                <Link
+                  to="/taxi-luzern"
+                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  • Taxi Luzern
+                </Link>
+                <Link
+                  to="/taxi-schwyz"
+                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  • Taxi Schwyz
+                </Link>
+                <Link
+                  to="/taxi-zug"
+                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  • Taxi Zug
+                </Link>
+                <Link
+                  to="/flughafentransfer"
+                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  • Flughafentransfer
+                </Link>
+              </div>
+              
               <button
                 onClick={() => scrollToSection("services")}
                 className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
@@ -163,28 +198,16 @@ const Header = () => {
                 Dienstleistungen
               </button>
               <button
-                onClick={() => scrollToSection("fleet")}
-                className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-              >
-                Unsere Flotte
-              </button>
-              <button
-                onClick={() => scrollToSection("payment")}
-                className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-              >
-                Zahlungsmethoden
-              </button>
-              <button
-                onClick={() => scrollToSection("coverage")}
-                className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-              >
-                Abdeckung
-              </button>
-              <button
                 onClick={() => scrollToSection("reviews")}
                 className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
               >
                 Bewertungen
+              </button>
+              <button
+                onClick={() => scrollToSection("faq")}
+                className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
+              >
+                FAQ
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
