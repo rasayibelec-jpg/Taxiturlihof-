@@ -175,19 +175,19 @@ const FlughafentransferPage = () => {
               <div className="space-y-3">
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span>Luzern → Flughafen Zürich</span>
-                  <Badge className="bg-green-100 text-green-800">ab CHF 200</Badge>
+                  <Badge className="bg-blue-100 text-blue-800">auf Anfrage</Badge>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span>Schwyz → Flughafen Zürich</span>
-                  <Badge className="bg-green-100 text-green-800">ab CHF 220</Badge>
+                  <Badge className="bg-blue-100 text-blue-800">auf Anfrage</Badge>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span>Zug → Flughafen Zürich</span>
-                  <Badge className="bg-green-100 text-green-800">ab CHF 180</Badge>
+                  <Badge className="bg-blue-100 text-blue-800">auf Anfrage</Badge>
                 </div>
                 <div className="flex justify-between items-center py-2">
                   <span>Weggis → Flughafen Zürich</span>
-                  <Badge className="bg-green-100 text-green-800">ab CHF 230</Badge>
+                  <Badge className="bg-blue-100 text-blue-800">auf Anfrage</Badge>
                 </div>
               </div>
             </Card>
