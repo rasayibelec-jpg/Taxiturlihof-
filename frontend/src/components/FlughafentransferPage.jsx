@@ -165,7 +165,7 @@ const FlughafentransferPage = () => {
               Flughafentransfer Preise
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              Transparente Festpreise - keine Überraschungen
+              Individuelle Preise auf Anfrage - kontaktieren Sie uns für ein unverbindliches Angebot
             </p>
           </div>
 
