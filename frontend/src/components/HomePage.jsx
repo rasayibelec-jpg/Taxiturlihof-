@@ -12,16 +12,11 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      <Hero />
-      <PriceCalculator />
-      <BookingSystem />
-      <Services />
-      <FleetGallery />  
-      <PaymentMethods />
-      <Coverage />
-      <Reviews />
-      <FAQ />
-      <Contact />
+      <CompactHero />
+      <CompactServices />
+      <CompactCalculatorCTA />
+      <CompactDetails />
+      <CompactContact />
       <Footer />
       <FloatingActionButtons />
     </div>
