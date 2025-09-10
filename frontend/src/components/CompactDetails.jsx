@@ -140,7 +140,7 @@ const CompactDetails = () => {
       content: (
         <div className="text-center space-y-6">
           <div>
-            <h4 className="text-xl font-bold text-gray-900 mb-4">Taxi Türlihof – Ihr Partner seit 2020</h4>
+            <h4 className="text-xl font-bold text-gray-900 mb-4">Taxi Türlihof – Ihr Partner seit 2010</h4>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Wir sind ein familiengeführtes Taxi-Unternehmen aus der Zentralschweiz und bieten zuverlässige, 
               professionelle Transportdienstleistungen in der Region Luzern, Schwyz und Zug.
