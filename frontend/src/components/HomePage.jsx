@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "./Header";
 import CompactHero from "./CompactHero";
 import CompactServices from "./CompactServices";
+import FleetGallery from "./FleetGallery";
 import CompactCalculatorCTA from "./CompactCalculatorCTA";
 import CompactDetails from "./CompactDetails";
 import CompactContact from "./CompactContact";
