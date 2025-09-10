@@ -27,7 +27,7 @@ const CompactHero = () => {
                 <h1 className="text-3xl lg:text-4xl font-bold text-yellow-400">
                   Taxi Türlihof
                 </h1>
-                <p className="text-gray-300 text-sm">seit 2020</p>
+                <p className="text-gray-300 text-sm">seit 2010</p>
               </div>
             </div>
             
