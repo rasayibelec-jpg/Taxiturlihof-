@@ -231,7 +231,7 @@ const CompactContact = () => {
             <span className="text-sm">Service-Region: Luzern • Schwyz • Zug</span>
           </div>
           <p className="text-xs text-gray-500">
-            Taxi Türlihof – Ihr zuverlässiger Partner seit 2020
+            Taxi Türlihof – Ihr zuverlässiger Partner seit 2010
           </p>
         </div>
       </div>
