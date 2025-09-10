@@ -11,14 +11,12 @@ import FloatingActionButtons from "./FloatingActionButtons";
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Header />
       <CompactHero />
       <CompactServices />
-      <FleetGallery />
       <CompactCalculatorCTA />
-      <CompactDetails />
-      <CompactContact />
+      <StreamlinedContact />
       <Footer />
       <FloatingActionButtons />
     </div>
