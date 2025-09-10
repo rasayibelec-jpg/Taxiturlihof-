@@ -89,11 +89,55 @@ const CompactServices = () => {
         {showDetails && (
           <div className="mt-12 space-y-8 animate-in slide-in-from-top-4 duration-300">
             
-            {/* Fleet Info */}
+            {/* Fleet Gallery with Real Images */}
             <Card className="p-6 bg-gray-50">
-              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
                 🚗 Unsere Mercedes-Flotte
               </h3>
+              
+              {/* Fleet Images */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div className="relative group">
+                  <img
+                    src="https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/7exvefg3_IMG-20250908-WA0001.jpg"
+                    alt="Mercedes V-Klasse Van"
+                    className="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg opacity-60"></div>
+                  <div className="absolute bottom-3 left-3 text-white">
+                    <p className="font-semibold text-sm">Mercedes V-Klasse</p>
+                    <p className="text-xs opacity-90">Bis 8 Personen</p>
+                  </div>
+                </div>
+
+                <div className="relative group">
+                  <img
+                    src="https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/o32qjjzx_IMG-20250908-WA0002.jpg"
+                    alt="Mercedes V-Klasse Premium"
+                    className="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg opacity-60"></div>
+                  <div className="absolute bottom-3 left-3 text-white">
+                    <p className="font-semibold text-sm">Mercedes V-Klasse</p>
+                    <p className="text-xs opacity-90">Premium Komfort</p>
+                  </div>
+                </div>
+
+                <div className="relative group">
+                  <img
+                    src="https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/xkyxwgjm_IMG-20250908-WA0000.jpg"
+                    alt="Mercedes Taxi bei Nacht"
+                    className="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg opacity-60"></div>
+                  <div className="absolute bottom-3 left-3 text-white">
+                    <p className="font-semibold text-sm">24/7 Service</p>
+                    <p className="text-xs opacity-90">Auch nachts verfügbar</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Fleet Details */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                 <div>
                   <p className="font-semibold text-gray-900">Standard</p>
