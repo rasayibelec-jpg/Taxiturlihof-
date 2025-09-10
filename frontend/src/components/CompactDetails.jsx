@@ -27,7 +27,7 @@ const CompactDetails = () => {
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gray-600 italic mb-2">
                 "Sehr pünktlich und freundlich. Perfekter Service!"
@@ -39,6 +39,39 @@ const CompactDetails = () => {
                 "Saubere Mercedes-Fahrzeuge und professionelle Fahrer."
               </p>
               <p className="text-xs font-semibold text-gray-900">- Thomas M.</p>
+            </div>
+          </div>
+          
+          {/* QR Code for Reviews */}
+          <div className="text-center">
+            <div className="bg-white p-4 rounded-lg border-2 border-yellow-200 inline-block">
+              <h5 className="font-semibold text-gray-900 mb-3">📱 Bewerten Sie uns!</h5>
+              <div className="flex items-center justify-center space-x-4">
+                <div className="text-center">
+                  <div className="bg-gray-100 p-3 rounded-lg mb-2">
+                    <img 
+                      src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://google.com/search?q=Taxi+T%C3%BCrlihof&hl=de%23lrd=0x0:0x0,3"
+                      alt="QR Code für Google Bewertungen"
+                      className="w-20 h-20"
+                    />
+                  </div>
+                  <p className="text-xs text-gray-600">QR-Code scannen</p>
+                </div>
+                <div className="text-left">
+                  <p className="text-sm font-medium text-gray-900 mb-1">Schnell bewerten:</p>
+                  <p className="text-xs text-gray-600">• QR-Code mit Handy scannen</p>
+                  <p className="text-xs text-gray-600">• Google Bewertung abgeben</p>
+                  <p className="text-xs text-gray-600">• Anderen Kunden helfen</p>
+                </div>
+              </div>
+              <a 
+                href="https://google.com/search?q=Taxi+T%C3%BCrlihof&hl=de#lrd=0x0:0x0,3"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-3 bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+              >
+                Jetzt bewerten
+              </a>
             </div>
           </div>
         </div>
