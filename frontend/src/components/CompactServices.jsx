@@ -176,7 +176,7 @@ const CompactServices = () => {
                 <ul className="text-xs text-gray-600 space-y-1">
                   <li>• Alle Preise inkl. MwSt.</li>
                   <li>• Keine Zuschläge für Nachts, Wochenende oder Feiertage</li>
-                  <li>• Wartezeit: kostenlos bis 5 Min, danach nach Aufwand</li>
+                  <li>• Wartezeit: CHF 73.00 pro Stunde</li>
                   <li>• Exakte Preise über Preisrechner oder telefonisch</li>
                 </ul>
               </div>
