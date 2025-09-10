@@ -173,9 +173,50 @@ const CompactServices = () => {
 
             {/* Service Areas */}
             <Card className="p-6 bg-blue-50">
-              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-                📍 Servicegebiete
+              <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+                📍 Unsere Servicegebiete
               </h3>
+              
+              {/* Service Area Images */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div className="relative group">
+                  <img
+                    src="https://images.unsplash.com/photo-1566789168779-73d46d92b809"
+                    alt="Luzern Altstadt"
+                    className="w-full h-32 object-cover rounded-lg shadow-md"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg opacity-60"></div>
+                  <div className="absolute bottom-2 left-2 text-white">
+                    <p className="font-semibold text-sm">Luzern</p>
+                  </div>
+                </div>
+                
+                <div className="relative group">
+                  <img
+                    src="https://images.unsplash.com/photo-1517664604184-9c1d2962d0a6"
+                    alt="Vierwaldstättersee"
+                    className="w-full h-32 object-cover rounded-lg shadow-md"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg opacity-60"></div>
+                  <div className="absolute bottom-2 left-2 text-white">
+                    <p className="font-semibold text-sm">Vierwaldstättersee</p>
+                  </div>
+                </div>
+                
+                <div className="relative group">
+                  <img
+                    src="https://images.unsplash.com/photo-1541696724920-864a966cc4c9"
+                    alt="Zug am Zugersee"
+                    className="w-full h-32 object-cover rounded-lg shadow-md"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg opacity-60"></div>
+                  <div className="absolute bottom-2 left-2 text-white">
+                    <p className="font-semibold text-sm">Zug</p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Area List */}
               <div className="flex flex-wrap gap-2">
                 {["Luzern", "Schwyz", "Zug", "Weggis", "Vitznau", "Brunnen", "Arth-Goldau"].map((area, index) => (
                   <span key={index} className="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border">
