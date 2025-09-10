@@ -10,6 +10,7 @@ import FlughafentransferPage from './components/FlughafentransferPage';
 import BlogPage from './components/BlogPage';
 import PriceCalculatorPage from './components/PriceCalculatorPage';
 import BookingPage from './components/BookingPage';
+import FlottePage from './components/FlottePage';
 
 function App() {
   return (
