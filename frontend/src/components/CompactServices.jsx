@@ -125,6 +125,10 @@ const CompactServices = () => {
                       <span>Grundtaxe</span>
                       <span className="font-bold text-yellow-600">CHF 6.60</span>
                     </div>
+                    <div className="flex justify-between items-center bg-white p-3 rounded-lg">
+                      <span>Wartezeit</span>
+                      <span className="font-bold text-orange-600">CHF 73.00</span>
+                    </div>
                   </div>
                 </div>
 
