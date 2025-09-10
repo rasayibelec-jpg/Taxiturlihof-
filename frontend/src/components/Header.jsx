@@ -38,18 +38,18 @@ const Header = () => {
             >
               Home
             </Link>
-            <button
-              onClick={() => scrollToSection("calculator")}
+            <Link
+              to="/preisrechner"
               className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
             >
               Preisrechner
-            </button>
-            <button
-              onClick={() => scrollToSection("booking")}
+            </Link>
+            <Link
+              to="/buchen"
               className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
             >
               Buchen
-            </button>
+            </Link>
             
             {/* Städte Dropdown */}
             <div className="relative">
@@ -57,7 +57,7 @@ const Header = () => {
                 onClick={() => setIsStadteDropdownOpen(!isStadteDropdownOpen)}
                 className="flex items-center text-gray-700 hover:text-yellow-600 transition-colors duration-200"
               >
-                Städte
+                Dienstleistungen
                 <ChevronDown className="w-4 h-4 ml-1" />
               </button>
               
@@ -96,30 +96,6 @@ const Header = () => {
             </div>
 
             <button
-              onClick={() => scrollToSection("services")}
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-            >
-              Dienstleistungen
-            </button>
-            <button
-              onClick={() => scrollToSection("reviews")}
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-            >
-              Bewertungen
-            </button>
-            <button
-              onClick={() => scrollToSection("faq")}
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-            >
-              FAQ
-            </button>
-            <Link
-              to="/blog"
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-            >
-              Blog
-            </Link>
-            <button
               onClick={() => scrollToSection("contact")}
               className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
             >
@@ -127,7 +103,7 @@ const Header = () => {
             </button>
             <Button className="bg-yellow-600 hover:bg-yellow-700 text-white">
               <Phone className="w-4 h-4 mr-2" />
-              Jetzt Buchen
+              076 611 31 31
             </Button>
           </nav>
 
