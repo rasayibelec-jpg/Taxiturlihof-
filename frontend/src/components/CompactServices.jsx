@@ -115,15 +115,88 @@ const CompactServices = () => {
               <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
                 💰 Transparente Preise
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Grundpreise */}
                 <div>
-                  <p className="font-semibold text-gray-900">Grundtaxe: CHF 6.60</p>
-                  <p className="text-gray-600">Für alle Fahrzeugtypen</p>
+                  <h4 className="font-semibold text-gray-900 mb-3">Grundpreise (alle Fahrzeuge)</h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between items-center bg-white p-3 rounded-lg">
+                      <span>Grundtaxe</span>
+                      <span className="font-bold text-yellow-600">CHF 6.60</span>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Kilometerpreise */}
                 <div>
-                  <p className="font-semibold text-gray-900">Pro Kilometer</p>
-                  <p className="text-gray-600">Standard: CHF 4.20 | Premium/Van: CHF 5.00</p>
+                  <h4 className="font-semibold text-gray-900 mb-3">Pro Kilometer</h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between items-center bg-white p-3 rounded-lg">
+                      <span>Standard (C/E-Klasse)</span>
+                      <span className="font-bold text-blue-600">CHF 4.20</span>
+                    </div>
+                    <div className="flex justify-between items-center bg-white p-3 rounded-lg">
+                      <span>Premium/Van (S/V-Klasse)</span>
+                      <span className="font-bold text-green-600">CHF 5.00</span>
+                    </div>
+                  </div>
                 </div>
+              </div>
+
+              {/* Beispielfahrten */}
+              <div className="mt-6">
+                <h4 className="font-semibold text-gray-900 mb-3">Beispielfahrten</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div className="bg-white p-3 rounded-lg">
+                    <div className="flex justify-between items-center">
+                      <span className="font-medium">Luzern Bahnhof → Altstadt</span>
+                      <span className="font-bold text-gray-900">ab CHF 12.00</span>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1">ca. 2km, Standard Fahrzeug</p>
+                  </div>
+                  
+                  <div className="bg-white p-3 rounded-lg">
+                    <div className="flex justify-between items-center">
+                      <span className="font-medium">Schwyz → Brunnen</span>
+                      <span className="font-bold text-gray-900">ab CHF 18.00</span>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1">ca. 8km, Standard Fahrzeug</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Spezialfahrten */}
+              <div className="mt-6">
+                <h4 className="font-semibold text-gray-900 mb-3">Spezielle Services</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                    <div className="flex justify-between items-center">
+                      <span className="font-medium">Flughafentransfer Zürich</span>
+                      <span className="font-bold text-blue-600">auf Anfrage</span>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1">Preis abhängig von Abfahrtsort</p>
+                  </div>
+                  
+                  <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                    <div className="flex justify-between items-center">
+                      <span className="font-medium">Flughafentransfer Basel</span>
+                      <span className="font-bold text-blue-600">auf Anfrage</span>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1">Preis abhängig von Abfahrtsort</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Hinweise */}
+              <div className="mt-6 p-4 bg-gray-100 rounded-lg">
+                <h5 className="font-semibold text-gray-900 mb-2">💡 Wichtige Hinweise:</h5>
+                <ul className="text-xs text-gray-600 space-y-1">
+                  <li>• Alle Preise inkl. MwSt.</li>
+                  <li>• Keine Zuschläge für Nachts, Wochenende oder Feiertage</li>
+                  <li>• Wartezeit: kostenlos bis 5 Min, danach nach Aufwand</li>
+                  <li>• Exakte Preise über Preisrechner oder telefonisch</li>
+                </ul>
               </div>
             </Card>
 
