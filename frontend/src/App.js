@@ -25,6 +25,7 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/preisrechner" element={<PriceCalculatorPage />} />
           <Route path="/buchen" element={<BookingPage />} />
+          <Route path="/flotte" element={<FlottePage />} />
         </Routes>
       </BrowserRouter>
       <Toaster />
