@@ -22,6 +22,8 @@ function App() {
           <Route path="/taxi-zug" element={<TaxiZugPage />} />
           <Route path="/flughafentransfer" element={<FlughafentransferPage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/preisrechner" element={<PriceCalculatorPage />} />
+          <Route path="/buchen" element={<BookingPage />} />
         </Routes>
       </BrowserRouter>
       <Toaster />
