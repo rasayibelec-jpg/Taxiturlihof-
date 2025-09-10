@@ -9,6 +9,21 @@ const FleetGallery = () => {
 
   const fleetImages = [
     {
+      url: "https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/7exvefg3_IMG-20250908-WA0001.jpg",
+      title: "Mercedes V-Klasse Van",
+      description: "Geräumig für Familien und Gruppen bis 8 Personen"
+    },
+    {
+      url: "https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/o32qjjzx_IMG-20250908-WA0002.jpg", 
+      title: "Mercedes V-Klasse Premium",
+      description: "Höchster Komfort für Gruppenfahrten und Flughafentransfers"
+    },
+    {
+      url: "https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/xkyxwgjm_IMG-20250908-WA0000.jpg",
+      title: "Mercedes Taxi bei Nacht",
+      description: "24/7 Service - auch nachts zuverlässig unterwegs"
+    },
+    {
       url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/p68khw91_20240707_163617.jpg", 
       title: "Mercedes E-Klasse",
       description: "Komfort und Sicherheit auf höchstem Niveau"
@@ -22,11 +37,6 @@ const FleetGallery = () => {
       url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/yomelklg_20240712121846_edited_1732630664532.png",
       title: "Mercedes mit Bergpanorama",
       description: "Spektakuläre Fahrten in der Zentralschweiz"
-    },
-    {
-      url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/nq4c2nhv_20240712_121059.jpg",
-      title: "E-Klasse Frontalansicht",
-      description: "Moderne und gepflegte Fahrzeuge"
     }
   ];
 
