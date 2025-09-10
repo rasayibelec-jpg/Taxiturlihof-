@@ -144,28 +144,6 @@ const CompactServices = () => {
                 </div>
               </div>
 
-              {/* Beispielfahrten */}
-              <div className="mt-6">
-                <h4 className="font-semibold text-gray-900 mb-3">Beispielfahrten</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                  <div className="bg-white p-3 rounded-lg">
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium">Luzern Bahnhof → Altstadt</span>
-                      <span className="font-bold text-gray-900">ab CHF 12.00</span>
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1">ca. 2km, Standard Fahrzeug</p>
-                  </div>
-                  
-                  <div className="bg-white p-3 rounded-lg">
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium">Schwyz → Brunnen</span>
-                      <span className="font-bold text-gray-900">ab CHF 18.00</span>
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1">ca. 8km, Standard Fahrzeug</p>
-                  </div>
-                </div>
-              </div>
-
               {/* Spezialfahrten */}
               <div className="mt-6">
                 <h4 className="font-semibold text-gray-900 mb-3">Spezielle Services</h4>
