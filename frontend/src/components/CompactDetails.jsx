@@ -149,7 +149,7 @@ const CompactDetails = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-600">5+</div>
+              <div className="text-3xl font-bold text-yellow-600">15+</div>
               <p className="text-sm text-gray-600">Jahre Erfahrung</p>
             </div>
             <div className="text-center">
