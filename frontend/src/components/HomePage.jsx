@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import Header from "./Header";
-import Hero from "./Hero";
-import PriceCalculator from "./PriceCalculator";
-import Services from "./Services";
-import FleetGallery from "./FleetGallery";
-import PaymentMethods from "./PaymentMethods";
-import Coverage from "./Coverage";
-import BookingSystem from "./BookingSystem";
-import Reviews from "./Reviews";
-import FAQ from "./FAQ";
-import Contact from "./Contact";
+import CompactHero from "./CompactHero";
+import CompactServices from "./CompactServices";
+import CompactCalculatorCTA from "./CompactCalculatorCTA";
+import CompactDetails from "./CompactDetails";
+import CompactContact from "./CompactContact";
 import Footer from "./Footer";
 import FloatingActionButtons from "./FloatingActionButtons";
 
