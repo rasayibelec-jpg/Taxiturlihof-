@@ -11,82 +11,67 @@ const CompactHero = () => {
   };
 
   return (
-    <section id="home" className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-16">
+    <section id="home" className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center justify-between">
+        <div className="text-center">
           
-          {/* Left Content */}
-          <div className="lg:w-1/2 text-center lg:text-left mb-8 lg:mb-0">
-            <div className="flex items-center justify-center lg:justify-start mb-6">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/lxvw2ugl_Notes_250207_194337_224.jpg"
-                alt="Taxi Türlihof Logo"
-                className="h-16 w-auto mr-4"
-              />
-              <div>
-                <h1 className="text-3xl lg:text-4xl font-bold text-yellow-400">
-                  Taxi Türlihof
-                </h1>
-                <p className="text-gray-300 text-sm">seit 2010</p>
-              </div>
+          {/* Logo & Brand */}
+          <div className="flex items-center justify-center mb-8">
+            <img 
+              src="https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/lxvw2ugl_Notes_250207_194337_224.jpg"
+              alt="Taxi Türlihof Logo"
+              className="h-20 w-auto mr-4"
+            />
+            <div className="text-left">
+              <h1 className="text-4xl lg:text-5xl font-bold text-yellow-400">
+                Taxi Türlihof
+              </h1>
+              <p className="text-gray-300 text-lg">seit 2010</p>
             </div>
-            
-            <h2 className="text-2xl lg:text-3xl font-bold mb-4 leading-tight">
+          </div>
+          
+          {/* Main Message */}
+          <div className="max-w-4xl mx-auto mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6 leading-tight">
               Ihr zuverlässiger Taxi-Service in der Zentralschweiz
             </h2>
             
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-2xl text-gray-300 mb-12">
               Schnell, sicher und professionell – 24/7 für Sie da
             </p>
-
-            {/* Call-to-Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button 
-                onClick={() => scrollToSection("calculator-cta")}
-                className="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-4 text-lg font-semibold"
-                size="lg"
-              >
-                <Calculator className="w-5 h-5 mr-2" />
-                Preis berechnen
-              </Button>
-              
-              <Button 
-                onClick={() => scrollToSection("calculator-cta")}
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-semibold"
-                size="lg"
-              >
-                <Car className="w-5 h-5 mr-2" />
-                Jetzt buchen
-              </Button>
-            </div>
-
-            {/* Quick Contact */}
-            <div className="mt-8 flex items-center justify-center lg:justify-start">
-              <div className="bg-green-600 px-4 py-2 rounded-full">
-                <a href="tel:076 611 31 31" className="flex items-center text-white font-semibold">
-                  <Phone className="w-4 h-4 mr-2" />
-                  076 611 31 31
-                </a>
-              </div>
-              <span className="ml-3 text-gray-300 text-sm">24/7 Service</span>
-            </div>
           </div>
 
-          {/* Right Content - Image */}
-          <div className="lg:w-1/2 lg:pl-8">
-            <div className="relative">
-              <img
-                src="https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/7exvefg3_IMG-20250908-WA0001.jpg"
-                alt="Mercedes Taxi"
-                className="w-full h-80 object-cover rounded-2xl shadow-2xl"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-2xl"></div>
-              <div className="absolute bottom-4 left-4 text-white">
-                <p className="text-sm font-medium">Mercedes-Flotte</p>
-                <p className="text-xs opacity-90">Bis 8 Personen</p>
+          {/* Call-to-Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+            <Button 
+              onClick={() => scrollToSection("calculator-cta")}
+              className="bg-yellow-600 hover:bg-yellow-700 text-white px-10 py-5 text-xl font-semibold rounded-xl shadow-lg"
+              size="lg"
+            >
+              <Calculator className="w-6 h-6 mr-3" />
+              Preis berechnen
+            </Button>
+            
+            <Button 
+              onClick={() => scrollToSection("calculator-cta")}
+              variant="outline"
+              className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-10 py-5 text-xl font-semibold rounded-xl"
+              size="lg"
+            >
+              <Car className="w-6 h-6 mr-3" />
+              Jetzt buchen
+            </Button>
+          </div>
+
+          {/* Quick Contact - Prominent */}
+          <div className="inline-flex items-center bg-green-600 hover:bg-green-700 px-8 py-4 rounded-full shadow-xl transition-colors duration-200">
+            <a href="tel:076 611 31 31" className="flex items-center text-white">
+              <Phone className="w-6 h-6 mr-3" />
+              <div className="text-left">
+                <div className="text-sm opacity-90">24/7 Service:</div>
+                <div className="text-2xl font-bold">076 611 31 31</div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
