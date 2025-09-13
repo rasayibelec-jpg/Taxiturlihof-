@@ -10,7 +10,7 @@ import json
 from datetime import datetime
 
 # Test configuration
-BACKEND_URL = "https://swiss-taxi-portal.preview.emergentagent.com/api"
+BACKEND_URL = "https://turli-wordpress.preview.emergentagent.com/api"
 
 async def comprehensive_price_analysis():
     """Detailed analysis of Luzern → Zürich pricing with multiple scenarios"""
