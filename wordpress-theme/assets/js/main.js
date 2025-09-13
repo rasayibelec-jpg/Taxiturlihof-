@@ -1,487 +1,353 @@
-// Taxi Türlihof Theme JavaScript
+/**
+ * Taxi Türlihof Main JavaScript
+ */
 
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Smooth scrolling for anchor links
-    const anchorLinks = document.querySelectorAll('a[href^="#"]');
-    anchorLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+(function($) {
+    'use strict';
+
+    // Document Ready
+    $(document).ready(function() {
+        initializeComponents();
+    });
+
+    function initializeComponents() {
+        initFleetGallery();
+        initPriceCalculator();
+        initBookingForm();
+        initContactForm();
+        initShowHideDetails();
+    }
+
+    // Fleet Gallery
+    function initFleetGallery() {
+        const gallery = $('#fleet-gallery');
+        if (gallery.length === 0) return;
+
+        // This will be handled by each page's specific JavaScript
+        // Fleet images are loaded via PHP from custom post type
+    }
+
+    // Price Calculator
+    function initPriceCalculator() {
+        const calculatorForm = $('#price-calculator-form');
+        if (calculatorForm.length === 0) return;
+
+        calculatorForm.on('submit', function(e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    // Mobile menu toggle
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
-    }
-
-    // Contact form handler
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', handleContactForm);
-    }
-
-    // Booking form handler
-    const bookingForm = document.getElementById('booking-form');
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', handleBookingForm);
-    }
-
-    // Price calculator handler
-    const calculatorForm = document.getElementById('price-calculator-form');
-    if (calculatorForm) {
-        calculatorForm.addEventListener('submit', handlePriceCalculator);
-    }
-
-    // Initialize fleet gallery if present
-    initializeFleetGallery();
-    
-    // Initialize testimonials carousel if present
-    initializeTestimonialsCarousel();
-    
-    // Add scroll-to-top functionality
-    addScrollToTop();
-    
-    // Initialize FAQ accordions
-    initializeFAQ();
-    
-    // Handle service details toggle
-    initializeServiceDetails();
-});
-
-// Contact Form Handler
-function handleContactForm(e) {
-    e.preventDefault();
-    
-    const form = e.target;
-    const formData = new FormData(form);
-    
-    // Add WordPress AJAX action and nonce
-    formData.append('action', 'taxi_contact_form');
-    formData.append('nonce', taxi_ajax.nonce);
-    
-    // Show loading state
-    const submitButton = form.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
-    submitButton.textContent = 'Wird gesendet...';
-    submitButton.disabled = true;
-    
-    // Send AJAX request
-    fetch(taxi_ajax.ajax_url, {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            showMessage('✅ Nachricht gesendet! Wir melden uns schnellstmöglich bei Ihnen.', 'success');
-            form.reset();
-        } else {
-            showMessage('❌ Fehler beim Senden. Bitte versuchen Sie es erneut oder rufen Sie uns an.', 'error');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        showMessage('❌ Fehler beim Senden. Bitte versuchen Sie es erneut oder rufen Sie uns an.', 'error');
-    })
-    .finally(() => {
-        submitButton.textContent = originalText;
-        submitButton.disabled = false;
-    });
-}
-
-// Booking Form Handler
-function handleBookingForm(e) {
-    e.preventDefault();
-    
-    const form = e.target;
-    const formData = new FormData(form);
-    
-    // Basic validation
-    const requiredFields = ['customer_name', 'customer_email', 'customer_phone', 'pickup_location', 'destination', 'pickup_date', 'pickup_time'];
-    for (let field of requiredFields) {
-        if (!formData.get(field)) {
-            showMessage('Bitte füllen Sie alle Pflichtfelder aus.', 'error');
-            return;
-        }
-    }
-    
-    // Add WordPress AJAX action and nonce
-    formData.append('action', 'taxi_booking_form');
-    formData.append('nonce', taxi_ajax.nonce);
-    
-    // Show loading state
-    const submitButton = form.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
-    submitButton.textContent = 'Wird gesendet...';
-    submitButton.disabled = true;
-    
-    // Send AJAX request
-    fetch(taxi_ajax.ajax_url, {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            showMessage(`✅ Buchung erfolgreich! Buchungsnummer: ${data.data.booking_id.toString().slice(0, 8)}`, 'success');
-            form.style.display = 'none';
-            document.getElementById('booking-success').style.display = 'block';
             
-            // Show review request after 3 seconds
-            setTimeout(() => {
-                showMessage('⭐ Wie war unser Service? Helfen Sie anderen Kunden mit einer ehrlichen Bewertung!', 'info');
-            }, 3000);
-        } else {
-            showMessage('❌ Fehler bei der Buchung. Bitte versuchen Sie es erneut oder rufen Sie uns an.', 'error');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        showMessage('❌ Fehler bei der Buchung. Bitte versuchen Sie es erneut oder rufen Sie uns an.', 'error');
-    })
-    .finally(() => {
-        submitButton.textContent = originalText;
-        submitButton.disabled = false;
-    });
-}
+            const formData = {
+                action: 'taxi_calculate_price',
+                nonce: taxi_ajax.nonce,
+                pickup_location: $('#pickup_location').val(),
+                destination: $('#destination').val(),
+                pickup_date: $('#pickup_date').val(),
+                pickup_time: $('#pickup_time').val(),
+                passenger_count: $('#passenger_count').val(),
+                vehicle_type: $('#vehicle_type').val()
+            };
 
-// Price Calculator Handler
-function handlePriceCalculator(e) {
-    e.preventDefault();
-    
-    const form = e.target;
-    const formData = new FormData(form);
-    
-    const pickup = formData.get('pickup_location');
-    const destination = formData.get('destination');
-    const vehicleType = formData.get('vehicle_type');
-    
-    if (!pickup || !destination) {
-        showMessage('Bitte geben Sie Start- und Zielpunkt ein.', 'error');
-        return;
-    }
-    
-    // Simple distance estimation (in production, use Google Maps API)
-    const estimatedDistance = calculateDistance(pickup, destination);
-    
-    let pricePerKm, vehicleName;
-    switch(vehicleType) {
-        case 'standard':
-            pricePerKm = 4.20;
-            vehicleName = 'Standard (Mercedes C/E-Klasse)';
-            break;
-        case 'premium':
-            pricePerKm = 5.00;
-            vehicleName = 'Premium (Mercedes S-Klasse)';
-            break;
-        case 'van':
-            pricePerKm = 5.00;
-            vehicleName = 'Van (Mercedes V-Klasse)';
-            break;
-        default:
-            pricePerKm = 4.20;
-            vehicleName = 'Standard (Mercedes C/E-Klasse)';
-    }
-    
-    const grundtaxe = 6.60;
-    const totalDistance = estimatedDistance * pricePerKm;
-    const totalPrice = grundtaxe + totalDistance;
-    
-    displayPriceResults(pickup, destination, estimatedDistance, vehicleName, pricePerKm, grundtaxe, totalDistance, totalPrice);
-}
+            // Show loading
+            const resultsDiv = $('#calculation-results');
+            resultsDiv.html('<p>Berechnung läuft...</p>').show();
 
-// Calculate distance estimation
-function calculateDistance(pickup, destination) {
-    // Simple keyword-based distance estimation
-    const airportKeywords = ['flughafen', 'airport', 'zürich', 'basel'];
-    const localKeywords = ['luzern', 'schwyz', 'zug', 'weggis', 'vitznau', 'brunnen'];
-    
-    const pickupLower = pickup.toLowerCase();
-    const destLower = destination.toLowerCase();
-    
-    const isPickupAirport = airportKeywords.some(keyword => pickupLower.includes(keyword));
-    const isDestAirport = airportKeywords.some(keyword => destLower.includes(keyword));
-    const isPickupLocal = localKeywords.some(keyword => pickupLower.includes(keyword));
-    const isDestLocal = localKeywords.some(keyword => destLower.includes(keyword));
-    
-    if ((isPickupAirport && isDestLocal) || (isPickupLocal && isDestAirport)) {
-        return Math.floor(Math.random() * 20) + 50; // 50-70 km for airport transfers
-    } else if (isPickupLocal && isDestLocal) {
-        return Math.floor(Math.random() * 30) + 5; // 5-35 km for local trips
-    } else {
-        return Math.floor(Math.random() * 40) + 15; // 15-55 km for other trips
-    }
-}
-
-// Display price calculation results
-function displayPriceResults(pickup, destination, distance, vehicleName, pricePerKm, grundtaxe, totalDistance, totalPrice) {
-    const resultsDiv = document.getElementById('price-results');
-    const breakdownDiv = document.getElementById('price-breakdown');
-    
-    if (!resultsDiv || !breakdownDiv) return;
-    
-    breakdownDiv.innerHTML = `
-        <div style="display: grid; gap: 1rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #fff; border-radius: 8px;">
-                <span><strong>Route:</strong> ${pickup} → ${destination}</span>
-                <span style="color: #6b7280;">ca. ${distance} km</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #fff; border-radius: 8px;">
-                <span><strong>Fahrzeug:</strong> ${vehicleName}</span>
-                <span style="color: #6b7280;">CHF ${pricePerKm}/km</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #fff; border-radius: 8px;">
-                <span>Grundtaxe</span>
-                <span style="font-weight: bold; color: #f59e0b;">CHF ${grundtaxe.toFixed(2)}</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #fff; border-radius: 8px;">
-                <span>Distanz (${distance} km × CHF ${pricePerKm})</span>
-                <span style="font-weight: bold; color: #2563eb;">CHF ${totalDistance.toFixed(2)}</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #10b981; color: #fff; border-radius: 8px; font-size: 1.25rem;">
-                <span><strong>Geschätzter Gesamtpreis:</strong></span>
-                <span style="font-weight: bold; font-size: 1.5rem;">CHF ${totalPrice.toFixed(2)}</span>
-            </div>
-        </div>
-    `;
-    
-    resultsDiv.style.display = 'block';
-    resultsDiv.scrollIntoView({ behavior: 'smooth' });
-}
-
-// Initialize Fleet Gallery
-function initializeFleetGallery() {
-    // This will be handled by individual page scripts
-}
-
-// Initialize Testimonials Carousel
-function initializeTestimonialsCarousel() {
-    const carousel = document.querySelector('.testimonials-carousel');
-    if (!carousel) return;
-    
-    let currentSlide = 0;
-    const slides = carousel.querySelectorAll('.testimonial-slide');
-    const totalSlides = slides.length;
-    
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.style.display = i === index ? 'block' : 'none';
-        });
-    }
-    
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        showSlide(currentSlide);
-    }
-    
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        showSlide(currentSlide);
-    }
-    
-    // Initialize
-    showSlide(0);
-    
-    // Auto-advance
-    setInterval(nextSlide, 5000);
-    
-    // Add navigation buttons if they exist
-    const nextBtn = carousel.querySelector('.next-btn');
-    const prevBtn = carousel.querySelector('.prev-btn');
-    
-    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-}
-
-// Add scroll-to-top functionality
-function addScrollToTop() {
-    const scrollBtn = document.createElement('button');
-    scrollBtn.innerHTML = '↑';
-    scrollBtn.className = 'scroll-to-top';
-    scrollBtn.style.cssText = `
-        position: fixed;
-        bottom: 160px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        background: #1f2937;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 1.5rem;
-        z-index: 1000;
-        opacity: 0;
-        transition: opacity 0.3s;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    `;
-    
-    document.body.appendChild(scrollBtn);
-    
-    // Show/hide based on scroll position
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            scrollBtn.style.opacity = '1';
-        } else {
-            scrollBtn.style.opacity = '0';
-        }
-    });
-    
-    // Scroll to top when clicked
-    scrollBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-}
-
-// Initialize FAQ Accordions
-function initializeFAQ() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        const answer = item.querySelector('.faq-answer');
-        
-        if (question && answer) {
-            question.addEventListener('click', () => {
-                const isOpen = answer.style.display === 'block';
-                
-                // Close all other FAQ items
-                faqItems.forEach(otherItem => {
-                    const otherAnswer = otherItem.querySelector('.faq-answer');
-                    if (otherAnswer) {
-                        otherAnswer.style.display = 'none';
+            $.ajax({
+                url: taxi_ajax.ajax_url,
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    if (response.success) {
+                        displayPriceResults(response.data);
+                    } else {
+                        resultsDiv.html('<p style="color: red;">Fehler: ' + response.data + '</p>');
                     }
-                });
-                
-                // Toggle current item
-                answer.style.display = isOpen ? 'none' : 'block';
+                },
+                error: function() {
+                    resultsDiv.html('<p style="color: red;">Fehler bei der Berechnung. Bitte versuchen Sie es erneut.</p>');
+                }
             });
-        }
-    });
-}
+        });
+    }
 
-// Initialize Service Details Toggle
-function initializeServiceDetails() {
-    const toggleBtn = document.getElementById('show-details');
-    const detailsSection = document.getElementById('pricing-details');
-    
-    if (toggleBtn && detailsSection) {
-        toggleBtn.addEventListener('click', () => {
-            const isHidden = detailsSection.classList.contains('hidden');
+    function displayPriceResults(data) {
+        const resultsDiv = $('#calculation-results');
+        const whatsappUrl = generateWhatsAppUrl(data);
+        
+        resultsDiv.html(`
+            <div style="background: #f0fdf4; border: 2px solid #10b981; padding: 2rem; border-radius: 12px; margin-top: 2rem;">
+                <h3 style="color: #065f46; margin-bottom: 1.5rem; font-size: 1.5rem;">
+                    ✅ Fahrtkosten berechnet
+                </h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                    <div>
+                        <h4 style="color: #374151; margin-bottom: 0.5rem;">📍 Strecke</h4>
+                        <p><strong>${data.pickup_location}</strong><br>↓<br><strong>${data.destination}</strong></p>
+                        <p style="color: #6b7280; font-size: 0.875rem;">
+                            ${data.distance} km • ${data.duration} Min.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: #374151; margin-bottom: 0.5rem;">🚗 Fahrzeug</h4>
+                        <p><strong>${data.vehicle_type}</strong></p>
+                        <p style="color: #6b7280; font-size: 0.875rem;">
+                            ${data.passenger_count} Passagiere
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: #374151; margin-bottom: 0.5rem;">💰 Preis</h4>
+                        <p style="font-size: 2rem; font-weight: bold; color: #059669;">
+                            CHF ${data.total_price}
+                        </p>
+                        <p style="color: #6b7280; font-size: 0.875rem;">
+                            inkl. MwSt.
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="background: #fff; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <h4 style="margin-bottom: 1rem;">📊 Preisaufstellung:</h4>
+                    <div style="display: grid; gap: 0.5rem;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Grundtaxe:</span>
+                            <span>CHF ${data.base_fare}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Fahrstrecke (${data.distance} km):</span>
+                            <span>CHF ${data.distance_fare}</span>
+                        </div>
+                        ${data.booking_fee ? `
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Buchungsgebühr:</span>
+                            <span>CHF ${data.booking_fee}</span>
+                        </div>
+                        ` : ''}
+                        <hr style="margin: 0.5rem 0;">
+                        <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1rem;">
+                            <span>Gesamtpreis:</span>
+                            <span>CHF ${data.total_price}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="${whatsappUrl}" target="_blank" class="btn btn-success">
+                        💬 WhatsApp Buchung
+                    </a>
+                    <a href="tel:076 611 31 31" class="btn btn-primary">
+                        📞 Anrufen
+                    </a>
+                    <a href="/buchen" class="btn" style="background: #2563eb; color: #fff;">
+                        📅 Online buchen
+                    </a>
+                </div>
+            </div>
+        `);
+    }
+
+    function generateWhatsAppUrl(data) {
+        const message = `Hallo! Ich möchte ein Taxi buchen:
+
+📍 Von: ${data.pickup_location}
+📍 Nach: ${data.destination}
+📅 Datum: ${data.pickup_date || 'Sofort'}
+🕐 Zeit: ${data.pickup_time || 'Sofort'}
+👥 Passagiere: ${data.passenger_count}
+🚗 Fahrzeug: ${data.vehicle_type}
+
+💰 Geschätzter Preis: CHF ${data.total_price}
+📏 Distanz: ${data.distance} km
+
+Können Sie die Fahrt bestätigen? Vielen Dank!`;
+
+        return `https://wa.me/41766113131?text=${encodeURIComponent(message)}`;
+    }
+
+    // Booking Form
+    function initBookingForm() {
+        const bookingForm = $('#booking-form');
+        if (bookingForm.length === 0) return;
+
+        bookingForm.on('submit', function(e) {
+            e.preventDefault();
             
-            if (isHidden) {
-                detailsSection.classList.remove('hidden');
-                toggleBtn.innerHTML = '⬆️ Weniger anzeigen';
+            const formData = {
+                action: 'taxi_booking_form',
+                nonce: taxi_ajax.nonce,
+                customer_name: $('#customer_name').val(),
+                customer_email: $('#customer_email').val(),
+                customer_phone: $('#customer_phone').val(),
+                pickup_location: $('#pickup_location').val(),
+                destination: $('#destination').val(),
+                pickup_date: $('#pickup_date').val(),
+                pickup_time: $('#pickup_time').val(),
+                passenger_count: $('#passenger_count').val(),
+                vehicle_type: $('#vehicle_type').val(),
+                special_requests: $('#special_requests').val()
+            };
+
+            // Show loading
+            const submitBtn = bookingForm.find('button[type="submit"]');
+            const originalText = submitBtn.text();
+            submitBtn.text('Buchung wird gesendet...').prop('disabled', true);
+
+            $.ajax({
+                url: taxi_ajax.ajax_url,
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    if (response.success) {
+                        showBookingSuccess(response.data);
+                        bookingForm[0].reset();
+                    } else {
+                        showBookingError(response.data);
+                    }
+                },
+                error: function() {
+                    showBookingError('Fehler beim Senden der Buchung. Bitte versuchen Sie es erneut.');
+                },
+                complete: function() {
+                    submitBtn.text(originalText).prop('disabled', false);
+                }
+            });
+        });
+    }
+
+    function showBookingSuccess(data) {
+        const successDiv = $('<div>').html(`
+            <div style="background: #f0fdf4; border: 2px solid #10b981; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+                <h3 style="color: #065f46; margin-bottom: 1rem;">
+                    ✅ Buchung erfolgreich gesendet!
+                </h3>
+                <p style="margin-bottom: 1rem;">
+                    Vielen Dank für Ihre Buchung! Wir haben Ihre Anfrage erhalten und werden Sie in Kürze kontaktieren.
+                </p>
+                <div style="background: #fff; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <p><strong>Buchungs-ID:</strong> ${data.booking_id}</p>
+                </div>
+                <p style="font-size: 0.875rem; color: #6b7280;">
+                    Eine Bestätigung wurde an Ihre E-Mail-Adresse gesendet.
+                </p>
+            </div>
+        `);
+        
+        $('#booking-form').after(successDiv);
+        $('html, body').animate({
+            scrollTop: successDiv.offset().top - 100
+        }, 500);
+    }
+
+    function showBookingError(message) {
+        const errorDiv = $('<div>').html(`
+            <div style="background: #fef2f2; border: 2px solid #ef4444; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+                <h3 style="color: #dc2626; margin-bottom: 1rem;">
+                    ❌ Fehler bei der Buchung
+                </h3>
+                <p>${message}</p>
+                <p style="margin-top: 1rem;">
+                    Bitte rufen Sie uns direkt an: <a href="tel:076 611 31 31" style="color: #10b981; font-weight: bold;">076 611 31 31</a>
+                </p>
+            </div>
+        `);
+        
+        $('#booking-form').after(errorDiv);
+        setTimeout(() => errorDiv.fadeOut(), 5000);
+    }
+
+    // Contact Form
+    function initContactForm() {
+        const contactForm = $('#contact-form');
+        if (contactForm.length === 0) return;
+
+        contactForm.on('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                action: 'taxi_contact_form',
+                nonce: taxi_ajax.nonce,
+                name: $('#contact_name').val(),
+                email: $('#contact_email').val(),
+                phone: $('#contact_phone').val(),
+                message: $('#contact_message').val()
+            };
+
+            // Show loading
+            const submitBtn = contactForm.find('button[type="submit"]');
+            const originalText = submitBtn.text();
+            submitBtn.text('Nachricht wird gesendet...').prop('disabled', true);
+
+            $.ajax({
+                url: taxi_ajax.ajax_url,
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    if (response.success) {
+                        showContactSuccess();
+                        contactForm[0].reset();
+                    } else {
+                        showContactError(response.data);
+                    }
+                },
+                error: function() {
+                    showContactError('Fehler beim Senden der Nachricht. Bitte versuchen Sie es erneut.');
+                },
+                complete: function() {
+                    submitBtn.text(originalText).prop('disabled', false);
+                }
+            });
+        });
+    }
+
+    function showContactSuccess() {
+        const successDiv = $('<div>').html(`
+            <div style="background: #f0fdf4; border: 2px solid #10b981; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+                <h3 style="color: #065f46; margin-bottom: 1rem;">
+                    ✅ Nachricht erfolgreich gesendet!
+                </h3>
+                <p>Vielen Dank für Ihre Nachricht! Wir werden uns in Kürze bei Ihnen melden.</p>
+            </div>
+        `);
+        
+        $('#contact-form').after(successDiv);
+        setTimeout(() => successDiv.fadeOut(), 5000);
+    }
+
+    function showContactError(message) {
+        const errorDiv = $('<div>').html(`
+            <div style="background: #fef2f2; border: 2px solid #ef4444; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+                <h3 style="color: #dc2626; margin-bottom: 1rem;">
+                    ❌ Fehler beim Senden
+                </h3>
+                <p>${message}</p>
+            </div>
+        `);
+        
+        $('#contact-form').after(errorDiv);
+        setTimeout(() => errorDiv.fadeOut(), 5000);
+    }
+
+    // Show/Hide Details functionality
+    function initShowHideDetails() {
+        $(document).on('click', '#show-details', function() {
+            const button = $(this);
+            const details = $('#pricing-details');
+            
+            if (details.hasClass('hidden')) {
+                details.removeClass('hidden');
+                button.html('⬆️ Weniger anzeigen');
             } else {
-                detailsSection.classList.add('hidden');
-                toggleBtn.innerHTML = '⬇️ Mehr erfahren';
+                details.addClass('hidden');
+                button.html('⬇️ Mehr erfahren');
             }
         });
     }
-}
 
-// Show message notifications
-function showMessage(message, type = 'info') {
-    const messageDiv = document.createElement('div');
-    messageDiv.textContent = message;
-    
-    const bgColor = type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6';
-    
-    messageDiv.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: ${bgColor};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        z-index: 10000;
-        max-width: 400px;
-        font-weight: 500;
-        animation: slideIn 0.3s ease-out;
-    `;
-    
-    // Add animation styles
-    if (!document.getElementById('message-styles')) {
-        const styles = document.createElement('style');
-        styles.id = 'message-styles';
-        styles.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(styles);
+    // Utility Functions
+    function scrollToElement(element) {
+        $('html, body').animate({
+            scrollTop: element.offset().top - 100
+        }, 500);
     }
-    
-    document.body.appendChild(messageDiv);
-    
-    // Remove after 5 seconds
-    setTimeout(() => {
-        messageDiv.style.animation = 'slideOut 0.3s ease-in';
-        setTimeout(() => {
-            if (messageDiv.parentNode) {
-                messageDiv.parentNode.removeChild(messageDiv);
-            }
-        }, 300);
-    }, 5000);
-    
-    // Allow manual dismissal
-    messageDiv.addEventListener('click', () => {
-        messageDiv.style.animation = 'slideOut 0.3s ease-in';
-        setTimeout(() => {
-            if (messageDiv.parentNode) {
-                messageDiv.parentNode.removeChild(messageDiv);
-            }
-        }, 300);
-    });
-}
 
-// Utility function for debouncing
-function debounce(func, wait, immediate) {
-    let timeout;
-    return function executedFunction() {
-        const context = this;
-        const args = arguments;
-        const later = function() {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-        };
-        const callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-    };
-}
-
-// Utility function for throttling
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
-}
+})(jQuery);
