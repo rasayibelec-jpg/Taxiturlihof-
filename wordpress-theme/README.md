@@ -1,87 +1,178 @@
-# 🚖 Taxi Türlihof WordPress Teması
+# Taxi Türlihof WordPress Theme
 
-Bu tema, Taxi Türlihof için özel olarak geliştirilmiş profesyonel bir WordPress temasıdır.
+Professional WordPress theme for Taxi Türlihof - a taxi service in Central Switzerland.
 
-## ✨ Özellikler
+## Features
 
-### 🎯 Ana Özellikler
-- **Responsive Tasarım** - Tüm cihazlarda mükemmel görünüm
-- **Mercedes Araç Galerisi** - Profesyonel fotoğraf galerisi
-- **Online Rezervasyon Sistemi** - Kolay rezervasyon formu
-- **Fiyat Hesaplayıcı** - Otomatik fiyat hesaplama
-- **24/7 İletişim** - Telefon, e-posta, WhatsApp
-- **SEO Optimizasyonu** - Google'da üst sıralarda yer alma
-- **Hızlı Yükleme** - Optimize edilmiş performans
+- **Responsive Design**: Works perfectly on all devices
+- **Mercedes Fleet Gallery**: Showcase your vehicle fleet
+- **Online Booking System**: Customers can book rides online
+- **Price Calculator**: Integration with backend API for real-time pricing
+- **Contact Forms**: Multiple contact options
+- **SEO Optimized**: Schema markup and meta tags included
+- **Multi-language Support**: German content with Swiss German elements
+- **24/7 Service Highlighting**: Emphasizes round-the-clock availability
 
-### 🏢 İş Özellikleri
-- **Rezervasyon Yönetimi** - Admin panelinden rezervasyon takibi
-- **İletişim Mesajları** - Gelen mesajları admin panelinde görüntüleme
-- **Araç Galerisi Yönetimi** - Mercedes resimlerini kolayca güncelleme
-- **Fiyat Yönetimi** - Customizer'dan fiyatları güncelleme
-- **Blog Sistemi** - SEO için makale yazma imkanı
+## Installation
 
-### 📱 Kullanıcı Deneyimi
-- **Kolay Navigasyon** - Sade ve anlaşılır menü
-- **Hızlı İletişim** - Floating action buttons
-- **Mobil Optimizasyon** - Telefon ve tablet uyumluluğu
-- **Hızlı Yükleme** - 2 saniyeden kısa yükleme süresi
+1. Upload the theme files to `/wp-content/themes/taxi-turlihof/`
+2. Activate the theme in WordPress Admin
+3. Follow the setup instructions in **Appearance > Taxi Settings**
+4. Configure company information in **Appearance > Customize**
+5. Add fleet images in **Fleet Gallery** section
+6. Set up navigation menu in **Appearance > Menus**
 
-## 🚀 Kurulum
-
-1. **WordPress 6.0+** gerekli
-2. Tema dosyalarını `/wp-content/themes/` klasörüne yükleyin
-3. WordPress admin panelinden temayı etkinleştirin
-4. Gerekli eklentileri kurun (liste KURULUM-REHBERI.md'de)
-5. Customizer'dan şirket bilgilerini güncelleyin
-
-## 📁 Dosya Yapısı
+## Theme Structure
 
 ```
-taxi-turlihof-theme/
-├── style.css                    # Ana CSS
-├── index.php                    # Ana sayfa
-├── header.php                   # Site başlığı
-├── footer.php                   # Site altlığı
-├── functions.php                # WordPress fonksiyonları
-├── page-preisrechner.php       # Fiyat hesaplayıcı sayfası
-├── page-buchen.php             # Rezervasyon sayfası
-├── page-flotte.php             # Araç galerisi sayfası
-├── page-taxi-luzern.php        # Luzern özel sayfası
+taxi-turlihof/
+├── style.css                 # Main stylesheet with theme information
+├── index.php                 # Homepage template
+├── header.php                # Header template
+├── footer.php                # Footer template
+├── functions.php             # Theme functions and customizations
+├── single.php                # Single post template
 ├── assets/
-│   ├── js/main.js              # Ana JavaScript
-│   └── images/                 # Görsel dosyaları
-└── README.md                   # Bu dosya
+│   ├── js/
+│   │   └── main.js          # Custom JavaScript
+│   └── images/              # Theme images directory
+├── page-*.php               # Custom page templates
+├── README.md                # This file
+└── KURULUM-REHBERI.md       # Turkish installation guide
 ```
 
-## 🎨 Customization
+## Custom Post Types
 
-### Renkler
-- **Ana renk:** `#f59e0b` (Sarı)
-- **İkincil renk:** `#1f2937` (Koyu gri)
-- **Vurgu rengi:** `#10b981` (Yeşil)
-- **Hata rengi:** `#ef4444` (Kırmızı)
+### Fleet Gallery (`fleet`)
+Manage your vehicle fleet with images and details:
+- Vehicle type (Standard/Premium/Van)
+- Passenger capacity
+- Description
+- Featured image
 
-### Fontlar
-- **Ana font:** System UI (Apple/Windows native)
-- **Font boyutları:** 16px base, responsive scaling
+### Bookings (`booking`)
+View and manage customer bookings:
+- Customer information
+- Pickup/destination details
+- Date and time
+- Vehicle type
+- Booking status
 
-## 📞 Destek
+### Contact Messages (`contact`)
+Store contact form submissions:
+- Customer name and contact info
+- Message content
+- Timestamp
 
-Bu tema ile ilgili sorularınız için:
-- **E-posta:** info@taxiturlihof.ch
-- **Telefon:** 076 611 31 31
+## Custom Pages
 
-## 📝 Changelog
+- **Homepage** (`index.php`): Company overview with services
+- **Price Calculator** (`page-preisrechner.php`): Real-time fare calculation
+- **Online Booking** (`page-buchen.php`): Booking form
+- **Fleet Gallery** (`page-flotte.php`): Vehicle showcase
+- **Airport Transfer** (`page-flughafentransfer.php`): Specialized service page
+- **City Pages**: Dedicated pages for Luzern, Schwyz, and Zug
+- **Blog** (`page-blog.php`): News and updates
+- **FAQ** (`page-faq.php`): Frequently asked questions
 
-### Version 1.0
-- İlk sürüm
-- Tüm ana özellikler dahil
-- SEO optimizasyonu
-- Mobile responsive
+## Backend Integration
 
-## 🏆 Credits
+The theme includes integration with a FastAPI backend for:
+- Real-time price calculation using Google Maps API
+- Booking management
+- Email notifications
 
-Bu tema, mevcut React tabanlı sitenizin tam WordPress versiyonudur ve tüm özellikleri içermektedir.
+Configure the backend URL in **Appearance > Customize > Company Information**.
 
----
-**© 2024 Taxi Türlihof - Tüm hakları saklıdır.**
+## Customization Options
+
+### WordPress Customizer
+- Company phone number
+- Email address
+- WhatsApp number
+- Backend API URL
+
+### Theme Settings
+Access via **Appearance > Taxi Settings** for:
+- Setup instructions
+- Quick links to manage content
+- Support information
+
+## SEO Features
+
+- **Schema Markup**: Local business and FAQ schemas
+- **Meta Tags**: Open Graph and Twitter cards
+- **Structured Data**: Service areas and business information
+- **Canonical URLs**: Proper URL structure
+- **Site Speed**: Optimized CSS and JavaScript
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers
+
+## Performance
+
+- Lightweight CSS framework
+- Optimized images
+- Minimal JavaScript
+- WordPress best practices
+
+## Security
+
+- Nonce verification for AJAX calls
+- Data sanitization
+- XSS protection
+- SQL injection prevention
+
+## Maintenance
+
+### Regular Updates
+- Update WordPress core regularly
+- Keep theme files backed up
+- Monitor booking functionality
+- Test contact forms
+
+### Content Management
+- Add new fleet images as needed
+- Update pricing information
+- Review and respond to bookings
+- Monitor contact messages
+
+## Support
+
+For technical support:
+1. Check the setup instructions in **Appearance > Taxi Settings**
+2. Review the installation guide (`KURULUM-REHBERI.md`)
+3. Contact your developer for customizations
+
+## Development Notes
+
+### File Structure
+- All custom functions in `functions.php`
+- AJAX handlers included
+- Custom post types and meta boxes
+- Theme customizer integration
+
+### Code Standards
+- WordPress coding standards
+- Proper sanitization and validation
+- Responsive design principles
+- Accessibility considerations
+
+## License
+
+This theme is custom-built for Taxi Türlihof. All rights reserved.
+
+## Changelog
+
+### Version 1.0.0
+- Initial release
+- Complete WordPress theme conversion
+- All features from React app integrated
+- Admin panel functionality
+- Mobile responsive design
+- SEO optimization

@@ -371,6 +371,66 @@ function taxi_turlihof_handle_booking_form() {
 add_action('wp_ajax_taxi_booking_form', 'taxi_turlihof_handle_booking_form');
 add_action('wp_ajax_nopriv_taxi_booking_form', 'taxi_turlihof_handle_booking_form');
 
+// AJAX Handler for Price Calculator - Connect to React backend
+function taxi_turlihof_handle_price_calculator() {
+    check_ajax_referer('taxi_nonce', 'nonce');
+    
+    $pickup_location = sanitize_text_field($_POST['pickup_location']);
+    $destination = sanitize_text_field($_POST['destination']);
+    $pickup_date = sanitize_text_field($_POST['pickup_date']);
+    $pickup_time = sanitize_text_field($_POST['pickup_time']);
+    $passenger_count = intval($_POST['passenger_count']);
+    $vehicle_type = sanitize_text_field($_POST['vehicle_type']);
+    
+    // Get backend URL from WordPress options or use default
+    $backend_url = get_option('taxi_backend_url', 'http://localhost:8001'); // You can set this in WordPress admin
+    
+    // Prepare data for the React backend API
+    $api_data = array(
+        'pickup_location' => $pickup_location,
+        'destination' => $destination,
+        'pickup_date' => $pickup_date ? $pickup_date : date('Y-m-d'),
+        'pickup_time' => $pickup_time ? $pickup_time : date('H:i'),
+        'passenger_count' => $passenger_count,
+        'vehicle_type' => $vehicle_type
+    );
+    
+    // Make API call to React backend
+    $response = wp_remote_post($backend_url . '/api/calculate-price', array(
+        'method' => 'POST',
+        'headers' => array(
+            'Content-Type' => 'application/json',
+        ),
+        'body' => json_encode($api_data),
+        'timeout' => 30
+    ));
+    
+    if (is_wp_error($response)) {
+        wp_send_json_error('Connection error. Please try again or call us directly at 076 611 31 31.');
+        return;
+    }
+    
+    $response_code = wp_remote_retrieve_response_code($response);
+    $response_body = wp_remote_retrieve_body($response);
+    
+    if ($response_code !== 200) {
+        wp_send_json_error('Calculation service temporarily unavailable. Please call us at 076 611 31 31 for a quote.');
+        return;
+    }
+    
+    $data = json_decode($response_body, true);
+    
+    if (!$data || isset($data['error'])) {
+        wp_send_json_error('Unable to calculate price for this route. Please call us at 076 611 31 31.');
+        return;
+    }
+    
+    // Return the price calculation data
+    wp_send_json_success($data);
+}
+add_action('wp_ajax_taxi_calculate_price', 'taxi_turlihof_handle_price_calculator');
+add_action('wp_ajax_nopriv_taxi_calculate_price', 'taxi_turlihof_handle_price_calculator');
+
 // Get Fleet Images for Gallery
 function taxi_turlihof_get_fleet_images() {
     $fleet_posts = get_posts(array(
@@ -391,6 +451,33 @@ function taxi_turlihof_get_fleet_images() {
                 'capacity' => get_post_meta($post->ID, '_fleet_capacity', true)
             );
         }
+    }
+    
+    // If no custom fleet images, return default fallback
+    if (empty($images)) {
+        $images = array(
+            array(
+                'url' => get_template_directory_uri() . '/assets/images/fleet1.jpg',
+                'title' => 'Mercedes V-Klasse Van',
+                'description' => 'Geräumig für Familien und Gruppen bis 8 Personen',
+                'vehicle_type' => 'van',
+                'capacity' => '8'
+            ),
+            array(
+                'url' => get_template_directory_uri() . '/assets/images/fleet2.jpg',
+                'title' => 'Mercedes V-Klasse Premium',
+                'description' => 'Höchster Komfort für Gruppenfahrten und Flughafentransfers',
+                'vehicle_type' => 'premium',
+                'capacity' => '7'
+            ),
+            array(
+                'url' => get_template_directory_uri() . '/assets/images/fleet3.jpg',
+                'title' => 'Mercedes Taxi bei Nacht',
+                'description' => '24/7 Service - auch nachts zuverlässig unterwegs',
+                'vehicle_type' => 'standard',
+                'capacity' => '4'
+            )
+        );
     }
     
     return $images;
@@ -481,6 +568,19 @@ function taxi_turlihof_customize_register($wp_customize) {
         'section' => 'taxi_company_info',
         'type' => 'text',
     ));
+    
+    // Backend URL Setting
+    $wp_customize->add_setting('taxi_backend_url', array(
+        'default' => 'http://localhost:8001',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    
+    $wp_customize->add_control('taxi_backend_url', array(
+        'label' => __('Backend API URL (for price calculator)'),
+        'section' => 'taxi_company_info',
+        'type' => 'url',
+        'description' => __('URL of the backend API server for price calculations')
+    ));
 }
 add_action('customize_register', 'taxi_turlihof_customize_register');
 
@@ -488,4 +588,55 @@ add_action('customize_register', 'taxi_turlihof_customize_register');
 function taxi_get_option($option, $default = '') {
     return get_theme_mod($option, $default);
 }
+
+// Add admin menu for theme settings
+function taxi_turlihof_admin_menu() {
+    add_theme_page(
+        'Taxi Türlihof Settings',
+        'Taxi Settings',
+        'manage_options',
+        'taxi-settings',
+        'taxi_turlihof_settings_page'
+    );
+}
+add_action('admin_menu', 'taxi_turlihof_admin_menu');
+
+function taxi_turlihof_settings_page() {
+    ?>
+    <div class="wrap">
+        <h1>Taxi Türlihof Theme Settings</h1>
+        <div class="card" style="max-width: 800px;">
+            <h2>Setup Instructions</h2>
+            <ol>
+                <li><strong>Fleet Gallery:</strong> Add your vehicle images in Fleet Gallery section</li>
+                <li><strong>Menus:</strong> Set up navigation menu in Appearance > Menus</li>
+                <li><strong>Customizer:</strong> Configure company information in Appearance > Customize</li>
+                <li><strong>Backend Connection:</strong> Update the backend URL in Customizer if needed</li>
+            </ol>
+            
+            <h3>Quick Links</h3>
+            <p>
+                <a href="<?php echo admin_url('edit.php?post_type=fleet'); ?>" class="button">Manage Fleet Gallery</a>
+                <a href="<?php echo admin_url('edit.php?post_type=booking'); ?>" class="button">View Bookings</a>
+                <a href="<?php echo admin_url('edit.php?post_type=contact'); ?>" class="button">View Messages</a>
+                <a href="<?php echo admin_url('customize.php'); ?>" class="button button-primary">Customize Theme</a>
+            </p>
+            
+            <h3>Support</h3>
+            <p>For technical support or customization, contact your developer.</p>
+        </div>
+    </div>
+    <?php
+}
+
+// Add custom admin CSS
+function taxi_turlihof_admin_styles() {
+    echo '<style>
+        .post-type-booking .column-title { width: 25%; }
+        .post-type-contact .column-title { width: 30%; }
+        .post-type-fleet .column-title { width: 20%; }
+    </style>';
+}
+add_action('admin_head', 'taxi_turlihof_admin_styles');
+
 ?>
