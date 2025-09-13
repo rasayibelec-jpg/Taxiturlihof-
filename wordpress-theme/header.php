@@ -179,17 +179,17 @@
     </header>
 
 <?php
-// Fallback menu if no menu is assigned
+// Fallback menüsü eğer atanmış menü yoksa
 function taxi_turlihof_fallback_menu() {
     echo '<ul>';
-    echo '<li><a href="' . home_url() . '">Home</a></li>';
+    echo '<li><a href="' . home_url() . '">Startseite</a></li>';
     echo '<li><a href="' . home_url('/preisrechner') . '">Preisrechner</a></li>';
     echo '<li><a href="' . home_url('/buchen') . '">Buchen</a></li>';
     echo '<li><a href="' . home_url('/taxi-luzern') . '">Taxi Luzern</a></li>';
     echo '<li><a href="' . home_url('/taxi-schwyz') . '">Taxi Schwyz</a></li>';
     echo '<li><a href="' . home_url('/taxi-zug') . '">Taxi Zug</a></li>';
     echo '<li><a href="' . home_url('/flughafentransfer') . '">Flughafentransfer</a></li>';
-    echo '<li><a href="' . home_url('/flotte') . '">Flotte</a></li>;
+    echo '<li><a href="' . home_url('/flotte') . '">Flotte</a></li>';
     echo '<li><a href="' . home_url('/kontakt') . '">Kontakt</a></li>';
     echo '</ul>';
 }
