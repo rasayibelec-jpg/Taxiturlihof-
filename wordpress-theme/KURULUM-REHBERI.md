@@ -1,162 +1,267 @@
-# 🚀 TAXI TÜRLIHOF WORDPRESS TEMA KURULUM REHBERİ
+# Taxi Türlihof WordPress Teması - Kurulum Rehberi
 
-## 📦 TEMA PAKETİ İÇERİĞİ
+Bu rehber, Taxi Türlihof WordPress temasının nasıl kurulacağını ve yapılandırılacağını açıklar.
 
-Bu pakette aşağıdaki dosyalar bulunmaktadır:
+## 📋 Gereksinimler
+
+- WordPress 5.0 veya üzeri
+- PHP 7.4 veya üzeri
+- MySQL 5.6 veya üzeri
+- HTTPS destekli hosting
+
+## 🚀 Kurulum Adımları
+
+### 1. Tema Dosyalarını Yükleme
+
+1. Tema klasörünü (`taxi-turlihof`) WordPress sitenizin `/wp-content/themes/` dizinine yükleyin
+2. WordPress yönetim paneline giriş yapın
+3. **Görünüm > Temalar** menüsüne gidin
+4. "Taxi Türlihof" temasını bulun ve **Etkinleştir** butonuna tıklayın
+
+### 2. İlk Kurulum
+
+Tema etkinleştirildikten sonra:
+
+1. **Görünüm > Taxi Settings** menüsüne gidin
+2. Kurulum talimatlarını takip edin
+3. **Görünüm > Özelleştir** menüsünden şirket bilgilerini güncelleyin
+
+## ⚙️ Yapılandırma
+
+### Şirket Bilgileri (WordPress Özelleştirici)
+
+**Görünüm > Özelleştir > Company Information** bölümünden:
+
 ```
-taxi-turlihof-theme/
-├── style.css (Ana CSS dosyası)
-├── index.php (Ana sayfa template)
-├── header.php (Başlık kısmı)
-├── footer.php (Alt kısım)
-├── functions.php (WordPress fonksiyonları)
-├── page-preisrechner.php (Fiyat hesaplayıcı sayfası)
-├── page-buchen.php (Online rezervasyon sayfası)
-├── page-flotte.php (Araç galerisi sayfası)
-├── assets/
-│   ├── js/main.js (JavaScript dosyası)
-│   └── images/ (Görsel dosyaları)
-└── KURULUM-REHBERI.md (Bu dosya)
-```
-
-## 🔧 ADIM ADIM KURULUM TALİMATLARI
-
-### ADIM 1: WordPress Hazırlığı
-1. **WordPress 6.0+** yüklü olduğundan emin olun
-2. **Admin paneline** giriş yapın
-3. **Mevcut temanızı** yedekleyin (önemli!)
-
-### ADIM 2: Tema Yükleme
-1. WordPress Admin → **Görünüm** → **Temalar**
-2. **Yeni Ekle** → **Tema Yükle** tıklayın
-3. `taxi-turlihof-theme.zip` dosyasını seçin
-4. **Şimdi Yükle** → **Etkinleştir** tıklayın
-
-### ADIM 3: Gerekli Eklentiler
-Aşağıdaki eklentileri kurun:
-```
-1. Contact Form 7 (iletişim formları için)
-2. Yoast SEO (SEO optimizasyonu için)
-3. WP Mail SMTP (e-posta gönderimi için)
-4. UpdraftPlus (yedekleme için)
+Telefon Numarası: 076 611 31 31
+E-posta: info@taxiturlihof.ch
+WhatsApp: 41766113131
+Backend API URL: http://localhost:8001 (gerekirse değiştirin)
 ```
 
-### ADIM 4: Mercedes Resimlerini Ekleme
-1. **Medya** → **Yeni Ekle**
-2. Mercedes resimlerini yükleyin:
-   - `fleet1.jpg` (V-Klasse Van)
-   - `fleet2.jpg` (V-Klasse Premium)  
-   - `fleet3.jpg` (Gece taksi)
-3. **Yazılar** → **Fleet Gallery** → **Yeni Ekle**
-4. Her resim için yeni bir "Fleet" postu oluşturun
+### Menü Ayarları
 
-### ADIM 5: Sayfa Oluşturma
-Aşağıdaki sayfaları oluşturun:
-
-**1. Preisrechner Sayfası:**
-- **Sayfalar** → **Yeni Ekle**
-- **Başlık:** "Preisrechner"
-- **Kalıcı Bağlantı:** `/preisrechner`
-- **Sayfa Template:** "Preisrechner Template"
-
-**2. Buchen Sayfası:**
-- **Başlık:** "Online Buchen"
-- **Kalıcı Bağlantı:** `/buchen`
-- **Sayfa Template:** "Buchen Template"
-
-**3. Flotte Sayfası:**
-- **Başlık:** "Mercedes-Flotte"
-- **Kalıcı Bağlantı:** `/flotte`
-- **Sayfa Template:** "Flotte Template"
-
-### ADIM 6: Menü Ayarları
-1. **Görünüm** → **Menüler**
-2. **Yeni menü oluştur** → "Ana Menü"
-3. Sayfaları ekleyin:
-   - Home
-   - Preisrechner
-   - Buchen
-   - Dienstleistungen (alt menü olarak şehir sayfaları)
+1. **Görünüm > Menüler** menüsüne gidin
+2. Yeni menü oluşturun: "Ana Menü"
+3. Aşağıdaki sayfaları ekleyin:
+   - Ana Sayfa
+   - Preisrechner (Fiyat Hesaplayıcısı)
+   - Buchen (Rezervasyon)
+   - Taxi Luzern
+   - Taxi Schwyz
+   - Taxi Zug
+   - Flughafentransfer
+   - Flotte (Filo)
    - Kontakt
+4. Menüyü "Primary Menu" konumuna atayın
 
-### ADIM 7: WordPress Customizer Ayarları
-1. **Görünüm** → **Özelleştir**
-2. **Company Information** bölümüne gidin
-3. Bilgilerinizi güncelleyin:
-   - **Telefon:** 076 611 31 31
-   - **E-mail:** info@taxiturlihof.ch  
-   - **WhatsApp:** 41766113131
+### Filo Galerisi Kurulumu
 
-### ADIM 8: E-posta Ayarları (WP Mail SMTP)
-1. **WP Mail SMTP** eklentisini kurun
-2. **Ayarlar** → **WP Mail SMTP**
-3. Gmail SMTP ayarlarını yapın:
-   - **SMTP Host:** smtp.gmail.com
-   - **Port:** 587
-   - **Kullanıcı adı:** rasayibelec@gmail.com
-   - **Şifre:** [App Password]
+1. **Fleet Gallery** menüsüne gidin
+2. **Add New Image** butonuna tıklayın
+3. Her araç için:
+   - Başlık ekleyin (örn: "Mercedes V-Klasse Van")
+   - Öne çıkan görsel yükleyin
+   - Araç türünü seçin (Standard/Premium/Van)
+   - Kapasite bilgisini girin
+   - Açıklama yazın
 
-### ADIM 9: SEO Ayarları (Yoast)
-1. **Yoast SEO** eklentisini kurun
-2. **SEO** → **Genel** → Yapılandırma sihirbazını çalıştırın
-3. **Şirket bilgilerini** girin:
-   - **Şirket adı:** Taxi Türlihof
-   - **Logo:** Mercedes logo yükleyin
+**Önerilen Araç Görselleri:**
+- Mercedes C/E-Klasse (Standard) - 4 kişi
+- Mercedes S-Klasse (Premium) - 4 kişi
+- Mercedes V-Klasse (Van) - 8 kişi
 
-## ✅ KURULUM SONRASI KONTROL LİSTESİ
+## 📱 Özellikler
 
-### Test Edilecekler:
-- [ ] Ana sayfa doğru görünüyor
-- [ ] Fiyat hesaplayıcı çalışıyor
-- [ ] Online rezervasyon formu çalışıyor
-- [ ] Mercedes resimleri görünüyor
-- [ ] İletişim formları e-posta gönderiyor
-- [ ] Mobil uyumluluk
-- [ ] Sayfa hızı (GTmetrix ile test edin)
+### Ana Sayfa İçerikleri
 
-### Yaygın Sorunlar ve Çözümler:
+Tema otomatik olarak şunları içerir:
 
-**❌ "Sayfa bulunamadı" hatası:**
-- Çözüm: Ayarlar → Kalıcı Bağlantılar → Kaydet
+- **Hero Bölümü**: Şirket logosu ve ana mesaj
+- **Hizmetler**: 3 ana hizmet kartı
+- **Filo Galerisi**: Araç görselleri ile dönen galeri
+- **Fiyat Hesaplayıcısı CTA**: Hesaplayıcıya yönlendirme
+- **İletişim Bilgileri**: Telefon, e-posta, WhatsApp
 
-**❌ Resimler görünmüyor:**
-- Çözüm: Medya klasörü izinlerini kontrol edin (755)
+### Özel Sayfalar
 
-**❌ E-posta gitmiyor:**
-- Çözüm: WP Mail SMTP test özelliğini kullanın
+Tema şu özel sayfaları içerir:
 
-**❌ Rezervasyon formu çalışmıyor:**
-- Çözüm: Contact Form 7 eklentisini etkinleştirin
+1. **Preisrechner** (`/preisrechner`): Canlı fiyat hesaplama
+2. **Buchen** (`/buchen`): Online rezervasyon formu
+3. **Flotte** (`/flotte`): Detaylı araç galerisi
+4. **Flughafentransfer** (`/flughafentransfer`): Havalimanı transferi
+5. **Taxi Luzern/Schwyz/Zug**: Şehir özel sayfaları
+6. **Blog** (`/blog`): Haberler ve duyurular
+7. **FAQ** (`/faq`): Sık sorulan sorular
 
-## 📞 DESTEK
+### Rezervasyon Sistemi
 
-Kurulum sırasında sorun yaşarsanız:
-1. Önce bu rehberi tekrar okuyun
-2. WordPress error loglarını kontrol edin
-3. Eklenti çakışması olup olmadığını test edin
+**Admin Panelinde:**
+- **Bookings**: Gelen rezervasyonları görüntüleme
+- **Contact Messages**: İletişim form mesajları
+- Otomatik e-posta bildirimleri
 
-## 🎯 TEMA ÖZELLİKLERİ
+### Fiyat Hesaplayıcısı
 
-### Admin Panel'den Yönetebileceğiniz:
-✅ **Mercedes Araç Galerisi** - Resim ekle/sil/düzenle
-✅ **Rezervasyonlar** - Tüm rezervasyonları görüntüle
-✅ **İletişim Mesajları** - Gelen mesajları oku
-✅ **Şirket Bilgileri** - Telefon, e-mail, WhatsApp
-✅ **Blog Yazıları** - SEO için makale yazın
-✅ **Menü Yapısı** - Navigasyonu düzenleyin
+- Gerçek zamanlı mesafe hesaplama (Backend API gerekli)
+- Google Maps entegrasyonu
+- WhatsApp ile rezervasyon yönlendirmesi
 
-### Otomatik Özellikler:
-✅ **SEO Optimizasyonu** - Schema markup dahil
-✅ **Responsive Tasarım** - Mobil uyumlu
-✅ **Hızlı Yükleme** - Optimize edilmiş kod
-✅ **Google İndeksleme** - Sitemap otomatik
-✅ **E-posta Bildirimleri** - Rezervasyon/İletişim
+## 🔧 Backend Entegrasyonu
 
-## 🏆 SONUÇ
+### API Bağlantısı
 
-Bu tema sizin için özel olarak geliştirilmiş ve tüm ihtiyaçlarınızı karşılayacak şekilde tasarlanmıştır. WordPress admin panelinden kolayca yönetebilir, içerikleri güncelleyebilir ve yeni özellikler ekleyebilirsiniz.
+Fiyat hesaplama özelliği için backend API gereklidir:
 
-**Kurulum tamamlandıktan sonra sitenizi test etmeyi unutmayın!**
+1. **Özelleştir > Company Information** bölümünden Backend URL'i ayarlayın
+2. Backend API'nin çalıştığından emin olun
+3. Test edin: `/preisrechner` sayfasında hesaplama yapın
+
+### E-posta Ayarları
+
+WordPress e-posta ayarlarını yapılandırın:
+- SMTP eklentisi kullanın (önerilir)
+- Admin e-posta adresini ayarlayın
+- E-posta bildirimleri test edin
+
+## 📊 İçerik Yönetimi
+
+### Filo Görsellerini Güncelleme
+
+1. **Fleet Gallery > Add New Image**
+2. Yüksek kaliteli Mercedes görselleri yükleyin
+3. Araç detaylarını doldurun
+4. Görsellerin boyutunu kontrol edin (800x400 px önerilir)
+
+### Blog Yazıları
+
+1. **Posts** bölümünden yeni yazılar ekleyin
+2. Kategoriler oluşturun
+3. SEO dostu başlıklar kullanın
+
+### Rezervasyonları Yönetme
+
+1. **Bookings** menüsünden rezervasyonları görüntüleyin
+2. Durumlarını güncelleyin (Pending/Confirmed/Completed/Cancelled)
+3. Müşterilerle iletişim kurun
+
+## 🔍 SEO Optimizasyonu
+
+Tema otomatik olarak şunları içerir:
+
+- **Schema Markup**: Yerel işletme şeması
+- **Meta Tags**: Open Graph, Twitter kartları
+- **Yapılandırılmış Veri**: Hizmet alanları ve işletme bilgileri
+- **Site Haritası**: WordPress SEO eklentisi ile uyumlu
+
+### Önerilen SEO Eklentileri
+
+- **Yoast SEO** veya **RankMath**
+- **Google Site Kit**
+- **W3 Total Cache** (performans için)
+
+## 📱 Mobil Uyumluluk
+
+Tema tam responsive tasarıma sahiptir:
+- Mobil menü
+- Dokunmatik galeri kontrolleri
+- Mobil uyumlu formlar
+- WhatsApp ve telefon butonları
+
+## 🛠️ Sorun Giderme
+
+### Yaygın Sorunlar
+
+**1. Fiyat hesaplayıcısı çalışmıyor:**
+- Backend URL'ini kontrol edin
+- API'nin çalıştığından emin olun
+- Hata konsolunu kontrol edin
+
+**2. Rezervasyon e-postaları gitmiyor:**
+- WordPress e-posta ayarlarını kontrol edin
+- Admin e-posta adresini doğrulayın
+- SMTP eklentisi kurun
+
+**3. Filo görselleri görünmüyor:**
+- Görsellerin doğru yüklendiğinden emin olun
+- Dosya izinlerini kontrol edin
+- Önbelleği temizleyin
+
+### Debug Modu
+
+Sorunları tespit etmek için:
+
+```php
+// wp-config.php dosyasına ekleyin
+define('WP_DEBUG', true);
+define('WP_DEBUG_LOG', true);
+```
+
+## 📞 Destek
+
+### Teknik Destek
+
+- **Kurulum sorunları**: Hosting sağlayıcınızla iletişime geçin
+- **Özelleştirmeler**: Geliştiricinizle iletişime geçin
+- **WordPress genel sorunlar**: WordPress.org topluluk forumları
+
+### Güncelleme ve Bakım
+
+- WordPress'i düzenli güncelleyin
+- Tema dosyalarını yedekleyin
+- Rezervasyon işlevlerini test edin
+- İletişim formlarını kontrol edin
+
+## 📋 Kontrol Listesi
+
+Kurulum sonrası kontrol edilecek:
+
+- [ ] Tema aktif ve görsel görünüyor
+- [ ] Menü kurulmuş ve çalışıyor
+- [ ] Şirket bilgileri güncellendi
+- [ ] Filo görselleri yüklendi
+- [ ] Fiyat hesaplayıcısı test edildi
+- [ ] Rezervasyon formu test edildi
+- [ ] İletişim formu test edildi
+- [ ] E-posta bildirimleri çalışıyor
+- [ ] Mobil görünüm kontrol edildi
+- [ ] SEO ayarları yapıldı
+
+## 🎯 İleri Düzey Özelleştirmeler
+
+### CSS Değişiklikleri
+
+Özel CSS için **Görünüm > Özelleştir > Additional CSS** kullanın:
+
+```css
+/* Örnek: Ana renk değişikliği */
+.btn-primary {
+    background-color: #your-color;
+}
+```
+
+### Renkler ve Fontlar
+
+Tema varsayılan olarak şu renkleri kullanır:
+- Ana renk: #f59e0b (amber)
+- İkincil renk: #10b981 (emerald)
+- Metin rengi: #374151 (gray)
+
+## 📈 Performans Optimizasyonu
+
+- **Görselleri optimize edin** (WebP formatı önerilir)
+- **Önbellek eklentisi kullanın**
+- **CDN hizmeti düşünün**
+- **Gereksiz eklentileri kaldırın**
+
+## 🔒 Güvenlik
+
+- WordPress'i güncel tutun
+- Güçlü şifreler kullanın
+- Güvenlik eklentisi kurun
+- Düzenli yedekleme yapın
 
 ---
-*Bu tema, mevcut React tabanlı sitenizin tam WordPress versiyonudur.*
+
+**Not**: Bu tema özellikle Taxi Türlihof için geliştirilmiştir. Başka projeler için kullanım öncesinde geliştiricinizle görüşün.

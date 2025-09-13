@@ -25,10 +25,10 @@
                     </a>
                 </div>
 
-                <a href="tel:076 611 31 31" class="phone-cta">
+                <a href="tel:<?php echo taxi_get_option('taxi_phone', '076 611 31 31'); ?>" class="phone-cta">
                     <div>
                         <div style="font-size: 0.9rem; opacity: 0.9;">24/7 Service:</div>
-                        <div style="font-size: 1.5rem; font-weight: bold;">076 611 31 31</div>
+                        <div style="font-size: 1.5rem; font-weight: bold;"><?php echo taxi_get_option('taxi_phone', '076 611 31 31'); ?></div>
                     </div>
                 </a>
             </div>
@@ -223,11 +223,11 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <a href="tel:076 611 31 31" style="display: inline-flex; align-items: center; background: #10b981; color: #fff; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: bold;">
+                <a href="tel:<?php echo taxi_get_option('taxi_phone', '076 611 31 31'); ?>" style="display: inline-flex; align-items: center; background: #10b981; color: #fff; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: bold;">
                     <div style="margin-right: 1rem; font-size: 1.25rem;">📞</div>
                     <div>
                         <div style="font-size: 0.9rem; opacity: 0.9;">Oder rufen Sie uns an:</div>
-                        <div style="font-size: 1.25rem; font-weight: bold;">076 611 31 31</div>
+                        <div style="font-size: 1.25rem; font-weight: bold;"><?php echo taxi_get_option('taxi_phone', '076 611 31 31'); ?></div>
                     </div>
                 </a>
                 <p style="color: #6b7280; margin-top: 0.5rem; font-size: 0.875rem;">24 Stunden am Tag, 7 Tage die Woche</p>
@@ -253,8 +253,8 @@
                         📞
                     </div>
                     <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.75rem;">Anrufen</h3>
-                    <a href="tel:076 611 31 31" style="font-size: 2rem; font-weight: bold; color: #10b981; text-decoration: none; display: block; margin-bottom: 0.5rem;">
-                        076 611 31 31
+                    <a href="tel:<?php echo taxi_get_option('taxi_phone', '076 611 31 31'); ?>" style="font-size: 2rem; font-weight: bold; color: #10b981; text-decoration: none; display: block; margin-bottom: 0.5rem;">
+                        <?php echo taxi_get_option('taxi_phone', '076 611 31 31'); ?>
                     </a>
                     <p style="font-size: 0.875rem; color: #6b7280; font-weight: 500;">24/7 Service</p>
                 </div>
@@ -264,8 +264,8 @@
                         ✉️
                     </div>
                     <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.75rem;">E-Mail</h3>
-                    <a href="mailto:info@taxiturlihof.ch" style="font-size: 1.1rem; font-weight: 600; color: #2563eb; text-decoration: none; display: block; margin-bottom: 0.5rem;">
-                        info@taxiturlihof.ch
+                    <a href="mailto:<?php echo taxi_get_option('taxi_email', 'info@taxiturlihof.ch'); ?>" style="font-size: 1.1rem; font-weight: 600; color: #2563eb; text-decoration: none; display: block; margin-bottom: 0.5rem;">
+                        <?php echo taxi_get_option('taxi_email', 'info@taxiturlihof.ch'); ?>
                     </a>
                     <p style="font-size: 0.875rem; color: #6b7280;">Antwort in 24h</p>
                 </div>
@@ -275,8 +275,8 @@
                         💬
                     </div>
                     <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.75rem;">WhatsApp</h3>
-                    <a href="https://wa.me/41766113131" target="_blank" style="font-size: 1.1rem; font-weight: 600; color: #f59e0b; text-decoration: none; display: block; margin-bottom: 0.5rem;">
-                        076 611 31 31
+                    <a href="https://wa.me/<?php echo taxi_get_option('taxi_whatsapp', '41766113131'); ?>" target="_blank" style="font-size: 1.1rem; font-weight: 600; color: #f59e0b; text-decoration: none; display: block; margin-bottom: 0.5rem;">
+                        <?php echo taxi_get_option('taxi_phone', '076 611 31 31'); ?>
                     </a>
                     <p style="font-size: 0.875rem; color: #6b7280;">Schnelle Antwort</p>
                 </div>
@@ -295,22 +295,22 @@
 </main>
 
 <script>
-// Fleet Gallery JavaScript
+// Fleet Gallery JavaScript with real Mercedes images
 const fleetImages = [
     {
-        url: '<?php echo get_template_directory_uri(); ?>/assets/images/fleet1.jpg',
-        title: 'Mercedes V-Klasse Van',
-        description: 'Geräumig für Familien und Gruppen bis 8 Personen'
+        url: "https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/7exvefg3_IMG-20250908-WA0001.jpg",
+        title: "Mercedes V-Klasse Van",
+        description: "Geräumig für Familien und Gruppen bis 8 Personen"
     },
     {
-        url: '<?php echo get_template_directory_uri(); ?>/assets/images/fleet2.jpg',
-        title: 'Mercedes V-Klasse Premium',
-        description: 'Höchster Komfort für Gruppenfahrten und Flughafentransfers'
+        url: "https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/o32qjjzx_IMG-20250908-WA0002.jpg",
+        title: "Mercedes V-Klasse Premium",
+        description: "Höchster Komfort für Gruppenfahrten und Flughafentransfers"
     },
     {
-        url: '<?php echo get_template_directory_uri(); ?>/assets/images/fleet3.jpg',
-        title: 'Mercedes Taxi bei Nacht',
-        description: '24/7 Service - auch nachts zuverlässig unterwegs'
+        url: "https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/xkyxwgjm_IMG-20250908-WA0000.jpg",
+        title: "Mercedes Taxi bei Nacht",
+        description: "24/7 Service - auch nachts zuverlässig unterwegs"
     }
 ];
 
@@ -318,10 +318,12 @@ let currentImageIndex = 0;
 
 function loadGalleryImage() {
     const gallery = document.getElementById('fleet-gallery');
+    if (!gallery) return;
+    
     const image = fleetImages[currentImageIndex];
     
     gallery.innerHTML = `
-        <img src="${image.url}" alt="${image.title}" class="gallery-image">
+        <img src="${image.url}" alt="${image.title}" class="gallery-image" style="width: 100%; height: 400px; object-fit: cover; border-radius: 12px;">
         <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(0,0,0,0.8); color: white; padding: 1rem; border-radius: 8px;">
             <h4 style="font-weight: bold; margin-bottom: 0.25rem;">${image.title}</h4>
             <p style="font-size: 0.875rem; opacity: 0.9;">${image.description}</p>
@@ -346,15 +348,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const showDetailsBtn = document.getElementById('show-details');
     const pricingDetails = document.getElementById('pricing-details');
     
-    showDetailsBtn.addEventListener('click', function() {
-        if (pricingDetails.classList.contains('hidden')) {
-            pricingDetails.classList.remove('hidden');
-            showDetailsBtn.innerHTML = '⬆️ Weniger anzeigen';
-        } else {
-            pricingDetails.classList.add('hidden');
-            showDetailsBtn.innerHTML = '⬇️ Mehr erfahren';
-        }
-    });
+    if (showDetailsBtn && pricingDetails) {
+        showDetailsBtn.addEventListener('click', function() {
+            if (pricingDetails.classList.contains('hidden')) {
+                pricingDetails.classList.remove('hidden');
+                showDetailsBtn.innerHTML = '⬆️ Weniger anzeigen';
+            } else {
+                pricingDetails.classList.add('hidden');
+                showDetailsBtn.innerHTML = '⬇️ Mehr erfahren';
+            }
+        });
+    }
 });
 </script>
 
