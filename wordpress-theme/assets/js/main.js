@@ -164,7 +164,7 @@ Können Sie die Fahrt bestätigen? Vielen Dank!`;
         return `https://wa.me/41766113131?text=${encodeURIComponent(message)}`;
     }
 
-    // Booking Form
+    // Buchungsformular
     function initBookingForm() {
         const bookingForm = $('#booking-form');
         if (bookingForm.length === 0) return;
@@ -187,7 +187,7 @@ Können Sie die Fahrt bestätigen? Vielen Dank!`;
                 special_requests: $('#special_requests').val()
             };
 
-            // Show loading
+            // Ladevorgang anzeigen
             const submitBtn = bookingForm.find('button[type="submit"]');
             const originalText = submitBtn.text();
             submitBtn.text('Buchung wird gesendet...').prop('disabled', true);
@@ -255,7 +255,7 @@ Können Sie die Fahrt bestätigen? Vielen Dank!`;
         setTimeout(() => errorDiv.fadeOut(), 5000);
     }
 
-    // Contact Form
+    // Kontaktformular
     function initContactForm() {
         const contactForm = $('#contact-form');
         if (contactForm.length === 0) return;
@@ -272,7 +272,7 @@ Können Sie die Fahrt bestätigen? Vielen Dank!`;
                 message: $('#contact_message').val()
             };
 
-            // Show loading
+            // Ladevorgang anzeigen
             const submitBtn = contactForm.find('button[type="submit"]');
             const originalText = submitBtn.text();
             submitBtn.text('Nachricht wird gesendet...').prop('disabled', true);
@@ -327,7 +327,7 @@ Können Sie die Fahrt bestätigen? Vielen Dank!`;
         setTimeout(() => errorDiv.fadeOut(), 5000);
     }
 
-    // Show/Hide Details functionality
+    // Details Ein-/Ausblenden Funktionalität
     function initShowHideDetails() {
         $(document).on('click', '#show-details', function() {
             const button = $(this);
@@ -343,7 +343,7 @@ Können Sie die Fahrt bestätigen? Vielen Dank!`;
         });
     }
 
-    // Utility Functions
+    // Hilfsfunktionen
     function scrollToElement(element) {
         $('html, body').animate({
             scrollTop: element.offset().top - 100
