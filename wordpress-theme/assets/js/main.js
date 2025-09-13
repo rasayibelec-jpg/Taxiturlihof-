@@ -1,11 +1,11 @@
 /**
- * Taxi Türlihof Main JavaScript
+ * Taxi Türlihof Haupt-JavaScript
  */
 
 (function($) {
     'use strict';
 
-    // Document Ready
+    // Dokument bereit
     $(document).ready(function() {
         initializeComponents();
     });
@@ -18,16 +18,16 @@
         initShowHideDetails();
     }
 
-    // Fleet Gallery
+    // Flottengalerie
     function initFleetGallery() {
         const gallery = $('#fleet-gallery');
         if (gallery.length === 0) return;
 
-        // This will be handled by each page's specific JavaScript
-        // Fleet images are loaded via PHP from custom post type
+        // Dies wird von den seitenspezifischen JavaScript behandelt
+        // Flottenbilder werden über PHP aus Custom Post Type geladen
     }
 
-    // Price Calculator
+    // Preisrechner
     function initPriceCalculator() {
         const calculatorForm = $('#price-calculator-form');
         if (calculatorForm.length === 0) return;
@@ -46,7 +46,7 @@
                 vehicle_type: $('#vehicle_type').val()
             };
 
-            // Show loading
+            // Ladevorgang anzeigen
             const resultsDiv = $('#calculation-results');
             resultsDiv.html('<p>Berechnung läuft...</p>').show();
 
