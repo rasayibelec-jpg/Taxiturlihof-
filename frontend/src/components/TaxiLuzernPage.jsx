@@ -6,8 +6,57 @@ import Breadcrumb from "./Breadcrumb";
 import SEOHead from "./SEOHead";
 
 const TaxiLuzernPage = () => {
+  // SEO-optimized structured data for Taxi Luzern
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Taxi Türlihof Luzern",
+    "description": "24/7 Taxi-Service in Luzern mit Mercedes-Flotte. Zuverlässiger Transport in der ganzen Stadt.",
+    "url": "https://www.taxiturlihof.ch/taxi-luzern",
+    "telephone": "+41766113131",
+    "priceRange": "CHF 6.60 - CHF 300",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Luzern",
+      "addressCountry": "CH"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Luzern"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Taxi Services Luzern",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Taxi Luzern Stadtfahrten",
+            "description": "Schnelle und zuverlässige Fahrten in Luzern"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Luzern Bahnhof Transfer",
+            "description": "Transfer vom und zum Luzern Bahnhof"
+          }
+        }
+      ]
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead 
+        title="Taxi Luzern | 24/7 Mercedes Taxi-Service | Taxi Türlihof"
+        description="Taxi Luzern ➤ 24/7 Mercedes-Flotte ➤ Sofort verfügbar ☎️ 076 611 31 31 ➤ Luzern Bahnhof, Altstadt, Kapellbrücke ➤ Transparente Preise ab CHF 6.60"
+        keywords="Taxi Luzern, Taxi Luzern Bahnhof, Taxi Luzern 24h, Mercedes Taxi Luzern, Kapellbrücke Taxi, Altstadt Luzern Taxi, KKL Luzern Taxi, Pilatus Taxi, Verkehrshaus Taxi, Luzern Airport Transfer"
+        url="https://www.taxiturlihof.ch/taxi-luzern"
+        structuredData={structuredData}
+      />
       <Breadcrumb />
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white py-20">
