@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from 'react-helmet-async';
 import HomePage from "./components/HomePage";
 import { Toaster } from "./components/ui/toaster";
 import TaxiLuzernPage from './components/TaxiLuzernPage';
