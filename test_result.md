@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "User wants full website improvements: 1) Backend contact form with email integration, 2) INTELLIGENT SWISS DISTANCE CALCULATION for price calculator (instead of Google Maps), 3) ONLINE BOOKING SYSTEM with calendar integration, SMS/WhatsApp notifications, booking confirmations, 4) Additional premium features like live chat, multilingual support."
+user_problem_statement: "User wants TWINT, Stripe, and PayPal payment integration into the existing taxi booking system. The payment systems should allow customers to choose their preferred payment method during the booking process and complete payments securely."
 
 backend:
   - task: "Contact Form Email Integration"
