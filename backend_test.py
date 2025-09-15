@@ -3966,6 +3966,41 @@ class BackendTester:
         # Test 21: All Bookings Retrieval
         await self.test_all_bookings_retrieval()
         
+        # PAYMENT SYSTEM TESTS - REVIEW REQUEST FOCUS
+        print("\n💳 PAYMENT SYSTEM INTEGRATION TESTS")
+        print("-" * 40)
+        
+        # Test 22: Payment Methods Endpoint
+        payment_methods_working = await self.test_payment_methods_endpoint()
+        
+        # Test 23: Create Test Booking for Payment Testing
+        payment_booking_id, payment_fare = await self.create_test_booking_for_payment()
+        
+        if payment_booking_id:
+            # Test 24: Payment Initiation - Stripe
+            stripe_session_id, stripe_transaction_id = await self.test_payment_initiation_stripe(payment_booking_id)
+            
+            # Test 25: Payment Initiation - TWINT
+            twint_session_id, twint_transaction_id = await self.test_payment_initiation_twint(payment_booking_id)
+            
+            # Test 26: Payment Initiation - PayPal
+            paypal_transaction_id = await self.test_payment_initiation_paypal(payment_booking_id)
+            
+            # Test 27: Payment Status Checking
+            if stripe_session_id:
+                await self.test_payment_status_checking(stripe_session_id)
+            
+            # Test 28: Payment Database Integration
+            await self.test_payment_database_integration()
+        else:
+            print("⚠️  Skipping payment initiation tests due to booking creation failure")
+        
+        # Test 29: Payment Error Handling
+        await self.test_payment_error_handling()
+        
+        # Test 30: Stripe Webhook Endpoint
+        await self.test_stripe_webhook_endpoint()
+        
         # Gmail SMTP Email System Tests
         print("\n📧 GMAIL SMTP EMAIL SYSTEM TESTS")
         print("-" * 40)
