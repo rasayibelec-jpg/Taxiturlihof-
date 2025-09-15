@@ -10,7 +10,7 @@ import json
 from datetime import datetime
 
 # Test configuration
-BACKEND_URL = "https://turli-wordpress.preview.emergentagent.com/api"
+BACKEND_URL = "https://taxiturli-pay.preview.emergentagent.com/api"
 
 class ReviewTester:
     def __init__(self):
