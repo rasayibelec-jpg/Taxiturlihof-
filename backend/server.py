@@ -12,6 +12,7 @@ from datetime import datetime, date
 from email_service import email_service
 from google_maps_service import google_maps_service
 from booking_service import booking_service, BookingRequest, BookingResponse, Booking, BookingStatus
+from payment_service import payment_service, PaymentMethod, PaymentTransactionCreate, PaymentTransaction, PaymentStatusResponse, PaymentInitiateResponse
 
 
 ROOT_DIR = Path(__file__).parent
