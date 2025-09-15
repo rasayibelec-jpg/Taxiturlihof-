@@ -27,6 +27,8 @@ function App() {
           <Route path="/preisrechner" element={<PriceCalculatorPage />} />
           <Route path="/buchen" element={<BookingPage />} />
           <Route path="/flotte" element={<FlottePage />} />
+          <Route path="/booking/payment-success" element={<PaymentSuccess />} />
+          <Route path="/booking/payment-cancelled" element={<BookingPage />} />
         </Routes>
       </BrowserRouter>
       <Toaster />
