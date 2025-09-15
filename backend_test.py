@@ -3218,6 +3218,617 @@ class BackendTester:
             )
             return False
 
+    # ========================================
+    # PAYMENT SYSTEM TESTS
+    # ========================================
+
+    async def test_payment_methods_endpoint(self):
+        """Test GET /api/payment-methods endpoint"""
+        try:
+            async with self.session.get(f"{BACKEND_URL}/payment-methods") as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    # Validate response is a list
+                    if isinstance(data, list) and len(data) > 0:
+                        # Check for required payment methods
+                        method_ids = [method.get('id') for method in data]
+                        required_methods = ['twint', 'stripe', 'paypal']
+                        
+                        missing_methods = [method for method in required_methods if method not in method_ids]
+                        
+                        if not missing_methods:
+                            # Validate method structure
+                            sample_method = data[0]
+                            required_fields = ['id', 'name', 'description', 'icon', 'enabled', 'currency']
+                            missing_fields = [field for field in required_fields if field not in sample_method]
+                            
+                            if not missing_fields:
+                                self.log_result(
+                                    "Payment Methods Endpoint",
+                                    True,
+                                    f"✅ Retrieved {len(data)} payment methods: {', '.join(method_ids)}",
+                                    {
+                                        "payment_methods": data,
+                                        "method_count": len(data),
+                                        "available_methods": method_ids
+                                    }
+                                )
+                                return True
+                            else:
+                                self.log_result(
+                                    "Payment Methods Endpoint",
+                                    False,
+                                    f"Payment method missing required fields: {missing_fields}"
+                                )
+                                return False
+                        else:
+                            self.log_result(
+                                "Payment Methods Endpoint",
+                                False,
+                                f"Missing required payment methods: {missing_methods}"
+                            )
+                            return False
+                    else:
+                        self.log_result(
+                            "Payment Methods Endpoint",
+                            False,
+                            f"Invalid response format: expected list, got {type(data)}"
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Payment Methods Endpoint",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Payment Methods Endpoint",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
+    async def create_test_booking_for_payment(self):
+        """Create a test booking for payment testing"""
+        try:
+            test_data = {
+                "customer_name": "Payment Test User",
+                "customer_email": "payment.test@example.com",
+                "customer_phone": "076 555 12 34",
+                "pickup_location": "Luzern",
+                "destination": "Zürich Flughafen",
+                "booking_type": "scheduled",
+                "pickup_datetime": "2025-12-20T10:00:00",
+                "passenger_count": 2,
+                "vehicle_type": "standard",
+                "special_requests": "Payment system test booking"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/bookings",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    if data['success'] and data['booking_details']:
+                        booking_id = data['booking_id']
+                        booking = data['booking_details']
+                        
+                        self.log_result(
+                            "Create Test Booking for Payment",
+                            True,
+                            f"✅ Test booking created for payment testing - ID: {booking_id[:8]}, Fare: CHF {booking['total_fare']}",
+                            {
+                                "booking_id": booking_id,
+                                "total_fare": booking['total_fare'],
+                                "customer_email": booking['customer_email']
+                            }
+                        )
+                        return booking_id, booking['total_fare']
+                    else:
+                        self.log_result(
+                            "Create Test Booking for Payment",
+                            False,
+                            f"Booking creation failed: {data.get('message', 'Unknown error')}"
+                        )
+                        return None, None
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Create Test Booking for Payment",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return None, None
+                    
+        except Exception as e:
+            self.log_result(
+                "Create Test Booking for Payment",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return None, None
+
+    async def test_payment_initiation_stripe(self, booking_id: str):
+        """Test POST /api/payments/initiate with Stripe payment method"""
+        if not booking_id:
+            self.log_result(
+                "Payment Initiation - Stripe",
+                False,
+                "No booking ID provided for payment initiation test"
+            )
+            return None, None
+            
+        try:
+            test_data = {
+                "booking_id": booking_id,
+                "payment_method": "stripe"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/payments/initiate",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    # Validate response structure
+                    required_fields = ['success', 'transaction_id', 'payment_url', 'session_id', 'message']
+                    missing_fields = [field for field in required_fields if field not in data]
+                    
+                    if not missing_fields and data['success']:
+                        self.log_result(
+                            "Payment Initiation - Stripe",
+                            True,
+                            f"✅ Stripe payment initiated successfully - Transaction: {data['transaction_id'][:8]}, Session: {data['session_id'][:8] if data['session_id'] else 'None'}",
+                            {
+                                "transaction_id": data['transaction_id'],
+                                "session_id": data['session_id'],
+                                "payment_url": data['payment_url'][:50] + "..." if data['payment_url'] else None,
+                                "message": data['message']
+                            }
+                        )
+                        return data['session_id'], data['transaction_id']
+                    else:
+                        self.log_result(
+                            "Payment Initiation - Stripe",
+                            False,
+                            f"Invalid response structure or failed initiation: {data}"
+                        )
+                        return None, None
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Payment Initiation - Stripe",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return None, None
+                    
+        except Exception as e:
+            self.log_result(
+                "Payment Initiation - Stripe",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return None, None
+
+    async def test_payment_initiation_twint(self, booking_id: str):
+        """Test POST /api/payments/initiate with TWINT payment method"""
+        if not booking_id:
+            self.log_result(
+                "Payment Initiation - TWINT",
+                False,
+                "No booking ID provided for TWINT payment initiation test"
+            )
+            return None, None
+            
+        try:
+            test_data = {
+                "booking_id": booking_id,
+                "payment_method": "twint"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/payments/initiate",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    if data.get('success') and data.get('transaction_id'):
+                        self.log_result(
+                            "Payment Initiation - TWINT",
+                            True,
+                            f"✅ TWINT payment initiated successfully - Transaction: {data['transaction_id'][:8]}, Session: {data.get('session_id', 'None')[:8] if data.get('session_id') else 'None'}",
+                            {
+                                "transaction_id": data['transaction_id'],
+                                "session_id": data.get('session_id'),
+                                "payment_url": data.get('payment_url', '')[:50] + "..." if data.get('payment_url') else None,
+                                "message": data.get('message', '')
+                            }
+                        )
+                        return data.get('session_id'), data['transaction_id']
+                    else:
+                        self.log_result(
+                            "Payment Initiation - TWINT",
+                            False,
+                            f"TWINT payment initiation failed: {data}"
+                        )
+                        return None, None
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Payment Initiation - TWINT",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return None, None
+                    
+        except Exception as e:
+            self.log_result(
+                "Payment Initiation - TWINT",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return None, None
+
+    async def test_payment_initiation_paypal(self, booking_id: str):
+        """Test POST /api/payments/initiate with PayPal payment method"""
+        if not booking_id:
+            self.log_result(
+                "Payment Initiation - PayPal",
+                False,
+                "No booking ID provided for PayPal payment initiation test"
+            )
+            return None
+            
+        try:
+            test_data = {
+                "booking_id": booking_id,
+                "payment_method": "paypal"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/payments/initiate",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    if data.get('success') and data.get('transaction_id'):
+                        self.log_result(
+                            "Payment Initiation - PayPal",
+                            True,
+                            f"✅ PayPal payment initiated successfully - Transaction: {data['transaction_id'][:8]}, URL: {'Present' if data.get('payment_url') else 'Missing'}",
+                            {
+                                "transaction_id": data['transaction_id'],
+                                "payment_url": data.get('payment_url', '')[:50] + "..." if data.get('payment_url') else None,
+                                "message": data.get('message', ''),
+                                "note": "PayPal integration is placeholder implementation"
+                            }
+                        )
+                        return data['transaction_id']
+                    else:
+                        self.log_result(
+                            "Payment Initiation - PayPal",
+                            False,
+                            f"PayPal payment initiation failed: {data}"
+                        )
+                        return None
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Payment Initiation - PayPal",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return None
+                    
+        except Exception as e:
+            self.log_result(
+                "Payment Initiation - PayPal",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return None
+
+    async def test_payment_status_checking(self, session_id: str):
+        """Test GET /api/payments/status/{session_id} endpoint"""
+        if not session_id:
+            self.log_result(
+                "Payment Status Checking",
+                False,
+                "No session ID provided for payment status test"
+            )
+            return False
+            
+        try:
+            async with self.session.get(f"{BACKEND_URL}/payments/status/{session_id}") as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    # Validate response structure
+                    required_fields = ['transaction_id', 'payment_status', 'payment_method', 'amount', 'currency', 'booking_id']
+                    missing_fields = [field for field in required_fields if field not in data]
+                    
+                    if not missing_fields:
+                        self.log_result(
+                            "Payment Status Checking",
+                            True,
+                            f"✅ Payment status retrieved successfully - Status: {data['payment_status']}, Method: {data['payment_method']}, Amount: CHF {data['amount']}",
+                            {
+                                "transaction_id": data['transaction_id'],
+                                "payment_status": data['payment_status'],
+                                "payment_method": data['payment_method'],
+                                "amount": data['amount'],
+                                "currency": data['currency'],
+                                "booking_id": data['booking_id']
+                            }
+                        )
+                        return True
+                    else:
+                        self.log_result(
+                            "Payment Status Checking",
+                            False,
+                            f"Payment status response missing required fields: {missing_fields}"
+                        )
+                        return False
+                elif response.status == 404:
+                    self.log_result(
+                        "Payment Status Checking",
+                        False,
+                        "Payment status not found (404) - session may not exist"
+                    )
+                    return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Payment Status Checking",
+                        False,
+                        f"API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Payment Status Checking",
+                False,
+                f"Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_payment_error_handling(self):
+        """Test payment error handling scenarios"""
+        error_test_results = []
+        
+        # Test 1: Invalid booking ID
+        try:
+            test_data = {
+                "booking_id": "invalid-booking-id-12345",
+                "payment_method": "stripe"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/payments/initiate",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 404:
+                    error_test_results.append("✅ Invalid booking ID properly rejected (404)")
+                else:
+                    error_test_results.append(f"❌ Invalid booking ID test failed (got {response.status}, expected 404)")
+                    
+        except Exception as e:
+            error_test_results.append(f"❌ Invalid booking ID test error: {str(e)}")
+        
+        # Test 2: Invalid payment method
+        try:
+            # First create a valid booking
+            booking_id, _ = await self.create_test_booking_for_payment()
+            if booking_id:
+                test_data = {
+                    "booking_id": booking_id,
+                    "payment_method": "invalid_method"
+                }
+                
+                headers = {"Content-Type": "application/json"}
+                async with self.session.post(
+                    f"{BACKEND_URL}/payments/initiate",
+                    json=test_data,
+                    headers=headers
+                ) as response:
+                    
+                    if response.status == 400:
+                        error_test_results.append("✅ Invalid payment method properly rejected (400)")
+                    else:
+                        error_test_results.append(f"❌ Invalid payment method test failed (got {response.status}, expected 400)")
+            else:
+                error_test_results.append("❌ Could not create booking for invalid payment method test")
+                
+        except Exception as e:
+            error_test_results.append(f"❌ Invalid payment method test error: {str(e)}")
+        
+        # Test 3: Missing required fields
+        try:
+            test_data = {
+                "booking_id": "some-id"
+                # Missing payment_method
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/payments/initiate",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 422:
+                    error_test_results.append("✅ Missing payment method properly rejected (422)")
+                else:
+                    error_test_results.append(f"❌ Missing payment method test failed (got {response.status}, expected 422)")
+                    
+        except Exception as e:
+            error_test_results.append(f"❌ Missing payment method test error: {str(e)}")
+        
+        # Evaluate overall error handling
+        passed_tests = len([r for r in error_test_results if "✅" in r])
+        total_tests = len(error_test_results)
+        
+        success = passed_tests == total_tests
+        
+        self.log_result(
+            "Payment Error Handling",
+            success,
+            f"Error handling tests: {passed_tests}/{total_tests} passed",
+            error_test_results
+        )
+        
+        return success
+
+    async def test_payment_database_integration(self):
+        """Test payment_transactions collection creation and data persistence"""
+        try:
+            # Create a test booking and initiate payment
+            booking_id, fare = await self.create_test_booking_for_payment()
+            if not booking_id:
+                self.log_result(
+                    "Payment Database Integration",
+                    False,
+                    "Could not create test booking for database integration test"
+                )
+                return False
+            
+            # Initiate a payment to create database record
+            session_id, transaction_id = await self.test_payment_initiation_stripe(booking_id)
+            if not transaction_id:
+                self.log_result(
+                    "Payment Database Integration",
+                    False,
+                    "Could not create payment transaction for database integration test"
+                )
+                return False
+            
+            # Verify transaction was created in database by checking status
+            if session_id:
+                status_check = await self.test_payment_status_checking(session_id)
+                if status_check:
+                    self.log_result(
+                        "Payment Database Integration",
+                        True,
+                        f"✅ Payment database integration working - Transaction {transaction_id[:8]} created and retrievable",
+                        {
+                            "transaction_id": transaction_id,
+                            "booking_id": booking_id,
+                            "session_id": session_id,
+                            "database_status": "Transaction successfully stored and retrieved"
+                        }
+                    )
+                    return True
+                else:
+                    self.log_result(
+                        "Payment Database Integration",
+                        False,
+                        "Payment transaction created but not retrievable from database"
+                    )
+                    return False
+            else:
+                self.log_result(
+                    "Payment Database Integration",
+                    False,
+                    "Payment transaction created but no session ID returned"
+                )
+                return False
+                
+        except Exception as e:
+            self.log_result(
+                "Payment Database Integration",
+                False,
+                f"Database integration test failed: {str(e)}"
+            )
+            return False
+
+    async def test_stripe_webhook_endpoint(self):
+        """Test POST /api/webhooks/stripe endpoint (basic connectivity test)"""
+        try:
+            # Test webhook endpoint with minimal payload (will likely fail validation but should respond)
+            test_payload = {
+                "id": "evt_test_webhook",
+                "object": "event",
+                "type": "checkout.session.completed",
+                "data": {
+                    "object": {
+                        "id": "cs_test_session",
+                        "payment_status": "paid"
+                    }
+                }
+            }
+            
+            headers = {
+                "Content-Type": "application/json",
+                "Stripe-Signature": "t=1234567890,v1=test_signature"
+            }
+            
+            async with self.session.post(
+                f"{BACKEND_URL}/webhooks/stripe",
+                json=test_payload,
+                headers=headers
+            ) as response:
+                
+                # Webhook endpoint should respond (even if it fails validation)
+                if response.status in [200, 400, 500]:
+                    response_data = await response.json()
+                    
+                    self.log_result(
+                        "Stripe Webhook Endpoint",
+                        True,
+                        f"✅ Webhook endpoint accessible - Status: {response.status}, Response: {response_data.get('status', 'unknown')}",
+                        {
+                            "response_status": response.status,
+                            "response_data": response_data,
+                            "note": "Webhook validation may fail with test data, but endpoint is accessible"
+                        }
+                    )
+                    return True
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Stripe Webhook Endpoint",
+                        False,
+                        f"Webhook endpoint returned unexpected status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Stripe Webhook Endpoint",
+                False,
+                f"Webhook endpoint test failed: {str(e)}"
+            )
+            return False
+
     async def run_all_tests(self):
         """Run all backend tests"""
         print("🚀 Starting Backend Test Suite for Taxi Türlihof")
