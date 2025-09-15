@@ -177,43 +177,7 @@ const BookingSystem = () => {
           description: `Buchungsnummer: ${response.data.booking_id.slice(0, 8)}. Bitte wählen Sie eine Zahlungsmethode.`,
         });
 
-        // Show review request after 3 seconds
-        setTimeout(() => {
-          toast({
-            title: "⭐ Wie war unser Service?",
-            description: "Helfen Sie anderen Kunden mit einer ehrlichen Bewertung!",
-            action: (
-              <div className="flex gap-2">
-                <a 
-                  href="https://google.com/search?q=Taxi+T%C3%BCrlihof&hl=de#lrd=0x0:0x0,3" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="bg-yellow-600 hover:bg-yellow-700 text-white px-3 py-1 rounded text-sm transition-colors duration-200"
-                >
-                  Bewerten
-                </a>
-              </div>
-            ),
-          });
-        }, 3000);
-
-        // Reset form
-        setBookingData({
-          customerName: "",
-          customerEmail: "",
-          customerPhone: "",
-          pickupLocation: "",
-          destination: "",
-          additionalStops: [],
-          bookingType: "scheduled", // Always scheduled
-          pickupDate: "",
-          pickupTime: "",
-          passengerCount: 1,
-          vehicleType: "standard",
-          specialRequests: ""
-        });
-        setEstimatedPrice(null);
-        setShowEstimate(false);
+        // Don't reset form - wait for payment completion
       }
 
     } catch (error) {
