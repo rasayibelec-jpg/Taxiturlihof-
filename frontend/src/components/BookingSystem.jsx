@@ -169,9 +169,12 @@ const BookingSystem = () => {
           bookingId: response.data.booking_id
         });
 
+        setBookingId(response.data.booking_id);
+        setCurrentStep('payment');
+
         toast({
           title: "✅ Buchung erfolgreich!",
-          description: `Buchungsnummer: ${response.data.booking_id.slice(0, 8)}`,
+          description: `Buchungsnummer: ${response.data.booking_id.slice(0, 8)}. Bitte wählen Sie eine Zahlungsmethode.`,
         });
 
         // Show review request after 3 seconds
