@@ -10,7 +10,11 @@ import {
 import { useToast } from "../hooks/use-toast";
 import axios from "axios";
 
-const PaymentSuccess = ({ sessionId, bookingId }) => {
+const PaymentSuccess = () => {
+  const [searchParams] = useSearchParams();
+  const sessionId = searchParams.get('session_id');
+  const bookingId = searchParams.get('booking_id');
+  
   const [paymentStatus, setPaymentStatus] = useState('checking');
   const [paymentData, setPaymentData] = useState(null);
   const [bookingDetails, setBookingDetails] = useState(null);
