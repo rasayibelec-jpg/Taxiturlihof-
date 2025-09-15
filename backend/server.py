@@ -356,6 +356,142 @@ async def get_availability(date: str):
         logger.error(f"Failed to get availability: {str(e)}")
         raise HTTPException(status_code=500, detail="Fehler beim Abrufen der Verfügbarkeit")
 
+# Payment Endpoints
+@api_router.get("/payment-methods", response_model=List[PaymentMethod])
+async def get_payment_methods():
+    """Get available payment methods"""
+    try:
+        return await payment_service.get_available_payment_methods()
+    except Exception as e:
+        logger.error(f"Failed to get payment methods: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Abrufen der Zahlungsmethoden")
+
+@api_router.post("/payments/initiate", response_model=PaymentInitiateResponse)
+async def initiate_payment(request: PaymentInitiateRequest, http_request: Request):
+    """Initiate payment for a booking"""
+    try:
+        # Get booking details
+        booking_data = await db.bookings.find_one({"id": request.booking_id})
+        if not booking_data:
+            raise HTTPException(status_code=404, detail="Buchung nicht gefunden")
+        
+        booking = Booking(**booking_data)
+        
+        # Check if booking already has a payment
+        existing_transaction = await db.payment_transactions.find_one({
+            "booking_id": request.booking_id,
+            "payment_status": {"$in": ["completed", "processing"]}
+        })
+        
+        if existing_transaction:
+            raise HTTPException(
+                status_code=400, 
+                detail="Zahlung für diese Buchung bereits vorhanden oder in Bearbeitung"
+            )
+        
+        # Calculate payment amount (use estimated fare from booking)
+        payment_amount = float(booking.estimated_fare) if hasattr(booking, 'estimated_fare') and booking.estimated_fare else 50.0
+        
+        # Create payment transaction
+        payment_data = PaymentTransactionCreate(
+            booking_id=request.booking_id,
+            customer_email=booking.customer_email,
+            amount=payment_amount,
+            currency="CHF",
+            payment_method=request.payment_method,
+            metadata={
+                "pickup_location": booking.pickup_location,
+                "destination": booking.destination,
+                "vehicle_type": booking.vehicle_type
+            }
+        )
+        
+        transaction = await payment_service.create_payment_transaction(payment_data)
+        
+        # Initiate payment based on method
+        if request.payment_method in ["stripe", "twint"]:
+            return await payment_service.initiate_stripe_payment(transaction, http_request)
+        elif request.payment_method == "paypal":
+            return await payment_service.initiate_paypal_payment(transaction, http_request)
+        else:
+            raise HTTPException(status_code=400, detail="Unbekannte Zahlungsmethode")
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Payment initiation failed: {str(e)}")
+        raise HTTPException(
+            status_code=500, 
+            detail="Zahlung konnte nicht initialisiert werden"
+        )
+
+@api_router.get("/payments/status/{session_id}", response_model=PaymentStatusResponse)
+async def get_payment_status(session_id: str):
+    """Get payment status by session ID"""
+    try:
+        status = await payment_service.check_payment_status(session_id)
+        if not status:
+            raise HTTPException(status_code=404, detail="Zahlungsstatus nicht gefunden")
+        
+        return status
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to get payment status: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Abrufen des Zahlungsstatus")
+
+@api_router.post("/webhooks/stripe")
+async def stripe_webhook(request: Request):
+    """Handle Stripe webhook events"""
+    try:
+        from emergentintegrations.payments.stripe.checkout import StripeCheckout
+        
+        stripe_api_key = os.getenv('STRIPE_API_KEY')
+        if not stripe_api_key:
+            raise HTTPException(status_code=500, detail="Stripe API key not configured")
+        
+        # Get request body and headers
+        webhook_body = await request.body()
+        stripe_signature = request.headers.get("Stripe-Signature", "")
+        
+        # Initialize Stripe checkout
+        stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url="")
+        
+        # Handle webhook
+        webhook_response = await stripe_checkout.handle_webhook(webhook_body, stripe_signature)
+        
+        # Process webhook events
+        if webhook_response.event_type == "checkout.session.completed":
+            session_id = webhook_response.session_id
+            
+            # Find and update transaction
+            transaction_data = await db.payment_transactions.find_one({"session_id": session_id})
+            if transaction_data:
+                transaction = PaymentTransaction(**transaction_data)
+                
+                # Update payment status
+                await payment_service.update_payment_status(transaction.id, "completed")
+                
+                # Update booking status
+                await db.bookings.update_one(
+                    {"id": transaction.booking_id},
+                    {
+                        "$set": {
+                            "payment_status": "confirmed",
+                            "updated_at": datetime.now()
+                        }
+                    }
+                )
+                
+                logger.info(f"Payment completed for booking {transaction.booking_id}")
+        
+        return {"status": "success", "event_type": webhook_response.event_type}
+        
+    except Exception as e:
+        logger.error(f"Webhook processing failed: {str(e)}")
+        return {"status": "error", "message": str(e)}
+
 # Include the router in the main app
 app.include_router(api_router)
 
