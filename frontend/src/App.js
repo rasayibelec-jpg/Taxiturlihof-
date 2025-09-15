@@ -12,6 +12,7 @@ import PriceCalculatorPage from './components/PriceCalculatorPage';
 import BookingPage from './components/BookingPage';
 import FlottePage from './components/FlottePage';
 import PaymentSuccess from './components/PaymentSuccess';
+import FlughafenZurichTransferPage from './components/FlughafenZurichTransferPage';
 
 function App() {
   return (
