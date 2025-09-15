@@ -5,8 +5,61 @@ import { MapPin, Phone, Clock, Star, Car, Plane } from "lucide-react";
 import SEOHead from "./SEOHead";
 
 const FlughafentransferPage = () => {
+  // SEO-optimized structured data for Airport Transfer
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Flughafentransfer Zürich Basel",
+    "description": "Zuverlässiger Flughafentransfer von Luzern, Schwyz, Zug zu Flughafen Zürich und Basel",
+    "url": "https://www.taxiturlihof.ch/flughafentransfer",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Taxi Türlihof",
+      "telephone": "+41766113131"
+    },
+    "areaServed": [
+      {
+        "@type": "Airport",
+        "name": "Flughafen Zürich"
+      },
+      {
+        "@type": "Airport", 
+        "name": "EuroAirport Basel"
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Flughafentransfer Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Transfer Flughafen Zürich",
+            "description": "Zuverlässiger Transfer zum Flughafen Zürich von der Zentralschweiz"
+          }
+        },
+        {
+          "@type": "Offer", 
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Transfer Flughafen Basel",
+            "description": "Komfortabler Transfer zum EuroAirport Basel"
+          }
+        }
+      ]
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead 
+        title="Flughafentransfer Zürich & Basel | Taxi Türlihof | Ab Luzern"
+        description="Flughafentransfer Zürich & Basel ➤ Von Luzern, Schwyz, Zug ➤ Mercedes-Flotte ➤ 24/7 Service ☎️ 076 611 31 31 ➤ Pünktlich & zuverlässig ➤ Gepäckservice"
+        keywords="Flughafentransfer Zürich, Airport Transfer Basel, Luzern Flughafen Zürich, Taxi Flughafen Zürich, Schwyz Airport Basel, Zug Flughafentransfer, Mercedes Airport Transfer, 24h Flughafentaxi"
+        url="https://www.taxiturlihof.ch/flughafentransfer"
+        structuredData={structuredData}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
