@@ -18,26 +18,28 @@ import BlogLuzernSehenswuerdigkeiten from './components/BlogLuzernSehenswuerdigk
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/taxi-luzern" element={<TaxiLuzernPage />} />
-          <Route path="/taxi-schwyz" element={<TaxiSchwyzPage />} />
-          <Route path="/taxi-zug" element={<TaxiZugPage />} />
-          <Route path="/flughafentransfer" element={<FlughafentransferPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/preisrechner" element={<PriceCalculatorPage />} />
-          <Route path="/buchen" element={<BookingPage />} />
-          <Route path="/flotte" element={<FlottePage />} />
-          <Route path="/flughafen-zurich-transfer" element={<FlughafenZurichTransferPage />} />
-          <Route path="/blog/luzern-sehenswuerdigkeiten" element={<BlogLuzernSehenswuerdigkeiten />} />
-          <Route path="/booking/payment-success" element={<PaymentSuccess />} />
-          <Route path="/booking/payment-cancelled" element={<BookingPage />} />
-        </Routes>
-      </BrowserRouter>
-      <Toaster />
-    </div>
+    <HelmetProvider>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/taxi-luzern" element={<TaxiLuzernPage />} />
+            <Route path="/taxi-schwyz" element={<TaxiSchwyzPage />} />
+            <Route path="/taxi-zug" element={<TaxiZugPage />} />
+            <Route path="/flughafentransfer" element={<FlughafentransferPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/preisrechner" element={<PriceCalculatorPage />} />
+            <Route path="/buchen" element={<BookingPage />} />
+            <Route path="/flotte" element={<FlottePage />} />
+            <Route path="/flughafen-zurich-transfer" element={<FlughafenZurichTransferPage />} />
+            <Route path="/blog/luzern-sehenswuerdigkeiten" element={<BlogLuzernSehenswuerdigkeiten />} />
+            <Route path="/booking/payment-success" element={<PaymentSuccess />} />
+            <Route path="/booking/payment-cancelled" element={<BookingPage />} />
+          </Routes>
+        </BrowserRouter>
+        <Toaster />
+      </div>
+    </HelmetProvider>
   );
 }
 
