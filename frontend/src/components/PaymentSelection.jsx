@@ -164,6 +164,155 @@ const PaymentSelection = ({ bookingId, bookingDetails, onBack, onPaymentSuccess 
     );
   }
 
+  // Show QR Code view
+  if (showQRCode && selectedQRMethod) {
+    return (
+      <div className="space-y-6">
+        {/* QR Code Header */}
+        <Card className="shadow-lg border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl font-bold text-gray-900 flex items-center justify-center">
+              {getPaymentIcon(selectedQRMethod.id)}
+              <span className="ml-3">{selectedQRMethod.name} Zahlung</span>
+            </CardTitle>
+            <CardDescription>
+              Scannen Sie den QR Code mit Ihrer {selectedQRMethod.name} App
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h3 className="font-semibold text-gray-900">Zu zahlender Betrag:</h3>
+                  <p className="text-sm text-gray-600">
+                    {bookingDetails.pickup_location} → {bookingDetails.destination}
+                  </p>
+                </div>
+                <div className="text-right">
+                  <div className="text-2xl font-bold text-blue-600">
+                    CHF {bookingDetails.estimated_fare?.toFixed(2) || '50.00'}
+                  </div>
+                  <p className="text-xs text-gray-500">inkl. MwSt.</p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* QR Code Display */}
+        <Card className="shadow-lg">
+          <CardHeader className="text-center">
+            <CardTitle className="text-xl font-bold text-gray-900">
+              QR Code scannen
+            </CardTitle>
+            <CardDescription>
+              {selectedQRMethod.id === 'twint' ? 
+                'Öffnen Sie die TWINT App und scannen Sie den QR Code' :
+                'Öffnen Sie die PayPal App und scannen Sie den QR Code'
+              }
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {/* QR Code Image */}
+            <div className="flex justify-center">
+              <div className="p-4 bg-white rounded-lg shadow-sm border">
+                <img 
+                  src={QR_CODES[selectedQRMethod.id]} 
+                  alt={`${selectedQRMethod.name} QR Code`}
+                  className="w-64 h-64 object-contain"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'block';
+                  }}
+                />
+                <div className="w-64 h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500 hidden">
+                  QR Code nicht verfügbar
+                </div>
+              </div>
+            </div>
+
+            {/* Instructions */}
+            <div className="bg-gray-50 rounded-lg p-4">
+              <h4 className="font-semibold text-gray-900 mb-2">Anleitung:</h4>
+              <ol className="text-sm text-gray-700 space-y-1">
+                {selectedQRMethod.id === 'twint' ? (
+                  <>
+                    <li>1. Öffnen Sie die TWINT App auf Ihrem Smartphone</li>
+                    <li>2. Tippen Sie auf "QR scannen" oder das QR-Symbol</li>
+                    <li>3. Scannen Sie den obigen QR Code</li>
+                    <li>4. Bestätigen Sie die Zahlung in der App</li>
+                  </>
+                ) : (
+                  <>
+                    <li>1. Öffnen Sie die PayPal App auf Ihrem Smartphone</li>
+                    <li>2. Tippen Sie auf "QR Code scannen"</li>
+                    <li>3. Scannen Sie den obigen QR Code</li>
+                    <li>4. Bestätigen Sie die Zahlung in der App</li>
+                  </>
+                )}
+              </ol>
+            </div>
+
+            {/* Payment Status */}
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <div className="flex items-center space-x-3">
+                <Clock className="w-5 h-5 text-yellow-600" />
+                <div>
+                  <p className="font-semibold text-yellow-800">Warten auf Zahlung...</p>
+                  <p className="text-sm text-yellow-700">
+                    Nach der Zahlung werden Sie automatisch benachrichtigt.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Actions */}
+        <div className="flex space-x-4">
+          <Button
+            variant="outline"
+            onClick={handleBackFromQR}
+            className="flex-1"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Andere Zahlungsmethode
+          </Button>
+          
+          <Button
+            onClick={() => {
+              toast({
+                title: "Zahlung wird überprüft",
+                description: "Wir überprüfen den Status Ihrer Zahlung...",
+              });
+              // Here you could implement payment status checking
+            }}
+            className="flex-1 bg-green-600 hover:bg-green-700 text-white"
+          >
+            <CheckCircle className="w-4 h-4 mr-2" />
+            Zahlung überprüfen
+          </Button>
+        </div>
+
+        {/* Security Notice */}
+        <Card className="shadow-sm border-green-200 bg-green-50">
+          <CardContent className="p-4">
+            <div className="flex items-start space-x-3">
+              <Shield className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+              <div className="text-sm">
+                <p className="font-semibold text-green-800 mb-1">Sicher und verschlüsselt</p>
+                <p className="text-green-700">
+                  Ihre Zahlung wird direkt über {selectedQRMethod.name} abgewickelt. 
+                  Wir erhalten keine Ihrer Zahlungsdaten.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
