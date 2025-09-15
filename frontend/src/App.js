@@ -13,6 +13,7 @@ import BookingPage from './components/BookingPage';
 import FlottePage from './components/FlottePage';
 import PaymentSuccess from './components/PaymentSuccess';
 import FlughafenZurichTransferPage from './components/FlughafenZurichTransferPage';
+import BlogLuzernSehenswuerdigkeiten from './components/BlogLuzernSehenswuerdigkeiten';
 
 function App() {
   return (
