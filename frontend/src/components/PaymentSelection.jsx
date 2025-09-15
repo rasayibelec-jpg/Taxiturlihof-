@@ -59,9 +59,21 @@ const PaymentSelection = ({ bookingId, bookingDetails, onBack, onPaymentSuccess 
     loadPaymentMethods();
   }, [toast]);
 
-  // Handle payment method selection
-  const handleMethodSelect = (method) => {
-    setSelectedMethod(method);
+  // Handle QR code payment selection
+  const handleQRPayment = (method) => {
+    setSelectedQRMethod(method);
+    setShowQRCode(true);
+    
+    toast({
+      title: `${method.name} QR Code`,
+      description: "Scannen Sie den QR Code mit Ihrer App für die Zahlung.",
+    });
+  };
+
+  // Handle back from QR code view
+  const handleBackFromQR = () => {
+    setShowQRCode(false);
+    setSelectedQRMethod(null);
   };
 
   // Initiate payment
