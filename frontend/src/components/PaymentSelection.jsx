@@ -59,6 +59,11 @@ const PaymentSelection = ({ bookingId, bookingDetails, onBack, onPaymentSuccess 
     loadPaymentMethods();
   }, [toast]);
 
+  // Handle payment method selection
+  const handleMethodSelect = (method) => {
+    setSelectedMethod(method);
+  };
+
   // Handle QR code payment selection
   const handleQRPayment = (method) => {
     setSelectedQRMethod(method);
