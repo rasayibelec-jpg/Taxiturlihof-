@@ -207,6 +207,107 @@ const BookingSystem = () => {
     }
   }, [bookingData.pickupDate]);
 
+  // Handle payment completion
+  const handlePaymentSuccess = () => {
+    setCurrentStep('success');
+    
+    // Show review request after payment success
+    setTimeout(() => {
+      toast({
+        title: "⭐ Wie war unser Service?",
+        description: "Helfen Sie anderen Kunden mit einer ehrlichen Bewertung!",
+        action: (
+          <div className="flex gap-2">
+            <a 
+              href="https://google.com/search?q=Taxi+T%C3%BCrlihof&hl=de#lrd=0x0:0x0,3" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-yellow-600 hover:bg-yellow-700 text-white px-3 py-1 rounded text-sm transition-colors duration-200"
+            >
+              Bewerten
+            </a>
+          </div>
+        ),
+      });
+    }, 3000);
+
+    // Reset form
+    setTimeout(() => {
+      setBookingData({
+        customerName: "",
+        customerEmail: "",
+        customerPhone: "",
+        pickupLocation: "",
+        destination: "",
+        additionalStops: [],
+        bookingType: "scheduled",
+        pickupDate: "",
+        pickupTime: "",
+        passengerCount: 1,
+        vehicleType: "standard",
+        specialRequests: ""
+      });
+      setEstimatedPrice(null);
+      setShowEstimate(false);
+      setCurrentStep('booking');
+      setBookingId(null);
+      setSubmitStatus(null);
+    }, 10000); // Reset after 10 seconds
+  };
+
+  const handleBackToBooking = () => {
+    setCurrentStep('booking');
+  };
+
+  // Show payment selection step
+  if (currentStep === 'payment' && bookingId) {
+    return (
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <PaymentSelection 
+            bookingId={bookingId}
+            bookingDetails={bookingData}
+            onBack={handleBackToBooking}
+            onPaymentSuccess={handlePaymentSuccess}
+          />
+        </div>
+      </section>
+    );
+  }
+
+  // Show success step
+  if (currentStep === 'success') {
+    return (
+      <section className="py-20 bg-gradient-to-br from-green-50 to-emerald-50 min-h-screen">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="bg-white rounded-lg shadow-xl p-8">
+            <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <CheckCircle className="w-10 h-10 text-white" />
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Buchung und Zahlung erfolgreich!
+            </h2>
+            <p className="text-xl text-gray-600 mb-8">
+              Ihre Taxi-Buchung wurde bestätigt und bezahlt. Sie erhalten eine Bestätigungs-E-Mail.
+            </p>
+            <Button 
+              onClick={() => {
+                setCurrentStep('booking');
+                setBookingId(null);
+                setSubmitStatus(null);
+              }}
+              className="bg-blue-600 hover:bg-blue-700"
+            >
+              Neue Buchung erstellen
+            </Button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Main booking form
+
   return (
     <section id="booking" className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
