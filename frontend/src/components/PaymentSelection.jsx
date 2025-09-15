@@ -358,39 +358,56 @@ const PaymentSelection = ({ bookingId, bookingDetails, onBack, onPaymentSuccess 
         </CardHeader>
         <CardContent className="space-y-4">
           {paymentMethods.map((method) => (
-            <div
-              key={method.id}
-              className={`border rounded-lg p-4 cursor-pointer transition-all duration-200 ${
-                selectedMethod?.id === method.id
-                  ? 'border-blue-500 bg-blue-50 shadow-md'
-                  : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
-              }`}
-              onClick={() => handleMethodSelect(method)}
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-4">
-                  <div className="flex-shrink-0">
-                    {getPaymentIcon(method.id)}
+            <div key={method.id} className="space-y-2">
+              {/* Main payment method card */}
+              <div
+                className={`border rounded-lg p-4 cursor-pointer transition-all duration-200 ${
+                  selectedMethod?.id === method.id
+                    ? 'border-blue-500 bg-blue-50 shadow-md'
+                    : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
+                }`}
+                onClick={() => handleMethodSelect(method)}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                      {getPaymentIcon(method.id)}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 flex items-center">
+                        {method.name}
+                        {method.id === 'twint' && (
+                          <Badge variant="secondary" className="ml-2 text-xs">
+                            🇨🇭 Swiss
+                          </Badge>
+                        )}
+                      </h3>
+                      <p className="text-sm text-gray-600">{method.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 flex items-center">
-                      {method.name}
-                      {method.id === 'twint' && (
-                        <Badge variant="secondary" className="ml-2 text-xs">
-                          🇨🇭 Swiss
-                        </Badge>
-                      )}
-                    </h3>
-                    <p className="text-sm text-gray-600">{method.description}</p>
+                  <div className="flex items-center space-x-2">
+                    <Badge variant="outline">{method.currency}</Badge>
+                    {selectedMethod?.id === method.id && (
+                      <CheckCircle className="w-5 h-5 text-blue-600" />
+                    )}
                   </div>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Badge variant="outline">{method.currency}</Badge>
-                  {selectedMethod?.id === method.id && (
-                    <CheckCircle className="w-5 h-5 text-blue-600" />
-                  )}
                 </div>
               </div>
+
+              {/* QR Code option for TWINT and PayPal */}
+              {(method.id === 'twint' || method.id === 'paypal') && (
+                <div className="ml-6">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleQRPayment(method)}
+                    className="text-xs border-dashed hover:border-solid"
+                  >
+                    <Smartphone className="w-3 h-3 mr-2" />
+                    Mit QR Code bezahlen
+                  </Button>
+                </div>
+              )}
             </div>
           ))}
         </CardContent>
