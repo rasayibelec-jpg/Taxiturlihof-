@@ -15,7 +15,15 @@ const PaymentSelection = ({ bookingId, bookingDetails, onBack, onPaymentSuccess 
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentUrl, setPaymentUrl] = useState(null);
   const [paymentStatus, setPaymentStatus] = useState('pending');
+  const [showQRCode, setShowQRCode] = useState(false);
+  const [selectedQRMethod, setSelectedQRMethod] = useState(null);
   const { toast } = useToast();
+
+  // QR Code URLs (from user uploaded artifacts)
+  const QR_CODES = {
+    'twint': 'https://customer-assets.emergentagent.com/job_taxiturli-pay/artifacts/uoe4ro57_Screenshot_20250915_091301.jpg',
+    'paypal': 'https://customer-assets.emergentagent.com/job_taxiturli-pay/artifacts/pdktwtpq_pp_my_qrcode_1757914800637.jpg'
+  };
 
   // Payment method icons
   const getPaymentIcon = (methodId) => {
