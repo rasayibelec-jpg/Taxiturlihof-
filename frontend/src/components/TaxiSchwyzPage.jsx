@@ -5,8 +5,44 @@ import { MapPin, Phone, Clock, Star, Car, Mountain } from "lucide-react";
 import SEOHead from "./SEOHead";
 
 const TaxiSchwyzPage = () => {
+  // SEO-optimized structured data for Taxi Schwyz
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Taxi Türlihof Schwyz",
+    "description": "24/7 Taxi-Service in Schwyz und Brunnen. Sicher durch die Berglandschaft mit Mercedes-Flotte.",
+    "url": "https://www.taxiturlihof.ch/taxi-schwyz",
+    "telephone": "+41766113131",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Schwyz",
+      "addressCountry": "CH"
+    },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Schwyz"
+      },
+      {
+        "@type": "City",
+        "name": "Brunnen"
+      },
+      {
+        "@type": "City",
+        "name": "Stoos"
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead 
+        title="Taxi Schwyz & Brunnen | 24/7 Berglandschaft Taxi | Taxi Türlihof"
+        description="Taxi Schwyz ➤ Mercedes-Flotte für Bergstraßen ➤ 24/7 Service ☎️ 076 611 31 31 ➤ Schwyz, Brunnen, Stoos, Muotathal ➤ Sicher durch die Mythenregion"
+        keywords="Taxi Schwyz, Taxi Brunnen, Taxi Stoos, Schwyz Bahnhof Taxi, Brunnen Bahnhof Taxi, Berg Taxi Schwyz, Mythenregion Taxi, Muotathal Taxi, Gersau Taxi, Morschach Taxi"
+        url="https://www.taxiturlihof.ch/taxi-schwyz"
+        structuredData={structuredData}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-green-600 to-blue-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
