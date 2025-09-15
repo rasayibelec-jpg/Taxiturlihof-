@@ -4043,6 +4043,12 @@ class BackendTester:
         if booking_tests:
             print(f"   🚖 Online Booking System: {len(booking_passed)}/{len(booking_tests)} tests passed")
         
+        # Check for payment system results
+        payment_tests = [r for r in self.results if "Payment" in r["test"] or "Stripe" in r["test"]]
+        payment_passed = [r for r in payment_tests if r["success"]]
+        if payment_tests:
+            print(f"   💳 Payment System Integration: {len(payment_passed)}/{len(payment_tests)} tests passed")
+        
         # Check for email-related failures
         email_config_failed = any("Email Service Configuration" in r["test"] and not r["success"] for r in self.results)
         if email_config_failed:
