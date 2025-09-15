@@ -33,6 +33,8 @@ const BookingSystem = () => {
   const [submitStatus, setSubmitStatus] = useState(null);
   const [estimatedPrice, setEstimatedPrice] = useState(null);
   const [showEstimate, setShowEstimate] = useState(false);
+  const [currentStep, setCurrentStep] = useState('booking'); // booking, payment
+  const [bookingId, setBookingId] = useState(null);
   const { toast } = useToast();
 
   const vehicleTypes = {
