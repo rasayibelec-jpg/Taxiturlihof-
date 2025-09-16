@@ -239,6 +239,32 @@ const Header = () => {
                 </Link>
               </div>
               
+              {/* Mobile Blog Links */}
+              <div className="pl-4 space-y-2">
+                <p className="text-sm font-semibold text-gray-900">Blog & Tipps:</p>
+                <Link
+                  to="/blog/luzern-sehenswuerdigkeiten"
+                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  • 🏰 Luzern Sehenswürdigkeiten
+                </Link>
+                <Link
+                  to="/blog"
+                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  • 📖 Alle Blog-Artikel
+                </Link>
+                <Link
+                  to="/faq"
+                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  • ❓ Häufige Fragen
+                </Link>
+              </div>
+              
               <button
                 onClick={() => scrollToSection("services")}
                 className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
