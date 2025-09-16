@@ -91,6 +91,20 @@ const Header = () => {
                   >
                     Flughafentransfer
                   </Link>
+                  <Link
+                    to="/flughafen-zurich-transfer"
+                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
+                    onClick={() => setIsStadteDropdownOpen(false)}
+                  >
+                    ✈️ Flughafen Zürich
+                  </Link>
+                  <Link
+                    to="/flotte"
+                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
+                    onClick={() => setIsStadteDropdownOpen(false)}
+                  >
+                    Unsere Flotte
+                  </Link>
                 </div>
               )}
             </div>
