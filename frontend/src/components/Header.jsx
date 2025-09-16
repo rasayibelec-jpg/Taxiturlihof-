@@ -223,6 +223,20 @@ const Header = () => {
                 >
                   • Flughafentransfer
                 </Link>
+                <Link
+                  to="/flughafen-zurich-transfer"
+                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  • ✈️ Flughafen Zürich
+                </Link>
+                <Link
+                  to="/flotte"
+                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  • Unsere Flotte
+                </Link>
               </div>
               
               <button
