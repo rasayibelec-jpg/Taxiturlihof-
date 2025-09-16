@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStadteDropdownOpen, setIsStadteDropdownOpen] = useState(false);
+  const [isBlogDropdownOpen, setIsBlogDropdownOpen] = useState(false);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
