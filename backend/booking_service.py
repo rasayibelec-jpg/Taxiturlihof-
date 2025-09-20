@@ -270,7 +270,6 @@ class BookingService:
                         <p><strong>Geschätzte Fahrzeit:</strong> {booking.estimated_duration_minutes} Minuten</p>
                         <p><strong>Grundtarif:</strong> CHF {booking.base_fare}</p>
                         <p><strong>Distanzkosten:</strong> CHF {booking.distance_fare}</p>
-                        <p><strong>Buchungsgebühr:</strong> CHF {booking.booking_fee}</p>
                         <hr style="margin: 10px 0;">
                         <p style="font-size: 18px;"><strong>Gesamtkosten:</strong> CHF {booking.total_fare}</p>
                     </div>
