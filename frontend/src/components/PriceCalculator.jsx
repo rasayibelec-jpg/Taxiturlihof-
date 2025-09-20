@@ -249,6 +249,22 @@ const PriceCalculator = () => {
                         Intelligente Schätzung
                       </Badge>
                     </div>
+                    
+                    {/* Google Maps Route Button */}
+                    <div className="pt-2">
+                      <Button
+                        onClick={() => {
+                          const mapsUrl = `https://www.google.com/maps/dir/${encodeURIComponent(calculatedPrice.origin)}/${encodeURIComponent(calculatedPrice.destination)}`;
+                          window.open(mapsUrl, '_blank');
+                        }}
+                        variant="outline"
+                        size="sm"
+                        className="w-full"
+                      >
+                        <Route className="w-4 h-4 mr-2" />
+                        Route in Google Maps anzeigen
+                      </Button>
+                    </div>
                   </div>
 
                   <Button 
