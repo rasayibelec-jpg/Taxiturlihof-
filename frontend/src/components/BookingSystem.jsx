@@ -39,8 +39,8 @@ const BookingSystem = () => {
 
   const vehicleTypes = {
     standard: { name: "Standard", description: "Komfortables Fahrzeug für bis zu 4 Personen", multiplier: 1.0 },
-    premium: { name: "Premium", description: "Luxusfahrzeug mit erweiterten Annehmlichkeiten", multiplier: 1.3 },
-    van: { name: "Van", description: "Großes Fahrzeug für bis zu 8 Personen oder viel Gepäck", multiplier: 1.5 }
+    premium: { name: "Premium", description: "Luxusfahrzeug mit erweiterten Annehmlichkeiten", multiplier: 1.2 },
+    van: { name: "Van", description: "Großes Fahrzeug für bis zu 8 Personen oder viel Gepäck", multiplier: 1.25 }
   };
 
   // Get today's date for min date restriction
