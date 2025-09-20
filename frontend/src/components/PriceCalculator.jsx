@@ -26,8 +26,33 @@ const PriceCalculator = () => {
       return;
     }
 
-    // Direct phone call instead of calculation
-    window.location.href = 'tel:076 611 31 31';
+    setIsCalculating(true);
+    setCalculationStatus({ type: "", message: "" });
+
+    try {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const response = await axios.post(`${backendUrl}/api/calculate-price`, {
+        origin: startAddress.trim(),
+        destination: endAddress.trim(),
+        departure_time: new Date().toISOString()
+      });
+
+      if (response.data) {
+        setCalculatedPrice(response.data);
+        setCalculationStatus({
+          type: "success",
+          message: `Geschätzte Kosten: CHF ${response.data.total_fare}`,
+        });
+      }
+    } catch (error) {
+      console.error('Price calculation error:', error);
+      setCalculationStatus({
+        type: "error",
+        message: error.response?.data?.detail || "Fehler bei der Preisberechnung. Bitte versuchen Sie es erneut.",
+      });
+    } finally {
+      setIsCalculating(false);
+    }
   };
 
   const handleBookNow = () => {
