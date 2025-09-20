@@ -142,8 +142,9 @@ class BookingService:
             # Simple pricing: Base + Distance (no time-based surcharges)
             total_base = base_fare + distance_fare
             
-            booking_fee = 5.0  # CHF 5 booking fee
-            total_fare = total_base + booking_fee
+            # No booking fee (removed per client request)
+            booking_fee = 0.0  # CHF 0 booking fee
+            total_fare = total_base  # No additional booking fee
             
             # Create booking object
             booking = Booking(
