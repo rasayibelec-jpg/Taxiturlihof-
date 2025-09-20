@@ -85,8 +85,8 @@ class BookingService:
     def __init__(self):
         self.vehicle_multipliers = {
             VehicleType.STANDARD: 1.0,
-            VehicleType.PREMIUM: 1.3,    # 30% Aufschlag
-            VehicleType.VAN: 1.5         # 50% Aufschlag
+            VehicleType.PREMIUM: 1.2,    # 20% Aufschlag (reduziert)
+            VehicleType.VAN: 1.25        # 25% Aufschlag (reduziert)
         }
         
         self.base_fares = {
