@@ -266,7 +266,10 @@ const BookingSystem = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <PaymentSelection 
             bookingId={bookingId}
-            bookingDetails={bookingData}
+            bookingDetails={{
+              ...bookingData,
+              estimated_fare: estimatedPrice?.vehicle_adjusted_fare || estimatedPrice?.total_fare || 0
+            }}
             onBack={handleBackToBooking}
             onPaymentSuccess={handlePaymentSuccess}
           />
