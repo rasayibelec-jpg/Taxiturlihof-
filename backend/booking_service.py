@@ -98,8 +98,8 @@ class BookingService:
         # Distance rates per km for different vehicle types
         self.distance_rates = {
             VehicleType.STANDARD: 4.20,
-            VehicleType.PREMIUM: 5.00,
-            VehicleType.VAN: 5.00
+            VehicleType.PREMIUM: 4.20,   # Gleicher Rate für alle
+            VehicleType.VAN: 4.20        # Gleicher Rate, nur Multiplikator unterschiedlich
         }
 
     async def create_booking(self, booking_request: BookingRequest) -> BookingResponse:
