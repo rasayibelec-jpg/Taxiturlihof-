@@ -241,8 +241,21 @@ const FlughafenZurichTransferPage = () => {
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-blue-600">CHF {route.price}</div>
-                        <div className="text-xs text-gray-500">Festpreis</div>
+                        <div className="text-2xl font-bold text-blue-600">
+                          {route.price === "auf Anfrage" ? (
+                            <a 
+                              href="tel:076 611 31 31"
+                              className="text-blue-600 hover:text-blue-700 underline cursor-pointer"
+                            >
+                              Preis auf Anfrage
+                            </a>
+                          ) : (
+                            `CHF ${route.price}`
+                          )}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          {route.price === "auf Anfrage" ? "☎️ 076 611 31 31" : "Festpreis"}
+                        </div>
                       </div>
                     </div>
                   ))}
