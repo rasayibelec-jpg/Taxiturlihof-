@@ -315,7 +315,6 @@ Preisübersicht:
 Geschätzte Distanz: {booking.estimated_distance_km} km
 Grundtarif: CHF {booking.base_fare}
 Distanzkosten: CHF {booking.distance_fare}
-Buchungsgebühr: CHF {booking.booking_fee}
 Gesamtkosten: CHF {booking.total_fare}
 
 Wichtige Hinweise:
