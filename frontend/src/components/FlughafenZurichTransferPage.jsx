@@ -63,12 +63,12 @@ const FlughafenZurichTransferPage = () => {
   };
 
   const popularRoutes = [
-    { from: "Flughafen Zürich", to: "Luzern Bahnhof", time: "55 Min", price: "250", popular: true },
-    { from: "Flughafen Zürich", to: "Luzern Altstadt", time: "60 Min", price: "260", popular: true },
-    { from: "Flughafen Zürich", to: "Schwyz", time: "75 Min", price: "280", popular: false },
-    { from: "Flughafen Zürich", to: "Zug", time: "45 Min", price: "220", popular: true },
-    { from: "Flughafen Zürich", to: "Weggis", time: "65 Min", price: "270", popular: false },
-    { from: "Flughafen Zürich", to: "Brunnen", time: "80 Min", price: "290", popular: false }
+    { from: "Flughafen Zürich", to: "Luzern Bahnhof", time: "55 Min", price: "auf Anfrage", popular: true },
+    { from: "Flughafen Zürich", to: "Luzern Altstadt", time: "60 Min", price: "auf Anfrage", popular: true },
+    { from: "Flughafen Zürich", to: "Schwyz", time: "75 Min", price: "auf Anfrage", popular: false },
+    { from: "Flughafen Zürich", to: "Zug", time: "45 Min", price: "auf Anfrage", popular: true },
+    { from: "Flughafen Zürich", to: "Weggis", time: "65 Min", price: "auf Anfrage", popular: false },
+    { from: "Flughafen Zürich", to: "Brunnen", time: "80 Min", price: "auf Anfrage", popular: false }
   ];
 
   return (
