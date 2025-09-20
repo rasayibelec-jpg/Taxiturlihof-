@@ -11,19 +11,22 @@ const CompactServices = () => {
       icon: <MapPin className="w-8 h-8 text-yellow-600" />,
       title: "Lokale Fahrten",
       description: "Stadtfahrten in Luzern, Schwyz, Zug",
-      shortDesc: "Ab CHF 6.60 Grundtaxe"
+      shortDesc: "Ab CHF 6.60 Grundtaxe",
+      backgroundImage: "https://images.unsplash.com/photo-1628947733273-cdae71c9bfd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
     },
     {
       icon: <Plane className="w-8 h-8 text-blue-600" />,
       title: "Flughafentransfer", 
       description: "Zürich & Basel Airport",
-      shortDesc: "Preis auf Anfrage"
+      shortDesc: "Preis auf Anfrage",
+      backgroundImage: "https://images.unsplash.com/photo-1530521954074-e64f6810b32d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
     },
     {
       icon: <Briefcase className="w-8 h-8 text-green-600" />,
       title: "Geschäftsfahrten",
       description: "Termine, Meetings, Events",
-      shortDesc: "Zuverlässig & diskret"
+      shortDesc: "Zuverlässig & diskret",
+      backgroundImage: "https://images.unsplash.com/photo-1647281194826-11459827b123?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
     }
   ];
 
