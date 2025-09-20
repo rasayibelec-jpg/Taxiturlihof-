@@ -46,23 +46,37 @@ const CompactServices = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {mainServices.map((service, index) => (
-            <Card key={index} className="text-center hover:shadow-lg transition-shadow duration-300 border-2 hover:border-yellow-200">
-              <CardHeader className="pb-4">
-                <div className="bg-gray-50 p-4 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                  {service.icon}
-                </div>
-                <CardTitle className="text-xl font-bold text-gray-900">
-                  {service.title}
-                </CardTitle>
-                <p className="text-gray-600">{service.description}</p>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-yellow-50 px-4 py-2 rounded-lg">
-                  <span className="text-sm font-medium text-yellow-800">
-                    {service.shortDesc}
-                  </span>
-                </div>
-              </CardContent>
+            <Card 
+              key={index} 
+              className="text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-yellow-200 overflow-hidden relative group"
+            >
+              {/* Background Image with Overlay */}
+              <div 
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: `url(${service.backgroundImage})` }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10 group-hover:from-black/60 group-hover:via-black/20 group-hover:to-black/5 transition-all duration-300"></div>
+              </div>
+              
+              {/* Content Overlay */}
+              <div className="relative z-10">
+                <CardHeader className="pb-4">
+                  <div className="bg-white/90 backdrop-blur-sm p-4 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:bg-white/95 transition-all duration-300">
+                    {service.icon}
+                  </div>
+                  <CardTitle className="text-xl font-bold text-white drop-shadow-lg">
+                    {service.title}
+                  </CardTitle>
+                  <p className="text-white/90 drop-shadow-md font-medium">{service.description}</p>
+                </CardHeader>
+                <CardContent>
+                  <div className="bg-yellow-300/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg">
+                    <span className="text-sm font-bold text-black drop-shadow-sm">
+                      {service.shortDesc}
+                    </span>
+                  </div>
+                </CardContent>
+              </div>
             </Card>
           ))}
         </div>
