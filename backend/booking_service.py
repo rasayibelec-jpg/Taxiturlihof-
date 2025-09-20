@@ -49,7 +49,7 @@ class Booking(BaseModel):
     estimated_duration_minutes: int
     base_fare: float
     distance_fare: float
-    booking_fee: float = Field(default=5.0)  # CHF 5 Buchungsgebühr
+    booking_fee: float = Field(default=0.0)  # No booking fee (removed)
     total_fare: float
     
     # Status and Metadata
