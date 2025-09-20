@@ -389,8 +389,28 @@ async def initiate_payment(request: PaymentInitiateRequest, http_request: Reques
                 detail="Zahlung für diese Buchung bereits vorhanden oder in Bearbeitung"
             )
         
-        # Calculate payment amount (use estimated fare from booking)
-        payment_amount = float(booking.estimated_fare) if hasattr(booking, 'estimated_fare') and booking.estimated_fare else 50.0
+        # Calculate payment amount dynamically based on booking details
+        if hasattr(booking, 'estimated_fare') and booking.estimated_fare:
+            payment_amount = float(booking.estimated_fare)
+        else:
+            # Calculate price using same logic as price calculator
+            distance_result = await google_maps_service.calculate_real_distance(
+                origin=booking.pickup_location,
+                destination=booking.destination
+            )
+            
+            # Apply vehicle multiplier from booking service
+            from booking_service import BookingService
+            booking_service_instance = BookingService()
+            
+            base_fare = 6.60
+            distance_rate = 4.20
+            distance_km = distance_result['distance_km']
+            base_total = base_fare + (distance_km * distance_rate)
+            
+            # Apply vehicle type multiplier
+            vehicle_multiplier = booking_service_instance.vehicle_multipliers.get(booking.vehicle_type, 1.0)
+            payment_amount = base_total * vehicle_multiplier
         
         # Create payment transaction
         payment_data = PaymentTransactionCreate(
