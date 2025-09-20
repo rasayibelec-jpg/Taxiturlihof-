@@ -659,6 +659,22 @@ const BookingSystem = () => {
                   <p className="text-xs text-gray-500">
                     * Preis kann je nach Verkehr und Tageszeit variieren
                   </p>
+                  
+                  {/* Google Maps Route Button */}
+                  <div className="pt-2">
+                    <Button
+                      onClick={() => {
+                        const mapsUrl = `https://www.google.com/maps/dir/${encodeURIComponent(bookingData.pickupLocation)}/${encodeURIComponent(bookingData.destination)}`;
+                        window.open(mapsUrl, '_blank');
+                      }}
+                      variant="outline"
+                      size="sm"
+                      className="w-full"
+                    >
+                      <ArrowRight className="w-4 h-4 mr-2" />
+                      Route in Google Maps anzeigen
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             )}
