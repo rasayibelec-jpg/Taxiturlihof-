@@ -19,56 +19,15 @@ const PriceCalculator = () => {
   const handleCalculatePrice = async () => {
     if (!startAddress.trim() || !endAddress.trim()) {
       toast({
-        title: "Fehlende Eingaben",
+        title: "Unvollständige Eingaben",
         description: "Bitte geben Sie sowohl Start- als auch Zieladresse ein.",
         variant: "destructive"
       });
       return;
     }
 
-    setIsCalculating(true);
-    setCalculationStatus(null);
-
-    try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
-      
-      const response = await axios.post(`${backendUrl}/api/calculate-price`, {
-        origin: startAddress,
-        destination: endAddress,
-        departure_time: new Date().toISOString()
-      });
-
-      if (response.data) {
-        setCalculatedPrice(response.data);
-        setCalculationStatus({
-          type: 'success',
-          message: 'Preis erfolgreich berechnet!'
-        });
-        
-        toast({
-          title: "✅ Preis berechnet!",
-          description: `Geschätzte Kosten: CHF ${response.data.total_fare}`,
-        });
-      }
-      
-    } catch (error) {
-      const errorMessage = error.response?.data?.detail || 
-                          error.message || 
-                          'Fehler bei der Preisberechnung. Bitte versuchen Sie es erneut.';
-      
-      setCalculationStatus({
-        type: 'error',
-        message: errorMessage
-      });
-      
-      toast({
-        title: "❌ Berechnungsfehler",
-        description: errorMessage,
-        variant: "destructive"
-      });
-    } finally {
-      setIsCalculating(false);
-    }
+    // Direct phone call instead of calculation
+    window.location.href = 'tel:076 611 31 31';
   };
 
   const handleBookNow = () => {
