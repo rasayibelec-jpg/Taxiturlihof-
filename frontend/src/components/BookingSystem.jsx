@@ -112,7 +112,7 @@ const BookingSystem = () => {
       if (response.data) {
         const basePrice = response.data.total_fare;
         const vehicleMultiplier = vehicleTypes[bookingData.vehicleType].multiplier;
-        const estimatedTotal = basePrice * vehicleMultiplier + 5; // +5 CHF booking fee
+        const estimatedTotal = basePrice * vehicleMultiplier; // Removed +5 CHF booking fee
 
         setEstimatedPrice({
           ...response.data,
