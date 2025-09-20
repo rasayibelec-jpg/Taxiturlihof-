@@ -579,17 +579,29 @@ const BookingSystem = () => {
                     />
                   </div>
 
-                  {/* Price Estimate Button */}
+                  {/* Price Estimate Buttons */}
                   <div className="border-t pt-6">
-                    <Button
-                      type="button"
-                      onClick={calculateEstimate}
-                      variant="outline"
-                      disabled={!bookingData.pickupLocation || !bookingData.destination}
-                      className="w-full mb-4"
-                    >
-                      Preis schätzen
-                    </Button>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <Button
+                        type="button"
+                        onClick={calculateEstimate}
+                        variant="outline"
+                        disabled={!bookingData.pickupLocation || !bookingData.destination}
+                        className="w-full"
+                      >
+                        Preis schätzen
+                      </Button>
+                      
+                      <Button
+                        type="button"
+                        onClick={() => window.location.href = 'tel:076 611 31 31'}
+                        variant="outline"
+                        className="w-full flex items-center justify-center space-x-2"
+                      >
+                        <Phone className="w-4 h-4" />
+                        <span>Preis Anfrage</span>
+                      </Button>
+                    </div>
                   </div>
 
                   {/* Submit Button */}
