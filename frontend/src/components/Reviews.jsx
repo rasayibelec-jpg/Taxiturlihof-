@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
-import { Star, Quote, MapPin } from "lucide-react";
+import { Star, Quote, MapPin, Phone, Mail } from "lucide-react";
 import { contactInfo } from "../data/mockData";
 
 const Reviews = () => {
