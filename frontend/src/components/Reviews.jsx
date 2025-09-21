@@ -125,7 +125,7 @@ const Reviews = () => {
           ))}
         </div>
 
-        {/* Call-to-Action für mehr Bewertungen mit neuem QR-Code */}
+        {/* Call-to-Action für mehr Bewertungen mit funktionierendem QR-Code */}
         <div className="text-center mt-16">
           <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-8 border border-yellow-200">
             <h4 className="text-2xl font-bold text-gray-900 mb-2">
@@ -143,24 +143,64 @@ const Reviews = () => {
               />
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
               <p className="text-sm text-gray-600">
                 📱 QR-Code scannen für schnelle Bewertung
               </p>
               <div className="w-px h-6 bg-gray-300 hidden sm:block"></div>
-              <a
-                href="https://www.google.com/search?q=Taxi+Türlihof+Arth+Bewertungen"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
-              >
-                <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
-                  alt="Google"
-                  className="w-5 h-5 mr-2"
-                />
-                Alle Bewertungen ansehen
-              </a>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href="https://www.google.com/search?q=Taxi+T%C3%BCrlihof+Arth&rlz=1C1CHBF_deDE1016DE1016&oq=Taxi+T%C3%BCrlihof+Arth&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQRRg60gEIMTcyN2owajGoAgCwAgA&sourceid=chrome&ie=UTF-8#lrd=0x479ada6463b8b5b5:0x6b1d0c3f8a6b4f8c,3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
+                >
+                  <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                    alt="Google"
+                    className="w-5 h-5 mr-2"
+                  />
+                  Google Bewertung abgeben
+                </a>
+                <a
+                  href="https://www.google.com/search?q=Taxi+Türlihof+Arth+Bewertungen"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
+                >
+                  <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                    alt="Google"
+                    className="w-5 h-5 mr-2"
+                  />
+                  Alle Bewertungen ansehen
+                </a>
+              </div>
+            </div>
+            
+            {/* Alternative Bewertungsplattformen */}
+            <div className="border-t pt-6">
+              <p className="text-sm text-gray-600 mb-3">Bewerten Sie uns auch auf:</p>
+              <div className="flex flex-wrap gap-3 justify-center">
+                <a
+                  href="https://local.ch/de/d/Arth/6415/Taxi/Taxi-T%C3%BCrlihof-081888943"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                >
+                  <span className="text-yellow-600 mr-2">⭐</span>
+                  local.ch
+                </a>
+                <a
+                  href="https://search.ch"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                >
+                  <span className="text-yellow-600 mr-2">⭐</span>
+                  search.ch
+                </a>
+              </div>
             </div>
           </div>
         </div>
