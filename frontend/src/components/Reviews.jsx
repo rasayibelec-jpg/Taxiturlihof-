@@ -125,7 +125,7 @@ const Reviews = () => {
           ))}
         </div>
 
-        {/* Call-to-Action für mehr Bewertungen mit funktionierendem Google-Link */}
+        {/* Call-to-Action für mehr Bewertungen - blockierung-resistente Lösung */}
         <div className="text-center mt-16">
           <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-8 border border-yellow-200">
             <h4 className="text-2xl font-bold text-gray-900 mb-2">
@@ -143,70 +143,85 @@ const Reviews = () => {
               />
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-              <p className="text-sm text-gray-600">
-                📱 QR-Code scannen für schnelle Bewertung
-              </p>
-              <div className="w-px h-6 bg-gray-300 hidden sm:block"></div>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <a
-                  href="https://g.page/r/Cd4uwDyM0UStEAE/review"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
-                >
-                  <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
-                    alt="Google"
-                    className="w-5 h-5 mr-2"
-                  />
-                  Google Bewertung abgeben
-                </a>
-                <a
-                  href="tel:076 611 31 31"
-                  className="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
-                >
-                  <Phone className="w-5 h-5 mr-2" />
-                  Direkt anrufen
-                </a>
+            {/* Schritt-für-Schritt Bewertungsanleitung */}
+            <div className="bg-blue-50 rounded-xl p-6 mb-6 border border-blue-200">
+              <h5 className="font-bold text-blue-900 mb-4 text-lg">📱 So bewerten Sie uns - 3 einfache Schritte:</h5>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                <div className="bg-white rounded-lg p-4 shadow-sm">
+                  <div className="text-2xl font-bold text-blue-600 mb-2">1</div>
+                  <h6 className="font-semibold text-gray-900 mb-2">Google öffnen</h6>
+                  <p className="text-sm text-gray-700">Öffnen Sie Google Maps oder google.com in Ihrem Browser</p>
+                </div>
+                <div className="bg-white rounded-lg p-4 shadow-sm">
+                  <div className="text-2xl font-bold text-blue-600 mb-2">2</div>
+                  <h6 className="font-semibold text-gray-900 mb-2">Suchen</h6>
+                  <p className="text-sm text-gray-700">Suchen Sie nach: <strong>"Taxi Türlihof Arth"</strong></p>
+                </div>
+                <div className="bg-white rounded-lg p-4 shadow-sm">
+                  <div className="text-2xl font-bold text-blue-600 mb-2">3</div>
+                  <h6 className="font-semibold text-gray-900 mb-2">Bewerten</h6>
+                  <p className="text-sm text-gray-700">Klicken Sie auf "Bewertung schreiben" und wählen Sterne</p>
+                </div>
               </div>
             </div>
             
-            {/* Erfolgreiche Google Bewertung Hinweis */}
-            <div className="bg-green-50 rounded-lg p-4 mb-6 border border-green-200">
-              <p className="text-green-800 font-semibold text-sm">
-                ✅ Direkter Google-Link - funktioniert ohne Umwege!
-              </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText('Taxi Türlihof Arth').catch(() => {});
+                  alert('✅ Suchtext kopiert!\n\nÖffnen Sie jetzt Google Maps oder Google.com und fügen Sie den kopierten Text ein, um uns zu bewerten.\n\nSuchtext: "Taxi Türlihof Arth"');
+                }}
+                className="inline-flex items-center px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
+              >
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                  alt="Google"
+                  className="w-5 h-5 mr-2"
+                />
+                Suchtext kopieren & Google öffnen
+              </button>
+              <a
+                href="tel:076 611 31 31"
+                className="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
+              >
+                <Phone className="w-5 h-5 mr-2" />
+                Direkt anrufen & bewerten
+              </a>
             </div>
             
-            {/* Alternative Bewertungsplattformen */}
+            {/* Alternative Bewertungsplattformen - funktionierend */}
             <div className="border-t pt-6">
-              <p className="text-sm text-gray-600 mb-3">Bewerten Sie uns auch auf:</p>
-              <div className="flex flex-wrap gap-3 justify-center">
+              <p className="text-sm text-gray-600 mb-4">Alternative Bewertungsplattformen:</p>
+              <div className="flex flex-wrap gap-3 justify-center mb-4">
                 <a
                   href="https://local.ch/de/d/Arth/6415/Taxi/Taxi-T%C3%BCrlihof-081888943"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                  className="inline-flex items-center px-4 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-colors duration-200 font-semibold"
                 >
-                  <span className="text-yellow-600 mr-2">⭐</span>
-                  local.ch
+                  <span className="text-white mr-2">⭐</span>
+                  local.ch bewerten
                 </a>
                 <a
-                  href="https://search.ch"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                  href="mailto:info@taxiturlihof.ch?subject=Bewertung%20für%20Taxi%20Türlihof&body=Liebe%20Team%20von%20Taxi%20Türlihof,%0A%0AIch%20möchte%20gerne%20eine%20Bewertung%20abgeben:%0A%0ASterne:%20⭐⭐⭐⭐⭐%0A%0AMein%20Feedback:%0A%0A%0A%0AVielen%20Dank%20für%20den%20ausgezeichneten%20Service!"
+                  className="inline-flex items-center px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 font-semibold"
                 >
-                  <span className="text-yellow-600 mr-2">⭐</span>
-                  search.ch
+                  <Mail className="w-4 h-4 text-white mr-2" />
+                  E-Mail Bewertung senden
                 </a>
+              </div>
+              
+              {/* SMS Bewertung als zusätzliche Option */}
+              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <h6 className="font-semibold text-green-900 mb-2">📱 SMS-Bewertung (einfachste Methode):</h6>
+                <p className="text-sm text-green-800 mb-3">
+                  Senden Sie uns eine SMS mit Ihrer Bewertung an: <strong>076 611 31 31</strong>
+                </p>
                 <a
-                  href="mailto:info@taxiturlihof.ch?subject=Bewertung%20für%20Taxi%20Türlihof&body=Liebe%20Team%20von%20Taxi%20Türlihof,%0A%0AIch%20möchte%20gerne%20eine%20Bewertung%20abgeben:%0A%0ASterne:%20⭐⭐⭐⭐⭐%0A%0AMein%20Feedback:%0A"
-                  className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                  href="sms:076 611 31 31?body=Meine Bewertung für Taxi Türlihof:%0A%0ASterne: ⭐⭐⭐⭐⭐%0A%0AKommentar: "
+                  className="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
                 >
-                  <Mail className="w-4 h-4 text-blue-600 mr-2" />
-                  E-Mail Bewertung
+                  💬 SMS-Bewertung senden
                 </a>
               </div>
             </div>
