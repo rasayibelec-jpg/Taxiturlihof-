@@ -289,7 +289,7 @@ const PaymentSuccess = () => {
             </div>
           )}
 
-          {/* Rating QR Code Section mit direktem Google-Link */}
+          {/* Rating System - blockierung-resistente Lösung */}
           <Card className="shadow-lg bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200 mt-8">
             <CardHeader className="text-center">
               <CardTitle className="text-xl font-bold text-gray-900 flex items-center justify-center">
@@ -308,42 +308,42 @@ const PaymentSuccess = () => {
                   className="w-32 h-32 mx-auto"
                 />
               </div>
-              <p className="text-gray-600 mb-4">
-                📱 Scannen Sie den QR-Code für eine schnelle Bewertung
-              </p>
               
-              {/* Direkter Google Link */}
-              <div className="bg-green-50 rounded-lg p-3 mb-4 border border-green-200">
-                <p className="font-semibold text-green-900 text-sm">✅ Direkter Google-Link verfügbar!</p>
+              {/* Einfache Anweisungen */}
+              <div className="bg-blue-50 rounded-lg p-4 mb-4 border border-blue-200">
+                <p className="font-semibold text-blue-900 text-sm mb-2">📱 Google Bewertung in 3 Schritten:</p>
+                <p className="text-xs text-blue-800">
+                  1. Google Maps öffnen → 2. "Taxi Türlihof Arth" suchen → 3. Bewertung schreiben
+                </p>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-3 justify-center mb-4">
-                <a
-                  href="https://g.page/r/Cd4uwDyM0UStEAE/review"
-                  target="_blank"
-                  rel="noopener noreferrer"
+              <div className="flex flex-col sm:flex-row gap-2 justify-center mb-4">
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText('Taxi Türlihof Arth').catch(() => {});
+                    alert('✅ Kopiert! Öffnen Sie Google Maps und fügen Sie "Taxi Türlihof Arth" ein, um zu bewerten.');
+                  }}
                   className="inline-flex items-center px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
                 >
                   <img 
                     src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
                     alt="Google"
-                    className="w-4 h-4 mr-2"
+                    className="w-4 h-4 mr-1"
                   />
-                  Google Bewertung abgeben
-                </a>
+                  Google Maps Bewertung
+                </button>
                 <a
-                  href="tel:076 611 31 31"
+                  href="sms:076 611 31 31?body=Meine Bewertung für die Fahrt:%0A%0ASterne: ⭐⭐⭐⭐⭐%0A%0AKommentar: "
                   className="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
                 >
-                  <Phone className="w-4 h-4 mr-1" />
-                  Anrufen & bewerten
+                  💬 SMS Bewertung
                 </a>
                 <a
                   href="mailto:info@taxiturlihof.ch?subject=Fahrt-Bewertung&body=Meine%20Bewertung%20für%20die%20Fahrt:%0A%0ASterne:%20⭐⭐⭐⭐⭐%0A%0AKommentar:%20"
                   className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
                 >
                   <Mail className="w-4 h-4 mr-1" />
-                  E-Mail Bewertung
+                  E-Mail
                 </a>
               </div>
               <Badge className="bg-yellow-100 text-yellow-800 px-4 py-2">
