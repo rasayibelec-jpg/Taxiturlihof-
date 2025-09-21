@@ -37,6 +37,21 @@ const FleetGallery = () => {
       url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/yomelklg_20240712121846_edited_1732630664532.png",
       title: "Mercedes mit Bergpanorama",
       description: "Spektakuläre Fahrten in der Zentralschweiz"
+    },
+    {
+      url: "https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/pb8e5md2_20250921_024901%281%29%281%29.jpg",
+      title: "Mercedes Premium-Interieur",
+      description: "Luxuriöse Ledersitze mit blauer Ambientebeleuchtung"
+    },
+    {
+      url: "https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/nz8655g3_20250921_024811%281%29.jpg",
+      title: "Mercedes Cockpit & Komfort",
+      description: "Modernste Technologie und erstklassiger Fahrkomfort"
+    },
+    {
+      url: "https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/gf00598t_IMG-20250921-WA0005%281%29.jpg",
+      title: "Mercedes Luxus-Ausstattung",
+      description: "Premium-Dashboard mit fortschrittlicher Infotainment-Technik"
     }
   ];
 
