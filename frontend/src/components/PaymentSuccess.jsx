@@ -289,7 +289,7 @@ const PaymentSuccess = () => {
             </div>
           )}
 
-          {/* Rating QR Code Section */}
+          {/* Rating QR Code Section mit funktionierenden Links */}
           <Card className="shadow-lg bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200 mt-8">
             <CardHeader className="text-center">
               <CardTitle className="text-xl font-bold text-gray-900 flex items-center justify-center">
@@ -311,6 +311,24 @@ const PaymentSuccess = () => {
               <p className="text-gray-600 mb-4">
                 📱 Scannen Sie den QR-Code für eine schnelle Bewertung
               </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center mb-4">
+                <a
+                  href="https://www.google.com/search?q=Taxi+T%C3%BCrlihof+Arth&rlz=1C1CHBF_deDE1016DE1016&oq=Taxi+T%C3%BCrlihof+Arth&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQRRg60gEIMTcyN2owajGoAgCwAgA&sourceid=chrome&ie=UTF-8#lrd=0x479ada6463b8b5b5:0x6b1d0c3f8a6b4f8c,3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
+                >
+                  ⭐ Google Bewertung abgeben
+                </a>
+                <a
+                  href="https://local.ch/de/d/Arth/6415/Taxi/Taxi-T%C3%BCrlihof-081888943"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
+                >
+                  ⭐ local.ch bewerten
+                </a>
+              </div>
               <Badge className="bg-yellow-100 text-yellow-800 px-4 py-2">
                 ⭐ Ihre Bewertung hilft anderen Kunden
               </Badge>
