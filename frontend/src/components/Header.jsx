@@ -110,36 +110,6 @@ const Header = () => {
               )}
             </div>
 
-            {/* Blog Dropdown - nur FAQ behalten */}
-            <div className="relative">
-              <button
-                onClick={() => setIsBlogDropdownOpen(!isBlogDropdownOpen)}
-                className="flex items-center text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-              >
-                Blog & Tipps
-                <ChevronDown className="w-4 h-4 ml-1" />
-              </button>
-              
-              {isBlogDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                  <Link
-                    to="/blog"
-                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
-                    onClick={() => setIsBlogDropdownOpen(false)}
-                  >
-                    📖 Blog
-                  </Link>
-                  <Link
-                    to="/faq"
-                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
-                    onClick={() => setIsBlogDropdownOpen(false)}
-                  >
-                    ❓ Häufige Fragen
-                  </Link>
-                </div>
-              )}
-            </div>
-
             <button
               onClick={() => scrollToSection("contact")}
               className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
