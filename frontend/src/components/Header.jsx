@@ -110,7 +110,7 @@ const Header = () => {
               )}
             </div>
 
-            {/* Blog Dropdown */}
+            {/* Blog Dropdown - vereinfacht */}
             <div className="relative">
               <button
                 onClick={() => setIsBlogDropdownOpen(!isBlogDropdownOpen)}
@@ -121,21 +121,7 @@ const Header = () => {
               </button>
               
               {isBlogDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                  <Link
-                    to="/blog/luzern-sehenswuerdigkeiten"
-                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
-                    onClick={() => setIsBlogDropdownOpen(false)}
-                  >
-                    🏰 Luzern Sehenswürdigkeiten
-                  </Link>
-                  <Link
-                    to="/blog"
-                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
-                    onClick={() => setIsBlogDropdownOpen(false)}
-                  >
-                    📖 Alle Blog-Artikel
-                  </Link>
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
                   <Link
                     to="/faq"
                     className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
