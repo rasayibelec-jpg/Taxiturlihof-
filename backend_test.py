@@ -17,7 +17,7 @@ backend_dir = Path(__file__).parent / "backend"
 sys.path.insert(0, str(backend_dir))
 
 # Test configuration
-BACKEND_URL = "https://taxiturli-pay.preview.emergentagent.com/api"
+BACKEND_URL = "https://taxi-luzern-app.preview.emergentagent.com/api"
 TEST_DATA = {
     "name": "Test User",
     "email": "test@example.com",
