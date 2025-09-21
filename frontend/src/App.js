@@ -9,6 +9,7 @@ import TaxiSchwyzPage from './components/TaxiSchwyzPage';
 import TaxiZugPage from './components/TaxiZugPage';
 import FlughafentransferPage from './components/FlughafentransferPage';
 import BlogPage from './components/BlogPage';
+import BlogPost from './components/BlogPost';
 import PriceCalculatorPage from './components/PriceCalculatorPage';
 import BookingPage from './components/BookingPage';
 import FlottePage from './components/FlottePage';
