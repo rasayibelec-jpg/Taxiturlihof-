@@ -289,7 +289,7 @@ const PaymentSuccess = () => {
             </div>
           )}
 
-          {/* Rating QR Code Section mit funktionierenden Alternativen */}
+          {/* Rating QR Code Section mit direktem Google-Link */}
           <Card className="shadow-lg bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200 mt-8">
             <CardHeader className="text-center">
               <CardTitle className="text-xl font-bold text-gray-900 flex items-center justify-center">
@@ -312,22 +312,25 @@ const PaymentSuccess = () => {
                 📱 Scannen Sie den QR-Code für eine schnelle Bewertung
               </p>
               
-              {/* Anleitung für Google Bewertung */}
-              <div className="bg-blue-50 rounded-lg p-3 mb-4 border border-blue-200">
-                <p className="font-semibold text-blue-900 text-sm mb-1">So bewerten Sie uns auf Google:</p>
-                <p className="text-xs text-blue-800">Suchen Sie "Taxi Türlihof Arth" in Google Maps → "Bewertung schreiben"</p>
+              {/* Direkter Google Link */}
+              <div className="bg-green-50 rounded-lg p-3 mb-4 border border-green-200">
+                <p className="font-semibold text-green-900 text-sm">✅ Direkter Google-Link verfügbar!</p>
               </div>
               
               <div className="flex flex-col sm:flex-row gap-3 justify-center mb-4">
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText('Taxi Türlihof Arth').catch(() => {});
-                    alert('Suchtext kopiert! Öffnen Sie Google Maps und fügen Sie "Taxi Türlihof Arth" ein, um zu bewerten.');
-                  }}
+                <a
+                  href="https://g.page/r/Cd4uwDyM0UStEAE/review"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
                 >
-                  ⭐ Google Maps Bewertung
-                </button>
+                  <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                    alt="Google"
+                    className="w-4 h-4 mr-2"
+                  />
+                  Google Bewertung abgeben
+                </a>
                 <a
                   href="tel:076 611 31 31"
                   className="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
