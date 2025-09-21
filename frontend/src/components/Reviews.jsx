@@ -125,7 +125,7 @@ const Reviews = () => {
           ))}
         </div>
 
-        {/* Call-to-Action für mehr Bewertungen mit funktionierenden Links */}
+        {/* Call-to-Action für mehr Bewertungen mit funktionierendem Google-Link */}
         <div className="text-center mt-16">
           <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-8 border border-yellow-200">
             <h4 className="text-2xl font-bold text-gray-900 mb-2">
@@ -149,12 +149,10 @@ const Reviews = () => {
               </p>
               <div className="w-px h-6 bg-gray-300 hidden sm:block"></div>
               <div className="flex flex-col sm:flex-row gap-3">
-                <button
-                  onClick={() => {
-                    // Copy Google Maps link to clipboard and show instructions
-                    navigator.clipboard.writeText('Taxi Türlihof Arth Bewertung Google').catch(() => {});
-                    alert('Suchen Sie nach "Taxi Türlihof Arth" in Google Maps oder Google Suche, um eine Bewertung abzugeben.');
-                  }}
+                <a
+                  href="https://g.page/r/Cd4uwDyM0UStEAE/review"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
                 >
                   <img 
@@ -163,7 +161,7 @@ const Reviews = () => {
                     className="w-5 h-5 mr-2"
                   />
                   Google Bewertung abgeben
-                </button>
+                </a>
                 <a
                   href="tel:076 611 31 31"
                   className="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
@@ -174,15 +172,11 @@ const Reviews = () => {
               </div>
             </div>
             
-            {/* Anleitung für Google Bewertung */}
-            <div className="bg-blue-50 rounded-lg p-4 mb-6 border border-blue-200">
-              <h5 className="font-semibold text-blue-900 mb-2">So bewerten Sie uns auf Google:</h5>
-              <ol className="text-left text-sm text-blue-800 space-y-1">
-                <li>1. Öffnen Sie Google Maps oder google.com</li>
-                <li>2. Suchen Sie nach "Taxi Türlihof Arth"</li>
-                <li>3. Klicken Sie auf "Bewertung schreiben"</li>
-                <li>4. Wählen Sie Sterne und schreiben Sie Ihr Feedback</li>
-              </ol>
+            {/* Erfolgreiche Google Bewertung Hinweis */}
+            <div className="bg-green-50 rounded-lg p-4 mb-6 border border-green-200">
+              <p className="text-green-800 font-semibold text-sm">
+                ✅ Direkter Google-Link - funktioniert ohne Umwege!
+              </p>
             </div>
             
             {/* Alternative Bewertungsplattformen */}
