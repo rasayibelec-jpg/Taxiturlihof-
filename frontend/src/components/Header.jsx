@@ -110,7 +110,7 @@ const Header = () => {
               )}
             </div>
 
-            {/* Blog Dropdown - vereinfacht */}
+            {/* Blog Dropdown - nur FAQ behalten */}
             <div className="relative">
               <button
                 onClick={() => setIsBlogDropdownOpen(!isBlogDropdownOpen)}
@@ -122,6 +122,13 @@ const Header = () => {
               
               {isBlogDropdownOpen && (
                 <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                  <Link
+                    to="/blog"
+                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
+                    onClick={() => setIsBlogDropdownOpen(false)}
+                  >
+                    📖 Blog
+                  </Link>
                   <Link
                     to="/faq"
                     className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
