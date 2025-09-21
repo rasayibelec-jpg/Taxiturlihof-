@@ -125,36 +125,43 @@ const Reviews = () => {
           ))}
         </div>
 
-        {/* Call-to-Action für mehr Bewertungen */}
+        {/* Call-to-Action für mehr Bewertungen mit neuem QR-Code */}
         <div className="text-center mt-16">
-          <div className="bg-gray-50 rounded-2xl p-8">
-            <h4 className="text-lg font-semibold text-gray-900 mb-4">
-              📱 Schnell bewerten mit QR-Code
+          <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-8 border border-yellow-200">
+            <h4 className="text-2xl font-bold text-gray-900 mb-2">
+              Bewerten Sie unseren Service
             </h4>
-            <div className="bg-white p-4 rounded-lg shadow-sm border inline-block mb-4">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_taxi-service-ui/artifacts/pluhaqa9_Download.png"
-                alt="QR-Code für Google Bewertungen"
-                className="w-32 h-32 mx-auto"
-              />
-            </div>
-            <p className="text-sm text-gray-600 mb-4">
-              Scannen Sie den QR-Code mit Ihrem Smartphone für eine schnelle Bewertung
+            <p className="text-gray-600 mb-6">
+              Ihre Meinung ist uns wichtig! Teilen Sie Ihre Erfahrung mit anderen Kunden.
             </p>
             
-            <a
-              href="https://www.google.com/search?q=Taxi+Türlihof+Arth+Bewertungen"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 font-semibold"
-            >
+            <div className="bg-white p-6 rounded-xl shadow-lg border inline-block mb-6">
               <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
-                alt="Google"
-                className="w-5 h-5 mr-2"
+                src="https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/4e8xw813_image.png"
+                alt="QR-Code für Bewertungen"
+                className="w-40 h-40 mx-auto"
               />
-              Alle Bewertungen ansehen
-            </a>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <p className="text-sm text-gray-600">
+                📱 QR-Code scannen für schnelle Bewertung
+              </p>
+              <div className="w-px h-6 bg-gray-300 hidden sm:block"></div>
+              <a
+                href="https://www.google.com/search?q=Taxi+Türlihof+Arth+Bewertungen"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
+              >
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                  alt="Google"
+                  className="w-5 h-5 mr-2"
+                />
+                Alle Bewertungen ansehen
+              </a>
+            </div>
           </div>
         </div>
       </div>
