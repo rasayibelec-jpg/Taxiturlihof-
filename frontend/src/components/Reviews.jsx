@@ -125,7 +125,7 @@ const Reviews = () => {
           ))}
         </div>
 
-        {/* Call-to-Action für mehr Bewertungen mit funktionierendem QR-Code */}
+        {/* Call-to-Action für mehr Bewertungen mit funktionierenden Links */}
         <div className="text-center mt-16">
           <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-8 border border-yellow-200">
             <h4 className="text-2xl font-bold text-gray-900 mb-2">
@@ -149,10 +149,12 @@ const Reviews = () => {
               </p>
               <div className="w-px h-6 bg-gray-300 hidden sm:block"></div>
               <div className="flex flex-col sm:flex-row gap-3">
-                <a
-                  href="https://www.google.com/search?q=Taxi+T%C3%BCrlihof+Arth&rlz=1C1CHBF_deDE1016DE1016&oq=Taxi+T%C3%BCrlihof+Arth&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQRRg60gEIMTcyN2owajGoAgCwAgA&sourceid=chrome&ie=UTF-8#lrd=0x479ada6463b8b5b5:0x6b1d0c3f8a6b4f8c,3"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => {
+                    // Copy Google Maps link to clipboard and show instructions
+                    navigator.clipboard.writeText('Taxi Türlihof Arth Bewertung Google').catch(() => {});
+                    alert('Suchen Sie nach "Taxi Türlihof Arth" in Google Maps oder Google Suche, um eine Bewertung abzugeben.');
+                  }}
                   className="inline-flex items-center px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
                 >
                   <img 
@@ -161,21 +163,26 @@ const Reviews = () => {
                     className="w-5 h-5 mr-2"
                   />
                   Google Bewertung abgeben
-                </a>
+                </button>
                 <a
-                  href="https://www.google.com/search?q=Taxi+Türlihof+Arth+Bewertungen"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
+                  href="tel:076 611 31 31"
+                  className="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
                 >
-                  <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
-                    alt="Google"
-                    className="w-5 h-5 mr-2"
-                  />
-                  Alle Bewertungen ansehen
+                  <Phone className="w-5 h-5 mr-2" />
+                  Direkt anrufen
                 </a>
               </div>
+            </div>
+            
+            {/* Anleitung für Google Bewertung */}
+            <div className="bg-blue-50 rounded-lg p-4 mb-6 border border-blue-200">
+              <h5 className="font-semibold text-blue-900 mb-2">So bewerten Sie uns auf Google:</h5>
+              <ol className="text-left text-sm text-blue-800 space-y-1">
+                <li>1. Öffnen Sie Google Maps oder google.com</li>
+                <li>2. Suchen Sie nach "Taxi Türlihof Arth"</li>
+                <li>3. Klicken Sie auf "Bewertung schreiben"</li>
+                <li>4. Wählen Sie Sterne und schreiben Sie Ihr Feedback</li>
+              </ol>
             </div>
             
             {/* Alternative Bewertungsplattformen */}
@@ -199,6 +206,13 @@ const Reviews = () => {
                 >
                   <span className="text-yellow-600 mr-2">⭐</span>
                   search.ch
+                </a>
+                <a
+                  href="mailto:info@taxiturlihof.ch?subject=Bewertung%20für%20Taxi%20Türlihof&body=Liebe%20Team%20von%20Taxi%20Türlihof,%0A%0AIch%20möchte%20gerne%20eine%20Bewertung%20abgeben:%0A%0ASterne:%20⭐⭐⭐⭐⭐%0A%0AMein%20Feedback:%0A"
+                  className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                >
+                  <Mail className="w-4 h-4 text-blue-600 mr-2" />
+                  E-Mail Bewertung
                 </a>
               </div>
             </div>
