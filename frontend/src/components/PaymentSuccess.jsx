@@ -289,7 +289,7 @@ const PaymentSuccess = () => {
             </div>
           )}
 
-          {/* Rating System - blockierung-resistente Lösung */}
+          {/* Einfaches Bewertungssystem */}
           <Card className="shadow-lg bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200 mt-8">
             <CardHeader className="text-center">
               <CardTitle className="text-xl font-bold text-gray-900 flex items-center justify-center">
@@ -297,58 +297,35 @@ const PaymentSuccess = () => {
                 Wie war Ihre Fahrt?
               </CardTitle>
               <CardDescription className="text-gray-700">
-                Teilen Sie Ihre Erfahrung mit anderen Kunden
+                Bewerten Sie uns - es dauert nur 1 Minute
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center">
-              <div className="bg-white p-6 rounded-xl shadow-sm border inline-block mb-4">
+              <div className="bg-white p-4 rounded-xl shadow-sm border inline-block mb-4">
                 <img 
                   src="https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/4e8xw813_image.png"
                   alt="QR-Code für Bewertung"
-                  className="w-32 h-32 mx-auto"
+                  className="w-28 h-28 mx-auto"
                 />
+                <p className="text-xs text-gray-600 mt-2">📱 QR-Code scannen</p>
               </div>
               
-              {/* Einfache Anweisungen */}
-              <div className="bg-blue-50 rounded-lg p-4 mb-4 border border-blue-200">
-                <p className="font-semibold text-blue-900 text-sm mb-2">📱 Google Bewertung in 3 Schritten:</p>
-                <p className="text-xs text-blue-800">
-                  1. Google Maps öffnen → 2. "Taxi Türlihof Arth" suchen → 3. Bewertung schreiben
-                </p>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-2 justify-center mb-4">
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText('Taxi Türlihof Arth').catch(() => {});
-                    alert('✅ Kopiert! Öffnen Sie Google Maps und fügen Sie "Taxi Türlihof Arth" ein, um zu bewerten.');
-                  }}
-                  className="inline-flex items-center px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
-                >
-                  <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
-                    alt="Google"
-                    className="w-4 h-4 mr-1"
-                  />
-                  Google Maps Bewertung
-                </button>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a
-                  href="sms:076 611 31 31?body=Meine Bewertung für die Fahrt:%0A%0ASterne: ⭐⭐⭐⭐⭐%0A%0AKommentar: "
+                  href="tel:076 611 31 31"
                   className="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
                 >
-                  💬 SMS Bewertung
+                  <Phone className="w-4 h-4 mr-2" />
+                  Anrufen
                 </a>
                 <a
-                  href="mailto:info@taxiturlihof.ch?subject=Fahrt-Bewertung&body=Meine%20Bewertung%20für%20die%20Fahrt:%0A%0ASterne:%20⭐⭐⭐⭐⭐%0A%0AKommentar:%20"
+                  href="mailto:info@taxiturlihof.ch?subject=Fahrt-Bewertung&body=Meine%20Bewertung:%0A%0ASterne:%20⭐⭐⭐⭐⭐%0A%0AKommentar:%20"
                   className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
                 >
-                  <Mail className="w-4 h-4 mr-1" />
+                  <Mail className="w-4 h-4 mr-2" />
                   E-Mail
                 </a>
               </div>
-              <Badge className="bg-yellow-100 text-yellow-800 px-4 py-2">
-                ⭐ Ihre Bewertung hilft anderen Kunden
-              </Badge>
             </CardContent>
           </Card>
 
