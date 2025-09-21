@@ -289,7 +289,7 @@ const PaymentSuccess = () => {
             </div>
           )}
 
-          {/* Rating QR Code Section mit funktionierenden Links */}
+          {/* Rating QR Code Section mit funktionierenden Alternativen */}
           <Card className="shadow-lg bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200 mt-8">
             <CardHeader className="text-center">
               <CardTitle className="text-xl font-bold text-gray-900 flex items-center justify-center">
@@ -311,22 +311,36 @@ const PaymentSuccess = () => {
               <p className="text-gray-600 mb-4">
                 📱 Scannen Sie den QR-Code für eine schnelle Bewertung
               </p>
+              
+              {/* Anleitung für Google Bewertung */}
+              <div className="bg-blue-50 rounded-lg p-3 mb-4 border border-blue-200">
+                <p className="font-semibold text-blue-900 text-sm mb-1">So bewerten Sie uns auf Google:</p>
+                <p className="text-xs text-blue-800">Suchen Sie "Taxi Türlihof Arth" in Google Maps → "Bewertung schreiben"</p>
+              </div>
+              
               <div className="flex flex-col sm:flex-row gap-3 justify-center mb-4">
-                <a
-                  href="https://www.google.com/search?q=Taxi+T%C3%BCrlihof+Arth&rlz=1C1CHBF_deDE1016DE1016&oq=Taxi+T%C3%BCrlihof+Arth&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQRRg60gEIMTcyN2owajGoAgCwAgA&sourceid=chrome&ie=UTF-8#lrd=0x479ada6463b8b5b5:0x6b1d0c3f8a6b4f8c,3"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText('Taxi Türlihof Arth').catch(() => {});
+                    alert('Suchtext kopiert! Öffnen Sie Google Maps und fügen Sie "Taxi Türlihof Arth" ein, um zu bewerten.');
+                  }}
                   className="inline-flex items-center px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
                 >
-                  ⭐ Google Bewertung abgeben
+                  ⭐ Google Maps Bewertung
+                </button>
+                <a
+                  href="tel:076 611 31 31"
+                  className="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
+                >
+                  <Phone className="w-4 h-4 mr-1" />
+                  Anrufen & bewerten
                 </a>
                 <a
-                  href="https://local.ch/de/d/Arth/6415/Taxi/Taxi-T%C3%BCrlihof-081888943"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="mailto:info@taxiturlihof.ch?subject=Fahrt-Bewertung&body=Meine%20Bewertung%20für%20die%20Fahrt:%0A%0ASterne:%20⭐⭐⭐⭐⭐%0A%0AKommentar:%20"
                   className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
                 >
-                  ⭐ local.ch bewerten
+                  <Mail className="w-4 h-4 mr-1" />
+                  E-Mail Bewertung
                 </a>
               </div>
               <Badge className="bg-yellow-100 text-yellow-800 px-4 py-2">
