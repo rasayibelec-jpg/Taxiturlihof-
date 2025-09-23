@@ -125,26 +125,94 @@ const Reviews = () => {
           ))}
         </div>
 
-        {/* Call-to-Action für mehr Bewertungen - EINFACH mit neuem QR-Code */}
+        {/* Call-to-Action für mehr Bewertungen - QR-Code + Direkte Bewertung */}
         <div className="text-center mt-16">
           <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-8 border border-yellow-200">
             <h4 className="text-2xl font-bold text-gray-900 mb-4">
               Bewerten Sie unseren Service
             </h4>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-8">
               Ihre Meinung ist uns wichtig!
             </p>
             
-            <div className="bg-white p-8 rounded-xl shadow-lg border inline-block mb-6">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/pnol6tzt_IMG-20250911-WA0008.jpg"
-                alt="QR-Code für Bewertungen"
-                className="w-48 h-48 mx-auto object-contain"
-              />
-              <p className="text-lg font-semibold text-gray-800 mt-4 text-center">Bewerten</p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              
+              {/* QR-Code Bereich */}
+              <div className="text-center">
+                <h5 className="text-lg font-semibold text-gray-800 mb-4">📱 Mit QR-Code</h5>
+                <div className="bg-white p-6 rounded-xl shadow-lg border inline-block">
+                  <img 
+                    src="https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/pnol6tzt_IMG-20250911-WA0008.jpg"
+                    alt="QR-Code für Bewertungen"
+                    className="w-32 h-32 mx-auto object-contain"
+                  />
+                  <p className="text-sm font-semibold text-gray-800 mt-3">Bewerten</p>
+                </div>
+              </div>
+
+              {/* Direkte Bewertung */}
+              <div className="text-center">
+                <h5 className="text-lg font-semibold text-gray-800 mb-4">⭐ Direkt hier bewerten</h5>
+                <div className="bg-white p-6 rounded-xl shadow-lg border text-left">
+                  
+                  {/* Sterne Bewertung */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Bewertung:
+                    </label>
+                    <div className="flex justify-center gap-1 mb-4" id="star-rating">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          key={star}
+                          type="button"
+                          className="star-btn text-3xl text-gray-300 hover:text-yellow-400 transition-colors"
+                          data-rating={star}
+                          onClick={() => setRating(star)}
+                        >
+                          ⭐
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Name */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Name (optional):
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                      placeholder="Ihr Name"
+                    />
+                  </div>
+
+                  {/* Kommentar */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Kommentar:
+                    </label>
+                    <textarea
+                      rows="3"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                      placeholder="Wie war Ihre Erfahrung mit uns?"
+                    ></textarea>
+                  </div>
+
+                  {/* Submit Button */}
+                  <button 
+                    type="button"
+                    className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded-lg font-semibold transition-colors duration-200"
+                  >
+                    Bewertung absenden
+                  </button>
+                </div>
+              </div>
+
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {/* Alternative Kontaktmöglichkeiten */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <a
                 href="tel:076 611 31 31"
                 className="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
