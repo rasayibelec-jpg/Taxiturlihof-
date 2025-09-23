@@ -160,123 +160,88 @@ const Reviews = () => {
           ))}
         </div>
 
-        {/* Call-to-Action für mehr Bewertungen - kompakt */}
+        {/* Call-to-Action für mehr Bewertungen - sehr kompakt */}
         <div className="text-center">
-          <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-6 border border-yellow-200">
-            <h4 className="text-lg font-bold text-gray-900 mb-3">
-              Bewerten Sie unseren Service
+          <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-4 border border-yellow-200">
+            <h4 className="text-base font-bold text-gray-900 mb-3">
+              Bewerten Sie uns
             </h4>
-            <p className="text-gray-600 mb-4">
-              Ihre Meinung ist uns wichtig!
-            </p>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               
-              {/* QR-Code Bereich - kompakt */}
+              {/* QR-Code - sehr klein */}
               <div className="text-center">
-                <h5 className="text-base font-semibold text-gray-800 mb-3">📱 Mit QR-Code</h5>
-                <div className="bg-white p-4 rounded-lg shadow border inline-block">
+                <div className="bg-white p-2 rounded-lg shadow border inline-block mb-2">
                   <img 
                     src="https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/pnol6tzt_IMG-20250911-WA0008.jpg"
-                    alt="QR-Code für Bewertungen"
-                    className="w-24 h-24 mx-auto object-contain"
+                    alt="QR-Code"
+                    className="w-16 h-16 mx-auto object-contain"
                   />
-                  <p className="text-sm font-semibold text-gray-800 mt-2">Bewerten</p>
                 </div>
+                <p className="text-xs font-semibold text-gray-800">Bewerten</p>
               </div>
 
-              {/* Direkte Bewertung - kompakt */}
+              {/* Direkte Bewertung - sehr kompakt */}
               <div className="text-center">
-                <h5 className="text-base font-semibold text-gray-800 mb-3">⭐ Direkt hier bewerten</h5>
-                <div className="bg-white p-4 rounded-lg shadow border text-left">
-                  
-                  {/* Sterne Bewertung */}
-                  <div className="mb-3">
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
-                      Bewertung:
-                    </label>
-                    <div className="flex justify-center gap-1 mb-2">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <button
-                          key={star}
-                          type="button"
-                          className={`text-2xl transition-colors ${
-                            star <= (hoveredRating || rating) 
-                              ? 'text-yellow-400' 
-                              : 'text-gray-300 hover:text-yellow-400'
-                          }`}
-                          onClick={() => setRating(star)}
-                          onMouseEnter={() => setHoveredRating(star)}
-                          onMouseLeave={() => setHoveredRating(0)}
-                        >
-                          ⭐
-                        </button>
-                      ))}
-                    </div>
-                    {rating > 0 && (
-                      <p className="text-center text-yellow-600 font-medium text-xs">
-                        {rating} von 5 Sternen
-                      </p>
-                    )}
+                <div className="bg-white p-2 rounded-lg shadow border">
+                  <div className="flex justify-center gap-1 mb-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        type="button"
+                        className={`text-lg transition-colors ${
+                          star <= (hoveredRating || rating) 
+                            ? 'text-yellow-400' 
+                            : 'text-gray-300 hover:text-yellow-400'
+                        }`}
+                        onClick={() => setRating(star)}
+                        onMouseEnter={() => setHoveredRating(star)}
+                        onMouseLeave={() => setHoveredRating(0)}
+                      >
+                        ⭐
+                      </button>
+                    ))}
                   </div>
-
-                  {/* Name */}
-                  <div className="mb-3">
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
-                      Name (optional):
-                    </label>
-                    <input
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-yellow-500 focus:border-transparent"
-                      placeholder="Ihr Name"
-                    />
-                  </div>
-
-                  {/* Kommentar */}
-                  <div className="mb-3">
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
-                      Kommentar:
-                    </label>
-                    <textarea
-                      rows="2"
-                      value={comment}
-                      onChange={(e) => setComment(e.target.value)}
-                      className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-yellow-500 focus:border-transparent"
-                      placeholder="Wie war Ihre Erfahrung?"
-                    ></textarea>
-                  </div>
-
-                  {/* Submit Button */}
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full px-2 py-1 text-xs border border-gray-300 rounded mb-2"
+                    placeholder="Name"
+                  />
+                  <textarea
+                    rows="2"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    className="w-full px-2 py-1 text-xs border border-gray-300 rounded mb-2"
+                    placeholder="Kommentar"
+                  ></textarea>
                   <button 
                     type="button"
                     onClick={handleSubmitReview}
-                    className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-3 rounded text-sm font-semibold transition-colors duration-200"
+                    className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-1 px-2 rounded text-xs font-semibold"
                   >
-                    Bewertung absenden
+                    Senden
                   </button>
                 </div>
               </div>
 
-            </div>
-            
-            {/* Alternative Kontaktmöglichkeiten - kompakt */}
-            <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6">
-              <a
-                href="tel:076 611 31 31"
-                className="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
-              >
-                <Phone className="w-4 h-4 mr-2" />
-                Anrufen & bewerten
-              </a>
-              <a
-                href="mailto:info@taxiturlihof.ch?subject=Bewertung&body=Meine%20Bewertung:%0A%0ASterne:%20⭐⭐⭐⭐⭐%0A%0AKommentar:%20"
-                className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
-              >
-                <Mail className="w-4 h-4 mr-2" />
-                E-Mail senden
-              </a>
+              {/* Kontakt - kompakt */}
+              <div className="text-center space-y-2">
+                <a
+                  href="tel:076 611 31 31"
+                  className="block bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded text-xs font-semibold"
+                >
+                  📞 Anrufen
+                </a>
+                <a
+                  href="mailto:info@taxiturlihof.ch"
+                  className="block bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded text-xs font-semibold"
+                >
+                  ✉️ E-Mail
+                </a>
+              </div>
+
             </div>
           </div>
         </div>
