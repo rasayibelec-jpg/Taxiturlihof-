@@ -82,106 +82,106 @@ const Reviews = () => {
   };
 
   return (
-    <section id="reviews" className="py-20 bg-white">
+    <section id="reviews" className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
             Kundenbewertungen
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Lesen Sie, was unsere zufriedenen Kunden über unseren Service sagen.
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Lesen Sie, was unsere Kunden über unseren Service sagen.
           </p>
         </div>
 
-        {/* Google Bewertung Übersicht */}
-        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-8 mb-16 border border-yellow-200">
+        {/* Google Bewertung Übersicht - kompakt */}
+        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-6 mb-8 border border-yellow-200">
           <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="text-center md:text-left mb-6 md:mb-0">
-              <div className="flex items-center justify-center md:justify-start mb-4">
+            <div className="text-center md:text-left mb-4 md:mb-0">
+              <div className="flex items-center justify-center md:justify-start mb-2">
                 <img 
                   src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
                   alt="Google"
-                  className="w-8 h-8 mr-3"
+                  className="w-6 h-6 mr-2"
                 />
-                <h3 className="text-2xl font-bold text-gray-900">Google Bewertungen</h3>
+                <h3 className="text-lg font-bold text-gray-900">Google Bewertungen</h3>
               </div>
-              <div className="flex items-center justify-center md:justify-start space-x-4">
-                <div className="text-6xl font-bold text-yellow-600">
+              <div className="flex items-center justify-center md:justify-start space-x-3">
+                <div className="text-3xl font-bold text-yellow-600">
                   {contactInfo.googleRating}
                 </div>
                 <div>
-                  <div className="flex space-x-1 mb-2">
+                  <div className="flex space-x-1 mb-1">
                     {renderStars(5)}
                   </div>
-                  <p className="text-gray-600">
-                    Basierend auf <span className="font-semibold">{contactInfo.reviewCount} Bewertungen</span>
+                  <p className="text-sm text-gray-600">
+                    {contactInfo.reviewCount} Bewertungen
                   </p>
                 </div>
               </div>
             </div>
             
             <div className="text-center">
-              <Badge className="bg-green-100 text-green-800 px-6 py-3 text-lg mb-4">
+              <Badge className="bg-green-100 text-green-800 px-4 py-2 mb-2">
                 ⭐ Ausgezeichneter Service
               </Badge>
-              <p className="text-gray-600">
+              <p className="text-xs text-gray-600">
                 Verifizierte Kundenbewertungen
               </p>
             </div>
           </div>
         </div>
 
-        {/* Individuelle Bewertungen - Google + Neue Bewertungen */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        {/* Individuelle Bewertungen - kompakter */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           {/* Yeni kullanıcı yorumlarını üstte göster */}
           {userReviews.map((review) => (
-            <Card key={review.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-green-200 bg-green-50">
-              <CardHeader className="pb-4">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="bg-green-100 p-2 rounded-full">
-                    <Quote className="w-5 h-5 text-green-600" />
+            <Card key={review.id} className="group hover:shadow-lg transition-all duration-300 border-green-200 bg-green-50">
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="bg-green-100 p-1 rounded-full">
+                    <Quote className="w-4 h-4 text-green-600" />
                   </div>
                   <div className="flex space-x-1">
                     {renderStars(review.rating)}
                   </div>
                 </div>
-                <CardTitle className="text-lg font-semibold text-gray-900 flex items-center">
+                <CardTitle className="text-base font-semibold text-gray-900 flex items-center">
                   {review.name}
                   <Badge className="ml-2 bg-green-100 text-green-800 text-xs">NEU</Badge>
                 </CardTitle>
-                <CardDescription className="text-gray-500 text-sm">
+                <CardDescription className="text-xs text-gray-500">
                   {review.timeAgo} • Website Bewertung
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 italic leading-relaxed">
+              <CardContent className="pt-0">
+                <p className="text-sm text-gray-700 italic leading-relaxed">
                   "{review.comment}"
                 </p>
               </CardContent>
             </Card>
           ))}
           
-          {/* Google Bewertungen */}
+          {/* Google Bewertungen - kompakt */}
           {googleReviews.map((review) => (
-            <Card key={review.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-gray-200">
-              <CardHeader className="pb-4">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="bg-yellow-100 p-2 rounded-full">
-                    <Quote className="w-5 h-5 text-yellow-600" />
+            <Card key={review.id} className="group hover:shadow-lg transition-all duration-300 border-gray-200">
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="bg-yellow-100 p-1 rounded-full">
+                    <Quote className="w-4 h-4 text-yellow-600" />
                   </div>
                   <div className="flex space-x-1">
                     {renderStars(review.rating)}
                   </div>
                 </div>
-                <CardTitle className="text-lg font-semibold text-gray-900">
+                <CardTitle className="text-base font-semibold text-gray-900">
                   {review.name}
                 </CardTitle>
-                <CardDescription className="text-gray-500 text-sm">
+                <CardDescription className="text-xs text-gray-500">
                   {review.timeAgo} • Google Bewertung
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 italic leading-relaxed">
+              <CardContent className="pt-0">
+                <p className="text-sm text-gray-700 italic leading-relaxed">
                   "{review.comment}"
                 </p>
               </CardContent>
