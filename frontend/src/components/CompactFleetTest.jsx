@@ -17,7 +17,7 @@ const CompactFleetTest = () => {
       title: "Premium Taxi", 
       description: "Mercedes S-Klasse",
       passengers: "1-4 Personen",
-      image: "https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/o32qjjzx_IMG-20250908-WA0002.jpg"
+      image: "https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/ssbuesk0_20250620_123609%281%29%281%29.heic"
     },
     {
       icon: "🚐",
