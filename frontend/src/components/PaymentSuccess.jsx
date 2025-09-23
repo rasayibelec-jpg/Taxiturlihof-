@@ -289,7 +289,7 @@ const PaymentSuccess = () => {
             </div>
           )}
 
-          {/* Einfaches Bewertungssystem */}
+          {/* Einfaches Bewertungssystem mit neuem QR-Code */}
           <Card className="shadow-lg bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200 mt-8">
             <CardHeader className="text-center">
               <CardTitle className="text-xl font-bold text-gray-900 flex items-center justify-center">
@@ -303,11 +303,11 @@ const PaymentSuccess = () => {
             <CardContent className="text-center">
               <div className="bg-white p-4 rounded-xl shadow-sm border inline-block mb-4">
                 <img 
-                  src="https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/4e8xw813_image.png"
+                  src="https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/pnol6tzt_IMG-20250911-WA0008.jpg"
                   alt="QR-Code für Bewertung"
                   className="w-28 h-28 mx-auto"
                 />
-                <p className="text-xs text-gray-600 mt-2">📱 QR-Code scannen</p>
+                <p className="text-xs text-gray-600 mt-2">Bewerten</p>
               </div>
               
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
