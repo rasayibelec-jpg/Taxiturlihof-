@@ -116,14 +116,6 @@ const Header = () => {
             >
               Kontakt
             </button>
-
-            {/* CTA Button - Nur einer */}
-            <Link
-              to="/buchen"
-              className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded-lg transition-colors duration-200 font-semibold"
-            >
-              Jetzt buchen
-            </Link>
             <Button className="bg-yellow-600 hover:bg-yellow-700 text-white">
               <Phone className="w-4 h-4 mr-2" />
               076 611 31 31
