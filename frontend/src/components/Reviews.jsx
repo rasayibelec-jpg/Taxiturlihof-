@@ -9,6 +9,7 @@ const Reviews = () => {
   const [hoveredRating, setHoveredRating] = useState(0);
   const [name, setName] = useState('');
   const [comment, setComment] = useState('');
+  const [userReviews, setUserReviews] = useState([]); // Yeni yorumlar için
 
   const handleSubmitReview = async () => {
     if (rating === 0) {
@@ -17,16 +18,18 @@ const Reviews = () => {
     }
     
     const reviewData = {
+      id: Date.now(),
       rating,
       name: name || 'Anonymer Kunde',
-      comment,
-      date: new Date().toISOString()
+      comment: comment || 'Danke für den Service!',
+      date: new Date().toISOString(),
+      timeAgo: 'gerade eben'
     };
 
     try {
-      // Hier würde normalerweise an Backend gesendet werden
-      console.log('Review submitted:', reviewData);
-      alert('Vielen Dank für Ihre Bewertung!');
+      // Yorumu listeye ekle
+      setUserReviews([reviewData, ...userReviews]);
+      alert('Vielen Dank für Ihre Bewertung! Ihre Bewertung wird jetzt angezeigt.');
       
       // Form zurücksetzen
       setRating(0);
