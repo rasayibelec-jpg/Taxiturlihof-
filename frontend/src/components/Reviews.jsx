@@ -131,60 +131,31 @@ const Reviews = () => {
           </div>
         </div>
 
-        {/* Individuelle Bewertungen - kompakter */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          {/* Yeni kullanıcı yorumlarını üstte göster */}
+        {/* Individuelle Bewertungen - kleine Blöcke */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+          {/* Yeni kullanıcı yorumları - kompakt */}
           {userReviews.map((review) => (
-            <Card key={review.id} className="group hover:shadow-lg transition-all duration-300 border-green-200 bg-green-50">
-              <CardHeader className="pb-3">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="bg-green-100 p-1 rounded-full">
-                    <Quote className="w-4 h-4 text-green-600" />
-                  </div>
-                  <div className="flex space-x-1">
-                    {renderStars(review.rating)}
-                  </div>
-                </div>
-                <CardTitle className="text-base font-semibold text-gray-900 flex items-center">
-                  {review.name}
-                  <Badge className="ml-2 bg-green-100 text-green-800 text-xs">NEU</Badge>
-                </CardTitle>
-                <CardDescription className="text-xs text-gray-500">
-                  {review.timeAgo} • Website Bewertung
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <p className="text-sm text-gray-700 italic leading-relaxed">
-                  "{review.comment}"
-                </p>
-              </CardContent>
+            <Card key={review.id} className="p-3 hover:shadow-lg transition-all duration-300 border-green-200 bg-green-50 text-center">
+              <div className="flex justify-center mb-2">
+                {renderStars(review.rating)}
+              </div>
+              <h4 className="text-sm font-semibold text-gray-900 mb-1">
+                {review.name}
+              </h4>
+              <Badge className="bg-green-100 text-green-800 text-xs">NEU</Badge>
             </Card>
           ))}
           
           {/* Google Bewertungen - kompakt */}
           {googleReviews.map((review) => (
-            <Card key={review.id} className="group hover:shadow-lg transition-all duration-300 border-gray-200">
-              <CardHeader className="pb-3">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="bg-yellow-100 p-1 rounded-full">
-                    <Quote className="w-4 h-4 text-yellow-600" />
-                  </div>
-                  <div className="flex space-x-1">
-                    {renderStars(review.rating)}
-                  </div>
-                </div>
-                <CardTitle className="text-base font-semibold text-gray-900">
-                  {review.name}
-                </CardTitle>
-                <CardDescription className="text-xs text-gray-500">
-                  {review.timeAgo} • Google Bewertung
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <p className="text-sm text-gray-700 italic leading-relaxed">
-                  "{review.comment}"
-                </p>
-              </CardContent>
+            <Card key={review.id} className="p-3 hover:shadow-lg transition-all duration-300 border-gray-200 text-center">
+              <div className="flex justify-center mb-2">
+                {renderStars(review.rating)}
+              </div>
+              <h4 className="text-sm font-semibold text-gray-900 mb-1">
+                {review.name}
+              </h4>
+              <p className="text-xs text-gray-500">Google</p>
             </Card>
           ))}
         </div>
