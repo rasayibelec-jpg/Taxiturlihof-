@@ -125,23 +125,23 @@ const Reviews = () => {
           ))}
         </div>
 
-        {/* Call-to-Action für mehr Bewertungen - EINFACH */}
+        {/* Call-to-Action für mehr Bewertungen - EINFACH mit neuem QR-Code */}
         <div className="text-center mt-16">
           <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-8 border border-yellow-200">
             <h4 className="text-2xl font-bold text-gray-900 mb-4">
               Bewerten Sie unseren Service
             </h4>
             <p className="text-gray-600 mb-6">
-              Ihre Meinung ist uns wichtig! Scannen Sie den QR-Code oder rufen Sie uns an.
+              Ihre Meinung ist uns wichtig!
             </p>
             
             <div className="bg-white p-6 rounded-xl shadow-lg border inline-block mb-6">
               <img 
-                src="https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/4e8xw813_image.png"
+                src="https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/pnol6tzt_IMG-20250911-WA0008.jpg"
                 alt="QR-Code für Bewertungen"
                 className="w-40 h-40 mx-auto"
               />
-              <p className="text-sm text-gray-600 mt-3">📱 QR-Code scannen</p>
+              <p className="text-sm text-gray-600 mt-3">Bewerten</p>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
