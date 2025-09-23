@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "./Header";
 import CompactHero from "./CompactHero";
 import CompactServices from "./CompactServices";
-import FleetGallery from "./FleetGallery";
-import Reviews from "./Reviews";
-import CompactCalculatorCTA from "./CompactCalculatorCTA";
+import QuickActions from "./QuickActions";
+import CompactAbout from "./CompactAbout";
+import CompactReviews from "./CompactReviews";
 import StreamlinedContact from "./StreamlinedContact";
 import Footer from "./Footer";
 import FloatingActionButtons from "./FloatingActionButtons";
@@ -15,9 +15,9 @@ const HomePage = () => {
       <Header />
       <CompactHero />
       <CompactServices />
-      <FleetGallery />
-      <Reviews />
-      <CompactCalculatorCTA />
+      <QuickActions />
+      <CompactAbout />
+      <CompactReviews />
       <StreamlinedContact />
       <Footer />
       <FloatingActionButtons />
