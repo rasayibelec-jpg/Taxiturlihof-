@@ -135,13 +135,13 @@ const Reviews = () => {
               Ihre Meinung ist uns wichtig!
             </p>
             
-            <div className="bg-white p-6 rounded-xl shadow-lg border inline-block mb-6">
+            <div className="bg-white p-8 rounded-xl shadow-lg border inline-block mb-6">
               <img 
                 src="https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/pnol6tzt_IMG-20250911-WA0008.jpg"
                 alt="QR-Code für Bewertungen"
-                className="w-40 h-40 mx-auto"
+                className="w-48 h-48 mx-auto object-contain"
               />
-              <p className="text-sm text-gray-600 mt-3">Bewerten</p>
+              <p className="text-lg font-semibold text-gray-800 mt-4 text-center">Bewerten</p>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
