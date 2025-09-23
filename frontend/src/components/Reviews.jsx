@@ -193,14 +193,19 @@ const Reviews = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Bewertung:
                     </label>
-                    <div className="flex justify-center gap-1 mb-4" id="star-rating">
+                    <div className="flex justify-center gap-1 mb-4">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <button
                           key={star}
                           type="button"
-                          className="star-btn text-3xl text-gray-300 hover:text-yellow-400 transition-colors"
-                          data-rating={star}
+                          className={`text-3xl transition-colors ${
+                            star <= (hoveredRating || rating) 
+                              ? 'text-yellow-400' 
+                              : 'text-gray-300 hover:text-yellow-400'
+                          }`}
                           onClick={() => setRating(star)}
+                          onMouseEnter={() => setHoveredRating(star)}
+                          onMouseLeave={() => setHoveredRating(0)}
                         >
                           ⭐
                         </button>
@@ -215,6 +220,8 @@ const Reviews = () => {
                     </label>
                     <input
                       type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                       placeholder="Ihr Name"
                     />
@@ -227,6 +234,8 @@ const Reviews = () => {
                     </label>
                     <textarea
                       rows="3"
+                      value={comment}
+                      onChange={(e) => setComment(e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                       placeholder="Wie war Ihre Erfahrung mit uns?"
                     ></textarea>
@@ -235,6 +244,7 @@ const Reviews = () => {
                   {/* Submit Button */}
                   <button 
                     type="button"
+                    onClick={handleSubmitReview}
                     className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded-lg font-semibold transition-colors duration-200"
                   >
                     Bewertung absenden
