@@ -301,13 +301,13 @@ const PaymentSuccess = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center">
-              <div className="bg-white p-4 rounded-xl shadow-sm border inline-block mb-4">
+              <div className="bg-white p-6 rounded-xl shadow-sm border inline-block mb-4">
                 <img 
                   src="https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/pnol6tzt_IMG-20250911-WA0008.jpg"
                   alt="QR-Code für Bewertung"
-                  className="w-28 h-28 mx-auto"
+                  className="w-36 h-36 mx-auto object-contain"
                 />
-                <p className="text-xs text-gray-600 mt-2">Bewerten</p>
+                <p className="text-sm font-semibold text-gray-800 mt-3 text-center">Bewerten</p>
               </div>
               
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
