@@ -37,7 +37,6 @@ const Reviews = () => {
     }
   };
 
-const Reviews = () => {
   // Echte Google Bewertungen von Ihrer Google My Business Seite
   const googleReviews = [
     {
@@ -130,7 +129,7 @@ const Reviews = () => {
         </div>
 
         {/* Individuelle Bewertungen */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {googleReviews.map((review) => (
             <Card key={review.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-gray-200">
               <CardHeader className="pb-4">
@@ -211,6 +210,11 @@ const Reviews = () => {
                         </button>
                       ))}
                     </div>
+                    {rating > 0 && (
+                      <p className="text-center text-yellow-600 font-medium">
+                        {rating} von 5 Sternen
+                      </p>
+                    )}
                   </div>
 
                   {/* Name */}
