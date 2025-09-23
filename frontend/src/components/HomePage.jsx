@@ -1,22 +1,26 @@
 import React from "react";
 import Header from "./Header";
-import UltraCompactHero from "./UltraCompactHero";
-import UltraCompactAbout from "./UltraCompactAbout";
-import UltraCompactServices from "./UltraCompactServices";
-import UltraCompactActions from "./UltraCompactActions";
-import UltraCompactReviews from "./UltraCompactReviews";
+import CompactHero from "./CompactHero";
+import CompactServices from "./CompactServices";
+import FleetGallery from "./FleetGallery";
+import Reviews from "./Reviews";
+import CompactCalculatorCTA from "./CompactCalculatorCTA";
+import StreamlinedContact from "./StreamlinedContact";
 import Footer from "./Footer";
+import FloatingActionButtons from "./FloatingActionButtons";
 
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <UltraCompactHero />
-      <UltraCompactAbout />
-      <UltraCompactServices />
-      <UltraCompactActions />
-      <UltraCompactReviews />
+      <CompactHero />
+      <CompactServices />
+      <FleetGallery />
+      <Reviews />
+      <CompactCalculatorCTA />
+      <StreamlinedContact />
       <Footer />
+      <FloatingActionButtons />
     </div>
   );
 };
