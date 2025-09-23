@@ -36,13 +36,14 @@ const CompactFleetTest = () => {
   ];
 
   return (
-    <section className="py-6 bg-white">
+    <section className="py-6 bg-red-100 border-2 border-red-500">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center mb-4">
-          <h2 className="text-lg font-bold text-gray-900 mb-2">
-            Unsere Flotte
+          <h2 className="text-2xl font-bold text-red-900 mb-2">
+            🚗 Unsere Flotte 🚗
           </h2>
+          <p className="text-red-700">TEST: CompactFleetTest wird gerendert!</p>
         </div>
 
         {/* Flotte als kleine Blöcke */}
