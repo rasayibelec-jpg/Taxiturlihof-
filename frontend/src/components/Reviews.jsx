@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Star, Quote, MapPin, Phone, Mail } from "lucide-react";
 import { contactInfo } from "../data/mockData";
+
+const Reviews = () => {
+  const [rating, setRating] = useState(0);
+  const [hoveredRating, setHoveredRating] = useState(0);
+  const [name, setName] = useState('');
+  const [comment, setComment] = useState('');
+
+  const handleSubmitReview = async () => {
+    if (rating === 0) {
+      alert('Bitte wählen Sie eine Bewertung aus!');
+      return;
+    }
+    
+    const reviewData = {
+      rating,
+      name: name || 'Anonymer Kunde',
+      comment,
+      date: new Date().toISOString()
+    };
+
+    try {
+      // Hier würde normalerweise an Backend gesendet werden
+      console.log('Review submitted:', reviewData);
+      alert('Vielen Dank für Ihre Bewertung!');
+      
+      // Form zurücksetzen
+      setRating(0);
+      setName('');
+      setComment('');
+    } catch (error) {
+      alert('Fehler beim Senden der Bewertung. Bitte versuchen Sie es erneut.');
+    }
+  };
 
 const Reviews = () => {
   // Echte Google Bewertungen von Ihrer Google My Business Seite
