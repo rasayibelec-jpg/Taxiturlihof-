@@ -189,47 +189,47 @@ const Reviews = () => {
           ))}
         </div>
 
-        {/* Call-to-Action für mehr Bewertungen - QR-Code + Direkte Bewertung */}
-        <div className="text-center mt-16">
-          <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-8 border border-yellow-200">
-            <h4 className="text-2xl font-bold text-gray-900 mb-4">
+        {/* Call-to-Action für mehr Bewertungen - kompakt */}
+        <div className="text-center">
+          <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-6 border border-yellow-200">
+            <h4 className="text-lg font-bold text-gray-900 mb-3">
               Bewerten Sie unseren Service
             </h4>
-            <p className="text-gray-600 mb-8">
+            <p className="text-gray-600 mb-4">
               Ihre Meinung ist uns wichtig!
             </p>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               
-              {/* QR-Code Bereich */}
+              {/* QR-Code Bereich - kompakt */}
               <div className="text-center">
-                <h5 className="text-lg font-semibold text-gray-800 mb-4">📱 Mit QR-Code</h5>
-                <div className="bg-white p-6 rounded-xl shadow-lg border inline-block">
+                <h5 className="text-base font-semibold text-gray-800 mb-3">📱 Mit QR-Code</h5>
+                <div className="bg-white p-4 rounded-lg shadow border inline-block">
                   <img 
                     src="https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/pnol6tzt_IMG-20250911-WA0008.jpg"
                     alt="QR-Code für Bewertungen"
-                    className="w-32 h-32 mx-auto object-contain"
+                    className="w-24 h-24 mx-auto object-contain"
                   />
-                  <p className="text-sm font-semibold text-gray-800 mt-3">Bewerten</p>
+                  <p className="text-sm font-semibold text-gray-800 mt-2">Bewerten</p>
                 </div>
               </div>
 
-              {/* Direkte Bewertung */}
+              {/* Direkte Bewertung - kompakt */}
               <div className="text-center">
-                <h5 className="text-lg font-semibold text-gray-800 mb-4">⭐ Direkt hier bewerten</h5>
-                <div className="bg-white p-6 rounded-xl shadow-lg border text-left">
+                <h5 className="text-base font-semibold text-gray-800 mb-3">⭐ Direkt hier bewerten</h5>
+                <div className="bg-white p-4 rounded-lg shadow border text-left">
                   
                   {/* Sterne Bewertung */}
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <div className="mb-3">
+                    <label className="block text-xs font-medium text-gray-700 mb-1">
                       Bewertung:
                     </label>
-                    <div className="flex justify-center gap-1 mb-4">
+                    <div className="flex justify-center gap-1 mb-2">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <button
                           key={star}
                           type="button"
-                          className={`text-3xl transition-colors ${
+                          className={`text-2xl transition-colors ${
                             star <= (hoveredRating || rating) 
                               ? 'text-yellow-400' 
                               : 'text-gray-300 hover:text-yellow-400'
@@ -243,37 +243,37 @@ const Reviews = () => {
                       ))}
                     </div>
                     {rating > 0 && (
-                      <p className="text-center text-yellow-600 font-medium">
+                      <p className="text-center text-yellow-600 font-medium text-xs">
                         {rating} von 5 Sternen
                       </p>
                     )}
                   </div>
 
                   {/* Name */}
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <div className="mb-3">
+                    <label className="block text-xs font-medium text-gray-700 mb-1">
                       Name (optional):
                     </label>
                     <input
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                      className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-yellow-500 focus:border-transparent"
                       placeholder="Ihr Name"
                     />
                   </div>
 
                   {/* Kommentar */}
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <div className="mb-3">
+                    <label className="block text-xs font-medium text-gray-700 mb-1">
                       Kommentar:
                     </label>
                     <textarea
-                      rows="3"
+                      rows="2"
                       value={comment}
                       onChange={(e) => setComment(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                      placeholder="Wie war Ihre Erfahrung mit uns?"
+                      className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-yellow-500 focus:border-transparent"
+                      placeholder="Wie war Ihre Erfahrung?"
                     ></textarea>
                   </div>
 
@@ -281,7 +281,7 @@ const Reviews = () => {
                   <button 
                     type="button"
                     onClick={handleSubmitReview}
-                    className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded-lg font-semibold transition-colors duration-200"
+                    className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-3 rounded text-sm font-semibold transition-colors duration-200"
                   >
                     Bewertung absenden
                   </button>
@@ -290,20 +290,20 @@ const Reviews = () => {
 
             </div>
             
-            {/* Alternative Kontaktmöglichkeiten */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+            {/* Alternative Kontaktmöglichkeiten - kompakt */}
+            <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6">
               <a
                 href="tel:076 611 31 31"
-                className="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
+                className="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
               >
-                <Phone className="w-5 h-5 mr-2" />
+                <Phone className="w-4 h-4 mr-2" />
                 Anrufen & bewerten
               </a>
               <a
                 href="mailto:info@taxiturlihof.ch?subject=Bewertung&body=Meine%20Bewertung:%0A%0ASterne:%20⭐⭐⭐⭐⭐%0A%0AKommentar:%20"
-                className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
+                className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 font-semibold text-sm"
               >
-                <Mail className="w-5 h-5 mr-2" />
+                <Mail className="w-4 h-4 mr-2" />
                 E-Mail senden
               </a>
             </div>
