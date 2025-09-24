@@ -99,9 +99,9 @@ PAYMENT_METHODS = [
 
 class PaymentService:
     def __init__(self):
-        self.stripe_api_key = os.getenv('STRIPE_API_KEY')
+        self.stripe_api_key = os.getenv('STRIPE_SECRET_KEY') or os.getenv('STRIPE_API_KEY')
         if not self.stripe_api_key:
-            logger.warning("STRIPE_API_KEY not found in environment variables")
+            logger.warning("STRIPE_SECRET_KEY not found in environment variables")
     
     async def get_available_payment_methods(self) -> List[PaymentMethod]:
         """Get list of available payment methods"""
