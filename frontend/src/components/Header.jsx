@@ -145,145 +145,96 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Kompakt */}
         {isMenuOpen && (
           <nav className="md:hidden py-4 border-t">
-            <div className="flex flex-col space-y-4">
-              <Link
-                to="/"
-                className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Home
-              </Link>
-              <button
-                onClick={() => scrollToSection("calculator")}
-                className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-              >
-                Preisrechner
-              </button>
-              <button
-                onClick={() => scrollToSection("booking")}
-                className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-              >
-                Buchen
-              </button>
+            <div className="flex flex-col space-y-3">
               
-              {/* Mobile Städte Links */}
-              <div className="pl-4 space-y-2">
-                <p className="text-sm font-semibold text-gray-900">Städte:</p>
-                <Link
-                  to="/taxi-luzern"
-                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  • Taxi Luzern
-                </Link>
-                <Link
-                  to="/taxi-schwyz"
-                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  • Taxi Schwyz
-                </Link>
-                <Link
-                  to="/taxi-zug"
-                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  • Taxi Zug
-                </Link>
-                <Link
-                  to="/flughafentransfer"
-                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  • Flughafentransfer
-                </Link>
-                <Link
-                  to="/flughafen-zurich-transfer"
-                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  • ✈️ Flughafen Zürich
-                </Link>
-                <Link
-                  to="/flotte"
-                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  • Unsere Flotte
-                </Link>
-              </div>
-              
-              {/* Mobile Blog Links */}
-              <div className="pl-4 space-y-2">
-                <p className="text-sm font-semibold text-gray-900">Blog & Tipps:</p>
-                <Link
-                  to="/blog/luzern-sehenswuerdigkeiten"
-                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  • 🏰 Luzern Sehenswürdigkeiten
-                </Link>
-                <Link
-                  to="/blog"
-                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  • 📖 Alle Blog-Artikel
-                </Link>
-                <Link
-                  to="/faq"
-                  className="block text-gray-600 hover:text-yellow-600 transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  • ❓ Häufige Fragen
-                </Link>
-              </div>
-              
-              <button
-                onClick={() => scrollToSection("services")}
-                className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-              >
-                Dienstleistungen
-              </button>
-              <button
-                onClick={() => scrollToSection("reviews")}
-                className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-              >
-                Bewertungen
-              </button>
-              <button
-                onClick={() => scrollToSection("faq")}
-                className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-              >
-                FAQ
-              </button>
-              <Link
-                to="/blog"
-                className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Blog
-              </Link>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="text-left text-gray-700 hover:text-yellow-600 transition-colors duration-200"
-              >
-                Kontakt
-              </button>
+              {/* Wichtigste Links zuerst */}
               <Link
                 to="/admin"
-                className="text-left text-red-600 hover:text-red-700 font-semibold transition-colors duration-200"
+                className="bg-red-600 hover:bg-red-700 text-white p-3 rounded font-semibold text-center transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 🔧 Admin Dashboard
               </Link>
-              <Button className="bg-yellow-600 hover:bg-yellow-700 text-white w-full">
-                <Phone className="w-4 h-4 mr-2" />
-                Jetzt Buchen
-              </Button>
+              
+              <Link
+                to="/preisrechner"
+                className="bg-yellow-600 hover:bg-yellow-700 text-white p-3 rounded font-semibold text-center transition-colors duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                💰 Preisrechner
+              </Link>
+              
+              <Link
+                to="/buchen"
+                className="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded font-semibold text-center transition-colors duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                📱 Jetzt Buchen
+              </Link>
+              
+              {/* Städte kompakt */}
+              <div className="grid grid-cols-2 gap-2">
+                <Link
+                  to="/taxi-luzern"
+                  className="text-center py-2 px-3 bg-gray-100 rounded text-sm hover:bg-yellow-100 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🏰 Luzern
+                </Link>
+                <Link
+                  to="/taxi-schwyz"
+                  className="text-center py-2 px-3 bg-gray-100 rounded text-sm hover:bg-yellow-100 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🏔️ Schwyz
+                </Link>
+                <Link
+                  to="/taxi-zug"
+                  className="text-center py-2 px-3 bg-gray-100 rounded text-sm hover:bg-yellow-100 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🚂 Zug
+                </Link>
+                <Link
+                  to="/flughafentransfer"
+                  className="text-center py-2 px-3 bg-gray-100 rounded text-sm hover:bg-yellow-100 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  ✈️ Flughafen
+                </Link>
+              </div>
+              
+              {/* Weitere Links kompakt */}
+              <div className="grid grid-cols-2 gap-2">
+                <Link
+                  to="/flotte"
+                  className="text-center py-2 px-3 bg-gray-100 rounded text-sm hover:bg-yellow-100 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🚗 Flotte
+                </Link>
+                <Link
+                  to="/blog"
+                  className="text-center py-2 px-3 bg-gray-100 rounded text-sm hover:bg-yellow-100 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  📖 Blog
+                </Link>
+              </div>
+              
+              {/* Kontakt */}
+              <button
+                onClick={() => {
+                  scrollToSection("contact");
+                  setIsMenuOpen(false);
+                }}
+                className="text-center py-2 px-3 bg-green-600 hover:bg-green-700 text-white rounded font-semibold transition-colors duration-200"
+              >
+                📞 Kontakt & Anruf
+              </button>
             </div>
           </nav>
         )}
