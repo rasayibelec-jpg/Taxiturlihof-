@@ -4502,9 +4502,10 @@ class BackendTester:
         return overall_success
 
 async def main():
-    """Main test runner"""
+    """Main test runner - CRITICAL BOOKING INVESTIGATION"""
     async with BackendTester() as tester:
-        success = await tester.run_all_tests()
+        # Run critical investigation for missing booking issue
+        success = await tester.run_critical_booking_investigation()
         return success
 
 if __name__ == "__main__":
