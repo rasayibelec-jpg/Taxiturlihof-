@@ -9,6 +9,11 @@ const FleetGallery = () => {
 
   const fleetImages = [
     {
+      url: "https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/ssbuesk0_20250620_123609%281%29%281%29.heic",
+      title: "Mercedes S-Klasse Premium",
+      description: "Luxuriöse S-Klasse mit höchstem Fahrkomfort und Eleganz"
+    },
+    {
       url: "https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/7exvefg3_IMG-20250908-WA0001.jpg",
       title: "Mercedes V-Klasse Van",
       description: "Geräumig für Familien und Gruppen bis 8 Personen"
