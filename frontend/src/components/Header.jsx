@@ -118,8 +118,15 @@ const Header = () => {
             </button>
             <Link
               to="/admin"
-              className="text-red-600 hover:text-red-700 font-semibold transition-colors duration-200"
+              className="hidden md:block text-red-600 hover:text-red-700 font-semibold transition-colors duration-200"
               title="Admin Dashboard - Buchungen verwalten"
+            >
+              🔧 Admin
+            </Link>
+            <Link
+              to="/admin"
+              className="md:hidden bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm font-semibold transition-colors duration-200"
+              title="Admin Dashboard"
             >
               🔧 Admin
             </Link>
