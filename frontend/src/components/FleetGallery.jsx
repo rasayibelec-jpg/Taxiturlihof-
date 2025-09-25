@@ -44,11 +44,6 @@ const FleetGallery = () => {
       description: "Spektakuläre Fahrten in der Zentralschweiz"
     },
     {
-      url: "https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/ssbuesk0_20250620_123609%281%29%281%29.heic",
-      title: "Mercedes S-Klasse Premium",
-      description: "Luxuriöse S-Klasse mit höchstem Fahrkomfort und Eleganz"
-    },
-    {
       url: "https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/pb8e5md2_20250921_024901%281%29%281%29.jpg",
       title: "Mercedes Premium-Interieur",
       description: "Luxuriöse Ledersitze mit blauer Ambientebeleuchtung"
