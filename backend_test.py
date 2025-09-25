@@ -4269,7 +4269,48 @@ class BackendTester:
         print("\n📧 TESTING EMAIL SYSTEM - Booking confirmations...")
         await self.test_booking_email_system()
         
-        return self.generate_summary()
+        # Generate summary
+        print("\n" + "=" * 70)
+        print("🚨 CRITICAL BOOKING INVESTIGATION SUMMARY")
+        print("=" * 70)
+        
+        passed_tests = [r for r in self.results if r["success"]]
+        failed_tests = [r for r in self.results if not r["success"]]
+        
+        print(f"✅ Passed: {len(passed_tests)}")
+        print(f"❌ Failed: {len(failed_tests)}")
+        print(f"📈 Success Rate: {len(passed_tests)}/{len(self.results)} ({len(passed_tests)/len(self.results)*100:.1f}%)")
+        
+        if failed_tests:
+            print("\n🔍 FAILED TESTS:")
+            for test in failed_tests:
+                print(f"   • {test['test']}: {test['message']}")
+        
+        print("\n📋 CRITICAL FINDINGS:")
+        
+        # Check database connection
+        db_tests = [r for r in self.results if "MongoDB" in r["test"]]
+        db_passed = [r for r in db_tests if r["success"]]
+        if db_tests:
+            print(f"   🗄️  Database Connection: {len(db_passed)}/{len(db_tests)} tests passed")
+        
+        # Check booking visibility
+        booking_tests = [r for r in self.results if "Booking" in r["test"]]
+        booking_passed = [r for r in booking_tests if r["success"]]
+        if booking_tests:
+            print(f"   📋 Booking System: {len(booking_passed)}/{len(booking_tests)} tests passed")
+        
+        # Check payment system
+        payment_tests = [r for r in self.results if "Payment" in r["test"]]
+        payment_passed = [r for r in payment_tests if r["success"]]
+        if payment_tests:
+            print(f"   💳 Payment System: {len(payment_passed)}/{len(payment_tests)} tests passed")
+        
+        # Determine overall success
+        critical_failures = [r for r in failed_tests if "Backend Logs Error Check" not in r["test"]]
+        overall_success = len(critical_failures) == 0
+        
+        return overall_success
     async def run_all_tests(self):
         """Run all backend tests"""
         print("🚀 Starting Backend Test Suite for Taxi Türlihof")
