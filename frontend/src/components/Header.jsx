@@ -266,6 +266,13 @@ const Header = () => {
               >
                 Kontakt
               </button>
+              <Link
+                to="/admin"
+                className="text-left text-red-600 hover:text-red-700 font-semibold transition-colors duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                🔧 Admin Dashboard
+              </Link>
               <Button className="bg-yellow-600 hover:bg-yellow-700 text-white w-full">
                 <Phone className="w-4 h-4 mr-2" />
                 Jetzt Buchen
