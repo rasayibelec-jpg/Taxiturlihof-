@@ -4232,7 +4232,7 @@ class BackendTester:
         
         if not api_healthy:
             print("❌ API is not accessible. Critical issue!")
-            return self.generate_summary()
+            return False
         
         # Test 2: Check MongoDB Database Connection and Bookings Collection
         print("\n🗄️ INVESTIGATING DATABASE - Checking bookings collection...")
