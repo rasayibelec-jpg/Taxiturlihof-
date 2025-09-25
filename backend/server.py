@@ -284,8 +284,14 @@ async def get_all_bookings(status: Optional[str] = None, limit: int = 50):
 
 @api_router.put("/bookings/{booking_id}/status")
 async def update_booking_status(booking_id: str, status: BookingStatus):
-    """Update booking status"""
+    """Update booking status and send email notification to customer"""
     try:
+        # First get the booking details for email
+        booking = await db.bookings.find_one({"id": booking_id})
+        if not booking:
+            raise HTTPException(status_code=404, detail="Buchung nicht gefunden")
+        
+        # Update booking status
         result = await db.bookings.update_one(
             {"id": booking_id},
             {
@@ -296,10 +302,81 @@ async def update_booking_status(booking_id: str, status: BookingStatus):
             }
         )
         
-        if result.matched_count == 0:
-            raise HTTPException(status_code=404, detail="Buchung nicht gefunden")
+        # Send status update email to customer
+        try:
+            status_messages = {
+                "confirmed": {
+                    "subject": "✅ Ihre Taxi-Buchung wurde bestätigt - Taxi Türlihof",
+                    "title": "Buchung bestätigt!",
+                    "message": "Wir freuen uns, Ihnen mitteilen zu können, dass Ihre Taxi-Buchung erfolgreich bestätigt wurde. Unser Fahrer wird pünktlich bei Ihnen sein."
+                },
+                "in_progress": {
+                    "subject": "🚗 Ihr Taxi ist unterwegs - Taxi Türlihof", 
+                    "title": "Ihr Taxi ist unterwegs!",
+                    "message": "Ihr Taxi-Fahrer ist jetzt auf dem Weg zu Ihrem Abholort. Bitte halten Sie sich bereit."
+                },
+                "completed": {
+                    "subject": "🎉 Fahrt abgeschlossen - Vielen Dank - Taxi Türlihof",
+                    "title": "Fahrt erfolgreich abgeschlossen!",
+                    "message": "Vielen Dank für die Nutzung unseres Taxi-Service. Wir hoffen, Sie hatten eine angenehme Fahrt."
+                },
+                "cancelled": {
+                    "subject": "❌ Buchung storniert - Taxi Türlihof",
+                    "title": "Buchung wurde storniert",
+                    "message": "Ihre Buchung wurde leider storniert. Bei Fragen kontaktieren Sie uns gerne unter 076 611 31 31."
+                }
+            }
+            
+            if status.value in status_messages:
+                email_info = status_messages[status.value]
+                
+                # Create detailed email content
+                email_content = f"""
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                    <h2 style="color: #1f2937;">{email_info['title']}</h2>
+                    
+                    <p>{email_info['message']}</p>
+                    
+                    <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <h3 style="color: #1f2937; margin-top: 0;">📋 Buchungsdetails:</h3>
+                        <p><strong>Buchungsnummer:</strong> #{booking_id[:8]}</p>
+                        <p><strong>Von:</strong> {booking.get('pickup_location', 'N/A')}</p>
+                        <p><strong>Nach:</strong> {booking.get('destination', 'N/A')}</p>
+                        <p><strong>Datum & Zeit:</strong> {booking.get('pickup_datetime', 'N/A')}</p>
+                        <p><strong>Fahrzeugtyp:</strong> {booking.get('vehicle_type', 'Standard')}</p>
+                        <p><strong>Geschätzter Preis:</strong> CHF {booking.get('total_fare', 'N/A')}</p>
+                        <p><strong>Status:</strong> <span style="color: #059669; font-weight: bold;">{status.value}</span></p>
+                    </div>
+                    
+                    <div style="background: #fef3c7; padding: 15px; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                        <p style="margin: 0;"><strong>📞 Kontakt:</strong> 076 611 31 31</p>
+                        <p style="margin: 5px 0 0 0;"><strong>📧 E-Mail:</strong> info@taxi-tuerlihof.ch</p>
+                    </div>
+                    
+                    <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+                    
+                    <p style="font-size: 14px; color: #6b7280;">
+                        Mit freundlichen Grüßen<br>
+                        <strong>Ihr Team von Taxi Türlihof</strong><br>
+                        Zuverlässig • Pünktlich • Komfortabel
+                    </p>
+                </div>
+                """
+                
+                await email_service.send_email(
+                    to_email=booking.get('customer_email'),
+                    subject=email_info['subject'],
+                    html_content=email_content,
+                    customer_name=booking.get('customer_name')
+                )
+                
+                logger.info(f"Status update email sent to {booking.get('customer_email')} for booking {booking_id}")
+                
+        except Exception as email_error:
+            logger.warning(f"Failed to send status update email: {str(email_error)}")
+            # Don't fail the status update if email fails
         
-        return {"success": True, "message": f"Buchungsstatus auf '{status.value}' aktualisiert"}
+        return {"success": True, "message": f"Buchungsstatus auf '{status.value}' aktualisiert und Kunde per E-Mail benachrichtigt"}
         
     except HTTPException:
         raise
