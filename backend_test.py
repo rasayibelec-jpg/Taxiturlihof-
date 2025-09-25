@@ -4311,10 +4311,209 @@ class BackendTester:
         overall_success = len(critical_failures) == 0
         
         return overall_success
+    async def test_critical_booking_investigation(self):
+        """🚨 CRITICAL: Investigate missing booking #959acf7e for Yasar Celebi"""
+        print("\n🚨 CRITICAL BOOKING INVESTIGATION STARTED")
+        print("=" * 60)
+        print("User Report: Booking #959acf7e (Yasar Celebi) paid but not visible in admin dashboard")
+        print("Details: yasar.cel@me.com, Türlihof 4 Oberarth → Goldau, 25.09.2025 10:30, CHF 13.36")
+        print("=" * 60)
+        
+        investigation_results = []
+        
+        # 1. Search MongoDB for specific booking ID
+        try:
+            print("\n1️⃣ Searching MongoDB for booking ID #959acf7e...")
+            async with self.session.get(f"{BACKEND_URL}/bookings/959acf7e") as response:
+                if response.status == 200:
+                    booking_data = await response.json()
+                    investigation_results.append("✅ FOUND: Booking #959acf7e exists in database")
+                    print(f"   ✅ FOUND: Booking details: {booking_data.get('customer_name', 'N/A')}, {booking_data.get('customer_email', 'N/A')}")
+                elif response.status == 404:
+                    investigation_results.append("❌ NOT FOUND: Booking #959acf7e not in database")
+                    print("   ❌ NOT FOUND: Booking #959acf7e not found in database")
+                else:
+                    investigation_results.append(f"⚠️ ERROR: API returned status {response.status}")
+                    print(f"   ⚠️ ERROR: API returned status {response.status}")
+        except Exception as e:
+            investigation_results.append(f"❌ ERROR: Failed to search for booking: {str(e)}")
+            print(f"   ❌ ERROR: {str(e)}")
+        
+        # 2. Search all bookings for customer "Yasar Celebi"
+        try:
+            print("\n2️⃣ Searching all bookings for customer 'Yasar Celebi'...")
+            async with self.session.get(f"{BACKEND_URL}/bookings?limit=200") as response:
+                if response.status == 200:
+                    all_bookings = await response.json()
+                    yasar_bookings = [b for b in all_bookings if 'yasar' in b.get('customer_name', '').lower() or 'yasar' in b.get('customer_email', '').lower()]
+                    
+                    if yasar_bookings:
+                        investigation_results.append(f"✅ FOUND: {len(yasar_bookings)} booking(s) for Yasar Celebi")
+                        print(f"   ✅ FOUND: {len(yasar_bookings)} booking(s) for Yasar Celebi:")
+                        for booking in yasar_bookings:
+                            print(f"      - ID: {booking.get('id', 'N/A')[:8]}, Email: {booking.get('customer_email', 'N/A')}, Amount: CHF {booking.get('total_fare', 'N/A')}")
+                    else:
+                        investigation_results.append("❌ NOT FOUND: No bookings found for Yasar Celebi")
+                        print("   ❌ NOT FOUND: No bookings found for Yasar Celebi")
+                        
+                    print(f"   📊 Total bookings in database: {len(all_bookings)}")
+                    investigation_results.append(f"📊 Database contains {len(all_bookings)} total bookings")
+                else:
+                    investigation_results.append(f"⚠️ ERROR: Failed to retrieve all bookings (status {response.status})")
+                    print(f"   ⚠️ ERROR: Failed to retrieve all bookings (status {response.status})")
+        except Exception as e:
+            investigation_results.append(f"❌ ERROR: Failed to search all bookings: {str(e)}")
+            print(f"   ❌ ERROR: {str(e)}")
+        
+        # 3. Search for email yasar.cel@me.com
+        try:
+            print("\n3️⃣ Searching for email 'yasar.cel@me.com'...")
+            async with self.session.get(f"{BACKEND_URL}/bookings?limit=200") as response:
+                if response.status == 200:
+                    all_bookings = await response.json()
+                    email_bookings = [b for b in all_bookings if b.get('customer_email', '').lower() == 'yasar.cel@me.com']
+                    
+                    if email_bookings:
+                        investigation_results.append(f"✅ FOUND: {len(email_bookings)} booking(s) for yasar.cel@me.com")
+                        print(f"   ✅ FOUND: {len(email_bookings)} booking(s) for yasar.cel@me.com:")
+                        for booking in email_bookings:
+                            print(f"      - ID: {booking.get('id', 'N/A')}, Date: {booking.get('pickup_datetime', 'N/A')}, Amount: CHF {booking.get('total_fare', 'N/A')}")
+                    else:
+                        investigation_results.append("❌ NOT FOUND: No bookings found for yasar.cel@me.com")
+                        print("   ❌ NOT FOUND: No bookings found for yasar.cel@me.com")
+                else:
+                    investigation_results.append(f"⚠️ ERROR: Failed to search by email (status {response.status})")
+                    print(f"   ⚠️ ERROR: Failed to search by email (status {response.status})")
+        except Exception as e:
+            investigation_results.append(f"❌ ERROR: Failed to search by email: {str(e)}")
+            print(f"   ❌ ERROR: {str(e)}")
+        
+        # 4. Test GET /api/bookings with different parameters
+        try:
+            print("\n4️⃣ Testing GET /api/bookings with various parameters...")
+            
+            # Test different status filters
+            for status in ['pending', 'confirmed', 'completed', 'cancelled']:
+                async with self.session.get(f"{BACKEND_URL}/bookings?status={status}&limit=100") as response:
+                    if response.status == 200:
+                        status_bookings = await response.json()
+                        print(f"   📊 Status '{status}': {len(status_bookings)} bookings")
+                        investigation_results.append(f"📊 Status '{status}': {len(status_bookings)} bookings")
+                    else:
+                        print(f"   ⚠️ Status '{status}': API error {response.status}")
+                        
+        except Exception as e:
+            investigation_results.append(f"❌ ERROR: Failed to test status filters: {str(e)}")
+            print(f"   ❌ ERROR: {str(e)}")
+        
+        # 5. Test route calculation for Türlihof 4 Oberarth → Goldau
+        try:
+            print("\n5️⃣ Testing route calculation for Türlihof 4 Oberarth → Goldau...")
+            test_data = {
+                "origin": "Türlihof 4 Oberarth",
+                "destination": "Goldau",
+                "departure_time": "2025-09-25T10:30:00"
+            }
+            
+            async with self.session.post(f"{BACKEND_URL}/calculate-price", json=test_data) as response:
+                if response.status == 200:
+                    price_data = await response.json()
+                    calculated_fare = price_data.get('total_fare', 0)
+                    distance = price_data.get('distance_km', 0)
+                    
+                    print(f"   ✅ Route calculation successful:")
+                    print(f"      - Distance: {distance}km")
+                    print(f"      - Calculated fare: CHF {calculated_fare}")
+                    print(f"      - Reported fare: CHF 13.36")
+                    print(f"      - Difference: CHF {abs(calculated_fare - 13.36):.2f}")
+                    
+                    investigation_results.append(f"✅ Route calculation: {distance}km, CHF {calculated_fare} (vs reported CHF 13.36)")
+                else:
+                    investigation_results.append(f"❌ Route calculation failed: status {response.status}")
+                    print(f"   ❌ Route calculation failed: status {response.status}")
+        except Exception as e:
+            investigation_results.append(f"❌ ERROR: Route calculation failed: {str(e)}")
+            print(f"   ❌ ERROR: {str(e)}")
+        
+        # 6. Create test booking to verify system is working
+        try:
+            print("\n6️⃣ Creating test booking to verify system functionality...")
+            test_booking_data = {
+                "customer_name": "Test Investigation User",
+                "customer_email": "test.investigation@example.com",
+                "customer_phone": "076 999 88 77",
+                "pickup_location": "Türlihof 4 Oberarth",
+                "destination": "Goldau",
+                "booking_type": "scheduled",
+                "pickup_datetime": "2025-12-15T10:30:00",
+                "passenger_count": 1,
+                "vehicle_type": "standard"
+            }
+            
+            async with self.session.post(f"{BACKEND_URL}/bookings", json=test_booking_data) as response:
+                if response.status == 200:
+                    booking_response = await response.json()
+                    if booking_response.get('success'):
+                        test_booking_id = booking_response.get('booking_id')
+                        print(f"   ✅ Test booking created successfully: {test_booking_id[:8]}")
+                        investigation_results.append(f"✅ Test booking system working: ID {test_booking_id[:8]}")
+                        
+                        # Verify it appears in admin dashboard
+                        async with self.session.get(f"{BACKEND_URL}/bookings?limit=10") as verify_response:
+                            if verify_response.status == 200:
+                                recent_bookings = await verify_response.json()
+                                test_found = any(b.get('id') == test_booking_id for b in recent_bookings)
+                                if test_found:
+                                    print(f"   ✅ Test booking appears in admin dashboard")
+                                    investigation_results.append("✅ Test booking visible in admin dashboard")
+                                else:
+                                    print(f"   ❌ Test booking NOT visible in admin dashboard")
+                                    investigation_results.append("❌ Test booking NOT visible in admin dashboard")
+                    else:
+                        investigation_results.append(f"❌ Test booking creation failed: {booking_response.get('message', 'Unknown error')}")
+                        print(f"   ❌ Test booking creation failed: {booking_response.get('message', 'Unknown error')}")
+                else:
+                    investigation_results.append(f"❌ Test booking API error: status {response.status}")
+                    print(f"   ❌ Test booking API error: status {response.status}")
+        except Exception as e:
+            investigation_results.append(f"❌ ERROR: Test booking failed: {str(e)}")
+            print(f"   ❌ ERROR: {str(e)}")
+        
+        # Final assessment
+        print("\n" + "=" * 60)
+        print("🔍 INVESTIGATION SUMMARY:")
+        for result in investigation_results:
+            print(f"   {result}")
+        
+        # Determine if system is working correctly
+        critical_issues = [r for r in investigation_results if r.startswith("❌") and "Test booking" not in r]
+        system_working = len(critical_issues) == 0
+        
+        self.log_result(
+            "CRITICAL BOOKING INVESTIGATION - User Payment Issue",
+            system_working,
+            f"Investigation completed. Critical issues found: {len(critical_issues)}. System working: {system_working}",
+            {
+                "investigation_results": investigation_results,
+                "critical_issues": critical_issues,
+                "booking_id_searched": "959acf7e",
+                "customer_email_searched": "yasar.cel@me.com",
+                "customer_name_searched": "Yasar Celebi",
+                "route_searched": "Türlihof 4 Oberarth → Goldau",
+                "reported_amount": "CHF 13.36",
+                "system_status": "working" if system_working else "issues_detected"
+            }
+        )
+        
+        return system_working
+
     async def run_all_tests(self):
         """Run all backend tests"""
         print("🚀 Starting Backend Test Suite for Taxi Türlihof")
         print("=" * 60)
+        
+        # 🚨 CRITICAL: Run booking investigation first
+        await self.test_critical_booking_investigation()
         
         # Test 1: API Health Check
         api_healthy = await self.test_api_health_check()
