@@ -3829,6 +3829,447 @@ class BackendTester:
             )
             return False
 
+    async def test_mongodb_bookings_collection(self):
+        """Test MongoDB connection and check bookings collection directly"""
+        try:
+            # Import MongoDB client to check database directly
+            from motor.motor_asyncio import AsyncIOMotorClient
+            import os
+            
+            # Get MongoDB URL from environment
+            mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
+            db_name = os.environ.get('DB_NAME', 'test_database')
+            
+            client = AsyncIOMotorClient(mongo_url)
+            db = client[db_name]
+            
+            # Check if bookings collection exists and count documents
+            booking_count = await db.bookings.count_documents({})
+            
+            # Get sample bookings
+            sample_bookings = await db.bookings.find().limit(3).to_list(length=None)
+            
+            self.log_result(
+                "MongoDB Bookings Collection Check",
+                True,
+                f"Database connection successful - Found {booking_count} bookings in collection",
+                {
+                    "mongo_url": mongo_url,
+                    "database_name": db_name,
+                    "booking_count": booking_count,
+                    "sample_bookings": [
+                        {
+                            "id": booking.get("id", "")[:8],
+                            "customer_name": booking.get("customer_name", ""),
+                            "total_fare": booking.get("total_fare", 0),
+                            "status": booking.get("status", "")
+                        }
+                        for booking in sample_bookings
+                    ]
+                }
+            )
+            
+            await client.close()
+            return True
+            
+        except Exception as e:
+            self.log_result(
+                "MongoDB Bookings Collection Check",
+                False,
+                f"Database connection failed: {str(e)}"
+            )
+            return False
+
+    async def test_critical_booking_creation(self):
+        """Create a critical test booking to investigate the issue"""
+        try:
+            test_data = {
+                "customer_name": "CRITICAL TEST - Bezahlung Problem",
+                "customer_email": "critical.test@taxi-luzern.ch",
+                "customer_phone": "076 999 88 77",
+                "pickup_location": "Luzern Bahnhof",
+                "destination": "Zürich Flughafen",
+                "booking_type": "scheduled",
+                "pickup_datetime": "2025-12-15T14:30:00",
+                "passenger_count": 2,
+                "vehicle_type": "standard",
+                "special_requests": "CRITICAL: User paid but booking not visible in admin dashboard"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/bookings",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    if data['success'] and data['booking_details']:
+                        booking = data['booking_details']
+                        
+                        self.log_result(
+                            "CRITICAL Booking Creation",
+                            True,
+                            f"🚨 CRITICAL booking created - ID: {data['booking_id'][:8]}, Total: CHF {booking['total_fare']}",
+                            {
+                                "booking_id": data['booking_id'],
+                                "total_fare": booking['total_fare'],
+                                "customer_name": booking['customer_name'],
+                                "pickup_location": booking['pickup_location'],
+                                "destination": booking['destination'],
+                                "status": booking.get('status', 'unknown')
+                            }
+                        )
+                        return data['booking_id']
+                    else:
+                        self.log_result(
+                            "CRITICAL Booking Creation",
+                            False,
+                            f"🚨 CRITICAL booking creation failed: {data['message']}"
+                        )
+                        return None
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "CRITICAL Booking Creation",
+                        False,
+                        f"🚨 API returned status {response.status}: {response_text}"
+                    )
+                    return None
+                    
+        except Exception as e:
+            self.log_result(
+                "CRITICAL Booking Creation",
+                False,
+                f"🚨 Request failed: {str(e)}"
+            )
+            return None
+
+    async def test_booking_in_admin_list(self, booking_id: str):
+        """Check if the created booking appears in the admin list"""
+        try:
+            async with self.session.get(f"{BACKEND_URL}/bookings") as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    if isinstance(data, list):
+                        # Look for our specific booking
+                        found_booking = None
+                        for booking in data:
+                            if booking.get("id") == booking_id:
+                                found_booking = booking
+                                break
+                        
+                        if found_booking:
+                            self.log_result(
+                                "Booking Visibility in Admin Dashboard",
+                                True,
+                                f"✅ BOOKING FOUND in admin list - {found_booking.get('customer_name', '')}, CHF {found_booking.get('total_fare', 0)}",
+                                {
+                                    "booking_id": booking_id,
+                                    "found_in_admin": True,
+                                    "total_bookings_in_list": len(data),
+                                    "booking_details": found_booking
+                                }
+                            )
+                            return True
+                        else:
+                            self.log_result(
+                                "Booking Visibility in Admin Dashboard",
+                                False,
+                                f"❌ BOOKING NOT FOUND in admin list! Total bookings: {len(data)}",
+                                {
+                                    "booking_id": booking_id,
+                                    "found_in_admin": False,
+                                    "total_bookings_in_list": len(data),
+                                    "all_booking_ids": [b.get("id", "")[:8] for b in data[:5]]
+                                }
+                            )
+                            return False
+                    else:
+                        self.log_result(
+                            "Booking Visibility in Admin Dashboard",
+                            False,
+                            f"❌ Invalid response format: {type(data)}"
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Booking Visibility in Admin Dashboard",
+                        False,
+                        f"❌ API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Booking Visibility in Admin Dashboard",
+                False,
+                f"❌ Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_backend_logs_for_errors(self):
+        """Check backend logs for any errors during booking saves"""
+        try:
+            import subprocess
+            
+            # Check supervisor backend logs
+            result = subprocess.run(
+                ["tail", "-n", "50", "/var/log/supervisor/backend.err.log"],
+                capture_output=True,
+                text=True,
+                timeout=10
+            )
+            
+            error_logs = result.stdout
+            
+            # Look for booking-related errors
+            booking_errors = []
+            if error_logs:
+                lines = error_logs.split('\n')
+                for line in lines:
+                    if any(keyword in line.lower() for keyword in ['booking', 'error', 'exception', 'failed']):
+                        booking_errors.append(line.strip())
+            
+            if booking_errors:
+                self.log_result(
+                    "Backend Logs Error Check",
+                    False,
+                    f"❌ Found {len(booking_errors)} potential booking-related errors in logs",
+                    {
+                        "error_count": len(booking_errors),
+                        "recent_errors": booking_errors[-5:] if booking_errors else []
+                    }
+                )
+                return False
+            else:
+                self.log_result(
+                    "Backend Logs Error Check",
+                    True,
+                    "✅ No booking-related errors found in recent backend logs",
+                    {
+                        "log_lines_checked": len(error_logs.split('\n')) if error_logs else 0
+                    }
+                )
+                return True
+                
+        except Exception as e:
+            self.log_result(
+                "Backend Logs Error Check",
+                False,
+                f"❌ Could not check backend logs: {str(e)}"
+            )
+            return False
+
+    async def test_payment_transaction_creation(self, booking_id: str):
+        """Test payment transaction creation for the booking"""
+        try:
+            test_data = {
+                "booking_id": booking_id,
+                "payment_method": "stripe"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/payments/initiate",
+                json=test_data,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    if data.get('session_id') or data.get('payment_url'):
+                        self.log_result(
+                            "Payment Transaction Creation",
+                            True,
+                            f"✅ Payment transaction created successfully",
+                            {
+                                "booking_id": booking_id,
+                                "payment_method": "stripe",
+                                "session_id": data.get('session_id', '')[:20],
+                                "payment_url_exists": bool(data.get('payment_url'))
+                            }
+                        )
+                        return True
+                    else:
+                        self.log_result(
+                            "Payment Transaction Creation",
+                            False,
+                            f"❌ Payment transaction creation failed: {data}"
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Payment Transaction Creation",
+                        False,
+                        f"❌ API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Payment Transaction Creation",
+                False,
+                f"❌ Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_payment_transactions_collection(self):
+        """Check payment_transactions collection in MongoDB"""
+        try:
+            from motor.motor_asyncio import AsyncIOMotorClient
+            import os
+            
+            mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
+            db_name = os.environ.get('DB_NAME', 'test_database')
+            
+            client = AsyncIOMotorClient(mongo_url)
+            db = client[db_name]
+            
+            # Check payment_transactions collection
+            transaction_count = await db.payment_transactions.count_documents({})
+            
+            # Get sample transactions
+            sample_transactions = await db.payment_transactions.find().limit(3).to_list(length=None)
+            
+            self.log_result(
+                "Payment Transactions Collection Check",
+                True,
+                f"Found {transaction_count} payment transactions in database",
+                {
+                    "transaction_count": transaction_count,
+                    "sample_transactions": [
+                        {
+                            "id": tx.get("id", "")[:8],
+                            "booking_id": tx.get("booking_id", "")[:8],
+                            "amount": tx.get("amount", 0),
+                            "payment_method": tx.get("payment_method", ""),
+                            "payment_status": tx.get("payment_status", "")
+                        }
+                        for tx in sample_transactions
+                    ]
+                }
+            )
+            
+            await client.close()
+            return True
+            
+        except Exception as e:
+            self.log_result(
+                "Payment Transactions Collection Check",
+                False,
+                f"Database connection failed: {str(e)}"
+            )
+            return False
+
+    async def test_booking_email_system(self):
+        """Test booking email system specifically"""
+        try:
+            # Import email service to check configuration
+            from email_service import email_service
+            
+            # Check if email service is properly configured
+            config_ok = all([
+                email_service.smtp_host,
+                email_service.smtp_port,
+                email_service.smtp_username,
+                email_service.smtp_password,
+                email_service.email_from
+            ])
+            
+            if config_ok:
+                self.log_result(
+                    "Booking Email System Check",
+                    True,
+                    "✅ Email service is properly configured for booking confirmations",
+                    {
+                        "smtp_host": email_service.smtp_host,
+                        "smtp_username": email_service.smtp_username,
+                        "email_from": email_service.email_from
+                    }
+                )
+                return True
+            else:
+                missing_config = []
+                if not email_service.smtp_host: missing_config.append("SMTP_HOST")
+                if not email_service.smtp_port: missing_config.append("SMTP_PORT")
+                if not email_service.smtp_username: missing_config.append("SMTP_USERNAME")
+                if not email_service.smtp_password: missing_config.append("SMTP_PASSWORD")
+                if not email_service.email_from: missing_config.append("EMAIL_FROM")
+                
+                self.log_result(
+                    "Booking Email System Check",
+                    False,
+                    f"❌ Email service configuration issues: {missing_config}",
+                    {
+                        "missing_config": missing_config
+                    }
+                )
+                return False
+                
+        except Exception as e:
+            self.log_result(
+                "Booking Email System Check",
+                False,
+                f"❌ Could not check email service: {str(e)}"
+            )
+            return False
+
+    async def run_critical_booking_investigation(self):
+        """Run critical investigation for missing booking issue"""
+        print("🚨 CRITICAL BOOKING INVESTIGATION - User paid but booking not visible!")
+        print("=" * 70)
+        
+        # Test 1: API Health Check
+        api_healthy = await self.test_api_health_check()
+        
+        if not api_healthy:
+            print("❌ API is not accessible. Critical issue!")
+            return self.generate_summary()
+        
+        # Test 2: Check MongoDB Database Connection and Bookings Collection
+        print("\n🗄️ INVESTIGATING DATABASE - Checking bookings collection...")
+        await self.test_mongodb_bookings_collection()
+        
+        # Test 3: Test GET /api/bookings endpoint - Are bookings returned?
+        print("\n📋 TESTING GET /api/bookings - Are bookings visible in admin dashboard?")
+        await self.test_all_bookings_retrieval()
+        
+        # Test 4: Test complete booking flow - POST /api/bookings
+        print("\n📝 TESTING COMPLETE BOOKING FLOW - Creating test booking...")
+        test_booking_id = await self.test_critical_booking_creation()
+        
+        if test_booking_id:
+            # Test 5: Verify booking was saved to database
+            print("\n🔍 VERIFYING BOOKING PERSISTENCE...")
+            await self.test_booking_retrieval(test_booking_id)
+            
+            # Test 6: Check if booking appears in admin list
+            print("\n📊 CHECKING ADMIN DASHBOARD VISIBILITY...")
+            await self.test_booking_in_admin_list(test_booking_id)
+        
+        # Test 7: Check backend logs for errors
+        print("\n📋 CHECKING BACKEND LOGS FOR ERRORS...")
+        await self.test_backend_logs_for_errors()
+        
+        # Test 8: Test payment flow and transaction storage
+        print("\n💳 TESTING PAYMENT FLOW - Payment transactions storage...")
+        if test_booking_id:
+            await self.test_payment_transaction_creation(test_booking_id)
+            await self.test_payment_transactions_collection()
+        
+        # Test 9: Test email system (might affect booking confirmation)
+        print("\n📧 TESTING EMAIL SYSTEM - Booking confirmations...")
+        await self.test_booking_email_system()
+        
+        return self.generate_summary()
     async def run_all_tests(self):
         """Run all backend tests"""
         print("🚀 Starting Backend Test Suite for Taxi Türlihof")
