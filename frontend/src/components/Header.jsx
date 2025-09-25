@@ -116,6 +116,13 @@ const Header = () => {
             >
               Kontakt
             </button>
+            <Link
+              to="/admin"
+              className="text-red-600 hover:text-red-700 font-semibold transition-colors duration-200"
+              title="Admin Dashboard - Buchungen verwalten"
+            >
+              🔧 Admin
+            </Link>
             <Button className="bg-yellow-600 hover:bg-yellow-700 text-white">
               <Phone className="w-4 h-4 mr-2" />
               076 611 31 31
