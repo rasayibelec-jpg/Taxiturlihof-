@@ -181,7 +181,7 @@ class TaskScheduler:
             
             <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; margin-top: 30px;">
                 <p style="margin: 0;"><strong>📞 Kontakt:</strong> 076 611 31 31</p>
-                <p style="margin: 5px 0 0 0;"><strong>🌐 Website:</strong> www.taxi-tuerlihof.ch</p>
+                <p style="margin: 5px 0 0 0;"><strong>🌐 Website:</strong> www.taxiturlihof.ch</p>
             </div>
             
             <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
