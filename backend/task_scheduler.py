@@ -70,7 +70,9 @@ class TaskScheduler:
             # 2. Vor mindestens 1 Stunde abgeschlossen wurden
             # 3. Noch keine Bewertungserinnerung gesendet wurde
             
-            one_hour_ago = datetime.utcnow() - timedelta(hours=1)
+            # Schweizer Zeit - 1 Stunde für Bewertungserinnerung
+            swiss_tz = pytz.timezone('Europe/Zurich')
+            one_hour_ago = datetime.now(swiss_tz) - timedelta(hours=1)
             
             completed_bookings = await self.db.bookings.find({
                 "status": "completed",
