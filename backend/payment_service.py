@@ -52,7 +52,7 @@ class PaymentTransaction(BaseModel):
     session_id: Optional[str] = None
     payment_intent_id: Optional[str] = None
     metadata: Optional[Dict[str, Any]] = None
-    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    created_at: datetime = Field(default_factory=lambda: datetime.now(pytz.timezone('Europe/Zurich')))
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class PaymentStatusResponse(BaseModel):
