@@ -40,6 +40,7 @@ function App() {
             <Route path="/flughafen-zurich-transfer" element={<FlughafenZurichTransferPage />} />
             <Route path="/blog/luzern-sehenswuerdigkeiten" element={<BlogLuzernSehenswuerdigkeiten />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/booking-lookup" element={<BookingLookup />} />
             <Route path="/booking/payment-success" element={<PaymentSuccess />} />
             <Route path="/booking/payment-cancelled" element={<BookingPage />} />
           </Routes>
