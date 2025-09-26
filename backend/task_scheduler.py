@@ -129,7 +129,7 @@ class TaskScheduler:
                 {
                     "$set": {
                         "review_reminder_sent": True,
-                        "review_reminder_sent_at": datetime.utcnow()
+                        "review_reminder_sent_at": datetime.now(pytz.timezone('Europe/Zurich'))
                     }
                 }
             )
