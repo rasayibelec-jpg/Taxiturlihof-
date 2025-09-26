@@ -9,8 +9,45 @@ const AdminDashboard = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [adminToken, setAdminToken] = useState(null);
 
   const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:8001";
+
+  // Check for existing admin token on component mount
+  useEffect(() => {
+    const token = localStorage.getItem('admin_token');
+    const expiresAt = localStorage.getItem('admin_expires_at');
+    
+    if (token && expiresAt) {
+      const now = new Date();
+      const expiry = new Date(expiresAt);
+      
+      if (now < expiry) {
+        setAdminToken(token);
+        setIsAuthenticated(true);
+      } else {
+        // Token expired, remove from storage
+        localStorage.removeItem('admin_token');
+        localStorage.removeItem('admin_expires_at');
+      }
+    }
+  }, []);
+
+  // Admin login handler
+  const handleAdminLogin = (token) => {
+    setAdminToken(token);
+    setIsAuthenticated(true);
+  };
+
+  // Admin logout handler
+  const handleAdminLogout = () => {
+    localStorage.removeItem('admin_token');
+    localStorage.removeItem('admin_expires_at');
+    setAdminToken(null);
+    setIsAuthenticated(false);
+    setBookings([]);
+  };
 
   // Status-Optionen mit deutschen Bezeichnungen
   const statusOptions = {
