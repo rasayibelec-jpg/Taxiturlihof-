@@ -641,6 +641,19 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+@app.on_event("startup")
+async def startup_event():
+    """Initialize services on startup"""
+    # Starte den Task Scheduler für Bewertungserinnerungen
+    asyncio.create_task(task_scheduler.start_scheduler())
+    logger.info("Task Scheduler für Bewertungserinnerungen gestartet")
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """Cleanup on shutdown"""
+    await task_scheduler.stop_scheduler()
+    logger.info("Task Scheduler gestoppt")
+
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
