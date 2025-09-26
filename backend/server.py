@@ -471,6 +471,116 @@ async def generate_whatsapp_link(request: dict):
         logger.error(f"Failed to generate WhatsApp link: {str(e)}")
         raise HTTPException(status_code=500, detail="Fehler beim Generieren des WhatsApp-Links")
 
+# Auth Models
+class AdminLoginRequest(BaseModel):
+    username: str
+    password: str
+
+class AdminLoginResponse(BaseModel):
+    success: bool
+    token: Optional[str] = None
+    message: str
+    expires_at: Optional[str] = None
+
+class CustomerBookingLookupRequest(BaseModel):
+    booking_id: str
+    email: str
+
+# Authentication endpoints
+@api_router.post("/auth/admin/login", response_model=AdminLoginResponse)
+async def admin_login(request: AdminLoginRequest):
+    """Admin login endpoint"""
+    try:
+        # Verify credentials
+        is_valid = auth_service.verify_admin_credentials(request.username, request.password)
+        
+        if not is_valid:
+            return AdminLoginResponse(
+                success=False,
+                message="Ungültige Anmeldedaten"
+            )
+        
+        # Create JWT token
+        token = auth_service.create_admin_token()
+        expires_at = (get_swiss_time() + timedelta(hours=8)).isoformat()
+        
+        return AdminLoginResponse(
+            success=True,
+            token=token,
+            message="Erfolgreich angemeldet",
+            expires_at=expires_at
+        )
+        
+    except Exception as e:
+        logger.error(f"Admin login error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Anmeldefehler")
+
+@api_router.post("/auth/admin/verify")
+async def verify_admin_token(request: Request):
+    """Verify admin token"""
+    try:
+        # Get token from Authorization header
+        auth_header = request.headers.get('Authorization')
+        if not auth_header or not auth_header.startswith('Bearer '):
+            raise HTTPException(status_code=401, detail="Token fehlt")
+        
+        token = auth_header.split(' ')[1]
+        
+        # Verify token
+        payload = auth_service.verify_admin_token(token)
+        if not payload:
+            raise HTTPException(status_code=401, detail="Ungültiger oder abgelaufener Token")
+        
+        return {"success": True, "user": payload}
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Token verification error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Token-Überprüfungsfehler")
+
+@api_router.post("/bookings/lookup")
+async def customer_booking_lookup(request: CustomerBookingLookupRequest):
+    """Customer booking lookup (no admin required)"""
+    try:
+        # Find bookings that start with the provided booking ID
+        bookings = await db.bookings.find({
+            "id": {"$regex": f"^{request.booking_id}", "$options": "i"}
+        }).to_list(length=10)
+        
+        # Filter bookings that match the email
+        matching_bookings = []
+        for booking in bookings:
+            if auth_service.verify_customer_booking_access(request.booking_id, request.email, booking):
+                # Remove sensitive admin info
+                safe_booking = {
+                    "id": booking.get("id"),
+                    "pickup_location": booking.get("pickup_location"),
+                    "destination": booking.get("destination"),
+                    "pickup_datetime": booking.get("pickup_datetime"),
+                    "status": booking.get("status"),
+                    "total_fare": booking.get("total_fare"),
+                    "vehicle_type": booking.get("vehicle_type"),
+                    "passenger_count": booking.get("passenger_count"),
+                    "created_at": booking.get("created_at"),
+                    "payment_status": booking.get("payment_status", "pending")
+                }
+                matching_bookings.append(safe_booking)
+        
+        if not matching_bookings:
+            raise HTTPException(status_code=404, detail="Buchung nicht gefunden oder E-Mail stimmt nicht überein")
+        
+        return {
+            "success": True,
+            "bookings": matching_bookings
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Customer booking lookup error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler bei der Buchungssuche")
+
 @api_router.delete("/bookings/{booking_id}")
 async def cancel_booking(booking_id: str):
     """Cancel a booking"""
