@@ -4849,6 +4849,24 @@ class BackendTester:
             print("\n❌ API is not accessible. Stopping tests.")
             return False
         
+        # 🔐 ADMIN LOGIN API TESTS - USER REVIEW REQUEST
+        print("\n🔐 ADMIN LOGIN API ENDPOINT TESTS")
+        print("-" * 60)
+        
+        # Test: Admin Login with Correct Credentials
+        admin_login_success = await self.test_admin_login_endpoint()
+        
+        # Test: Admin Login Error Cases
+        await self.test_admin_login_wrong_credentials()
+        
+        # Test: Admin Token Verification
+        if admin_login_success:
+            await self.test_admin_token_verification()
+            await self.test_admin_protected_endpoint()
+        
+        # Test: CORS Configuration
+        await self.test_cors_headers()
+        
         # PRIORITY TEST: Review Request - Timezone Fix Booking Email System
         print("\n🎯 PRIORITY: REVIEW REQUEST TEST - Timezone Fix Booking Email System")
         print("-" * 80)
