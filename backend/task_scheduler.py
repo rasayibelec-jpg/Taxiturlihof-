@@ -118,7 +118,7 @@ class TaskScheduler:
                     {
                         "$set": {
                             "review_whatsapp_link": whatsapp_link,
-                            "review_reminder_generated_at": datetime.utcnow()
+                            "review_reminder_generated_at": datetime.now(pytz.timezone('Europe/Zurich'))
                         }
                     }
                 )
