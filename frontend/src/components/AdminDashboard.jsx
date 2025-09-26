@@ -134,11 +134,13 @@ const AdminDashboard = () => {
   };
 
   useEffect(() => {
-    fetchBookings();
-    // Auto-Refresh alle 30 Sekunden
-    const interval = setInterval(fetchBookings, 30000);
-    return () => clearInterval(interval);
-  }, []);
+    if (isAuthenticated && adminToken) {
+      fetchBookings();
+      // Auto-Refresh alle 30 Sekunden
+      const interval = setInterval(fetchBookings, 30000);
+      return () => clearInterval(interval);
+    }
+  }, [isAuthenticated, adminToken]);
 
   // WhatsApp-Nachricht senden
   const sendWhatsAppMessage = async (booking, messageType) => {
