@@ -163,7 +163,7 @@ class TaskScheduler:
                 <h3 style="color: #1f2937; margin-top: 0;">🌟 Waren Sie zufrieden?</h3>
                 <p>Ihre Bewertung bei Google würde uns sehr helfen!</p>
                 
-                <a href="https://g.page/r/YOUR_GOOGLE_BUSINESS_ID/review" 
+                <a href="https://www.google.com/search?q=Taxi+T%C3%BCrlihof+Bewertung" 
                    style="display: inline-block; background: #059669; color: white; padding: 15px 30px; 
                           border-radius: 8px; text-decoration: none; font-weight: bold; margin: 10px;">
                     ⭐⭐⭐⭐⭐ Jetzt bewerten
