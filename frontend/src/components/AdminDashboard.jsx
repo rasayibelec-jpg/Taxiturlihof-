@@ -191,12 +191,25 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-7xl mx-auto">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Taxi Türlihof - Admin Dashboard
-          </h1>
-          <p className="text-gray-600">
-            Verwalten Sie Ihre Buchungen und bestätigen Sie Fahrten
-          </p>
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center">
+                <Shield className="w-8 h-8 text-yellow-600 mr-3" />
+                Taxi Türlihof - Admin Dashboard
+              </h1>
+              <p className="text-gray-600">
+                Verwalten Sie Ihre Buchungen und bestätigen Sie Fahrten
+              </p>
+            </div>
+            <Button
+              onClick={handleAdminLogout}
+              variant="outline"
+              className="text-red-600 border-red-200 hover:bg-red-50"
+            >
+              <LogOut className="w-4 h-4 mr-2" />
+              Abmelden
+            </Button>
+          </div>
         </div>
 
         {/* Statistiken */}
