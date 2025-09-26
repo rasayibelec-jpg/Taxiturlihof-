@@ -18,6 +18,7 @@ import PaymentSuccess from './components/PaymentSuccess';
 import FlughafenZurichTransferPage from './components/FlughafenZurichTransferPage';
 import BlogLuzernSehenswuerdigkeiten from './components/BlogLuzernSehenswuerdigkeiten';
 import AdminDashboard from './components/AdminDashboard';
+import BookingLookup from './components/BookingLookup';
 
 function App() {
   return (
