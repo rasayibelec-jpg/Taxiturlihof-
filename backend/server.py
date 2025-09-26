@@ -17,6 +17,7 @@ from booking_service import booking_service, BookingRequest, BookingResponse, Bo
 from payment_service import payment_service, PaymentMethod, PaymentTransactionCreate, PaymentTransaction, PaymentStatusResponse, PaymentInitiateResponse
 from whatsapp_service import whatsapp_service
 from task_scheduler import task_scheduler
+from auth_service import auth_service
 
 
 ROOT_DIR = Path(__file__).parent
