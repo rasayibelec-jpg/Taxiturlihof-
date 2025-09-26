@@ -91,7 +91,7 @@ Ihr Team von Taxi Türlihof"""
 • Nach: {booking_data.get('destination', 'N/A')}
 
 📞 Kontakt: +41 76 611 31 31
-🌐 www.taxi-tuerlihof.ch
+🌐 www.taxiturlihof.ch
 
 Ihr Team von Taxi Türlihof"""
 
