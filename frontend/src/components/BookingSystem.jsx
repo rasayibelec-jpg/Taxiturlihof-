@@ -43,8 +43,8 @@ const BookingSystem = () => {
     van: { name: "Van", description: "Großes Fahrzeug für bis zu 8 Personen oder viel Gepäck", multiplier: 1.25 }
   };
 
-  // Get today's date for min date restriction
-  const today = new Date().toISOString().split('T')[0];
+  // Get today's date for min date restriction (Schweizer Zeit)
+  const today = new Date(new Date().getTime() + (2 * 60 * 60 * 1000)).toISOString().split('T')[0]; // UTC+2 für Schweiz
 
   const handleInputChange = (field, value) => {
     setBookingData(prev => ({
