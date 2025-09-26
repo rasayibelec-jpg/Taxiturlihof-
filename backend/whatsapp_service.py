@@ -118,7 +118,7 @@ Oder direkt über Google suchen: "Taxi Türlihof"
 Ihre Bewertung hilft anderen Kunden und unterstützt unser kleines Familienunternehmen! 💙
 
 📞 +41 76 611 31 31
-🌐 www.taxi-tuerlihof.ch
+🌐 www.taxiturlihof.ch
 
 Herzlichen Dank!
 Ihr Team von Taxi Türlihof"""
