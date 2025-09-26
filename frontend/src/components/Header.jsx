@@ -117,11 +117,25 @@ const Header = () => {
               Kontakt
             </button>
             <Link
+              to="/booking-lookup"
+              className="hidden md:block text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200"
+              title="Buchung suchen"
+            >
+              🔍 Buchung suchen
+            </Link>
+            <Link
               to="/admin"
               className="hidden md:block text-red-600 hover:text-red-700 font-semibold transition-colors duration-200"
               title="Admin Dashboard - Buchungen verwalten"
             >
               🔧 Admin
+            </Link>
+            <Link
+              to="/booking-lookup"
+              className="md:hidden bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm font-semibold transition-colors duration-200"
+              title="Buchung suchen"
+            >
+              🔍 Suchen
             </Link>
             <Link
               to="/admin"
