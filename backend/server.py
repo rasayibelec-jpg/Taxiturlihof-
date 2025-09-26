@@ -653,7 +653,5 @@ async def shutdown_event():
     """Cleanup on shutdown"""
     await task_scheduler.stop_scheduler()
     logger.info("Task Scheduler gestoppt")
-
-@app.on_event("shutdown")
-async def shutdown_db_client():
     client.close()
+    logger.info("Database client closed")
