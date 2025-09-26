@@ -373,6 +373,20 @@ async def update_booking_status(booking_id: str, status: BookingStatus):
                 
                 logger.info(f"Status update email sent to {booking.get('customer_email')} for booking {booking_id}")
                 
+                # WhatsApp-Nachricht für den Admin generieren
+                if booking.get('customer_phone'):
+                    if status.value == "confirmed":
+                        whatsapp_message = whatsapp_service.send_booking_confirmation_message(booking)
+                    else:
+                        whatsapp_message = whatsapp_service.send_driver_update_message(booking, status.value)
+                    
+                    whatsapp_link = whatsapp_service.get_customer_whatsapp_link(
+                        booking.get('customer_phone'), 
+                        whatsapp_message
+                    )
+                    
+                    logger.info(f"WhatsApp link generated for {booking.get('customer_phone')}: {whatsapp_link}")
+                
         except Exception as email_error:
             logger.warning(f"Failed to send status update email: {str(email_error)}")
             # Don't fail the status update if email fails
