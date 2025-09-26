@@ -58,10 +58,24 @@ const AdminDashboard = () => {
     cancelled: { label: "Storniert", color: "bg-red-500", icon: Clock }
   };
 
-  // Buchungen laden
+  // Buchungen laden (mit Admin-Token)
   const fetchBookings = async () => {
+    if (!adminToken) return;
+    
     try {
-      const response = await fetch(`${backendUrl}/api/bookings`);
+      const response = await fetch(`${backendUrl}/api/bookings`, {
+        headers: {
+          'Authorization': `Bearer ${adminToken}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (response.status === 401) {
+        // Token ungültig oder abgelaufen
+        handleAdminLogout();
+        return;
+      }
+      
       if (response.ok) {
         const data = await response.json();
         // Sortiere nach Erstellungsdatum (neueste zuerst)
