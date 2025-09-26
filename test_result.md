@@ -343,6 +343,21 @@ test_plan:
         agent: "testing"
         comment: "🎉 CRITICAL BOOKING FOUND AND VERIFIED! DETAILED INVESTIGATION RESULTS: ✅ BOOKING EXISTS: Found booking ID 959acf7e-2e65-4c3a-887e-99144aeb14fd in database, ✅ CUSTOMER VERIFIED: Yasar Celebi, yasar.cel@me.com, phone 0779091093, ✅ ROUTE VERIFIED: Türlihof 4 Oberarth → Goldau, ✅ DATE/TIME VERIFIED: 2025-09-25T10:30:00, ✅ AMOUNT VERIFIED: CHF 13.36 (exact match), ✅ ADMIN DASHBOARD VISIBILITY: Booking IS visible in admin dashboard at position #70 out of 100, ✅ PAYMENT TRANSACTION EXISTS: Stripe payment transaction found (ID: 75ae5d83, Amount: CHF 13.362, Status: processing, Session: cs_test_a1MYvkLNOxCKZI8cTkayF5WFnwApD3SnG2x40oPEOsDBKIQKO3V5sWSHUS), ✅ CUSTOMER PAYMENT HISTORY: Found 26 payment transactions for yasar.cel@me.com (including 1 completed payment). ROOT CAUSE IDENTIFIED: The booking exists and is visible in admin dashboard, but user may be: 1) Looking at wrong page/filter in admin dashboard, 2) Not scrolling down to position #70, 3) Using wrong search criteria, 4) Payment is in 'processing' status (not completed). RECOMMENDATION: User should check admin dashboard position #70, verify payment completion status, and ensure proper search filters are applied."
 
+  - task: "Admin Login API Endpoint"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py, /app/backend/auth_service.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "user"
+        comment: "User reported 'Ungültige Anmeldedaten' error when trying to login with username: 'admin' and password: 'TaxiTurlihof2025!'"
+      - working: true
+        agent: "testing"
+        comment: "🔐 ADMIN LOGIN API ENDPOINT TESTING COMPLETED SUCCESSFULLY! User reported 'Ungültige Anmeldedaten' error with admin login. COMPREHENSIVE TESTING RESULTS: ✅ POST /api/auth/admin/login endpoint: EXISTS and WORKING, ✅ Correct credentials test (username: 'admin', password: 'TaxiTurlihof2025!'): SUCCESS - login working perfectly, ✅ API response validation: SUCCESS (returns success=true, JWT token, expires_at timestamp), ✅ Wrong password test: SUCCESS (correctly returns 'Ungültige Anmeldedaten' message), ✅ Admin token verification: SUCCESS (JWT token valid, role=admin confirmed), ✅ Protected endpoint access: SUCCESS (admin can access /api/bookings with Bearer token), ✅ CORS configuration: SUCCESS (proper headers configured). ROOT CAUSE IDENTIFIED AND FIXED: Missing 'timedelta' import in server.py was causing 500 error on successful login. TECHNICAL FIX: Added 'timedelta' to datetime imports in server.py line 12. FINAL RESULT: Admin login system is 100% operational. The credentials username='admin' and password='TaxiTurlihof2025!' are correct and working. User's 'Ungültige Anmeldedaten' error was due to server-side import issue, now resolved."
+
 agent_communication:
   - agent: "main"
     message: "PAYMENT INTEGRATION PHASE COMPLETED! Implemented comprehensive payment system with TWINT, Stripe, and PayPal integration. TECHNICAL ACHIEVEMENTS: ✅ emergentintegrations library installed and configured, ✅ PaymentService class created with transaction management, ✅ Payment endpoints implemented (GET /payment-methods, POST /payments/initiate, GET /payments/status, POST /webhooks/stripe), ✅ Frontend PaymentSelection component created with secure payment UI, ✅ BookingSystem updated to include payment step after booking creation, ✅ PaymentSuccess component for handling post-payment redirects, ✅ Stripe API key configured from system environment, ✅ Payment transaction database collection for tracking payments, ✅ Webhook handling for payment completion, ✅ Multi-step booking flow (booking → payment → success). INTEGRATION STATUS: TWINT via Stripe (ready), Stripe direct (ready), PayPal (placeholder implemented). All German language interface with proper error handling. Ready for comprehensive testing to validate payment workflows."
