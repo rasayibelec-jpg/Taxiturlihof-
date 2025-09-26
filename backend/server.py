@@ -314,7 +314,7 @@ async def update_booking_status(booking_id: str, status: BookingStatus):
             {
                 "$set": {
                     "status": status.value,
-                    "updated_at": datetime.now()
+                    "updated_at": get_swiss_time()
                 }
             }
         )
@@ -480,7 +480,7 @@ async def cancel_booking(booking_id: str):
             {
                 "$set": {
                     "status": BookingStatus.CANCELLED.value,
-                    "updated_at": datetime.now()
+                    "updated_at": get_swiss_time()
                 }
             }
         )
@@ -662,7 +662,7 @@ async def stripe_webhook(request: Request):
                     {
                         "$set": {
                             "payment_status": "confirmed",
-                            "updated_at": datetime.now()
+                            "updated_at": get_swiss_time()
                         }
                     }
                 )
