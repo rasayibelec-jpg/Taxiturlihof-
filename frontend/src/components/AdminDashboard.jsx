@@ -254,6 +254,32 @@ const AdminDashboard = () => {
                           </Button>
                         )
                       ))}
+                      
+                      {/* WhatsApp Schnellaktionen */}
+                      {booking.customer_phone && (
+                        <div className="flex gap-1">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => sendWhatsAppMessage(booking, 'confirmation')}
+                            className="text-xs bg-green-50 hover:bg-green-100 text-green-700 border-green-200"
+                          >
+                            <MessageCircle className="w-3 h-3 mr-1" />
+                            WhatsApp
+                          </Button>
+                          
+                          {booking.status === 'completed' && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => sendWhatsAppMessage(booking, 'review')}
+                              className="text-xs bg-yellow-50 hover:bg-yellow-100 text-yellow-700 border-yellow-200"
+                            >
+                              ⭐ Bewertung
+                            </Button>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
