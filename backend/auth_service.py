@@ -11,7 +11,7 @@ import os
 
 # Admin credentials (you can change these later)
 ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD_HASH = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"  # sha256 of "TaxiTurlihof2025!"
+ADMIN_PASSWORD_HASH = "89f995433c98053f01248f6daffb2629dd2b00f3ce6a8463b8c5d0e7f025d9b9"  # sha256 of "TaxiTurlihof2025!"
 JWT_SECRET_KEY = "taxi-turlihof-secret-key-2025-secure"
 JWT_ALGORITHM = "HS256"
 SESSION_EXPIRE_HOURS = 8
