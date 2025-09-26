@@ -46,7 +46,7 @@ class WhatsAppService:
 Unser Fahrer wird pünktlich bei Ihnen sein.
 
 📞 Bei Fragen: +41 76 611 31 31
-🌐 www.taxi-tuerlihof.ch
+🌐 www.taxiturlihof.ch
 
 Mit freundlichen Grüßen
 Ihr Team von Taxi Türlihof"""
