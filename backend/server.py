@@ -286,19 +286,28 @@ async def get_booking(booking_id: str):
         raise HTTPException(status_code=500, detail="Fehler beim Abrufen der Buchung")
 
 @api_router.get("/bookings", response_model=List[Booking])
-async def get_all_bookings(status: Optional[str] = None, limit: int = 50):
-    """Get all bookings (admin endpoint)"""
+async def get_all_bookings(request: Request):
+    """Get all bookings for admin dashboard (ADMIN ONLY)"""
     try:
-        query = {}
-        if status:
-            query["status"] = status
+        # Verify admin token
+        auth_header = request.headers.get('Authorization')
+        if not auth_header or not auth_header.startswith('Bearer '):
+            raise HTTPException(status_code=401, detail="Admin-Autorisierung erforderlich")
         
-        bookings = await db.bookings.find(query).sort("pickup_datetime", -1).limit(limit).to_list(length=None)
-        return [Booking(**booking) for booking in bookings]
+        token = auth_header.split(' ')[1]
+        payload = auth_service.verify_admin_token(token)
+        if not payload:
+            raise HTTPException(status_code=401, detail="Ungültiger Admin-Token")
         
+        # Get bookings
+        bookings = await db.bookings.find().sort("created_at", -1).to_list(length=1000)
+        return bookings
+        
+    except HTTPException:
+        raise
     except Exception as e:
-        logger.error(f"Failed to retrieve bookings: {str(e)}")
-        raise HTTPException(status_code=500, detail="Fehler beim Abrufen der Buchungen")
+        logger.error(f"Failed to fetch bookings: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Laden der Buchungen")
 
 @api_router.put("/bookings/{booking_id}/status")
 async def update_booking_status(booking_id: str, status: BookingStatus):
