@@ -5,6 +5,7 @@ Sendet E-Mail und WhatsApp-Links 1 Stunde nach Fahrtende
 import asyncio
 import logging
 from datetime import datetime, timedelta
+import pytz
 from motor.motor_asyncio import AsyncIOMotorClient
 from pathlib import Path
 import os
