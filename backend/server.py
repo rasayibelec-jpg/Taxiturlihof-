@@ -63,7 +63,7 @@ class ContactFormData(BaseModel):
     email: EmailStr
     phone: Optional[str] = None
     message: str
-    timestamp: datetime = Field(default_factory=lambda: datetime.now())
+    timestamp: datetime = Field(default_factory=get_swiss_time)
     status: str = Field(default="new")
 
 class ContactFormRequest(BaseModel):
