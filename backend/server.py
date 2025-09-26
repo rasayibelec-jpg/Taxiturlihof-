@@ -20,6 +20,19 @@ from task_scheduler import task_scheduler
 
 
 ROOT_DIR = Path(__file__).parent
+
+# Schweizer Zeitzone definieren
+SWISS_TZ = pytz.timezone('Europe/Zurich')
+
+def get_swiss_time():
+    """Gibt die aktuelle Schweizer Zeit zurück"""
+    return datetime.now(SWISS_TZ)
+
+def to_swiss_time(dt):
+    """Konvertiert UTC-DateTime zu Schweizer Zeit"""
+    if dt.tzinfo is None:
+        dt = pytz.utc.localize(dt)
+    return dt.astimezone(SWISS_TZ)
 load_dotenv(ROOT_DIR / '.env')
 
 # MongoDB connection
