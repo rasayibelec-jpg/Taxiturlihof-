@@ -80,6 +80,35 @@ const AdminDashboard = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // WhatsApp-Nachricht senden
+  const sendWhatsAppMessage = async (booking, messageType) => {
+    try {
+      const response = await fetch(`${backendUrl}/api/whatsapp/generate-link`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          booking_id: booking.id,
+          phone_number: booking.customer_phone,
+          message_type: messageType
+        })
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        if (result.whatsapp_link) {
+          window.open(result.whatsapp_link, '_blank');
+        }
+      } else {
+        alert("Fehler beim Generieren des WhatsApp-Links");
+      }
+    } catch (error) {
+      console.error("WhatsApp-Fehler:", error);
+      alert("Fehler beim Senden der WhatsApp-Nachricht");
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
