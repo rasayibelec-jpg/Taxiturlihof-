@@ -9,8 +9,13 @@ const FleetGallery = () => {
 
   const fleetImages = [
     {
-      url: "https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/ssbuesk0_20250620_123609%281%29%281%29.heic",
+      url: "https://customer-assets.emergentagent.com/job_taxi-luzern-web/artifacts/1brf17uv_Screenshot_20250925_125059_Photos.jpg",
       title: "Mercedes S-Klasse Premium",
+      description: "Elegante schwarze Mercedes-Limousine in der Zentralschweiz"
+    },
+    {
+      url: "https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/ssbuesk0_20250620_123609%281%29%281%29.heic",
+      title: "Mercedes S-Klasse Interieur",
       description: "Luxuriöse S-Klasse mit höchstem Fahrkomfort und Eleganz"
     },
     {
