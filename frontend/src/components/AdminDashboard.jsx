@@ -171,6 +171,11 @@ const AdminDashboard = () => {
     }
   };
 
+  // Show login page if not authenticated
+  if (!isAuthenticated) {
+    return <AdminLogin onLogin={handleAdminLogin} />;
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
