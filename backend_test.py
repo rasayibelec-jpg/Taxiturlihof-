@@ -5075,6 +5075,12 @@ class BackendTester:
         if payment_tests:
             print(f"   💳 Payment System Integration: {len(payment_passed)}/{len(payment_tests)} tests passed")
         
+        # Check for admin login results
+        admin_tests = [r for r in self.results if "Admin" in r["test"]]
+        admin_passed = [r for r in admin_tests if r["success"]]
+        if admin_tests:
+            print(f"   🔐 Admin Login System: {len(admin_passed)}/{len(admin_tests)} tests passed")
+        
         # Check for email-related failures
         email_config_failed = any("Email Service Configuration" in r["test"] and not r["success"] for r in self.results)
         if email_config_failed:
