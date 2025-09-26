@@ -91,11 +91,19 @@ const AdminDashboard = () => {
 
   // Buchungsstatus ändern
   const updateBookingStatus = async (bookingId, newStatus) => {
+    if (!adminToken) return;
+    
     setUpdating(bookingId);
     try {
       const response = await fetch(
         `${backendUrl}/api/bookings/${bookingId}/status?status=${newStatus}`,
-        { method: "PUT" }
+        { 
+          method: "PUT",
+          headers: {
+            'Authorization': `Bearer ${adminToken}`,
+            'Content-Type': 'application/json'
+          }
+        }
       );
 
       if (response.ok) {
