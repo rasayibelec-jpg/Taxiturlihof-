@@ -55,7 +55,7 @@ class Booking(BaseModel):
     # Status and Metadata
     status: BookingStatus = BookingStatus.PENDING
     special_requests: Optional[str] = None
-    created_at: datetime = Field(default_factory=datetime.now)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(pytz.timezone('Europe/Zurich')))
     updated_at: datetime = Field(default_factory=datetime.now)
     
     # Internal
