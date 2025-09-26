@@ -99,6 +99,12 @@ if __name__ == "__main__":
     print("Admin Password: TaxiTurlihof2025!")
     print(f"Password Hash: {ADMIN_PASSWORD_HASH}")
     
+    # Test password hashing first
+    test_hash = auth_service.hash_password("TaxiTurlihof2025!")
+    print(f"Test Hash: {test_hash}")
+    print(f"Expected:  {ADMIN_PASSWORD_HASH}")
+    print(f"Hash Match: {test_hash == ADMIN_PASSWORD_HASH}")
+    
     # Test login
     is_valid = auth_service.verify_admin_credentials("admin", "TaxiTurlihof2025!")
     print(f"Login Test: {'✅ SUCCESS' if is_valid else '❌ FAILED'}")
