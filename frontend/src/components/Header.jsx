@@ -166,6 +166,14 @@ const Header = () => {
               
               {/* Wichtigste Links zuerst */}
               <Link
+                to="/booking-lookup"
+                className="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded font-semibold text-center transition-colors duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                🔍 Buchung suchen
+              </Link>
+              
+              <Link
                 to="/admin"
                 className="bg-red-600 hover:bg-red-700 text-white p-3 rounded font-semibold text-center transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
