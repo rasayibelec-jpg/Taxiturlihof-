@@ -313,6 +313,16 @@ async def get_all_bookings(request: Request):
 async def update_booking_status(booking_id: str, status: BookingStatus, request: Request):
     """Update booking status and send email notification to customer (ADMIN ONLY)"""
     try:
+        # Verify admin token
+        auth_header = request.headers.get('Authorization')
+        if not auth_header or not auth_header.startswith('Bearer '):
+            raise HTTPException(status_code=401, detail="Admin-Autorisierung erforderlich")
+        
+        token = auth_header.split(' ')[1]
+        payload = auth_service.verify_admin_token(token)
+        if not payload:
+            raise HTTPException(status_code=401, detail="Ungültiger Admin-Token")
+        
         # First get the booking details for email
         booking = await db.bookings.find_one({"id": booking_id})
         if not booking:
