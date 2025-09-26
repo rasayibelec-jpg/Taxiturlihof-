@@ -418,6 +418,44 @@ async def update_booking_status(booking_id: str, status: BookingStatus):
         logger.error(f"Failed to update booking status: {str(e)}")
         raise HTTPException(status_code=500, detail="Fehler beim Aktualisieren des Buchungsstatus")
 
+@api_router.post("/whatsapp/generate-link")
+async def generate_whatsapp_link(request: dict):
+    """Generiert WhatsApp-Link für Kundenkommunikation"""
+    try:
+        booking_id = request.get('booking_id')
+        phone_number = request.get('phone_number') 
+        message_type = request.get('message_type', 'confirmation')
+        
+        # Buchung abrufen
+        booking = await db.bookings.find_one({"id": booking_id})
+        if not booking:
+            raise HTTPException(status_code=404, detail="Buchung nicht gefunden")
+        
+        # WhatsApp-Nachricht generieren je nach Typ
+        if message_type == 'confirmation':
+            whatsapp_message = whatsapp_service.send_booking_confirmation_message(booking)
+        elif message_type == 'review':
+            whatsapp_message = whatsapp_service.send_review_reminder_message(booking)
+        elif message_type == 'update':
+            whatsapp_message = whatsapp_service.send_driver_update_message(booking, booking.get('status', 'confirmed'))
+        else:
+            raise HTTPException(status_code=400, detail="Unbekannter Nachrichtentyp")
+        
+        # WhatsApp-Link generieren
+        whatsapp_link = whatsapp_service.get_customer_whatsapp_link(phone_number, whatsapp_message)
+        
+        return {
+            "success": True,
+            "whatsapp_link": whatsapp_link,
+            "message_preview": whatsapp_message[:100] + "..."
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to generate WhatsApp link: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Generieren des WhatsApp-Links")
+
 @api_router.delete("/bookings/{booking_id}")
 async def cancel_booking(booking_id: str):
     """Cancel a booking"""
