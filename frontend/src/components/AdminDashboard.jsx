@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import { CheckCircle, Clock, Car, MapPin, User, Phone, Mail } from "lucide-react";
+import { CheckCircle, Clock, Car, MapPin, User, Phone, Mail, MessageCircle } from "lucide-react";
 
 const AdminDashboard = () => {
   const [bookings, setBookings] = useState([]);
