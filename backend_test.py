@@ -1500,6 +1500,333 @@ class BackendTester:
             )
             return False
 
+    async def test_admin_login_endpoint(self):
+        """Test admin login API endpoint with correct and incorrect credentials"""
+        try:
+            # Test Case 1: Correct credentials
+            correct_credentials = {
+                "username": "admin",
+                "password": "TaxiTurlihof2025!"
+            }
+            
+            headers = {"Content-Type": "application/json"}
+            async with self.session.post(
+                f"{BACKEND_URL}/auth/admin/login",
+                json=correct_credentials,
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    # Validate successful login response
+                    if (data.get('success') == True and 
+                        data.get('token') and 
+                        data.get('message') == "Erfolgreich angemeldet" and
+                        data.get('expires_at')):
+                        
+                        self.log_result(
+                            "Admin Login - Correct Credentials",
+                            True,
+                            f"✅ Admin login successful with correct credentials",
+                            {
+                                "success": data.get('success'),
+                                "message": data.get('message'),
+                                "token_length": len(data.get('token', '')),
+                                "expires_at": data.get('expires_at'),
+                                "has_token": bool(data.get('token'))
+                            }
+                        )
+                        
+                        # Store token for further tests
+                        self.admin_token = data.get('token')
+                        return True
+                    else:
+                        self.log_result(
+                            "Admin Login - Correct Credentials",
+                            False,
+                            f"❌ Invalid response structure: {data}"
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Admin Login - Correct Credentials",
+                        False,
+                        f"❌ API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Admin Login - Correct Credentials",
+                False,
+                f"❌ Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_admin_login_wrong_credentials(self):
+        """Test admin login with wrong credentials"""
+        test_cases = [
+            {
+                "name": "Wrong Password",
+                "credentials": {"username": "admin", "password": "wrongpassword"},
+                "expected_message": "Ungültige Anmeldedaten"
+            },
+            {
+                "name": "Wrong Username",
+                "credentials": {"username": "wronguser", "password": "TaxiTurlihof2025!"},
+                "expected_message": "Ungültige Anmeldedaten"
+            },
+            {
+                "name": "Empty Password",
+                "credentials": {"username": "admin", "password": ""},
+                "expected_message": "Ungültige Anmeldedaten"
+            },
+            {
+                "name": "Missing Username",
+                "credentials": {"password": "TaxiTurlihof2025!"},
+                "expected_status": 422
+            },
+            {
+                "name": "Missing Password",
+                "credentials": {"username": "admin"},
+                "expected_status": 422
+            }
+        ]
+        
+        error_test_results = []
+        
+        for test_case in test_cases:
+            try:
+                headers = {"Content-Type": "application/json"}
+                async with self.session.post(
+                    f"{BACKEND_URL}/auth/admin/login",
+                    json=test_case["credentials"],
+                    headers=headers
+                ) as response:
+                    
+                    if response.status == 200:
+                        data = await response.json()
+                        
+                        # Check for expected error message
+                        if (data.get('success') == False and 
+                            data.get('message') == test_case.get('expected_message')):
+                            error_test_results.append(f"✅ {test_case['name']}")
+                        else:
+                            error_test_results.append(f"❌ {test_case['name']} - Got: {data}")
+                            
+                    elif response.status == test_case.get('expected_status', 200):
+                        # Expected validation error (422)
+                        error_test_results.append(f"✅ {test_case['name']}")
+                    else:
+                        response_text = await response.text()
+                        error_test_results.append(f"❌ {test_case['name']} - Status {response.status}: {response_text}")
+                        
+            except Exception as e:
+                error_test_results.append(f"❌ {test_case['name']} - Error: {str(e)}")
+        
+        all_passed = all("✅" in result for result in error_test_results)
+        self.log_result(
+            "Admin Login - Error Cases",
+            all_passed,
+            f"Error handling tests: {len([r for r in error_test_results if '✅' in r])}/{len(error_test_results)} passed",
+            error_test_results
+        )
+        
+        return all_passed
+
+    async def test_admin_token_verification(self):
+        """Test admin token verification endpoint"""
+        if not hasattr(self, 'admin_token') or not self.admin_token:
+            self.log_result(
+                "Admin Token Verification",
+                False,
+                "❌ No admin token available for verification test"
+            )
+            return False
+            
+        try:
+            headers = {
+                "Authorization": f"Bearer {self.admin_token}",
+                "Content-Type": "application/json"
+            }
+            
+            async with self.session.post(
+                f"{BACKEND_URL}/auth/admin/verify",
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    if (data.get('success') == True and 
+                        data.get('user') and
+                        data.get('user', {}).get('role') == 'admin'):
+                        
+                        self.log_result(
+                            "Admin Token Verification",
+                            True,
+                            f"✅ Admin token verification successful",
+                            {
+                                "success": data.get('success'),
+                                "user_role": data.get('user', {}).get('role'),
+                                "username": data.get('user', {}).get('username')
+                            }
+                        )
+                        return True
+                    else:
+                        self.log_result(
+                            "Admin Token Verification",
+                            False,
+                            f"❌ Invalid verification response: {data}"
+                        )
+                        return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Admin Token Verification",
+                        False,
+                        f"❌ API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Admin Token Verification",
+                False,
+                f"❌ Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_admin_protected_endpoint(self):
+        """Test accessing admin-protected endpoint with valid token"""
+        if not hasattr(self, 'admin_token') or not self.admin_token:
+            self.log_result(
+                "Admin Protected Endpoint Access",
+                False,
+                "❌ No admin token available for protected endpoint test"
+            )
+            return False
+            
+        try:
+            headers = {
+                "Authorization": f"Bearer {self.admin_token}",
+                "Content-Type": "application/json"
+            }
+            
+            # Test accessing the admin bookings endpoint
+            async with self.session.get(
+                f"{BACKEND_URL}/bookings",
+                headers=headers
+            ) as response:
+                
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    if isinstance(data, list):
+                        self.log_result(
+                            "Admin Protected Endpoint Access",
+                            True,
+                            f"✅ Admin can access protected bookings endpoint - {len(data)} bookings retrieved",
+                            {
+                                "booking_count": len(data),
+                                "endpoint": "/bookings",
+                                "auth_method": "Bearer token"
+                            }
+                        )
+                        return True
+                    else:
+                        self.log_result(
+                            "Admin Protected Endpoint Access",
+                            False,
+                            f"❌ Unexpected response format: {type(data)}"
+                        )
+                        return False
+                elif response.status == 401:
+                    self.log_result(
+                        "Admin Protected Endpoint Access",
+                        False,
+                        "❌ Admin token was rejected (401 Unauthorized)"
+                    )
+                    return False
+                else:
+                    response_text = await response.text()
+                    self.log_result(
+                        "Admin Protected Endpoint Access",
+                        False,
+                        f"❌ API returned status {response.status}: {response_text}"
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Admin Protected Endpoint Access",
+                False,
+                f"❌ Request failed: {str(e)}"
+            )
+            return False
+
+    async def test_cors_headers(self):
+        """Test CORS headers for admin login endpoint"""
+        try:
+            # Test preflight OPTIONS request
+            headers = {
+                "Origin": "https://taxi-luzern-web.preview.emergentagent.com",
+                "Access-Control-Request-Method": "POST",
+                "Access-Control-Request-Headers": "Content-Type"
+            }
+            
+            async with self.session.options(
+                f"{BACKEND_URL}/auth/admin/login",
+                headers=headers
+            ) as response:
+                
+                cors_headers = {
+                    "access-control-allow-origin": response.headers.get("Access-Control-Allow-Origin"),
+                    "access-control-allow-methods": response.headers.get("Access-Control-Allow-Methods"),
+                    "access-control-allow-headers": response.headers.get("Access-Control-Allow-Headers"),
+                    "access-control-allow-credentials": response.headers.get("Access-Control-Allow-Credentials")
+                }
+                
+                # Check if CORS is properly configured
+                cors_ok = (
+                    cors_headers["access-control-allow-origin"] in ["*", "https://taxi-luzern-web.preview.emergentagent.com"] and
+                    "POST" in (cors_headers["access-control-allow-methods"] or "") and
+                    "content-type" in (cors_headers["access-control-allow-headers"] or "").lower()
+                )
+                
+                if cors_ok or response.status in [200, 204]:
+                    self.log_result(
+                        "CORS Configuration",
+                        True,
+                        f"✅ CORS headers properly configured",
+                        {
+                            "preflight_status": response.status,
+                            "cors_headers": cors_headers
+                        }
+                    )
+                    return True
+                else:
+                    self.log_result(
+                        "CORS Configuration",
+                        False,
+                        f"❌ CORS configuration issues detected",
+                        {
+                            "preflight_status": response.status,
+                            "cors_headers": cors_headers
+                        }
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "CORS Configuration",
+                False,
+                f"❌ CORS test failed: {str(e)}"
+            )
+            return False
+
     async def test_timezone_fix_booking_email_system(self):
         """Test the booking email system after timezone fix to confirm emails are working again"""
         try:
