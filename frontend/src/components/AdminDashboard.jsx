@@ -47,6 +47,19 @@ const AdminDashboard = () => {
       );
 
       if (response.ok) {
+        const result = await response.json();
+        
+        // WhatsApp-Link anzeigen falls verfügbar
+        if (result.whatsapp_link) {
+          const whatsappConfirm = confirm(
+            `Status erfolgreich aktualisiert!\n\nMöchten Sie den Kunden auch per WhatsApp benachrichtigen?`
+          );
+          
+          if (whatsappConfirm) {
+            window.open(result.whatsapp_link, '_blank');
+          }
+        }
+        
         // Buchungen neu laden nach erfolgreicher Aktualisierung
         await fetchBookings();
       } else {
