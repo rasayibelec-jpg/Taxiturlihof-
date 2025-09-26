@@ -111,7 +111,7 @@ Vielen Dank für Ihre Fahrt mit Taxi Türlihof!
 Wenn Sie zufrieden waren, würden wir uns über eine Google-Bewertung freuen:
 
 ⭐⭐⭐⭐⭐ *Jetzt bewerten:*
-https://g.page/r/YOUR_GOOGLE_BUSINESS_ID/review
+https://www.google.com/search?q=Taxi+T%C3%BCrlihof+Bewertung
 
 Oder direkt über Google suchen: "Taxi Türlihof"
 
