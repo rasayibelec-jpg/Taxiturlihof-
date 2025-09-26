@@ -310,8 +310,8 @@ async def get_all_bookings(request: Request):
         raise HTTPException(status_code=500, detail="Fehler beim Laden der Buchungen")
 
 @api_router.put("/bookings/{booking_id}/status")
-async def update_booking_status(booking_id: str, status: BookingStatus):
-    """Update booking status and send email notification to customer"""
+async def update_booking_status(booking_id: str, status: BookingStatus, request: Request):
+    """Update booking status and send email notification to customer (ADMIN ONLY)"""
     try:
         # First get the booking details for email
         booking = await db.bookings.find_one({"id": booking_id})
