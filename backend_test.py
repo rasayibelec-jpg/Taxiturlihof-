@@ -5138,6 +5138,16 @@ class BackendTester:
         # Test: CORS Configuration
         await self.test_cors_headers()
         
+        # 🔥 CRITICAL EMAIL SYSTEM TESTS - REVIEW REQUEST PRIORITY
+        print("\n🔥 CRITICAL E-MAIL SYSTEM TESTING - VALIDATING RECENT FIX")
+        print("-" * 80)
+        
+        # Test: Critical Email System Fix Validation
+        await self.test_email_system_critical_fix_validation()
+        
+        # Test: Various Email Addresses
+        await self.test_email_system_various_addresses()
+        
         # PRIORITY TEST: Review Request - Timezone Fix Booking Email System
         print("\n🎯 PRIORITY: REVIEW REQUEST TEST - Timezone Fix Booking Email System")
         print("-" * 80)
