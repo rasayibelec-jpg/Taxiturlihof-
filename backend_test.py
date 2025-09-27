@@ -5315,6 +5315,13 @@ class BackendTester:
         # Test 22: Gmail SMTP Email System with New Credentials
         await self.test_gmail_smtp_email_system_final()
         
+        # NEW: Admin Booking Deletion Tests - REVIEW REQUEST
+        print("\n🗑️  ADMIN BOOKING DELETION TESTS - REVIEW REQUEST")
+        print("-" * 60)
+        
+        # Test: Admin Booking Deletion Functionality
+        await self.test_admin_booking_deletion()
+        
         # Summary
         print("\n" + "=" * 60)
         print("📊 TEST SUMMARY")
