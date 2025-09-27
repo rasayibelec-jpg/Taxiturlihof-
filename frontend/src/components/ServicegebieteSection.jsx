@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "./ui/card";
 import { ExternalLink } from "lucide-react";
+import "./ServicegebieteSection.css";
 
 const ServicegebieteSection = () => {
   const servicegebiete = [
