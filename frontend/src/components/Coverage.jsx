@@ -11,8 +11,11 @@ const Coverage = () => {
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Unsere Servicegebiete
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-4">
             Von der historischen Stadt Luzern bis zu den malerischen Bergdörfern - wir bringen Sie sicher an Ihr Ziel in der schönsten Region der Schweiz.
+          </p>
+          <p className="text-lg text-yellow-600 font-semibold">
+            🖱️ Klicken Sie auf ein Servicegebiet für detaillierte Informationen
           </p>
         </div>
 
