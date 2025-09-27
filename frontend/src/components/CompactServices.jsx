@@ -205,43 +205,64 @@ const CompactServices = () => {
                 📍 Unsere Servicegebiete
               </h3>
               
-              {/* Service Area Images */}
+              {/* Service Area Images - Klickbar */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="relative group">
+                <a 
+                  href="https://www.taxiturlihof.ch/servicegebiet/luzern" 
+                  className="relative group cursor-pointer transform hover:scale-105 transition-transform duration-300"
+                  title="Servicegebiet Luzern - Klicken für Details"
+                >
                   <img
                     src="https://images.unsplash.com/photo-1566789168779-73d46d92b809"
                     alt="Luzern Altstadt"
-                    className="w-full h-32 object-cover rounded-lg shadow-md"
+                    className="w-full h-32 object-cover rounded-lg shadow-md group-hover:shadow-xl transition-shadow duration-300"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg opacity-60"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg opacity-60 group-hover:opacity-40 transition-opacity duration-300"></div>
                   <div className="absolute bottom-2 left-2 text-white">
-                    <p className="font-semibold text-sm">Luzern</p>
+                    <p className="font-semibold text-sm">🔗 Luzern</p>
                   </div>
-                </div>
+                  <div className="absolute top-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-xs bg-yellow-600 px-2 py-1 rounded">Klicken</span>
+                  </div>
+                </a>
                 
-                <div className="relative group">
+                <a 
+                  href="https://www.taxiturlihof.ch/servicegebiet/vierwaldstaettersee" 
+                  className="relative group cursor-pointer transform hover:scale-105 transition-transform duration-300"
+                  title="Servicegebiet Vierwaldstättersee - Klicken für Details"
+                >
                   <img
                     src="https://images.unsplash.com/photo-1517664604184-9c1d2962d0a6"
                     alt="Vierwaldstättersee"
-                    className="w-full h-32 object-cover rounded-lg shadow-md"
+                    className="w-full h-32 object-cover rounded-lg shadow-md group-hover:shadow-xl transition-shadow duration-300"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg opacity-60"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg opacity-60 group-hover:opacity-40 transition-opacity duration-300"></div>
                   <div className="absolute bottom-2 left-2 text-white">
-                    <p className="font-semibold text-sm">Vierwaldstättersee</p>
+                    <p className="font-semibold text-sm">🔗 Vierwaldstättersee</p>
                   </div>
-                </div>
+                  <div className="absolute top-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-xs bg-blue-600 px-2 py-1 rounded">Klicken</span>
+                  </div>
+                </a>
                 
-                <div className="relative group">
+                <a 
+                  href="https://www.taxiturlihof.ch/servicegebiet/zug" 
+                  className="relative group cursor-pointer transform hover:scale-105 transition-transform duration-300"
+                  title="Servicegebiet Zug - Klicken für Details"
+                >
                   <img
                     src="https://images.unsplash.com/photo-1541696724920-864a966cc4c9"
                     alt="Zug am Zugersee"
-                    className="w-full h-32 object-cover rounded-lg shadow-md"
+                    className="w-full h-32 object-cover rounded-lg shadow-md group-hover:shadow-xl transition-shadow duration-300"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg opacity-60"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg opacity-60 group-hover:opacity-40 transition-opacity duration-300"></div>
                   <div className="absolute bottom-2 left-2 text-white">
-                    <p className="font-semibold text-sm">Zug</p>
+                    <p className="font-semibold text-sm">🔗 Zug</p>
                   </div>
-                </div>
+                  <div className="absolute top-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-xs bg-teal-600 px-2 py-1 rounded">Klicken</span>
+                  </div>
+                </a>
               </div>
               
               {/* Area List */}
