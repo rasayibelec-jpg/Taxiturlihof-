@@ -134,6 +134,49 @@ const AdminDashboard = () => {
     }
   };
 
+  // Buchung löschen
+  const deleteBooking = async (bookingId, bookingDetails) => {
+    // Bestätigungsdialog mit Buchungsdetails
+    const confirmMessage = `Sind Sie sicher, dass Sie diese Buchung PERMANENT löschen möchten?\n\n` +
+      `Buchungs-ID: ${bookingId}\n` +
+      `Kunde: ${bookingDetails.customer_name}\n` +
+      `Von: ${bookingDetails.pickup_location}\n` +
+      `Nach: ${bookingDetails.destination}\n` +
+      `Datum: ${new Date(bookingDetails.pickup_datetime).toLocaleDateString('de-CH')}\n\n` +
+      `ACHTUNG: Diese Aktion kann NICHT rückgängig gemacht werden!`;
+    
+    if (!confirm(confirmMessage)) {
+      return;
+    }
+
+    setDeleting(bookingId);
+    try {
+      const response = await fetch(`${backendUrl}/api/admin/bookings/${bookingId}`, {
+        method: "DELETE",
+        headers: {
+          'Authorization': `Bearer ${adminToken}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        alert(`Buchung erfolgreich gelöscht!\n\nGelöschte Buchung: ${result.deleted_booking?.customer_name || 'Unbekannt'}`);
+        
+        // Buchungen neu laden nach erfolgreichem Löschen
+        await fetchBookings();
+      } else {
+        const errorData = await response.json();
+        alert(`Fehler beim Löschen: ${errorData.detail || 'Unbekannter Fehler'}`);
+      }
+    } catch (error) {
+      console.error("Fehler beim Löschen der Buchung:", error);
+      alert("Fehler beim Löschen der Buchung");
+    } finally {
+      setDeleting(null);
+    }
+  };
+
   useEffect(() => {
     if (isAuthenticated && adminToken) {
       fetchBookings();
