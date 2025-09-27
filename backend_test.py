@@ -17,7 +17,7 @@ backend_dir = Path(__file__).parent / "backend"
 sys.path.insert(0, str(backend_dir))
 
 # Test configuration
-BACKEND_URL = "https://taxi-luzern-web.preview.emergentagent.com/api"
+BACKEND_URL = "https://taxi-dashboard.preview.emergentagent.com/api"
 TEST_DATA = {
     "name": "Test User",
     "email": "test@example.com",
@@ -2043,7 +2043,7 @@ class BackendTester:
         try:
             # Test preflight OPTIONS request
             headers = {
-                "Origin": "https://taxi-luzern-web.preview.emergentagent.com",
+                "Origin": "https://taxi-dashboard.preview.emergentagent.com",
                 "Access-Control-Request-Method": "POST",
                 "Access-Control-Request-Headers": "Content-Type"
             }
@@ -2062,7 +2062,7 @@ class BackendTester:
                 
                 # Check if CORS is properly configured
                 cors_ok = (
-                    cors_headers["access-control-allow-origin"] in ["*", "https://taxi-luzern-web.preview.emergentagent.com"] and
+                    cors_headers["access-control-allow-origin"] in ["*", "https://taxi-dashboard.preview.emergentagent.com"] and
                     "POST" in (cors_headers["access-control-allow-methods"] or "") and
                     "content-type" in (cors_headers["access-control-allow-headers"] or "").lower()
                 )
