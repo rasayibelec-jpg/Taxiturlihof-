@@ -433,6 +433,18 @@ const AdminDashboard = () => {
                           )}
                         </div>
                       )}
+                      
+                      {/* Löschen-Button */}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        disabled={deleting === booking.id}
+                        onClick={() => deleteBooking(booking.id, booking)}
+                        className="text-xs bg-red-50 hover:bg-red-100 text-red-700 border-red-200 ml-auto"
+                      >
+                        <Trash2 className="w-3 h-3 mr-1" />
+                        {deleting === booking.id ? 'Löscht...' : 'Löschen'}
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>
