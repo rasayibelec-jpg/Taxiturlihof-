@@ -146,40 +146,7 @@ const FleetGallery = () => {
           </div>
         </div>
 
-        {/* Unsere Servicegebiete */}
-        <div>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Unsere Servicegebiete
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Von der historischen Stadt Luzern bis zu den malerischen Bergdörfern - 
-              wir bringen Sie sicher an Ihr Ziel in der schönsten Region der Schweiz.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {serviceAreas.map((area, index) => (
-              <Card key={index} className="group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                <div className="relative h-48">
-                  <img
-                    src={area.url}
-                    alt={area.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="text-xl font-bold mb-1">{area.title}</h3>
-                    <p className="text-gray-200 text-sm">{area.description}</p>
-                  </div>
-                  <Badge className="absolute top-4 right-4 bg-yellow-600 text-white">
-                    Servicegebiet
-                  </Badge>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
+        {/* Old Servicegebiete section removed - now using separate ServicegebieteSection component */}
       </div>
     </section>
   );
