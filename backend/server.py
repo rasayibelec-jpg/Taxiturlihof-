@@ -627,6 +627,41 @@ async def cancel_booking(booking_id: str):
         logger.error(f"Failed to cancel booking: {str(e)}")
         raise HTTPException(status_code=500, detail="Fehler beim Stornieren der Buchung")
 
+@api_router.delete("/admin/bookings/{booking_id}")
+async def delete_booking_admin(booking_id: str, current_admin: dict = Depends(auth_service.get_current_admin_user)):
+    """Admin-only: Permanently delete a booking from the database"""
+    try:
+        # First check if booking exists and get its details for logging
+        booking = await db.bookings.find_one({"id": booking_id})
+        if not booking:
+            raise HTTPException(status_code=404, detail="Buchung nicht gefunden")
+        
+        # Delete the booking from database
+        result = await db.bookings.delete_one({"id": booking_id})
+        
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail="Buchung konnte nicht gelöscht werden")
+        
+        # Log the deletion for audit purposes
+        logger.info(f"Admin {current_admin.get('username', 'unknown')} deleted booking {booking_id} - Customer: {booking.get('customer_name', 'unknown')}")
+        
+        return {
+            "success": True, 
+            "message": "Buchung erfolgreich gelöscht",
+            "deleted_booking": {
+                "id": booking_id,
+                "customer_name": booking.get("customer_name", ""),
+                "pickup_location": booking.get("pickup_location", ""),
+                "destination": booking.get("destination", "")
+            }
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to delete booking {booking_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Löschen der Buchung")
+
 @api_router.get("/availability", response_model=AvailabilityResponse)
 async def get_availability(date: str):
     """Get available time slots for a specific date"""
