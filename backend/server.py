@@ -628,7 +628,7 @@ async def cancel_booking(booking_id: str):
         raise HTTPException(status_code=500, detail="Fehler beim Stornieren der Buchung")
 
 @api_router.delete("/admin/bookings/{booking_id}")
-async def delete_booking_admin(booking_id: str, current_admin: dict = Depends(auth_service.get_current_admin_user)):
+async def delete_booking_admin(booking_id: str, current_admin: dict = Depends(get_current_admin_user)):
     """Admin-only: Permanently delete a booking from the database"""
     try:
         # First check if booking exists and get its details for logging
