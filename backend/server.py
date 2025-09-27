@@ -403,8 +403,7 @@ async def update_booking_status(booking_id: str, status: BookingStatus, request:
                 await email_service.send_email(
                     to_email=booking.get('customer_email'),
                     subject=email_info['subject'],
-                    html_content=email_content,
-                    customer_name=booking.get('customer_name')
+                    html_content=email_content
                 )
                 
                 logger.info(f"Status update email sent to {booking.get('customer_email')} for booking {booking_id}")
