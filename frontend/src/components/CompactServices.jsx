@@ -201,9 +201,12 @@ const CompactServices = () => {
 
             {/* Service Areas */}
             <Card className="p-6 bg-blue-50">
-              <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+              <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center">
                 📍 Unsere Servicegebiete
               </h3>
+              <p className="text-sm text-blue-600 font-medium mb-6">
+                🖱️ Klicken Sie auf ein Bild oder Tag für detaillierte Serviceinformationen
+              </p>
               
               {/* Service Area Images - Klickbar */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
