@@ -116,10 +116,8 @@ class EmailSystemTester:
                                     }
                                     
                                     # Update booking status to confirmed (should trigger email)
-                                    status_data = {"status": "confirmed"}
                                     async with self.session.put(
-                                        f"{BACKEND_URL}/bookings/{booking_id}/status",
-                                        json=status_data,
+                                        f"{BACKEND_URL}/bookings/{booking_id}/status?status=confirmed",
                                         headers=auth_headers
                                     ) as status_response:
                                         
