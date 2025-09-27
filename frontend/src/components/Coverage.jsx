@@ -18,16 +18,18 @@ const Coverage = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="text-center">
-            <Card className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-gray-200 mb-4">
-              <CardHeader className="pb-4">
-                <div className="bg-yellow-100 p-3 rounded-full w-fit group-hover:bg-yellow-200 transition-colors duration-300 mx-auto">
-                  <MapPin className="w-6 h-6 text-yellow-600" />
-                </div>
-                <CardTitle className="text-xl font-semibold text-gray-900 group-hover:text-yellow-600 transition-colors duration-300">
-                  Luzern
-                </CardTitle>
-              </CardHeader>
-            </Card>
+            <a href="https://www.taxiturlihof.ch/servicegebiet/luzern" className="block">
+              <Card className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-gray-200 mb-4 cursor-pointer">
+                <CardHeader className="pb-4">
+                  <div className="bg-yellow-100 p-3 rounded-full w-fit group-hover:bg-yellow-200 transition-colors duration-300 mx-auto">
+                    <MapPin className="w-6 h-6 text-yellow-600" />
+                  </div>
+                  <CardTitle className="text-xl font-semibold text-gray-900 group-hover:text-yellow-600 transition-colors duration-300">
+                    Luzern
+                  </CardTitle>
+                </CardHeader>
+              </Card>
+            </a>
             <p className="text-gray-600 leading-relaxed px-4 mb-3">
               Mit Taxi Turlihof, Ihrem Taxi in der Nähe, erreichen Sie die Altstadt, die Kapellbrücke und alle Sehenswürdigkeiten bequem und pünktlich.
             </p>
