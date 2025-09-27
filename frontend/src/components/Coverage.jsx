@@ -72,16 +72,18 @@ const Coverage = () => {
           </div>
 
           <div className="text-center">
-            <Card className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-gray-200 mb-4">
-              <CardHeader className="pb-4">
-                <div className="bg-green-100 p-3 rounded-full w-fit group-hover:bg-green-200 transition-colors duration-300 mx-auto">
-                  <Mountain className="w-6 h-6 text-green-600" />
-                </div>
-                <CardTitle className="text-xl font-semibold text-gray-900 group-hover:text-green-600 transition-colors duration-300">
-                  Weggis & Vitznau
-                </CardTitle>
-              </CardHeader>
-            </Card>
+            <a href="https://www.taxiturlihof.ch/servicegebiet/weggis-vitznau" className="block">
+              <Card className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-gray-200 mb-4 cursor-pointer">
+                <CardHeader className="pb-4">
+                  <div className="bg-green-100 p-3 rounded-full w-fit group-hover:bg-green-200 transition-colors duration-300 mx-auto">
+                    <Mountain className="w-6 h-6 text-green-600" />
+                  </div>
+                  <CardTitle className="text-xl font-semibold text-gray-900 group-hover:text-green-600 transition-colors duration-300">
+                    Weggis & Vitznau
+                  </CardTitle>
+                </CardHeader>
+              </Card>
+            </a>
             <p className="text-gray-600 leading-relaxed px-4 mb-3">
               Ob Bahnhof, Hotel oder Seeufer – mit Taxi Turlihof sind Sie in Weggis & Vitznau jederzeit mobil.
             </p>
