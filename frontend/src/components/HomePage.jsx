@@ -16,6 +16,7 @@ const HomePage = () => {
       <Header />
       <CompactHero />
       <CompactServices />
+      <ServiceAreas />
       <FleetGallery />
       <Reviews />
       <CompactCalculatorCTA />
