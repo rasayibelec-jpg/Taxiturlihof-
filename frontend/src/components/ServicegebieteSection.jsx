@@ -55,7 +55,7 @@ const ServicegebieteSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -69,60 +69,74 @@ const ServicegebieteSection = () => {
           </p>
         </div>
 
-        {/* Service Cards Grid */}
-        <div className="servicegebiete grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Service Cards Grid - Dark Theme */}
+        <div className="servicegebiete grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', margin: '30px 0'}}>
           {servicegebiete.map((gebiet, index) => (
-            <div key={index} className="card group">
-              <Card className="overflow-hidden border-2 border-gray-200 hover:border-yellow-400 transition-all duration-300 hover:shadow-xl transform hover:scale-105">
-                
-                {/* Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={gebiet.image}
-                    alt={gebiet.alt}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                  
-                  {/* Link Indicator */}
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="bg-yellow-600 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
-                      <ExternalLink className="w-3 h-3 mr-1" />
-                      Details
-                    </div>
-                  </div>
-                  
-                  {/* Title Overlay */}
-                  <div className="absolute bottom-4 left-4">
-                    <h3 className="text-white text-2xl font-bold drop-shadow-lg">
-                      {gebiet.name}
-                    </h3>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <CardContent className="p-6 bg-white">
-                  <p className="text-gray-600 mb-4 font-medium">
-                    {gebiet.description}
-                  </p>
-                  
-                  {/* SEO Link */}
-                  <p className="seo-link">
-                    <a
-                      href={gebiet.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-yellow-600 hover:text-yellow-700 font-semibold hover:underline transition-colors duration-200"
-                    >
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      {gebiet.linkText}
-                    </a>
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
+            <a
+              key={index}
+              href={gebiet.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card block group cursor-pointer"
+              style={{
+                background: '#111827',
+                padding: '16px',
+                borderRadius: '12px',
+                textAlign: 'center',
+                color: '#e5e7eb',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.25)',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.25)';
+              }}
+            >
+              {/* Image */}
+              <img
+                src={gebiet.image}
+                alt={gebiet.alt}
+                loading="lazy"
+                decoding="async"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  borderRadius: '10px',
+                  marginBottom: '10px'
+                }}
+              />
+              
+              {/* Title */}
+              <h3 style={{
+                margin: '8px 0 4px',
+                fontSize: '20px',
+                color: '#f59e0b'
+              }}>
+                {gebiet.name}
+              </h3>
+              
+              {/* Description */}
+              <p style={{margin: '4px 0'}}>
+                {gebiet.description}
+              </p>
+              
+              {/* SEO Link */}
+              <p className="seo-link" style={{
+                marginTop: '6px',
+                fontSize: '14px'
+              }}>
+                <span style={{
+                  color: '#f59e0b',
+                  textDecoration: 'underline'
+                }}>
+                  {gebiet.linkText}
+                </span>
+              </p>
+            </a>
           ))}
         </div>
 
