@@ -25,17 +25,24 @@ class EmailService:
     async def send_email(self, to_email: str, subject: str, html_content: str, text_content: str = None):
         """Send email using Gmail SMTP"""
         try:
+            # Validate email parameters
+            if not to_email or not subject or not html_content:
+                logger.error("Missing required email parameters")
+                return False
+            
             message = EmailMessage()
             message["From"] = f"{self.email_from_name} <{self.email_from}>"
             message["To"] = to_email
             message["Subject"] = subject
             
+            # Set proper encoding
             if text_content:
-                message.set_content(text_content)
+                message.set_content(text_content, charset='utf-8')
+                message.add_alternative(html_content, subtype='html', charset='utf-8')
+            else:
+                message.set_content(html_content, subtype='html', charset='utf-8')
             
-            if html_content:
-                message.add_alternative(html_content, subtype='html')
-            
+            # Send email
             await aiosmtplib.send(
                 message,
                 hostname=self.smtp_host,
@@ -43,9 +50,10 @@ class EmailService:
                 start_tls=True,
                 username=self.smtp_username,
                 password=self.smtp_password,
+                timeout=30
             )
             
-            logger.info(f"Email sent successfully to {to_email}")
+            logger.info(f"Email sent successfully to {to_email} with subject: {subject}")
             return True
             
         except Exception as e:
