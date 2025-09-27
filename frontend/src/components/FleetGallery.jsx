@@ -60,38 +60,7 @@ const FleetGallery = () => {
     }
   ];
 
-  const serviceAreas = [
-    {
-      url: "https://images.unsplash.com/photo-1566789168779-73d46d92b809",
-      title: "Luzern",
-      description: "Historische Altstadt und Kapellbrücke"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1517664604184-9c1d2962d0a6",
-      title: "Vierwaldstättersee",
-      description: "Wunderschöne Fahrten rund um den See"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1583035283307-3d4af0848227",
-      title: "Weggis & Vitznau",
-      description: "Malerische Seeufer-Gemeinden"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1521292270410-a8c4d716d518",
-      title: "Schwyz & Brunnen",
-      description: "Traditionelle Schweizer Berglandschaft"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1541696724920-864a966cc4c9",
-      title: "Zug",
-      description: "Moderne Stadt am Zugersee"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1527668752968-14dc70a27c95",
-      title: "Arth-Goldau",
-      description: "Tor zu Rigi und Pilatus"
-    }
-  ];
+  // Old serviceAreas array removed - now using ServicegebieteSection component
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % fleetImages.length);
