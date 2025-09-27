@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import CompactHero from "./CompactHero";
 import CompactServices from "./CompactServices";
+import ServicegebieteSection from "./ServicegebieteSection";
 import FleetGallery from "./FleetGallery";
 import Reviews from "./Reviews";
 import CompactCalculatorCTA from "./CompactCalculatorCTA";
