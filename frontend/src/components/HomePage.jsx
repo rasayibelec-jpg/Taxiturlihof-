@@ -14,7 +14,6 @@ const HomePage = () => {
     <div className="min-h-screen bg-white">
       <Header />
       <CompactHero />
-      <ServiceAreaLinks />
       <CompactServices />
       <FleetGallery />
       <Reviews />
