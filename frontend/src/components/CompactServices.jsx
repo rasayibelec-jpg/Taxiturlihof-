@@ -265,13 +265,26 @@ const CompactServices = () => {
                 </a>
               </div>
               
-              {/* Area List */}
+              {/* Area List - Klickbare Tags */}
               <div className="flex flex-wrap gap-2">
-                {["Luzern", "Schwyz", "Zug", "Weggis", "Vitznau", "Brunnen", "Arth-Goldau"].map((area, index) => (
-                  <span key={index} className="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 border">
-                    {area}
-                  </span>
-                ))}
+                <a href="https://www.taxiturlihof.ch/servicegebiet/luzern" className="bg-white hover:bg-yellow-50 px-3 py-1 rounded-full text-sm font-medium text-gray-700 border hover:border-yellow-300 transition-colors duration-200 cursor-pointer">
+                  🔗 Luzern
+                </a>
+                <a href="https://www.taxiturlihof.ch/servicegebiet/schwyz-brunnen" className="bg-white hover:bg-purple-50 px-3 py-1 rounded-full text-sm font-medium text-gray-700 border hover:border-purple-300 transition-colors duration-200 cursor-pointer">
+                  🔗 Schwyz & Brunnen
+                </a>
+                <a href="https://www.taxiturlihof.ch/servicegebiet/zug" className="bg-white hover:bg-teal-50 px-3 py-1 rounded-full text-sm font-medium text-gray-700 border hover:border-teal-300 transition-colors duration-200 cursor-pointer">
+                  🔗 Zug
+                </a>
+                <a href="https://www.taxiturlihof.ch/servicegebiet/weggis-vitznau" className="bg-white hover:bg-green-50 px-3 py-1 rounded-full text-sm font-medium text-gray-700 border hover:border-green-300 transition-colors duration-200 cursor-pointer">
+                  🔗 Weggis & Vitznau
+                </a>
+                <a href="https://www.taxiturlihof.ch/servicegebiet/vierwaldstaettersee" className="bg-white hover:bg-blue-50 px-3 py-1 rounded-full text-sm font-medium text-gray-700 border hover:border-blue-300 transition-colors duration-200 cursor-pointer">
+                  🔗 Vierwaldstättersee
+                </a>
+                <a href="https://www.taxiturlihof.ch/servicegebiet/arth-goldau" className="bg-white hover:bg-orange-50 px-3 py-1 rounded-full text-sm font-medium text-gray-700 border hover:border-orange-300 transition-colors duration-200 cursor-pointer">
+                  🔗 Arth-Goldau
+                </a>
               </div>
             </Card>
           </div>
