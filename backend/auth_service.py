@@ -81,6 +81,31 @@ class AuthService:
         return (booking_email == provided_email and 
                 booking_full_id.startswith(booking_id))
 
+# FastAPI dependency for admin authentication
+from fastapi import HTTPException, Depends, Request
+
+async def get_current_admin_user(request: Request) -> dict:
+    """FastAPI dependency to get current admin user from JWT token"""
+    try:
+        # Get token from Authorization header
+        auth_header = request.headers.get('Authorization')
+        if not auth_header or not auth_header.startswith('Bearer '):
+            raise HTTPException(status_code=401, detail="Admin-Autorisierung erforderlich")
+        
+        token = auth_header.split(' ')[1]
+        
+        # Verify token
+        payload = auth_service.verify_admin_token(token)
+        if not payload:
+            raise HTTPException(status_code=401, detail="Ungültiger oder abgelaufener Admin-Token")
+        
+        return payload
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Token-Überprüfungsfehler")
+
 # Service instance
 auth_service = AuthService()
 
