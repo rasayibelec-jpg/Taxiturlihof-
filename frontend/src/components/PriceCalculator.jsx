@@ -135,17 +135,13 @@ const PriceCalculator = () => {
                     <Navigation className="w-4 h-4 inline mr-1" />
                     Zieladresse
                   </label>
-                  <AddressAutocomplete
+                  <Input
+                    id="end"
+                    value={endAddress}
+                    onChange={(e) => setEndAddress(e.target.value)}
                     placeholder="z.B. Zürich Flughafen"
-                    initialValue={endAddress}
                     disabled={isCalculating}
-                    onAddressSelect={(addressData) => {
-                      setEndAddress(addressData.address);
-                      // Automatische Berechnung wenn beide Adressen vorhanden sind
-                      if (startAddress) {
-                        setTimeout(() => handleCalculatePrice(), 500);
-                      }
-                    }}
+                    className="transition-all duration-200 focus:ring-2 focus:ring-yellow-500"
                   />
                 </div>
               </div>
