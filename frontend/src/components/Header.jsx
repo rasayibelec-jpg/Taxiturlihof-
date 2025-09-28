@@ -183,9 +183,9 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation - Kompakt */}
+        {/* Mobile/Tablet Navigation - Kompakt */}
         {isMenuOpen && (
-          <nav className="md:hidden py-4 border-t">
+          <nav className="lg:hidden py-4 border-t">
             <div className="flex flex-col space-y-3">
               
               {/* Wichtigste Links zuerst */}
