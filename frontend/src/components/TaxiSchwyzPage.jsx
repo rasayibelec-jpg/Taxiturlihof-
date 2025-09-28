@@ -43,15 +43,32 @@ const TaxiSchwyzPage = () => {
         url="https://www.taxiturlihof.ch/taxi-schwyz"
         structuredData={structuredData}
       />
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-green-600 to-blue-600 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Hero Section with Traditional Swiss Mountain Background */}
+      <section 
+        className="relative py-20 text-white overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1749024508888-3d1e8e6e928a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHxTY2h3eXolMjBsYW5kc2NhcGV8ZW58MHx8fHwxNzU5MDE4NDcwfDA&ixlib=rb-4.1.0&q=85')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        {/* Background overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-5xl font-bold mb-6">
-              Taxi Schwyz - Sicher durch die Berglandschaft
+            <div className="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+              <span className="text-yellow-300 font-semibold">🏔️ Traditionelle Schweizer Berglandschaft</span>
+            </div>
+            <h1 className="text-5xl font-bold mb-6 drop-shadow-lg">
+              Taxi Schwyz & Brunnen
             </h1>
-            <p className="text-2xl mb-8 opacity-90">
-              24/7 Mercedes-Taxi-Service in Schwyz und Brunnen
+            <h2 className="text-3xl font-semibold mb-4 text-yellow-200 drop-shadow-md">
+              Sicher durch die Berglandschaft
+            </h2>
+            <p className="text-2xl mb-8 opacity-90 drop-shadow-md">
+              24/7 Mercedes-Taxi-Service in der Mythenregion
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a 
