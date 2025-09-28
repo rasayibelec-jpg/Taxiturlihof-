@@ -174,9 +174,9 @@ const Header = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile/Tablet Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="lg:hidden text-gray-700 hover:text-yellow-600 p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
