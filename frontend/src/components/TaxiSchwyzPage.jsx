@@ -252,14 +252,28 @@ const TaxiSchwyzPage = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section id="buchen" className="py-16 bg-gradient-to-r from-green-600 to-blue-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Jetzt Taxi in Schwyz buchen
+      {/* CTA with Classic Swiss Alps Background */}
+      <section 
+        id="buchen" 
+        className="relative py-20 text-white"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1564703821142-e88574e6cfa8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDJ8MHwxfHNlYXJjaHwyfHxTd2lzcyUyMG1vdW50YWluc3xlbnwwfHx8fDE3NTkwMTg0NjN8MA&ixlib=rb-4.1.0&q=85')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-green-900/50 to-blue-900/50"></div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="bg-white/10 backdrop-blur-sm inline-block rounded-full px-6 py-2 mb-6">
+            <span className="text-yellow-300 font-semibold">🚖 Taxi Service Schwyz & Brunnen</span>
+          </div>
+          <h2 className="text-4xl font-bold mb-6 drop-shadow-lg">
+            Jetzt Taxi in der Berglandschaft buchen
           </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Sicher durch die Berglandschaft - rufen Sie uns an!
+          <p className="text-xl mb-8 drop-shadow-md">
+            Traditionelle Schweizer Berglandschaft sicher erleben - rufen Sie uns an!
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
