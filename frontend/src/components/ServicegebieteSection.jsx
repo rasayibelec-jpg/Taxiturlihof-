@@ -31,7 +31,7 @@ const ServicegebieteSection = () => {
     },
     {
       name: "Schwyz & Brunnen",
-      image: "https://images.unsplash.com/photo-1464207687429-7505649dae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "https://picsum.photos/800/600?random=schwyz",
       alt: "Taxi Service Schwyz und Brunnen - Traditionelle Schweizer Berglandschaft", 
       description: "Traditionelle Schweizer Berglandschaft",
       link: "https://taxiturlihof.ch/landingpage/taxisevice-schwyz/",
