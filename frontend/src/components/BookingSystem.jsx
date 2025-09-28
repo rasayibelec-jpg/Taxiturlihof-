@@ -421,13 +421,13 @@ const BookingSystem = () => {
                           <MapPin className="w-4 h-4 inline mr-1" />
                           Abholort *
                         </label>
-                        <AddressAutocomplete
+                        <Input
+                          id="pickupLocation"
+                          value={bookingData.pickupLocation}
+                          onChange={(e) => handleInputChange('pickupLocation', e.target.value)}
                           placeholder="z.B. Luzern, Bahnhofstrasse 1"
-                          initialValue={bookingData.pickupLocation}
                           disabled={isSubmitting}
-                          onAddressSelect={(addressData) => {
-                            handleInputChange('pickupLocation', addressData.address);
-                          }}
+                          required
                         />
                       </div>
                       
