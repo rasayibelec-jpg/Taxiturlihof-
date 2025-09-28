@@ -170,19 +170,29 @@ const CompactServices = () => {
                 <h4 className="font-semibold text-gray-900 mb-3">Spezielle Services</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                   <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center mb-2">
                       <span className="font-medium">Flughafentransfer Zürich</span>
-                      <span className="font-bold text-blue-600">auf Anfrage</span>
+                      <a 
+                        href="tel:0766113131" 
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs font-semibold transition-colors duration-200"
+                      >
+                        📞 Anrufen
+                      </a>
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">Preis abhängig von Abfahrtsort</p>
+                    <p className="text-xs text-gray-500">Preis abhängig von Abfahrtsort - auf Anfrage</p>
                   </div>
                   
                   <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center mb-2">
                       <span className="font-medium">Flughafentransfer Basel</span>
-                      <span className="font-bold text-blue-600">auf Anfrage</span>
+                      <a 
+                        href="tel:0766113131" 
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs font-semibold transition-colors duration-200"
+                      >
+                        📞 Anrufen
+                      </a>
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">Preis abhängig von Abfahrtsort</p>
+                    <p className="text-xs text-gray-500">Preis abhängig von Abfahrtsort - auf Anfrage</p>
                   </div>
                 </div>
               </div>
