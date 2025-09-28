@@ -32,22 +32,22 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-6">
             <Link
               to="/"
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
+              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 font-medium"
             >
               Home
             </Link>
             <Link
               to="/preisrechner"
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
+              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 font-medium"
             >
               Preisrechner
             </Link>
             <Link
               to="/buchen"
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
+              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 font-medium"
             >
               Buchen
             </Link>
@@ -56,14 +56,14 @@ const Header = () => {
             <div className="relative">
               <button
                 onClick={() => setIsStadteDropdownOpen(!isStadteDropdownOpen)}
-                className="flex items-center text-gray-700 hover:text-yellow-600 transition-colors duration-200"
+                className="flex items-center text-gray-700 hover:text-yellow-600 transition-colors duration-200 font-medium"
               >
                 Dienstleistungen
                 <ChevronDown className="w-4 h-4 ml-1" />
               </button>
               
               {isStadteDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
                   <Link
                     to="/taxi-luzern"
                     className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
@@ -112,43 +112,67 @@ const Header = () => {
 
             <button
               onClick={() => scrollToSection("contact")}
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200"
+              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 font-medium"
             >
               Kontakt
             </button>
+          </nav>
+
+          {/* Desktop Action Buttons */}
+          <div className="hidden lg:flex items-center space-x-4">
             <Link
               to="/booking-lookup"
-              className="hidden md:block text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200"
+              className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200 flex items-center"
               title="Buchung suchen"
             >
-              🔍 Buchung suchen
+              🔍 <span className="ml-1">Buchung suchen</span>
             </Link>
             <Link
               to="/admin"
-              className="hidden md:block text-red-600 hover:text-red-700 font-semibold transition-colors duration-200"
-              title="Admin Dashboard - Buchungen verwalten"
-            >
-              🔧 Admin
-            </Link>
-            <Link
-              to="/booking-lookup"
-              className="md:hidden bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm font-semibold transition-colors duration-200"
-              title="Buchung suchen"
-            >
-              🔍 Suchen
-            </Link>
-            <Link
-              to="/admin"
-              className="md:hidden bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm font-semibold transition-colors duration-200"
+              className="text-red-600 hover:text-red-700 font-medium transition-colors duration-200 flex items-center"
               title="Admin Dashboard"
             >
-              🔧 Admin
+              🔧 <span className="ml-1">Admin</span>
             </Link>
-            <Button className="bg-yellow-600 hover:bg-yellow-700 text-white">
+            <Button className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2">
               <Phone className="w-4 h-4 mr-2" />
               076 611 31 31
             </Button>
-          </nav>
+          </div>
+
+          {/* Medium Screen Navigation (md to lg) */}
+          <div className="hidden md:flex lg:hidden items-center space-x-3">
+            <Link
+              to="/preisrechner"
+              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 text-sm font-medium"
+            >
+              Preisrechner
+            </Link>
+            <Link
+              to="/buchen"
+              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 text-sm font-medium"
+            >
+              Buchen
+            </Link>
+            <Link
+              to="/booking-lookup"
+              className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+              title="Buchung suchen"
+            >
+              🔍
+            </Link>
+            <Link
+              to="/admin"
+              className="text-red-600 hover:text-red-700 text-sm font-medium"
+              title="Admin"
+            >
+              🔧
+            </Link>
+            <Button className="bg-yellow-600 hover:bg-yellow-700 text-white px-3 py-1 text-sm">
+              <Phone className="w-3 h-3 mr-1" />
+              Anrufen
+            </Button>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
