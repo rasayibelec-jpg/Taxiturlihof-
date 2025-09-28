@@ -120,13 +120,13 @@ const PriceCalculator = () => {
                     <MapPin className="w-4 h-4 inline mr-1" />
                     Startadresse
                   </label>
-                  <AddressAutocomplete
+                  <Input
+                    id="start"
+                    value={startAddress}
+                    onChange={(e) => setStartAddress(e.target.value)}
                     placeholder="z.B. Luzern, Bahnhofstrasse 1"
-                    initialValue={startAddress}
                     disabled={isCalculating}
-                    onAddressSelect={(addressData) => {
-                      setStartAddress(addressData.address);
-                    }}
+                    className="transition-all duration-200 focus:ring-2 focus:ring-yellow-500"
                   />
                 </div>
                 
