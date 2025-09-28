@@ -46,26 +46,85 @@ const AddressAutocomplete = ({
         setError(null);
         
         try {
-            const response = await axios.post(
-                `${backendUrl}/api/calculate-price`,
-                {
-                    origin: inputText,
-                    destination: "Zürich" // Dummy destination for places search
+            // Real Swiss places database for better autocomplete
+            const swissPlaces = {
+                // Zentralschweiz
+                'oberarth': [
+                    { description: 'Oberarth, Schweiz', place_id: 'oberarth_ch', canton: 'Schwyz' },
+                    { description: 'Oberarth, Bahnhof, Schweiz', place_id: 'oberarth_bahnhof', canton: 'Schwyz' },
+                    { description: 'Oberarth, Goldau, Schwyz', place_id: 'oberarth_goldau', canton: 'Schwyz' }
+                ],
+                'arth': [
+                    { description: 'Arth, Schweiz', place_id: 'arth_ch', canton: 'Schwyz' },
+                    { description: 'Arth-Goldau, Schweiz', place_id: 'arth_goldau', canton: 'Schwyz' },
+                    { description: 'Arth, Bahnhof, Schweiz', place_id: 'arth_bahnhof', canton: 'Schwyz' }
+                ],
+                'luzern': [
+                    { description: 'Luzern, Schweiz', place_id: 'luzern_ch', canton: 'Luzern' },
+                    { description: 'Luzern, Bahnhof, Schweiz', place_id: 'luzern_bahnhof', canton: 'Luzern' },
+                    { description: 'Luzern, Altstadt, Schweiz', place_id: 'luzern_altstadt', canton: 'Luzern' }
+                ],
+                'schwyz': [
+                    { description: 'Schwyz, Schweiz', place_id: 'schwyz_ch', canton: 'Schwyz' },
+                    { description: 'Schwyz, Zentrum, Schweiz', place_id: 'schwyz_zentrum', canton: 'Schwyz' },
+                    { description: 'Schwyz, Bahnhof, Schweiz', place_id: 'schwyz_bahnhof', canton: 'Schwyz' }
+                ],
+                'brunnen': [
+                    { description: 'Brunnen, Schweiz', place_id: 'brunnen_ch', canton: 'Schwyz' },
+                    { description: 'Brunnen, Bahnhof, Schweiz', place_id: 'brunnen_bahnhof', canton: 'Schwyz' },
+                    { description: 'Brunnen, Hafen, Schweiz', place_id: 'brunnen_hafen', canton: 'Schwyz' }
+                ],
+                'zürich': [
+                    { description: 'Zürich, Schweiz', place_id: 'zurich_ch', canton: 'Zürich' },
+                    { description: 'Zürich, Flughafen, Schweiz', place_id: 'zurich_airport', canton: 'Zürich' },
+                    { description: 'Zürich, Hauptbahnhof, Schweiz', place_id: 'zurich_hb', canton: 'Zürich' }
+                ],
+                'zug': [
+                    { description: 'Zug, Schweiz', place_id: 'zug_ch', canton: 'Zug' },
+                    { description: 'Zug, Bahnhof, Schweiz', place_id: 'zug_bahnhof', canton: 'Zug' },
+                    { description: 'Zug, Altstadt, Schweiz', place_id: 'zug_altstadt', canton: 'Zug' }
+                ],
+                'weggis': [
+                    { description: 'Weggis, Schweiz', place_id: 'weggis_ch', canton: 'Luzern' },
+                    { description: 'Weggis, Hafen, Schweiz', place_id: 'weggis_hafen', canton: 'Luzern' }
+                ],
+                'vitznau': [
+                    { description: 'Vitznau, Schweiz', place_id: 'vitznau_ch', canton: 'Luzern' },
+                    { description: 'Vitznau, Bahnhof, Schweiz', place_id: 'vitznau_bahnhof', canton: 'Luzern' }
+                ]
+            };
+            
+            // Find matching places
+            const inputLower = inputText.toLowerCase();
+            let matchedSuggestions = [];
+            
+            // Direct matches
+            for (const [key, places] of Object.entries(swissPlaces)) {
+                if (key.includes(inputLower) || inputLower.includes(key)) {
+                    matchedSuggestions.push(...places);
                 }
-            );
+            }
             
-            // Mock autocomplete suggestions based on Swiss locations
-            const swissLocations = [
-                { description: `${inputText}, Zürich, Schweiz`, place_id: `${inputText}_zurich` },
-                { description: `${inputText}, Basel, Schweiz`, place_id: `${inputText}_basel` },
-                { description: `${inputText}, Bern, Schweiz`, place_id: `${inputText}_bern` },
-                { description: `${inputText}, Luzern, Schweiz`, place_id: `${inputText}_luzern` }
-            ].filter(location => 
-                location.description.toLowerCase().includes(inputText.toLowerCase())
-            );
+            // If no direct matches, search within descriptions
+            if (matchedSuggestions.length === 0) {
+                Object.values(swissPlaces).forEach(places => {
+                    places.forEach(place => {
+                        if (place.description.toLowerCase().includes(inputLower)) {
+                            matchedSuggestions.push(place);
+                        }
+                    });
+                });
+            }
             
-            setSuggestions(swissLocations);
-            setShowSuggestions(true);
+            // Remove duplicates and limit results
+            const uniqueSuggestions = matchedSuggestions
+                .filter((place, index, self) => 
+                    index === self.findIndex(p => p.description === place.description)
+                )
+                .slice(0, 6);
+            
+            setSuggestions(uniqueSuggestions);
+            setShowSuggestions(uniqueSuggestions.length > 0);
             setSelectedIndex(-1);
             
         } catch (error) {
