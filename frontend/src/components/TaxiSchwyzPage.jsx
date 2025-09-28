@@ -149,6 +149,46 @@ const TaxiSchwyzPage = () => {
         </div>
       </section>
 
+      {/* Berglandschaft Showcase */}
+      <section 
+        className="relative py-20 text-white"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1657053136972-241e05e6623f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHw0fHxTY2h3eXolMjBsYW5kc2NhcGV8ZW58MHx8fHwxNzU5MDE4NDcwfDA&ixlib=rb-4.1.0&q=85')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-green-900/40 to-blue-900/40"></div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-bold mb-6 drop-shadow-lg">
+            🏔️ Mythenregion - Unser Servicegebiet
+          </h2>
+          <p className="text-xl mb-8 max-w-3xl mx-auto drop-shadow-md">
+            Von den majestätischen Mythen bis zum kristallklaren Vierwaldstättersee - 
+            wir kennen jeden Winkel dieser wunderschönen Berglandschaft
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
+              <Mountain className="w-12 h-12 text-yellow-300 mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-2">Grosser Mythen</h3>
+              <p className="text-white/90">1899m Höhe - Wahrzeichen von Schwyz</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
+              <MapPin className="w-12 h-12 text-yellow-300 mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-2">Vierwaldstättersee</h3>
+              <p className="text-white/90">Kristallklarer Bergsee mit Panorama</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
+              <Car className="w-12 h-12 text-yellow-300 mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-2">Sichere Bergfahrten</h3>
+              <p className="text-white/90">Mercedes-Flotte für alle Bergstraßen</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Schwyz Ziele */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
