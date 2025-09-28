@@ -259,19 +259,27 @@ const FlughafentransferPage = () => {
               <div className="space-y-3">
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span>Luzern → Flughafen Basel</span>
-                  <Badge className="bg-blue-100 text-blue-800">auf Anfrage</Badge>
+                  <a href="tel:0766113131" className="bg-purple-100 hover:bg-purple-200 text-purple-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                    📞 auf Anfrage
+                  </a>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span>Schwyz → Flughafen Basel</span>
-                  <Badge className="bg-blue-100 text-blue-800">auf Anfrage</Badge>
+                  <a href="tel:0766113131" className="bg-purple-100 hover:bg-purple-200 text-purple-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                    📞 auf Anfrage
+                  </a>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span>Zug → Flughafen Basel</span>
-                  <Badge className="bg-blue-100 text-blue-800">auf Anfrage</Badge>
+                  <a href="tel:0766113131" className="bg-purple-100 hover:bg-purple-200 text-purple-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                    📞 auf Anfrage
+                  </a>
                 </div>
                 <div className="flex justify-between items-center py-2">
                   <span>Brunnen → Flughafen Basel</span>
-                  <Badge className="bg-blue-100 text-blue-800">auf Anfrage</Badge>
+                  <a href="tel:0766113131" className="bg-purple-100 hover:bg-purple-200 text-purple-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                    📞 auf Anfrage
+                  </a>
                 </div>
               </div>
             </Card>
