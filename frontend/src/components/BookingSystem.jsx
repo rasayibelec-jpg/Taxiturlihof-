@@ -436,13 +436,17 @@ const BookingSystem = () => {
                           <Navigation className="w-4 h-4 inline mr-1" />
                           Zielort *
                         </label>
-                        <Input
-                          id="destination"
-                          value={bookingData.destination}
-                          onChange={(e) => handleInputChange('destination', e.target.value)}
+                        <AddressAutocomplete
                           placeholder="z.B. Zürich Flughafen"
+                          initialValue={bookingData.destination}
                           disabled={isSubmitting}
-                          required
+                          onAddressSelect={(addressData) => {
+                            handleInputChange('destination', addressData.address);
+                            // Automatische Preisberechnung nach Zielauswahl
+                            if (bookingData.pickupLocation) {
+                              calculatePrice();
+                            }
+                          }}
                         />
                       </div>
 
