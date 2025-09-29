@@ -129,6 +129,7 @@ const PriceCalculator = () => {
                     showLocationButton={true}
                     locationButtonText="📍 Mein Standort verwenden"
                     onAddressSelect={(addressData) => {
+                      console.log('Start address selected:', addressData);
                       setStartAddress(addressData.formatted_address);
                       setStartAddressData(addressData);
                     }}
