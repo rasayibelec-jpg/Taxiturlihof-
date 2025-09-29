@@ -86,15 +86,15 @@ const GooglePlacesAutocomplete = ({
         const value = e.target.value;
         setInputValue(value);
         
-        // If user manually types, also update parent component
-        if (onAddressSelect && value) {
-            // Create a simple address data object for manual input
+        // Always call onAddressSelect for manual input to enable the calculate button
+        if (onAddressSelect) {
             const manualAddressData = {
                 place_id: `manual_${Date.now()}`,
                 formatted_address: value,
                 coordinates: { lat: null, lng: null }
             };
-            onAddressSelect(manualAddressData);
+            // Use setTimeout to ensure state update happens after input value change
+            setTimeout(() => onAddressSelect(manualAddressData), 100);
         }
         
         // Clear existing timer
