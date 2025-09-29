@@ -12,6 +12,8 @@ import GooglePlacesAutocomplete from "./GooglePlacesAutocomplete";
 const PriceCalculator = () => {
   const [startAddress, setStartAddress] = useState("");
   const [endAddress, setEndAddress] = useState("");
+  const [startAddressData, setStartAddressData] = useState(null);
+  const [endAddressData, setEndAddressData] = useState(null);
   const [calculatedPrice, setCalculatedPrice] = useState(null);
   const [isCalculating, setIsCalculating] = useState(false);
   const [calculationStatus, setCalculationStatus] = useState(null);
