@@ -52,7 +52,7 @@ const GooglePlacesAutocomplete = ({
         const request = {
             input: inputText,
             // componentRestrictions kaldırıldı - artık tüm dünya için arama
-            types: ['address'],
+            types: ['geocode'], // geocode = adresler + şehirler + ülkeler + bölgeler
             language: 'de',
             sessionToken: sessionToken
         };
