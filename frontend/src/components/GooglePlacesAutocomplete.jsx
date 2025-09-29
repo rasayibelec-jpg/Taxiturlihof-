@@ -24,7 +24,12 @@ const GooglePlacesAutocomplete = ({
     const autocompleteService = useRef(null);
     const placesService = useRef(null);
     
-    // Initialize Google Places services
+    // Update input value when initialValue prop changes
+    useEffect(() => {
+        if (initialValue !== inputValue && initialValue !== "") {
+            setInputValue(initialValue);
+        }
+    }, [initialValue]);
     useEffect(() => {
         if (window.google && window.google.maps && window.google.maps.places) {
             autocompleteService.current = new window.google.maps.places.AutocompleteService();
