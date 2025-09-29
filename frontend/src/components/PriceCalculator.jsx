@@ -136,13 +136,18 @@ const PriceCalculator = () => {
                     <Navigation className="w-4 h-4 inline mr-1" />
                     Zieladresse
                   </label>
-                  <Input
-                    id="end"
-                    value={endAddress}
-                    onChange={(e) => setEndAddress(e.target.value)}
+                  <GooglePlacesAutocomplete
                     placeholder="z.B. Zürich Flughafen"
+                    initialValue={endAddress}
                     disabled={isCalculating}
-                    className="transition-all duration-200 focus:ring-2 focus:ring-yellow-500"
+                    onAddressSelect={(addressData) => {
+                      setEndAddress(addressData.formatted_address);
+                      setEndAddressData(addressData);
+                      // Automatische Berechnung wenn beide Adressen vorhanden sind
+                      if (startAddress) {
+                        setTimeout(() => handleCalculatePrice(), 500);
+                      }
+                    }}
                   />
                 </div>
               </div>
