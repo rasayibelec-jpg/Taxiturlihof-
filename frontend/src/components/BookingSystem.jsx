@@ -11,6 +11,7 @@ import {
 import { useToast } from "../hooks/use-toast";
 import axios from "axios";
 import PaymentSelection from "./PaymentSelection";
+import GooglePlacesAutocomplete from "./GooglePlacesAutocomplete";
 
 const BookingSystem = () => {
   const [bookingData, setBookingData] = useState({
