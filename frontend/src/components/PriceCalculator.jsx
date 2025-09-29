@@ -7,6 +7,7 @@ import { MapPin, Calculator, Navigation, Phone, Clock, Route, CheckCircle, Alert
 import { contactInfo } from "../data/mockData";
 import { useToast } from "../hooks/use-toast";
 import axios from "axios";
+import GooglePlacesAutocomplete from "./GooglePlacesAutocomplete";
 // Simple inputs without GooglePlaces complexity
 
 const PriceCalculator = () => {
