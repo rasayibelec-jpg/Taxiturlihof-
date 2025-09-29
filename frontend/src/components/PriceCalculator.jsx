@@ -146,6 +146,7 @@ const PriceCalculator = () => {
                     initialValue={endAddress}
                     disabled={isCalculating}
                     onAddressSelect={(addressData) => {
+                      console.log('End address selected:', addressData);
                       setEndAddress(addressData.formatted_address);
                       setEndAddressData(addressData);
                       // Automatische Berechnung wenn beide Adressen vorhanden sind
