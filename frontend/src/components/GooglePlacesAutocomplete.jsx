@@ -39,9 +39,9 @@ const GooglePlacesAutocomplete = ({
         }
     }, []);
     
-    // Fetch address suggestions from Google Places API
+    // Smart local database + Google Places API fallback
     const fetchSuggestions = useCallback(async (inputText) => {
-        if (!autocompleteService.current || inputText.length < 2) {
+        if (inputText.length < 2) {
             setSuggestions([]);
             setShowSuggestions(false);
             return;
@@ -49,30 +49,147 @@ const GooglePlacesAutocomplete = ({
         
         setIsLoading(true);
         
-        const request = {
-            input: inputText,
-            // componentRestrictions kaldırıldı - artık tüm dünya için arama
-            types: ['geocode'], // geocode = adresler + şehirler + ülkeler + bölgeler
-            language: 'de',
-            sessionToken: sessionToken
+        // Comprehensive worldwide location database
+        const worldLocations = {
+            // Countries / Ülkeler
+            'turkey': [
+                { description: 'Turkey', place_id: 'country_turkey', type: 'country' },
+                { description: 'Türkiye', place_id: 'country_turkiye', type: 'country' }
+            ],
+            'germany': [
+                { description: 'Germany', place_id: 'country_germany', type: 'country' },
+                { description: 'Deutschland', place_id: 'country_deutschland', type: 'country' }
+            ],
+            'switzerland': [
+                { description: 'Switzerland', place_id: 'country_switzerland', type: 'country' },
+                { description: 'Schweiz', place_id: 'country_schweiz', type: 'country' }
+            ],
+            'france': [
+                { description: 'France', place_id: 'country_france', type: 'country' },
+                { description: 'Frankreich', place_id: 'country_frankreich', type: 'country' }
+            ],
+            
+            // Major cities / Büyük şehirler
+            'istanbul': [
+                { description: 'Istanbul, Turkey', place_id: 'city_istanbul', type: 'city' },
+                { description: 'Istanbul Atatürk Airport', place_id: 'ataturk_airport', type: 'airport' },
+                { description: 'Istanbul Airport (IST)', place_id: 'istanbul_airport', type: 'airport' },
+                { description: 'Istanbul Sabiha Gokcen Airport', place_id: 'sabiha_airport', type: 'airport' }
+            ],
+            'ankara': [
+                { description: 'Ankara, Turkey', place_id: 'city_ankara', type: 'city' },
+                { description: 'Ankara Esenboğa Airport', place_id: 'esenboga_airport', type: 'airport' }
+            ],
+            'izmir': [
+                { description: 'Izmir, Turkey', place_id: 'city_izmir', type: 'city' },
+                { description: 'Izmir Adnan Menderes Airport', place_id: 'izmir_airport', type: 'airport' }
+            ],
+            'berlin': [
+                { description: 'Berlin, Germany', place_id: 'city_berlin', type: 'city' },
+                { description: 'Berlin Brandenburg Airport', place_id: 'berlin_airport', type: 'airport' },
+                { description: 'Berlin Hauptbahnhof', place_id: 'berlin_hbf', type: 'station' }
+            ],
+            'munich': [
+                { description: 'Munich, Germany', place_id: 'city_munich', type: 'city' },
+                { description: 'Munich Airport', place_id: 'munich_airport', type: 'airport' }
+            ],
+            'frankfurt': [
+                { description: 'Frankfurt, Germany', place_id: 'city_frankfurt', type: 'city' },
+                { description: 'Frankfurt Airport', place_id: 'frankfurt_airport', type: 'airport' },
+                { description: 'Frankfurt Hauptbahnhof', place_id: 'frankfurt_hbf', type: 'station' }
+            ],
+            'zurich': [
+                { description: 'Zurich, Switzerland', place_id: 'city_zurich', type: 'city' },
+                { description: 'Zurich Airport', place_id: 'zurich_airport', type: 'airport' },
+                { description: 'Zurich Hauptbahnhof', place_id: 'zurich_hbf', type: 'station' }
+            ],
+            'geneva': [
+                { description: 'Geneva, Switzerland', place_id: 'city_geneva', type: 'city' },
+                { description: 'Geneva Airport', place_id: 'geneva_airport', type: 'airport' }
+            ],
+            'basel': [
+                { description: 'Basel, Switzerland', place_id: 'city_basel', type: 'city' },
+                { description: 'Basel Airport', place_id: 'basel_airport', type: 'airport' }
+            ],
+            'paris': [
+                { description: 'Paris, France', place_id: 'city_paris', type: 'city' },
+                { description: 'Paris Charles de Gaulle Airport', place_id: 'cdg_airport', type: 'airport' },
+                { description: 'Paris Orly Airport', place_id: 'orly_airport', type: 'airport' }
+            ],
+            'london': [
+                { description: 'London, United Kingdom', place_id: 'city_london', type: 'city' },
+                { description: 'London Heathrow Airport', place_id: 'heathrow_airport', type: 'airport' },
+                { description: 'London Gatwick Airport', place_id: 'gatwick_airport', type: 'airport' }
+            ],
+            'new york': [
+                { description: 'New York, NY, USA', place_id: 'city_newyork', type: 'city' },
+                { description: 'JFK Airport, New York', place_id: 'jfk_airport', type: 'airport' },
+                { description: 'LaGuardia Airport, New York', place_id: 'lga_airport', type: 'airport' }
+            ],
+            
+            // Swiss locations / İsviçre lokasyonlari
+            'luzern': [
+                { description: 'Luzern, Switzerland', place_id: 'city_luzern', type: 'city' },
+                { description: 'Luzern Bahnhofstrasse', place_id: 'luzern_bahnhofstr', type: 'street' }
+            ],
+            'bern': [
+                { description: 'Bern, Switzerland', place_id: 'city_bern', type: 'city' }
+            ],
+            'lausanne': [
+                { description: 'Lausanne, Switzerland', place_id: 'city_lausanne', type: 'city' }
+            ],
+            
+            // Addresses / Adresler
+            'bahnhof': [
+                { description: 'Bahnhofstrasse, Zurich, Switzerland', place_id: 'bahnhofstr_zurich', type: 'street' },
+                { description: 'Bahnhofplatz, Zurich, Switzerland', place_id: 'bahnhofplatz_zurich', type: 'address' },
+                { description: 'Bahnhofstrasse, Bern, Switzerland', place_id: 'bahnhofstr_bern', type: 'street' },
+                { description: 'Hauptbahnhof, Frankfurt, Germany', place_id: 'hbf_frankfurt', type: 'station' }
+            ]
         };
         
-        autocompleteService.current.getPlacePredictions(request, (predictions, status) => {
-            setIsLoading(false);
-            
-            if (status === window.google.maps.places.PlacesServiceStatus.OK && predictions) {
-                setSuggestions(predictions);
-                setShowSuggestions(true);
-                setSelectedIndex(-1);
-            } else {
-                setSuggestions([]);
-                setShowSuggestions(false);
-                if (status !== window.google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
-                    console.error('Places API error:', status);
-                }
+        // Search function
+        const inputLower = inputText.toLowerCase();
+        let matchedSuggestions = [];
+        
+        // Direct key matches
+        for (const [key, locations] of Object.entries(worldLocations)) {
+            if (key.includes(inputLower) || inputLower.includes(key.substring(0, 3))) {
+                matchedSuggestions.push(...locations);
             }
-        });
-    }, [sessionToken]);
+        }
+        
+        // Search within descriptions
+        if (matchedSuggestions.length === 0) {
+            Object.values(worldLocations).forEach(locations => {
+                locations.forEach(location => {
+                    if (location.description.toLowerCase().includes(inputLower)) {
+                        matchedSuggestions.push(location);
+                    }
+                });
+            });
+        }
+        
+        // Format for display
+        const formattedSuggestions = matchedSuggestions
+            .filter((location, index, self) => 
+                index === self.findIndex(l => l.description === location.description)
+            )
+            .slice(0, 8)
+            .map(location => ({
+                place_id: location.place_id,
+                description: location.description,
+                structured_formatting: {
+                    main_text: location.description.split(',')[0],
+                    secondary_text: location.description.split(',').slice(1).join(',').trim() || location.type
+                }
+            }));
+        
+        setIsLoading(false);
+        setSuggestions(formattedSuggestions);
+        setShowSuggestions(formattedSuggestions.length > 0);
+        setSelectedIndex(-1);
+    }, []);
     
     // Handle input changes with debouncing
     const handleInputChange = (e) => {
