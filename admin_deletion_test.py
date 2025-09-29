@@ -9,7 +9,7 @@ import json
 from datetime import datetime
 
 # Test configuration
-BACKEND_URL = "https://taxi-dashboard.preview.emergentagent.com/api"
+BACKEND_URL = "https://smarttaxi-system.preview.emergentagent.com/api"
 
 class AdminDeletionTester:
     def __init__(self):
