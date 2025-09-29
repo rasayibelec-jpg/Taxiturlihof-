@@ -48,6 +48,83 @@ const BookingSystem = () => {
   // Get today's date for min date restriction (Schweizer Zeit)
   const today = new Date(new Date().getTime() + (2 * 60 * 60 * 1000)).toISOString().split('T')[0]; // UTC+2 für Schweiz
 
+  // Geolocation function
+  const getCurrentLocation = async (fieldName) => {
+    if (!navigator.geolocation) {
+      toast({
+        title: "Geolocation nicht unterstützt",
+        description: "Ihr Browser unterstützt keine Standortbestimmung.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsGettingLocation(true);
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        try {
+          const { latitude, longitude } = position.coords;
+          
+          // Use Google Geocoding API to get address from coordinates
+          const response = await fetch(
+            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&language=de`
+          );
+          
+          const data = await response.json();
+          
+          if (data.results && data.results.length > 0) {
+            const address = data.results[0].formatted_address;
+            handleInputChange(fieldName, address);
+            
+            toast({
+              title: "📍 Standort gefunden",
+              description: "Ihr aktueller Standort wurde eingetragen.",
+            });
+          } else {
+            throw new Error("Adresse konnte nicht gefunden werden");
+          }
+        } catch (error) {
+          console.error("Geocoding error:", error);
+          toast({
+            title: "Adresse nicht gefunden",
+            description: "Standort konnte nicht in eine Adresse umgewandelt werden.",
+            variant: "destructive"
+          });
+        } finally {
+          setIsGettingLocation(false);
+        }
+      },
+      (error) => {
+        setIsGettingLocation(false);
+        let message = "Standort konnte nicht bestimmt werden.";
+        
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            message = "Standortzugriff wurde verweigert. Bitte erlauben Sie den Zugriff in den Browser-Einstellungen.";
+            break;
+          case error.POSITION_UNAVAILABLE:
+            message = "Standortinformationen sind nicht verfügbar.";
+            break;
+          case error.TIMEOUT:
+            message = "Zeitüberschreitung bei der Standortbestimmung.";
+            break;
+        }
+        
+        toast({
+          title: "Standort-Fehler",
+          description: message,
+          variant: "destructive"
+        });
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 300000
+      }
+    );
+  };
+
   const handleInputChange = (field, value) => {
     setBookingData(prev => ({
       ...prev,
