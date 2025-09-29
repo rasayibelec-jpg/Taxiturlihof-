@@ -89,29 +89,48 @@ const GooglePlacesAutocomplete = ({
         }, 300);
     };
     
-    // Handle suggestion selection
+    // Handle suggestion selection - get real place details from Google
     const handleSuggestionSelect = async (prediction) => {
+        if (!placesService.current) return;
+        
         setInputValue(prediction.description);
         setShowSuggestions(false);
         setSelectedIndex(-1);
         setSuggestions([]);
         
-        // Create address data object
-        const addressData = {
-            place_id: prediction.place_id,
-            formatted_address: prediction.description,
-            street_name: null,
-            postal_code: null,
-            locality: prediction.structured_formatting.main_text,
-            canton: null,
-            country: prediction.description.includes('Turkey') ? 'Turkey' : 
-                    prediction.description.includes('Germany') ? 'Germany' :
-                    prediction.description.includes('Switzerland') ? 'Switzerland' :
-                    prediction.description.includes('France') ? 'France' : null,
-            coordinates: { lat: null, lng: null }
+        const request = {
+            placeId: prediction.place_id,
+            fields: [
+                'address_components', 
+                'formatted_address', 
+                'geometry', 
+                'name', 
+                'place_id'
+            ],
+            sessionToken: sessionToken
         };
         
-        onAddressSelect(addressData);
+        placesService.current.getDetails(request, (place, status) => {
+            if (status === window.google.maps.places.PlacesServiceStatus.OK && place) {
+                console.log('Place details:', place);
+                const addressData = parseAddressComponents(place);
+                onAddressSelect(addressData);
+                
+                // Generate new session token for next search
+                if (window.google.maps.places.AutocompleteSessionToken) {
+                    setSessionToken(new window.google.maps.places.AutocompleteSessionToken());
+                }
+            } else {
+                console.error('Place details error:', status);
+                // Fallback - use basic data
+                const addressData = {
+                    place_id: prediction.place_id,
+                    formatted_address: prediction.description,
+                    coordinates: { lat: null, lng: null }
+                };
+                onAddressSelect(addressData);
+            }
+        });
     };
     
     // Parse Google Places address components for Swiss addresses
