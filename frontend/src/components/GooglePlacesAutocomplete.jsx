@@ -357,15 +357,13 @@ const GooglePlacesAutocomplete = ({
                     className="absolute top-full left-0 right-0 z-50 mt-1 bg-white border border-gray-200 rounded-lg shadow-xl max-h-60 overflow-y-auto"
                 >
                     {suggestions.map((suggestion, index) => (
-                        <div
+                        <button
                             key={suggestion.place_id}
-                            className={`px-4 py-3 cursor-pointer hover:bg-yellow-50 border-b border-gray-100 last:border-b-0 ${
+                            type="button"
+                            className={`w-full text-left px-4 py-3 hover:bg-yellow-50 border-b border-gray-100 last:border-b-0 ${
                                 index === selectedIndex ? 'bg-yellow-50 border-yellow-200' : ''
                             }`}
-                            onMouseDown={(e) => {
-                                e.preventDefault();
-                                handleSuggestionSelect(suggestion);
-                            }}
+                            onClick={() => handleSuggestionSelect(suggestion)}
                         >
                             <div className="flex items-start">
                                 <MapPin className="w-4 h-4 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
@@ -378,7 +376,7 @@ const GooglePlacesAutocomplete = ({
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </button>
                     ))}
                 </div>
             )}
