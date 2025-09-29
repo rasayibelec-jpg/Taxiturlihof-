@@ -16,6 +16,7 @@ const GooglePlacesAutocomplete = ({
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(-1);
     const [sessionToken, setSessionToken] = useState(null);
+    const [isGettingLocation, setIsGettingLocation] = useState(false);
     
     const inputRef = useRef(null);
     const suggestionsRef = useRef(null);
