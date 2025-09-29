@@ -126,6 +126,8 @@ const PriceCalculator = () => {
                     placeholder="z.B. Luzern, Bahnhofstrasse 1"
                     initialValue={startAddress}
                     disabled={isCalculating}
+                    showLocationButton={true}
+                    locationButtonText="📍 Mein Standort verwenden"
                     onAddressSelect={(addressData) => {
                       setStartAddress(addressData.formatted_address);
                       setStartAddressData(addressData);
