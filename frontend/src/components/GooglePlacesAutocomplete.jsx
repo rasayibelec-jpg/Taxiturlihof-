@@ -136,6 +136,89 @@ const GooglePlacesAutocomplete = ({
         });
     };
     
+    // Get user's current location
+    const getCurrentLocation = useCallback(() => {
+        if (!navigator.geolocation) {
+            alert('Geolocation wird von Ihrem Browser nicht unterstützt');
+            return;
+        }
+        
+        setIsGettingLocation(true);
+        
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                const { latitude, longitude } = position.coords;
+                
+                try {
+                    // Reverse geocoding to get address from coordinates
+                    const geocoder = new window.google.maps.Geocoder();
+                    const latlng = { lat: latitude, lng: longitude };
+                    
+                    geocoder.geocode({ location: latlng }, (results, status) => {
+                        setIsGettingLocation(false);
+                        
+                        if (status === 'OK' && results[0]) {
+                            const address = results[0].formatted_address;
+                            setInputValue(address);
+                            
+                            // Create address data from geocoding result
+                            const addressData = parseAddressComponents(results[0]);
+                            addressData.coordinates = { lat: latitude, lng: longitude };
+                            
+                            onAddressSelect(addressData);
+                        } else {
+                            // Fallback: use coordinates as address
+                            const coordsAddress = `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
+                            setInputValue(coordsAddress);
+                            
+                            onAddressSelect({
+                                place_id: `coords_${Date.now()}`,
+                                formatted_address: coordsAddress,
+                                coordinates: { lat: latitude, lng: longitude }
+                            });
+                        }
+                    });
+                } catch (error) {
+                    setIsGettingLocation(false);
+                    console.error('Reverse geocoding error:', error);
+                    
+                    // Fallback: use coordinates as address
+                    const coordsAddress = `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
+                    setInputValue(coordsAddress);
+                    
+                    onAddressSelect({
+                        place_id: `coords_${Date.now()}`,
+                        formatted_address: coordsAddress,
+                        coordinates: { lat: latitude, lng: longitude }
+                    });
+                }
+            },
+            (error) => {
+                setIsGettingLocation(false);
+                let errorMessage = 'Standort konnte nicht ermittelt werden';
+                
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        errorMessage = 'Standortzugriff wurde verweigert. Bitte erlauben Sie den Zugriff in den Browser-Einstellungen.';
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        errorMessage = 'Standortinformationen sind nicht verfügbar.';
+                        break;
+                    case error.TIMEOUT:
+                        errorMessage = 'Zeitüberschreitung beim Ermitteln des Standorts.';
+                        break;
+                }
+                
+                alert(errorMessage);
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 300000 // 5 minutes
+            }
+        );
+    }, [onAddressSelect]);
+    
     // Parse Google Places address components for Swiss addresses
     const parseAddressComponents = (place) => {
         const components = place.address_components || [];
