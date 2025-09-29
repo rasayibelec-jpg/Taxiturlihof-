@@ -362,14 +362,9 @@ const GooglePlacesAutocomplete = ({
                             className={`px-4 py-3 cursor-pointer hover:bg-yellow-50 border-b border-gray-100 last:border-b-0 ${
                                 index === selectedIndex ? 'bg-yellow-50 border-yellow-200' : ''
                             }`}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                handleSuggestionSelect(suggestion);
-                            }}
                             onMouseDown={(e) => {
                                 e.preventDefault();
-                                e.stopPropagation();
+                                handleSuggestionSelect(suggestion);
                             }}
                         >
                             <div className="flex items-start">
