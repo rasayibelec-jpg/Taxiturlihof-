@@ -120,14 +120,15 @@ const PriceCalculator = () => {
                     <MapPin className="w-4 h-4 inline mr-1" />
                     Startadresse
                   </label>
-                  <Input
-                    id="start"
-                    type="text"
+                  <GooglePlacesAutocomplete
                     placeholder="z.B. Luzern, Bahnhofstrasse 1"
-                    value={startAddress}
-                    onChange={(e) => setStartAddress(e.target.value)}
+                    initialValue={startAddress}
                     disabled={isCalculating}
-                    className="w-full"
+                    showLocationButton={true}
+                    locationButtonText="📍 Mein Standort verwenden"
+                    onAddressSelect={(addressData) => {
+                      setStartAddress(addressData.formatted_address);
+                    }}
                   />
                 </div>
                 
@@ -136,14 +137,15 @@ const PriceCalculator = () => {
                     <Navigation className="w-4 h-4 inline mr-1" />
                     Zieladresse
                   </label>
-                  <Input
-                    id="end"
-                    type="text"
+                  <GooglePlacesAutocomplete
                     placeholder="z.B. Zürich Flughafen"
-                    value={endAddress}
-                    onChange={(e) => setEndAddress(e.target.value)}
+                    initialValue={endAddress}
                     disabled={isCalculating}
-                    className="w-full"
+                    showLocationButton={true}
+                    locationButtonText="📍 Mein Standort verwenden"
+                    onAddressSelect={(addressData) => {
+                      setEndAddress(addressData.formatted_address);
+                    }}
                   />
                 </div>
               </div>
