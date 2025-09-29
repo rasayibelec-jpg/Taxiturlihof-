@@ -425,6 +425,8 @@ const BookingSystem = () => {
                           placeholder="z.B. Luzern, Bahnhofstrasse 1"
                           initialValue={bookingData.pickupLocation}
                           disabled={isSubmitting}
+                          showLocationButton={true}
+                          locationButtonText="📍 Mein Standort verwenden"
                           onAddressSelect={(addressData) => {
                             handleInputChange('pickupLocation', addressData.formatted_address);
                             setBookingData(prev => ({
