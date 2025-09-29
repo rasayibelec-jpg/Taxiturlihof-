@@ -86,6 +86,17 @@ const GooglePlacesAutocomplete = ({
         const value = e.target.value;
         setInputValue(value);
         
+        // If user manually types, also update parent component
+        if (onAddressSelect && value) {
+            // Create a simple address data object for manual input
+            const manualAddressData = {
+                place_id: `manual_${Date.now()}`,
+                formatted_address: value,
+                coordinates: { lat: null, lng: null }
+            };
+            onAddressSelect(manualAddressData);
+        }
+        
         // Clear existing timer
         if (debounceTimer.current) {
             clearTimeout(debounceTimer.current);
