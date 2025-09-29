@@ -51,7 +51,7 @@ const GooglePlacesAutocomplete = ({
         
         const request = {
             input: inputText,
-            componentRestrictions: { country: 'ch' },
+            // componentRestrictions kaldırıldı - artık tüm dünya için arama
             types: ['address'],
             language: 'de',
             sessionToken: sessionToken
