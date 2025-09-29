@@ -59,10 +59,15 @@ const GooglePlacesAutocomplete = ({
         
         const request = {
             input: inputText,
-            // No country restrictions - worldwide search
-            types: [], // Empty array means all types: address, establishment, geocode
-            language: 'en', // English for better international results
-            sessionToken: sessionToken
+            // Improved configuration for better airport and Swiss address detection
+            types: ['establishment', 'geocode'], // Include establishments (airports) and geocode
+            language: 'de', // German for Swiss context
+            sessionToken: sessionToken,
+            // Bias results toward Switzerland and airports
+            locationBias: {
+                radius: 100000, // 100km radius
+                center: { lat: 47.0502, lng: 8.3093 } // Center of Switzerland
+            }
         };
         
         autocompleteService.current.getPlacePredictions(request, (predictions, status) => {
