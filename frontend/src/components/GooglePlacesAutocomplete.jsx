@@ -75,7 +75,30 @@ const GooglePlacesAutocomplete = ({
             
             if (status === window.google.maps.places.PlacesServiceStatus.OK && predictions) {
                 console.log('Google Places API success:', predictions);
-                setSuggestions(predictions);
+                
+                // Sort predictions to prioritize airports and specific locations
+                const sortedPredictions = predictions.sort((a, b) => {
+                    const aText = a.description.toLowerCase();
+                    const bText = b.description.toLowerCase();
+                    const inputLower = inputText.toLowerCase();
+                    
+                    // If searching for airport, prioritize airport results
+                    if (inputLower.includes('flughafen') || inputLower.includes('airport')) {
+                        const aIsAirport = aText.includes('flughafen') || aText.includes('airport') || aText.includes('zrh');
+                        const bIsAirport = bText.includes('flughafen') || bText.includes('airport') || bText.includes('zrh');
+                        
+                        if (aIsAirport && !bIsAirport) return -1;
+                        if (!aIsAirport && bIsAirport) return 1;
+                    }
+                    
+                    // Prioritize exact matches
+                    if (aText.includes(inputLower) && !bText.includes(inputLower)) return -1;
+                    if (!aText.includes(inputLower) && bText.includes(inputLower)) return 1;
+                    
+                    return 0;
+                });
+                
+                setSuggestions(sortedPredictions);
                 setShowSuggestions(true);
                 setSelectedIndex(-1);
             } else {
