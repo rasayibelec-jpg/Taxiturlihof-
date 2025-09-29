@@ -16,6 +16,7 @@ const PriceCalculator = () => {
   const [calculatedPrice, setCalculatedPrice] = useState(null);
   const [isCalculating, setIsCalculating] = useState(false);
   const [calculationStatus, setCalculationStatus] = useState(null);
+  const [isGettingLocation, setIsGettingLocation] = useState(false);
   const { toast } = useToast();
 
   const handleCalculatePrice = async () => {
