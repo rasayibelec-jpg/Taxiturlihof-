@@ -199,15 +199,30 @@ const PriceCalculator = () => {
                     <MapPin className="w-4 h-4 inline mr-1" />
                     Startadresse
                   </label>
-                  <Input
-                    id="start"
-                    type="text"
-                    placeholder="z.B. Luzern, Bahnhofstrasse 1"
-                    value={startAddress}
-                    onChange={(e) => setStartAddress(e.target.value)}
-                    disabled={isCalculating}
-                    className="w-full"
-                  />
+                  <div className="flex space-x-2">
+                    <Input
+                      id="start"
+                      type="text"
+                      placeholder="z.B. Luzern, Bahnhofstrasse 1"
+                      value={startAddress}
+                      onChange={(e) => setStartAddress(e.target.value)}
+                      disabled={isCalculating}
+                      className="flex-1"
+                    />
+                    <Button
+                      type="button"
+                      onClick={() => getCurrentLocation(setStartAddress)}
+                      disabled={isCalculating || isGettingLocation}
+                      variant="outline"
+                      className="px-3 py-2 whitespace-nowrap"
+                    >
+                      {isGettingLocation ? (
+                        <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                      ) : (
+                        <>📍 Mein Standort</>
+                      )}
+                    </Button>
+                  </div>
                 </div>
                 
                 <div>
@@ -215,15 +230,30 @@ const PriceCalculator = () => {
                     <Navigation className="w-4 h-4 inline mr-1" />
                     Zieladresse
                   </label>
-                  <Input
-                    id="end"
-                    type="text"
-                    placeholder="z.B. Zürich Flughafen"
-                    value={endAddress}
-                    onChange={(e) => setEndAddress(e.target.value)}
-                    disabled={isCalculating}
-                    className="w-full"
-                  />
+                  <div className="flex space-x-2">
+                    <Input
+                      id="end"
+                      type="text"
+                      placeholder="z.B. Zürich Flughafen"
+                      value={endAddress}
+                      onChange={(e) => setEndAddress(e.target.value)}
+                      disabled={isCalculating}
+                      className="flex-1"
+                    />
+                    <Button
+                      type="button"
+                      onClick={() => getCurrentLocation(setEndAddress)}
+                      disabled={isCalculating || isGettingLocation}
+                      variant="outline"
+                      className="px-3 py-2 whitespace-nowrap"
+                    >
+                      {isGettingLocation ? (
+                        <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                      ) : (
+                        <>📍 Mein Standort</>
+                      )}
+                    </Button>
+                  </div>
                 </div>
               </div>
 
