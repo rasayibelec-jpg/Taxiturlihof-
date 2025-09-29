@@ -119,7 +119,9 @@ const FlughafentransferPage = () => {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-500">Preis:</span>
-                    <Badge className="bg-blue-100 text-blue-800">auf Anfrage</Badge>
+                    <a href="tel:0766113131" className="bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                      📞 auf Anfrage
+                    </a>
                   </div>
                   <div className="mt-4">
                     <h4 className="font-semibold text-gray-900 mb-2">Abfahrtsorte:</h4>
@@ -150,7 +152,9 @@ const FlughafentransferPage = () => {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-500">Preis:</span>
-                    <Badge className="bg-blue-100 text-blue-800">auf Anfrage</Badge>
+                    <a href="tel:0766113131" className="bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                      📞 auf Anfrage
+                    </a>
                   </div>
                   <div className="mt-4">
                     <h4 className="font-semibold text-gray-900 mb-2">Abfahrtsorte:</h4>
