@@ -421,19 +421,14 @@ const BookingSystem = () => {
                           <MapPin className="w-4 h-4 inline mr-1" />
                           Abholort *
                         </label>
-                        <GooglePlacesAutocomplete
+                        <Input
+                          id="pickupLocation"
+                          type="text"
                           placeholder="z.B. Luzern, Bahnhofstrasse 1"
-                          initialValue={bookingData.pickupLocation}
+                          value={bookingData.pickupLocation}
+                          onChange={(e) => handleInputChange('pickupLocation', e.target.value)}
                           disabled={isSubmitting}
-                          showLocationButton={true}
-                          locationButtonText="📍 Mein Standort verwenden"
-                          onAddressSelect={(addressData) => {
-                            handleInputChange('pickupLocation', addressData.formatted_address);
-                            setBookingData(prev => ({
-                              ...prev,
-                              pickupLocationData: addressData
-                            }));
-                          }}
+                          required
                         />
                       </div>
                       
@@ -442,21 +437,14 @@ const BookingSystem = () => {
                           <Navigation className="w-4 h-4 inline mr-1" />
                           Zielort *
                         </label>
-                        <GooglePlacesAutocomplete
+                        <Input
+                          id="destination"
+                          type="text"
                           placeholder="z.B. Zürich Flughafen"
-                          initialValue={bookingData.destination}
+                          value={bookingData.destination}
+                          onChange={(e) => handleInputChange('destination', e.target.value)}
                           disabled={isSubmitting}
-                          onAddressSelect={(addressData) => {
-                            handleInputChange('destination', addressData.formatted_address);
-                            setBookingData(prev => ({
-                              ...prev,
-                              destinationData: addressData
-                            }));
-                            // Automatische Preisberechnung nach Zielauswahl
-                            if (bookingData.pickupLocation) {
-                              calculatePrice();
-                            }
-                          }}
+                          required
                         />
                       </div>
 
