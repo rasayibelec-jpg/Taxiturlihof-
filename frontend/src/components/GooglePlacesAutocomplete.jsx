@@ -209,38 +209,27 @@ const GooglePlacesAutocomplete = ({
     
     // Handle suggestion selection
     const handleSuggestionSelect = async (prediction) => {
-        if (!placesService.current) return;
-        
         setInputValue(prediction.description);
         setShowSuggestions(false);
         setSelectedIndex(-1);
         setSuggestions([]);
         
-        const request = {
-            placeId: prediction.place_id,
-            fields: [
-                'address_components', 
-                'formatted_address', 
-                'geometry', 
-                'name', 
-                'place_id'
-            ],
-            sessionToken: sessionToken
+        // Create address data object
+        const addressData = {
+            place_id: prediction.place_id,
+            formatted_address: prediction.description,
+            street_name: null,
+            postal_code: null,
+            locality: prediction.structured_formatting.main_text,
+            canton: null,
+            country: prediction.description.includes('Turkey') ? 'Turkey' : 
+                    prediction.description.includes('Germany') ? 'Germany' :
+                    prediction.description.includes('Switzerland') ? 'Switzerland' :
+                    prediction.description.includes('France') ? 'France' : null,
+            coordinates: { lat: null, lng: null }
         };
         
-        placesService.current.getDetails(request, (place, status) => {
-            if (status === window.google.maps.places.PlacesServiceStatus.OK && place) {
-                const addressData = parseAddressComponents(place);
-                onAddressSelect(addressData);
-                
-                // Generate new session token for next search
-                if (window.google.maps.places.AutocompleteSessionToken) {
-                    setSessionToken(new window.google.maps.places.AutocompleteSessionToken());
-                }
-            } else {
-                console.error('Place details error:', status);
-            }
-        });
+        onAddressSelect(addressData);
     };
     
     // Parse Google Places address components for Swiss addresses
