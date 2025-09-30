@@ -214,7 +214,120 @@ class GoogleMapsDistanceService:
         
         return error_messages.get(status, f'Google Maps API error: {status}')
     
-    async def calculate_multiple_routes(self, route_pairs: List[Tuple[str, str]]) -> List[Dict]:
+    async def calculate_route_options(self, origin: str, destination: str, 
+                                    departure_time: Optional[datetime] = None) -> Dict:
+        """
+        Calculate multiple route options: fastest and shortest
+        Returns: {fastest_route, shortest_route, comparison}
+        """
+        try:
+            # Calculate both route options in parallel
+            loop = asyncio.get_event_loop()
+            
+            # Option 1: Fastest route (optimized for time)
+            fastest_task = loop.run_in_executor(
+                self.executor, 
+                self._sync_route_calculation, 
+                origin, 
+                destination, 
+                'fastest',
+                departure_time
+            )
+            
+            # Option 2: Shortest route (optimized for distance)
+            shortest_task = loop.run_in_executor(
+                self.executor, 
+                self._sync_route_calculation, 
+                origin, 
+                destination, 
+                'shortest',
+                departure_time
+            )
+            
+            # Wait for both calculations
+            fastest_result, shortest_result = await asyncio.gather(fastest_task, shortest_task)
+            
+            # Process both results
+            fastest_route = self._process_google_maps_response(fastest_result, origin, destination)
+            shortest_route = self._process_google_maps_response(shortest_result, origin, destination)
+            
+            # Add route type identifiers
+            fastest_route['route_option'] = 'fastest'
+            shortest_route['route_option'] = 'shortest'
+            
+            # Calculate savings comparison
+            time_difference = fastest_route['duration_minutes'] - shortest_route['duration_minutes']
+            distance_difference = fastest_route['distance_km'] - shortest_route['distance_km']
+            
+            comparison = {
+                'time_savings_minutes': abs(time_difference),
+                'distance_savings_km': abs(distance_difference),
+                'faster_option': 'fastest' if time_difference <= 0 else 'shortest',
+                'shorter_option': 'shortest' if distance_difference <= 0 else 'fastest'
+            }
+            
+            return {
+                'fastest_route': fastest_route,
+                'shortest_route': shortest_route,
+                'comparison': comparison,
+                'status': 'OK',
+                'source': 'google_maps_multi_route'
+            }
+            
+        except Exception as e:
+            logger.error(f"Failed to calculate route options {origin} → {destination}: {str(e)}")
+            
+            # Fallback to single route calculation
+            fallback_route = await self.calculate_real_distance(origin, destination, departure_time)
+            
+            return {
+                'fastest_route': fallback_route,
+                'shortest_route': fallback_route,
+                'comparison': {
+                    'time_savings_minutes': 0,
+                    'distance_savings_km': 0,
+                    'faster_option': 'same',
+                    'shorter_option': 'same'
+                },
+                'status': 'FALLBACK',
+                'source': 'google_maps_single_route',
+                'error': str(e)
+            }
+    
+    def _sync_route_calculation(self, origin: str, destination: str, option: str, departure_time: Optional[datetime] = None) -> Dict:
+        """Synchronous route calculation with different optimization preferences"""
+        try:
+            # Configure request parameters based on route option
+            params = {
+                'origins': [origin],
+                'destinations': [destination], 
+                'mode': 'driving',
+                'units': 'metric',
+                'region': 'CH',
+                'language': 'de'
+            }
+            
+            # Add departure time for traffic-aware routing
+            if departure_time:
+                params['departure_time'] = departure_time
+            
+            # Configure optimization preference
+            if option == 'fastest':
+                params['traffic_model'] = 'optimistic'  # Optimistic traffic for fastest route
+                params['avoid'] = []  # Don't avoid anything for speed
+            elif option == 'shortest':
+                params['traffic_model'] = 'pessimistic'  # More conservative for shortest route
+                params['avoid'] = ['highways']  # Prefer shorter local routes when possible
+            
+            # Make API request
+            result = self.client.distance_matrix(**params)
+            
+            logger.info(f"Google Maps {option} route calculated: {origin} → {destination}")
+            return result
+            
+        except Exception as e:
+            logger.error(f"Route calculation error ({option}): {str(e)}")
+            raise e
         """Calculate multiple routes efficiently"""
         tasks = []
         
