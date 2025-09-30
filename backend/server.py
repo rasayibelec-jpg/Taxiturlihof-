@@ -95,7 +95,28 @@ class PriceCalculationResponse(BaseModel):
     route_info: dict
     calculation_source: str
 
-# Booking Models (imported from booking_service)
+# Multi-Route Models
+class MultiRouteCalculationRequest(BaseModel):
+    origin: str = Field(..., description="Start location")
+    destination: str = Field(..., description="Destination location")
+    departure_time: Optional[str] = Field(None, description="ISO format datetime")
+
+class RouteOption(BaseModel):
+    route_type: str  # 'fastest' or 'shortest'
+    distance_km: float
+    duration_minutes: int
+    base_fare: float = 6.60
+    distance_fare: float
+    total_fare: float
+    origin_address: str
+    destination_address: str
+    route_info: dict
+
+class MultiRouteResponse(BaseModel):
+    fastest_route: RouteOption
+    shortest_route: RouteOption
+    comparison: dict
+    recommended_route: str  # 'fastest' or 'shortest' or 'same'
 class AvailabilityRequest(BaseModel):
     date: str  # ISO format date string (YYYY-MM-DD)
 
