@@ -101,7 +101,7 @@ const PriceCalculator = () => {
   const handleCalculatePrice = async () => {
     if (!startAddress.trim() || !endAddress.trim()) {
       toast({
-        title: "Unvollständige Eingaben",
+        title: "Eingabe erforderlich",
         description: "Bitte geben Sie sowohl Start- als auch Zieladresse ein.",
         variant: "destructive"
       });
@@ -109,28 +109,48 @@ const PriceCalculator = () => {
     }
 
     setIsCalculating(true);
-    setCalculationStatus({ type: "", message: "" });
+    setCalculationStatus(null);
+    setRouteOptions(null);
+    setSelectedRoute(null);
 
     try {
       const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
-      const response = await axios.post(`${backendUrl}/api/calculate-price`, {
-        origin: startAddress.trim(),
-        destination: endAddress.trim(),
-        departure_time: new Date().toISOString()
+      const response = await fetch(`${backendUrl}/api/calculate-route-options`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          origin: startAddress.trim(),
+          destination: endAddress.trim(),
+          departure_time: new Date().toISOString()
+        }),
       });
 
-      if (response.data) {
-        setCalculatedPrice(response.data);
-        setCalculationStatus({
-          type: "success",
-          message: `Geschätzte Kosten: CHF ${response.data.total_fare}`,
-        });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || 'Routenberechnung fehlgeschlagen');
       }
+
+      const data = await response.json();
+      
+      // Set route options for selection
+      setRouteOptions(data);
+      setCalculationStatus('success');
+      
+      toast({
+        title: "✅ Routenoptionen berechnet",
+        description: "Wählen Sie Ihre bevorzugte Route aus.",
+      });
+
     } catch (error) {
-      console.error('Price calculation error:', error);
-      setCalculationStatus({
-        type: "error",
-        message: error.response?.data?.detail || "Fehler bei der Preisberechnung. Bitte versuchen Sie es erneut.",
+      console.error('Route calculation error:', error);
+      setCalculationStatus('error');
+      
+      toast({
+        title: "Berechnungsfehler",
+        description: error.message || "Konnte die Route nicht berechnen. Bitte versuchen Sie es erneut.",
+        variant: "destructive"
       });
     } finally {
       setIsCalculating(false);
