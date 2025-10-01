@@ -306,6 +306,129 @@ const PriceCalculator = () => {
 
           {/* Results */}
           <div className="space-y-6">
+            {/* Route Options Display */}
+            {routeOptions && (
+              <div className="space-y-6">
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Wählen Sie Ihre Route</h3>
+                  <p className="text-gray-600">Beide Optionen basieren auf aktuellen Verkehrsdaten</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Fastest Route */}
+                  <div
+                    onClick={() => setSelectedRoute('fastest')}
+                    className={`cursor-pointer border-2 rounded-lg p-6 transition-all duration-200 ${
+                      selectedRoute === 'fastest'
+                        ? 'border-yellow-500 bg-yellow-50 shadow-lg scale-105'
+                        : 'border-gray-200 bg-white hover:border-yellow-300 hover:shadow-md'
+                    }`}
+                  >
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div className="text-2xl">🚀</div>
+                      </div>
+                      <h4 className="text-xl font-bold text-gray-900 mb-2">Schnellste Route</h4>
+                      <div className="space-y-2 text-sm text-gray-600 mb-4">
+                        <p><strong>Distanz:</strong> {routeOptions.fastest_route.distance_km.toFixed(1)} km</p>
+                        <p><strong>Fahrzeit:</strong> {routeOptions.fastest_route.duration_minutes} Minuten</p>
+                        <p><strong>Route:</strong> Hauptsächlich Autobahn</p>
+                      </div>
+                      <div className="text-3xl font-bold text-green-600 mb-2">
+                        CHF {routeOptions.fastest_route.total_fare.toFixed(2)}
+                      </div>
+                      {routeOptions.comparison.time_savings_minutes > 5 && (
+                        <div className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">
+                          {routeOptions.comparison.time_savings_minutes} Min. schneller
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Shortest Route */}
+                  <div
+                    onClick={() => setSelectedRoute('shortest')}
+                    className={`cursor-pointer border-2 rounded-lg p-6 transition-all duration-200 ${
+                      selectedRoute === 'shortest'
+                        ? 'border-yellow-500 bg-yellow-50 shadow-lg scale-105'
+                        : 'border-gray-200 bg-white hover:border-yellow-300 hover:shadow-md'
+                    }`}
+                  >
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div className="text-2xl">💰</div>
+                      </div>
+                      <h4 className="text-xl font-bold text-gray-900 mb-2">Günstigste Route</h4>
+                      <div className="space-y-2 text-sm text-gray-600 mb-4">
+                        <p><strong>Distanz:</strong> {routeOptions.shortest_route.distance_km.toFixed(1)} km</p>
+                        <p><strong>Fahrzeit:</strong> {routeOptions.shortest_route.duration_minutes} Minuten</p>
+                        <p><strong>Route:</strong> Kürzeste Strecke</p>
+                      </div>
+                      <div className="text-3xl font-bold text-blue-600 mb-2">
+                        CHF {routeOptions.shortest_route.total_fare.toFixed(2)}
+                      </div>
+                      {routeOptions.comparison.distance_savings_km > 2 && (
+                        <div className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                          CHF {(routeOptions.fastest_route.total_fare - routeOptions.shortest_route.total_fare).toFixed(2)} günstiger
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Recommendation */}
+                {routeOptions.recommended_route !== 'same' && (
+                  <div className="text-center p-4 bg-gradient-to-r from-yellow-50 to-yellow-100 border border-yellow-200 rounded-lg">
+                    <p className="text-sm text-gray-700">
+                      <strong>💡 Empfehlung:</strong> Die{' '}
+                      {routeOptions.recommended_route === 'fastest' ? 'schnellste' : 'günstigste'} Route
+                      bietet das beste Preis-Leistungs-Verhältnis für diese Strecke.
+                    </p>
+                  </div>
+                )}
+
+                {/* Action Buttons */}
+                {selectedRoute && (
+                  <div className="text-center">
+                    <Button
+                      onClick={() => {
+                        const selectedRouteData = selectedRoute === 'fastest' 
+                          ? routeOptions.fastest_route 
+                          : routeOptions.shortest_route;
+                        
+                        const routeType = selectedRoute === 'fastest' ? 'Schnellste Route' : 'Günstigste Route';
+                        
+                        toast({
+                          title: `${routeType} ausgewählt`,
+                          description: `CHF ${selectedRouteData.total_fare.toFixed(2)} - ${selectedRouteData.distance_km.toFixed(1)} km`,
+                        });
+                      }}
+                      className="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 mr-4"
+                    >
+                      Route bestätigen
+                    </Button>
+                    
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        // Redirect to booking with selected route
+                        window.location.href = '/buchen';
+                      }}
+                      className="border-yellow-600 text-yellow-600 hover:bg-yellow-50 px-8 py-3"
+                    >
+                      Jetzt buchen
+                    </Button>
+                  </div>
+                )}
+
+                {/* Additional Info */}
+                <div className="text-center text-sm text-gray-500 border-t pt-4">
+                  <p>* Preise können je nach Verkehrslage und Tageszeit variieren</p>
+                  <p>* Routenberechnung basiert auf aktuellen Google Maps Daten</p>
+                </div>
+              </div>
+            )}
+
             {calculatedPrice ? (
               <Card className="shadow-lg border-yellow-200 bg-gradient-to-br from-yellow-50 to-orange-50">
                 <CardHeader>
