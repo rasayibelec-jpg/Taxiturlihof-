@@ -280,9 +280,16 @@ class GoogleMapsDistanceService:
             # Fallback to single route calculation
             fallback_route = await self.calculate_real_distance(origin, destination, departure_time)
             
+            # Add route_option field to fallback routes
+            fastest_fallback = fallback_route.copy()
+            fastest_fallback['route_option'] = 'fastest'
+            
+            shortest_fallback = fallback_route.copy()
+            shortest_fallback['route_option'] = 'shortest'
+            
             return {
-                'fastest_route': fallback_route,
-                'shortest_route': fallback_route,
+                'fastest_route': fastest_fallback,
+                'shortest_route': shortest_fallback,
                 'comparison': {
                     'time_savings_minutes': 0,
                     'distance_savings_km': 0,
