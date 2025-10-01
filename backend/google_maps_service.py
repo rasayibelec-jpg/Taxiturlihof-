@@ -314,10 +314,11 @@ class GoogleMapsDistanceService:
             # Configure optimization preference
             if option == 'fastest':
                 params['traffic_model'] = 'optimistic'  # Optimistic traffic for fastest route
-                params['avoid'] = []  # Don't avoid anything for speed
+                # Don't avoid anything for speed - no avoid parameter
             elif option == 'shortest':
                 params['traffic_model'] = 'pessimistic'  # More conservative for shortest route
-                params['avoid'] = ['highways']  # Prefer shorter local routes when possible
+                # Note: Distance Matrix API doesn't support avoid parameter effectively
+                # We'll rely on traffic_model differences for route variation
             
             # Make API request
             result = self.client.distance_matrix(**params)
