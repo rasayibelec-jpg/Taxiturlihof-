@@ -17,16 +17,12 @@ const CompactHero = () => {
           
           {/* Logo & Brand */}
           <div className="flex items-center justify-center mb-8">
-            <img 
-              src="https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/lxvw2ugl_Notes_250207_194337_224.jpg"
-              alt="Taxi Türlihof Logo"
-              className="h-20 w-auto mr-4"
-            />
-            <div className="text-left">
-              <h1 className="text-4xl lg:text-5xl font-bold text-yellow-400">
+            {/* Logo geçici olarak gizlendi */}
+            <div className="text-center">
+              <h1 className="text-5xl lg:text-6xl font-bold text-yellow-400">
                 Taxi Türlihof
               </h1>
-              <p className="text-gray-300 text-lg">seit 2010</p>
+              <p className="text-gray-300 text-xl">seit 2010</p>
             </div>
           </div>
           
