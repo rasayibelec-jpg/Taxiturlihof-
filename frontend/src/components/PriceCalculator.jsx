@@ -14,6 +14,8 @@ const PriceCalculator = () => {
   const [startAddress, setStartAddress] = useState("");
   const [endAddress, setEndAddress] = useState("");
   const [calculatedPrice, setCalculatedPrice] = useState(null);
+  const [routeOptions, setRouteOptions] = useState(null);
+  const [selectedRoute, setSelectedRoute] = useState(null);
   const [isCalculating, setIsCalculating] = useState(false);
   const [calculationStatus, setCalculationStatus] = useState(null);
   const [isGettingLocation, setIsGettingLocation] = useState(false);
