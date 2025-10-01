@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxi Türlihof - Preisrechner</title>
+    <style>
+        body { 
+            background: linear-gradient(45deg, #f59e0b, #eab308);
+            color: white; 
+            font-family: Arial; 
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .calculator-box { 
+            background: white; 
+            color: black; 
+            padding: 30px; 
+            border-radius: 15px; 
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus {
+            border-color: #f59e0b;
+            outline: none;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .location-btn {
+            background: #6b7280;
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .location-btn:hover {
+            background: #4b5563;
+        }
+        .calculate-btn {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .calculate-btn:hover {
+            background: #d97706;
+        }
+        .calculate-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        .route-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .route-card {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .route-card:hover {
+            border-color: #f59e0b;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+        }
+        .route-card.selected {
+            border-color: #f59e0b;
+            background: #fef3c7;
+        }
+        .route-type {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .route-details {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 15px;
+        }
+        .route-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f59e0b;
+        }
+        .route-savings {
+            background: #dcfce7;
+            color: #166534;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #f59e0b;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .book-btn {
+            background: #059669;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+        .book-btn:hover {
+            background: #047857;
+        }
+        @media (max-width: 600px) {
+            .route-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚕 Taxi Türlihof</h1>
+            <h2>Preisrechner mit Routenwahl</h2>
+            <p>📞 076 611 31 31</p>
+        </div>
+        
+        <div class="calculator-box">
+            <h3>Route berechnen</h3>
+            
+            <div class="input-group">
+                <input type="text" id="startAddress" placeholder="📍 Startadresse (z.B. Luzern Bahnhof)">
+                <button class="location-btn" onclick="getCurrentLocation('start')">📍 Mein Standort</button>
+            </div>
+            
+            <div class="input-group">
+                <input type="text" id="endAddress" placeholder="🎯 Zieladresse (z.B. Zürich Flughafen)">
+                <button class="location-btn" onclick="getCurrentLocation('end')">📍 Mein Standort</button>
+            </div>
+            
+            <button class="calculate-btn" onclick="calculateRoutes()" id="calculateBtn">
+                🔄 Routenoptionen berechnen
+            </button>
+            
+            <div id="results"></div>
+        </div>
+    </div>
+
+    <script>
+        let selectedRoute = null;
+        let isGettingLocation = false;
+        
+        // Get current location
+        function getCurrentLocation(type) {
+            if (isGettingLocation) return;
+            
+            if (!navigator.geolocation) {
+                alert('Geolocation wird nicht unterstützt');
+                return;
+            }
+            
+            isGettingLocation = true;
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = '⏳';
+            btn.disabled = true;
+            
+            navigator.geolocation.getCurrentPosition(
+                async (position) => {
+                    try {
+                        const {latitude, longitude} = position.coords;
+                        const response = await fetch(
+                            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyAR5af36hrIBOOBP5lIjXYLqtngK2mmkXU&language=de`
+                        );
+                        const data = await response.json();
+                        
+                        if (data.results && data.results.length > 0) {
+                            const address = data.results[0].formatted_address;
+                            const inputId = type === 'start' ? 'startAddress' : 'endAddress';
+                            document.getElementById(inputId).value = address;
+                            alert('📍 Standort gefunden!');
+                        }
+                    } catch (error) {
+                        alert('Fehler beim Abrufen der Adresse');
+                    } finally {
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                        isGettingLocation = false;
+                    }
+                },
+                (error) => {
+                    alert('Standort konnte nicht ermittelt werden');
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    isGettingLocation = false;
+                }
+            );
+        }
+        
+        // Calculate routes
+        function calculateRoutes() {
+            const startAddress = document.getElementById('startAddress').value.trim();
+            const endAddress = document.getElementById('endAddress').value.trim();
+            
+            if (!startAddress || !endAddress) {
+                alert('Bitte geben Sie Start- und Zieladresse ein');
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('results');
+            const calculateBtn = document.getElementById('calculateBtn');
+            
+            // Show loading
+            calculateBtn.disabled = true;
+            calculateBtn.textContent = '⏳ Berechnung läuft...';
+            
+            resultsDiv.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Berechne Routenoptionen...</p>
+                </div>
+            `;
+            
+            // Simulate calculation (2-3 seconds)
+            setTimeout(() => {
+                const routes = generateRouteOptions(startAddress, endAddress);
+                displayRouteOptions(routes);
+                calculateBtn.disabled = false;
+                calculateBtn.textContent = '🔄 Neu berechnen';
+            }, 2500);
+        }
+        
+        // Generate route options (simulation)
+        function generateRouteOptions(start, end) {
+            // Simulate different routes
+            const baseDistance = Math.random() * 40 + 10; // 10-50km
+            const basePrice = 6.60 + (baseDistance * 4.20);
+            
+            const fastestRoute = {
+                type: 'fastest',
+                name: '🚀 Schnellste Route',
+                distance: (baseDistance + Math.random() * 5).toFixed(1),
+                duration: Math.round(baseDistance * 1.2 + Math.random() * 10),
+                price: (basePrice + Math.random() * 20).toFixed(2),
+                description: 'Autobahn-Route mit weniger Verkehr',
+                savings: null
+            };
+            
+            const shortestRoute = {
+                type: 'shortest',
+                name: '💰 Günstigste Route',
+                distance: (baseDistance - Math.random() * 3).toFixed(1),
+                duration: Math.round(baseDistance * 1.5 + Math.random() * 15),
+                price: (basePrice - Math.random() * 15).toFixed(2),
+                description: 'Kürzeste Strecke über Landstraßen',
+                savings: `CHF ${(Math.random() * 15 + 5).toFixed(2)} günstiger`
+            };
+            
+            return { fastest: fastestRoute, shortest: shortestRoute };
+        }
+        
+        // Display route options
+        function displayRouteOptions(routes) {
+            const resultsDiv = document.getElementById('results');
+            
+            resultsDiv.innerHTML = `
+                <h3 style="margin-top: 30px; margin-bottom: 20px;">Wählen Sie Ihre Route:</h3>
+                <div class="route-options">
+                    <div class="route-card" onclick="selectRoute('fastest')" id="route-fastest">
+                        <div class="route-type">
+                            ${routes.fastest.name}
+                        </div>
+                        <div class="route-details">
+                            📏 ${routes.fastest.distance} km<br>
+                            ⏱️ ${routes.fastest.duration} Minuten<br>
+                            ${routes.fastest.description}
+                        </div>
+                        <div class="route-price">CHF ${routes.fastest.price}</div>
+                        <button class="book-btn" onclick="bookRoute('fastest')">
+                            🚀 Diese Route buchen
+                        </button>
+                    </div>
+                    
+                    <div class="route-card" onclick="selectRoute('shortest')" id="route-shortest">
+                        <div class="route-type">
+                            ${routes.shortest.name}
+                        </div>
+                        <div class="route-details">
+                            📏 ${routes.shortest.distance} km<br>
+                            ⏱️ ${routes.shortest.duration} Minuten<br>
+                            ${routes.shortest.description}
+                        </div>
+                        <div class="route-price">CHF ${routes.shortest.price}</div>
+                        ${routes.shortest.savings ? `<div class="route-savings">${routes.shortest.savings}</div>` : ''}
+                        <button class="book-btn" onclick="bookRoute('shortest')">
+                            💰 Diese Route buchen
+                        </button>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px; padding: 20px; background: #fef3c7; border-radius: 10px;">
+                    <h4>📞 Direkte Buchung</h4>
+                    <p>Für sofortige Buchung rufen Sie an:</p>
+                    <a href="tel:076 611 31 31" style="color: #f59e0b; font-weight: bold; font-size: 18px;">076 611 31 31</a>
+                </div>
+            `;
+        }
+        
+        // Select route
+        function selectRoute(routeType) {
+            // Remove selection from all cards
+            document.querySelectorAll('.route-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Select current card
+            document.getElementById(`route-${routeType}`).classList.add('selected');
+            selectedRoute = routeType;
+        }
+        
+        // Book route
+        function bookRoute(routeType) {
+            const routeName = routeType === 'fastest' ? 'Schnellste Route' : 'Günstigste Route';
+            
+            if (confirm(`${routeName} buchen?\n\nSie werden zu unserem Buchungsformular weitergeleitet.`)) {
+                // In real implementation, redirect to booking page or show booking form
+                alert(`Buchung für ${routeName} bestätigt!\n\nWir rufen Sie in 2-3 Minuten zurück: 076 611 31 31`);
+            }
+        }
+    </script>
+</body>
+</html>
