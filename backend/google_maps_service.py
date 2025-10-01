@@ -328,32 +328,37 @@ class GoogleMapsDistanceService:
         except Exception as e:
             logger.error(f"Route calculation error ({option}): {str(e)}")
             raise e
-        """Calculate multiple routes efficiently"""
-        tasks = []
-        
-        for origin, destination in route_pairs:
-            task = self.calculate_real_distance(origin, destination)
-            tasks.append(task)
-        
-        results = await asyncio.gather(*tasks, return_exceptions=True)
-        
-        # Process results and handle exceptions
-        processed_results = []
-        for i, result in enumerate(results):
-            if isinstance(result, Exception):
-                logger.error(f"Route calculation failed for pair {i}: {str(result)}")
-                # Add error result
-                processed_results.append({
-                    'distance_km': 0.0,
-                    'duration_minutes': 0,
-                    'status': 'ERROR',
-                    'source': 'google_maps_api',
-                    'error': str(result)
-                })
-            else:
-                processed_results.append(result)
-        
-        return processed_results
+    
+    async def calculate_multiple_routes(self, route_pairs: List[Tuple[str, str]]) -> List[Dict]:
+        """Calculate multiple routes in parallel for efficiency"""
+        try:
+            tasks = []
+            for origin, destination in route_pairs:
+                task = self.calculate_real_distance(origin, destination)
+                tasks.append(task)
+            
+            results = await asyncio.gather(*tasks, return_exceptions=True)
+            
+            # Process results and handle exceptions
+            processed_results = []
+            for i, result in enumerate(results):
+                if isinstance(result, Exception):
+                    logger.error(f"Route calculation failed for pair {i}: {str(result)}")
+                    # Add error result
+                    processed_results.append({
+                        'status': 'ERROR',
+                        'error': str(result),
+                        'origin': route_pairs[i][0],
+                        'destination': route_pairs[i][1]
+                    })
+                else:
+                    processed_results.append(result)
+            
+            return processed_results
+            
+        except Exception as e:
+            logger.error(f"Multiple route calculation failed: {str(e)}")
+            raise e
     
     def test_api_connection(self) -> bool:
         """Test Google Maps API connection"""
