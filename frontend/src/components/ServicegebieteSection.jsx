@@ -38,9 +38,9 @@ const ServicegebieteSection = () => {
       linkText: "Taxi Schwyz & Brunnen Servicegebiet"
     },
     {
-      name: "Zug - Ihr zuverlässiger Partner am Zugersee",
-      image: "https://images.unsplash.com/photo-1577737815367-7680d2e2a50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      alt: "Taxi Service in Zug am Zugersee mit Alpenblick",
+      name: "Zug",
+      image: "https://images.unsplash.com/photo-1541696724920-864a966cc4c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "Taxi Service in Zug am Zugersee",
       description: "Moderne Stadt am Zugersee", 
       link: "https://taxiturlihof.ch/landingpage/taxisevice-zug/",
       linkText: "Taxi Zug Servicegebiet"
