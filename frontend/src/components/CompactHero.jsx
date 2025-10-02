@@ -20,7 +20,7 @@ const CompactHero = () => {
             {/* Logo geçici olarak gizlendi */}
             <div className="text-center">
               <h1 className="text-5xl lg:text-6xl font-bold text-yellow-400">
-                TaxiNova
+                Taxi Türlihof
               </h1>
               <p className="text-gray-300 text-xl">seit 2010</p>
             </div>
