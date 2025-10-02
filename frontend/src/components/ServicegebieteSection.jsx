@@ -6,9 +6,9 @@ import "./ServicegebieteSection.css";
 const ServicegebieteSection = () => {
   const servicegebiete = [
     {
-      name: "Luzern",
-      image: "https://images.unsplash.com/photo-1566789168779-73d46d92b809?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "Taxi Service Luzern am Vierwaldstättersee",
+      name: "Luzern - Ihr zuverlässiger Partner",
+      image: "https://images.unsplash.com/photo-1527838832700-5059252407fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      alt: "Taxi Service Luzern am Vierwaldstättersee mit Kapellbrücke",
       description: "Historische Altstadt und Kapellbrücke",
       link: "https://taxiturlihof.ch/",
       linkText: "Taxi Luzern Servicegebiet"
