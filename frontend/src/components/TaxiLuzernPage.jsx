@@ -58,8 +58,16 @@ const TaxiLuzernPage = () => {
         structuredData={structuredData}
       />
       <Breadcrumb />
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white py-20">
+      {/* Hero Section with Beautiful Lucerne Background */}
+      <section 
+        className="relative py-20 text-white overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1527838832700-5059252407fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl font-bold mb-6">
