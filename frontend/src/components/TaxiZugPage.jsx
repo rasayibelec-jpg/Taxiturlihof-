@@ -6,11 +6,11 @@ import { MapPin, Phone, Clock, Star, Car, Train } from "lucide-react";
 const TaxiZugPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section with Beautiful Lake Zug Background */}
+      {/* Hero Section with REAL Lake Zug Background */}
       <section 
         className="relative py-20 text-white overflow-hidden"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1541696724920-864a966cc4c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed'
