@@ -348,8 +348,17 @@ const FlughafentransferPage = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section id="buchen" className="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      {/* CTA Section with Beautiful Airport Background */}
+      <section 
+        id="buchen" 
+        className="relative py-16 text-white overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(rgba(37, 99, 235, 0.8), rgba(147, 51, 234, 0.8)), url('https://images.unsplash.com/photo-1540962351504-03099e0a754b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold mb-6">
             Jetzt Flughafentransfer buchen
