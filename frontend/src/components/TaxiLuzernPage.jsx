@@ -58,11 +58,11 @@ const TaxiLuzernPage = () => {
         structuredData={structuredData}
       />
       <Breadcrumb />
-      {/* Hero Section with Beautiful Lucerne Background */}
+      {/* Hero Section with REAL Lucerne Chapel Bridge Background */}
       <section 
         className="relative py-20 text-white overflow-hidden"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1527838832700-5059252407fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed'
