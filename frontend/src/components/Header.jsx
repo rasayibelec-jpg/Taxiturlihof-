@@ -27,7 +27,7 @@ const Header = () => {
               className="h-12 w-auto mr-3"
             />
             <h1 className="text-2xl font-bold text-gray-900">
-              Taxi <span className="text-yellow-600">Türlihof</span>
+              <span className="text-yellow-600">TaxiNova</span>
             </h1>
           </div>
 
