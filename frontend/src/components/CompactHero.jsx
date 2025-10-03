@@ -68,8 +68,7 @@ const CompactHero = () => {
             </Button>
           </div>
 
-          {/* Quick Contact - Prominent - Geçici olarak kaldırıldı */}
-          {/*
+          {/* Quick Contact - Prominent */}
           <div className="inline-flex items-center bg-green-600 hover:bg-green-700 px-8 py-4 rounded-full shadow-xl transition-colors duration-200">
             <a href="tel:076 611 31 31" className="flex items-center text-white">
               <Phone className="w-6 h-6 mr-3" />
@@ -79,7 +78,6 @@ const CompactHero = () => {
               </div>
             </a>
           </div>
-          */}
         </div>
       </div>
     </section>
