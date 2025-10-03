@@ -133,6 +133,7 @@ const PriceCalculator = () => {
       }
 
       const data = await response.json();
+      console.log('Route Options API Response:', data);
       
       // Set route options for selection
       setRouteOptions(data);
