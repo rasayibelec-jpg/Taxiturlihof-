@@ -370,7 +370,7 @@ const PriceCalculator = () => {
                       <div className="text-3xl font-bold text-blue-600 mb-2">
                         CHF {routeOptions?.shortest_route?.total_fare?.toFixed(2) || '51.62'}
                       </div>
-                      {routeOptions.comparison.distance_savings_km > 2 && (
+                      {routeOptions?.comparison?.distance_savings_km > 2 && (
                         <div className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
                           CHF {(routeOptions.fastest_route.total_fare - routeOptions.shortest_route.total_fare).toFixed(2)} günstiger
                         </div>
