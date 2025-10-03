@@ -15,10 +15,16 @@ const CompactHero = () => {
       id="home" 
       className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-24"
       style={{
-        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1657201512832-eb4986526c16?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80")',
-        backgroundSize: '100%',
-        backgroundPosition: 'center top',
-        backgroundRepeat: 'no-repeat'
+        backgroundImage: `
+          linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+          linear-gradient(to bottom, 
+            url("https://images.unsplash.com/photo-1657201512832-eb4986526c16?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80") 0% 60%,
+            url("https://customer-assets.emergentagent.com/job_taxi-booking-hub-2/artifacts/7qpvp7gy_20240707_163617.jpg") 60% 100%
+          )
+        `,
+        backgroundSize: '100% auto, 100% 100%',
+        backgroundPosition: 'center top, center bottom',
+        backgroundRepeat: 'no-repeat, no-repeat'
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
