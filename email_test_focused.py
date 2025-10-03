@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 
 # Test configuration
-BACKEND_URL = "https://smarttaxi-system.preview.emergentagent.com/api"
+BACKEND_URL = "https://taxi-booking-hub-2.preview.emergentagent.com/api"
 
 class EmailSystemTester:
     def __init__(self):

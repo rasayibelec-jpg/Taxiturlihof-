@@ -9,7 +9,7 @@ import json
 from datetime import datetime
 
 # Test configuration
-BACKEND_URL = "https://smarttaxi-system.preview.emergentagent.com/api"
+BACKEND_URL = "https://taxi-booking-hub-2.preview.emergentagent.com/api"
 
 async def analyze_luzern_zurich_pricing():
     """Comprehensive Price Analysis for Luzern → Zürich Route as requested in review"""
