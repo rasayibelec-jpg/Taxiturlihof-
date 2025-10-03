@@ -26,7 +26,7 @@ const CompactHero = () => {
         <div className="text-center">
           
           {/* Logo & Brand */}
-          <div className="flex items-center justify-center mb-8">
+          <div className="flex items-center justify-center mb-8 mt-4">
             {/* Logo geçici olarak gizlendi */}
             <div className="text-center">
               <h1 className="text-5xl lg:text-6xl font-bold text-yellow-400">
