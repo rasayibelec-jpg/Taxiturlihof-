@@ -48,7 +48,7 @@ const CompactHero = () => {
           </div>
 
           {/* Call-to-Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 mt-8">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 mt-16">
             <Button 
               onClick={() => scrollToSection("calculator-cta")}
               className="bg-yellow-600 hover:bg-yellow-700 text-white px-10 py-5 text-xl font-semibold rounded-xl shadow-lg"
