@@ -396,8 +396,8 @@ const PriceCalculator = () => {
                     <Button
                       onClick={() => {
                         const selectedRouteData = selectedRoute === 'fastest' 
-                          ? routeOptions.fastest_route 
-                          : routeOptions.shortest_route;
+                          ? routeOptions?.fastest_route 
+                          : routeOptions?.shortest_route;
                         
                         const routeType = selectedRoute === 'fastest' ? 'Schnellste Route' : 'Günstigste Route';
                         
