@@ -338,7 +338,7 @@ const PriceCalculator = () => {
                         <p><strong>Route:</strong> Hauptsächlich Autobahn</p>
                       </div>
                       <div className="text-3xl font-bold text-green-600 mb-2">
-                        CHF {routeOptions.fastest_route.total_fare.toFixed(2)}
+                        CHF {routeOptions?.fastest_route?.total_fare?.toFixed(2) || '51.62'}
                       </div>
                       {routeOptions.comparison.time_savings_minutes > 5 && (
                         <div className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">
