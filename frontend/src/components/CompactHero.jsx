@@ -11,7 +11,16 @@ const CompactHero = () => {
   };
 
   return (
-    <section id="home" className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-24">
+    <section 
+      id="home" 
+      className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-24"
+      style={{
+        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://images.unsplash.com/photo-1711543491122-5d1ff8189d7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           
