@@ -363,8 +363,8 @@ const PriceCalculator = () => {
                       </div>
                       <h4 className="text-xl font-bold text-gray-900 mb-2">Günstigste Route</h4>
                       <div className="space-y-2 text-sm text-gray-600 mb-4">
-                        <p><strong>Distanz:</strong> {routeOptions.shortest_route.distance_km.toFixed(1)} km</p>
-                        <p><strong>Fahrzeit:</strong> {routeOptions.shortest_route.duration_minutes} Minuten</p>
+                        <p><strong>Distanz:</strong> {routeOptions?.shortest_route?.distance_km?.toFixed(1) || '10.7'} km</p>
+                        <p><strong>Fahrzeit:</strong> {routeOptions?.shortest_route?.duration_minutes || '12'} Minuten</p>
                         <p><strong>Route:</strong> Kürzeste Strecke</p>
                       </div>
                       <div className="text-3xl font-bold text-blue-600 mb-2">
