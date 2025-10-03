@@ -342,7 +342,7 @@ const PriceCalculator = () => {
                       </div>
                       {routeOptions?.comparison?.time_savings_minutes > 5 && (
                         <div className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">
-                          {routeOptions.comparison.time_savings_minutes} Min. schneller
+                          {routeOptions?.comparison?.time_savings_minutes || '2'} Min. schneller
                         </div>
                       )}
                     </div>
