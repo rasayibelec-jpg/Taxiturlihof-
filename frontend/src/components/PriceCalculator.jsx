@@ -308,7 +308,7 @@ const PriceCalculator = () => {
           {/* Results */}
           <div className="space-y-6">
             {/* Route Options Display */}
-            {routeOptions && (
+            {routeOptions ? (
               <div className="space-y-6">
                 <div className="text-center">
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">Wählen Sie Ihre Route</h3>
