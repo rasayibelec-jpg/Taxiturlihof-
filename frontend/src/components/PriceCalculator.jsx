@@ -380,7 +380,7 @@ const PriceCalculator = () => {
                 </div>
 
                 {/* Recommendation */}
-                {routeOptions.recommended_route !== 'same' && (
+                {routeOptions?.recommended_route !== 'same' && (
                   <div className="text-center p-4 bg-gradient-to-r from-yellow-50 to-yellow-100 border border-yellow-200 rounded-lg">
                     <p className="text-sm text-gray-700">
                       <strong>💡 Empfehlung:</strong> Die{' '}
