@@ -133,13 +133,9 @@ const PriceCalculator = () => {
       }
 
       const data = await response.json();
-      console.log('Route Options API Response:', data);
-      
       // Set route options for selection
-      console.log('Setting routeOptions state:', data);
       setRouteOptions(data);
       setCalculationStatus('success');
-      console.log('State should be updated now');
       
       toast({
         title: "✅ Routenoptionen berechnet",
