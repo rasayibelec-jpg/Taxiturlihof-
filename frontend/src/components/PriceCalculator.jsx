@@ -312,6 +312,7 @@ const PriceCalculator = () => {
             {/* Route Options Display */}
             {routeOptions ? (
               <div className="space-y-6">
+                {console.log('Rendering route options:', routeOptions)}
                 <div className="text-center">
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">Wählen Sie Ihre Route</h3>
                   <p className="text-gray-600">Beide Optionen basieren auf aktuellen Verkehrsdaten</p>
