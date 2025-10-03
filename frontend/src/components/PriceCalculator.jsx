@@ -384,7 +384,7 @@ const PriceCalculator = () => {
                   <div className="text-center p-4 bg-gradient-to-r from-yellow-50 to-yellow-100 border border-yellow-200 rounded-lg">
                     <p className="text-sm text-gray-700">
                       <strong>💡 Empfehlung:</strong> Die{' '}
-                      {routeOptions.recommended_route === 'fastest' ? 'schnellste' : 'günstigste'} Route
+                      {routeOptions?.recommended_route === 'fastest' ? 'schnellste' : 'günstigste'} Route
                       bietet das beste Preis-Leistungs-Verhältnis für diese Strecke.
                     </p>
                   </div>
