@@ -5,8 +5,39 @@ import { MapPin, Phone, Clock, Star, Car, Train } from "lucide-react";
 import SEOHead from "./SEOHead";
 
 const TaxiZugPage = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Taxi Türlihof Zug",
+    "description": "24/7 Taxi-Service in Zug am Zugersee. Mercedes-Flotte für Business und Freizeit. Zug Bahnhof, Altstadt und Umgebung.",
+    "url": "https://www.taxiturlihof.ch/taxi-zug",
+    "telephone": "+41766113131",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Zug",
+      "addressCountry": "CH"
+    },
+    "areaServed": {
+      "@type": "City", 
+      "name": "Zug"
+    },
+    "serviceType": [
+      "Business Taxi",
+      "Bahnhof Transfer",
+      "Flughafentransfer",
+      "Stadtfahrten"
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead 
+        title="Taxi Zug | 24/7 Business & Freizeit Transport am Zugersee | Taxi Türlihof"
+        description="Taxi Zug ➤ 24/7 Mercedes-Service am Zugersee ☎️ 076 611 31 31 ➤ Business Transport, Zug Bahnhof, Altstadt ➤ Schnell & zuverlässig ab CHF 6.60"
+        keywords="Taxi Zug, Taxi Zug Bahnhof, Business Taxi Zug, Zugersee Taxi, Zug Altstadt Taxi, 24h Taxi Zug, Mercedes Taxi Zug, Flughafentransfer Zug"
+        url="https://www.taxiturlihof.ch/taxi-zug"
+        structuredData={structuredData}
+      />
       {/* Hero Section with REAL Lake Zug Background */}
       <section 
         className="relative py-20 text-white overflow-hidden"
