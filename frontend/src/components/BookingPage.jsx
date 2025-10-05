@@ -7,8 +7,36 @@ import { Calendar, Phone, Calculator } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const BookingPage = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ReservationService", 
+    "name": "Taxi Online Buchung",
+    "description": "Buchen Sie Ihr Taxi online in Luzern, Schwyz und Zug. Mercedes-Flotte, 24/7 Service, sofortige E-Mail-Bestätigung.",
+    "url": "https://www.taxiturlihof.ch/buchen",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Taxi Türlihof",
+      "telephone": "+41766113131",
+      "email": "info@taxiturlihof.ch"
+    },
+    "availableChannel": [
+      {
+        "@type": "ServiceChannel",
+        "serviceType": "Online Booking",
+        "availableLanguage": "de"
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead 
+        title="Taxi Online Buchen Luzern, Schwyz, Zug | Mercedes Taxi reservieren | Taxi Türlihof"
+        description="🚗 Taxi online buchen in Luzern, Schwyz, Zug! Mercedes-Flotte, 24/7 Service, sofortige Bestätigung per E-Mail. Standard, Premium & Van verfügbar. Jetzt reservieren!"
+        keywords="Taxi online buchen Luzern, Mercedes Taxi reservieren, Online Buchung Schwyz, Taxi vorbestellen Zug, 24h Taxi buchen, Premium Taxi bestellen, Van mieten"
+        url="https://www.taxiturlihof.ch/buchen"
+        structuredData={structuredData}
+      />
       <Breadcrumb />
       
       {/* Header */}
