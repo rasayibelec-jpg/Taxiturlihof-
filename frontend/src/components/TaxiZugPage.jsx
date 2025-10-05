@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { MapPin, Phone, Clock, Star, Car, Train } from "lucide-react";
+import SEOHead from "./SEOHead";
 
 const TaxiZugPage = () => {
   return (
