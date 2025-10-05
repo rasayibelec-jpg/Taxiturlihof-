@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 import { Badge } from "./ui/badge";
 import { Calendar, Clock, ArrowRight, MapPin, Plane, Car } from "lucide-react";
 import { Link } from "react-router-dom";
+import SEOHead from "./SEOHead";
 
 const BlogPage = () => {
   const blogPosts = [
