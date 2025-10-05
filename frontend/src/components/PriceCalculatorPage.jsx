@@ -7,8 +7,36 @@ import { Calculator, Phone, Car } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const PriceCalculatorPage = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Taxi Preisrechner",
+    "description": "Berechnen Sie Taxipreise in Luzern, Schwyz und Zug. Schnellste und günstigste Route mit Echtzeit-Verkehrsdaten.",
+    "url": "https://www.taxiturlihof.ch/preisrechner",
+    "applicationCategory": "TransportationApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "6.60",
+      "priceCurrency": "CHF",
+      "description": "Grundtarif + 4.20 CHF/km"
+    },
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Taxi Türlihof",
+      "telephone": "+41766113131"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead 
+        title="Taxi Preisrechner Luzern, Schwyz, Zug | Route & Preis berechnen | Taxi Türlihof"
+        description="🚗 Berechnen Sie Taxipreise in Luzern, Schwyz, Zug. Schnellste vs günstigste Route mit Echtzeit-Verkehrsdaten. Mercedes Taxi ab CHF 6.60 + 4.20/km. Jetzt online buchen!"
+        keywords="Taxi Preisrechner Luzern, Taxipreis berechnen Schwyz, Fahrpreis Zug, schnellste Route Taxi, günstigste Taxifahrt, Online Preisrechner, Mercedes Taxi Kosten, Flughafentransfer Preis"
+        url="https://www.taxiturlihof.ch/preisrechner"
+        structuredData={structuredData}
+      />
       <Breadcrumb />
       
       {/* Header */}
