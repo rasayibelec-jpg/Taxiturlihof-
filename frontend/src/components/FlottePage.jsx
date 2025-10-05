@@ -1,6 +1,7 @@
 import React from "react";
 import Breadcrumb from "./Breadcrumb";
 import FleetGallery from "./FleetGallery";
+import SEOHead from "./SEOHead";
 import { Card } from "./ui/card";
 import { Car, Users, Star } from "lucide-react";
 
