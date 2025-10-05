@@ -6,8 +6,48 @@ import { Card } from "./ui/card";
 import { Car, Users, Star } from "lucide-react";
 
 const FlottePage = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "AutoDealer",
+    "name": "Taxi Türlihof Mercedes-Flotte",
+    "description": "Moderne Mercedes-Taxi-Flotte in Luzern. Standard-Taxis, Premium-Fahrzeuge und Vans für alle Transportbedürfnisse.",
+    "url": "https://www.taxiturlihof.ch/flotte",
+    "brand": "Mercedes-Benz",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Mercedes Taxi-Flotte",
+      "itemListElement": [
+        {
+          "@type": "Vehicle",
+          "name": "Mercedes Standard Taxi",
+          "vehicleModelDate": "2020-2024",
+          "seatingCapacity": "4 Personen"
+        },
+        {
+          "@type": "Vehicle", 
+          "name": "Mercedes Premium Taxi",
+          "vehicleModelDate": "2022-2024",
+          "seatingCapacity": "4 Personen"
+        },
+        {
+          "@type": "Vehicle",
+          "name": "Mercedes Van",
+          "vehicleModelDate": "2021-2024", 
+          "seatingCapacity": "8 Personen"
+        }
+      ]
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead 
+        title="Mercedes Taxi-Flotte Luzern | Standard, Premium & Van | Taxi Türlihof"
+        description="🚗 Mercedes Taxi-Flotte in Luzern ➤ Standard-Taxis, Premium & Vans (bis 8 Personen) ➤ Moderne, gepflegte Fahrzeuge ➤ Klimaanlage, Komfort ☎️ 076 611 31 31"
+        keywords="Mercedes Taxi Luzern, Premium Taxi, Mercedes Van mieten, Taxi-Flotte Luzern, 8-Personen Taxi, Business Taxi Mercedes, komfortable Fahrzeuge"
+        url="https://www.taxiturlihof.ch/flotte"
+        structuredData={structuredData}
+      />
       <Breadcrumb />
       
       {/* Header */}
