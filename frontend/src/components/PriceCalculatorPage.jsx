@@ -1,6 +1,7 @@
 import React from "react";
 import Breadcrumb from "./Breadcrumb";
 import PriceCalculator from "./PriceCalculator";
+import SEOHead from "./SEOHead";
 import { Card } from "./ui/card";
 import { Calculator, Phone, Car } from "lucide-react";
 import { Link } from "react-router-dom";
