@@ -6,6 +6,18 @@ import { Link } from "react-router-dom";
 import SEOHead from "./SEOHead";
 
 const BlogPage = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Taxi Türlihof Blog",
+    "description": "Reisetipps, Ausflugsziele und Insider-Informationen rund um Luzern, Schwyz und Zug. Ihr lokaler Taxi-Service teilt die besten Geheimtipps.",
+    "url": "https://www.taxiturlihof.ch/blog",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Taxi Türlihof",
+      "logo": "https://customer-assets.emergentagent.com/job_taxi-booking-hub-2/artifacts/7qpvp7gy_20240707_163617.jpg"
+    }
+  };
   const blogPosts = [
     {
       id: 1,
