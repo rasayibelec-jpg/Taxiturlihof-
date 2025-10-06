@@ -117,6 +117,30 @@ class MultiRouteResponse(BaseModel):
     shortest_route: RouteOption
     comparison: dict
     recommended_route: str  # 'fastest' or 'shortest' or 'same'
+
+# Enhanced models for interactive route selection
+class InteractiveRoute(BaseModel):
+    route_type: str  # 'fastest', 'shortest', 'scenic', 'avoid_highways'
+    route_description: str
+    distance_km: float
+    duration_minutes: int
+    duration_in_traffic_minutes: int
+    base_fare: float = 6.60
+    distance_fare: float
+    total_fare: float
+    origin_address: str
+    destination_address: str
+    polyline: str  # Google Maps polyline for route visualization
+    bounds: dict  # Map bounds for fitting the route
+    steps: List[dict]  # Turn-by-turn directions
+    traffic_factor: float
+    warnings: List[str] = []
+
+class InteractiveRoutesResponse(BaseModel):
+    routes: List[InteractiveRoute]
+    comparison: dict
+    total_options: int
+    recommended_route: str
 class AvailabilityRequest(BaseModel):
     date: str  # ISO format date string (YYYY-MM-DD)
 
