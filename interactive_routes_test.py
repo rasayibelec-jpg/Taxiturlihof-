@@ -606,15 +606,15 @@ class InteractiveRoutesTester:
             start_time = time.time()
             
             # Make concurrent requests
-            tasks = []
-            for route_data in test_routes:
-                task = self.session.post(
+            async def make_request(route_data):
+                async with self.session.post(
                     f"{BACKEND_URL}/get-interactive-routes",
                     json=route_data,
                     headers=headers
-                )
-                tasks.append(task)
+                ) as response:
+                    return response.status
             
+            tasks = [make_request(route_data) for route_data in test_routes]
             responses = await asyncio.gather(*tasks, return_exceptions=True)
             total_time = time.time() - start_time
             
