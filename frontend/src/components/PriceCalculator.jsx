@@ -102,6 +102,66 @@ const PriceCalculator = () => {
     );
   };
 
+  const handleGetInteractiveRoutes = async () => {
+    if (!startAddress.trim() || !endAddress.trim()) {
+      toast({
+        title: "Eingabe erforderlich",
+        description: "Bitte geben Sie sowohl Start- als auch Zieladresse ein.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsCalculating(true);
+    setCalculationStatus(null);
+    setInteractiveRoutes(null);
+    setSelectedInteractiveRoute(null);
+
+    try {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const response = await fetch(`${backendUrl}/api/get-interactive-routes`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          origin: startAddress.trim(),
+          destination: endAddress.trim(),
+          departure_time: new Date().toISOString()
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || 'Interaktive Routenberechnung fehlgeschlagen');
+      }
+
+      const data = await response.json();
+      
+      // Set interactive routes for map display
+      setInteractiveRoutes(data);
+      setShowInteractiveMap(true);
+      setCalculationStatus('success');
+      
+      toast({
+        title: "🗺️ Interaktive Routen geladen",
+        description: `${data.total_options} Routenoptionen verfügbar. Wählen Sie Ihre bevorzugte Route auf der Karte.`,
+      });
+
+    } catch (error) {
+      console.error('Interactive route calculation error:', error);
+      setCalculationStatus('error');
+      
+      toast({
+        title: "Berechnungsfehler", 
+        description: error.message || "Konnte die interaktiven Routen nicht berechnen. Bitte versuchen Sie es erneut.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsCalculating(false);
+    }
+  };
+
   const handleCalculatePrice = async () => {
     if (!startAddress.trim() || !endAddress.trim()) {
       toast({
