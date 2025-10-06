@@ -29,6 +29,163 @@ class GoogleMapsDistanceService:
         
         logger.info("Google Maps Distance Service initialized successfully")
     
+    def _get_directions_with_options(self, origin: str, destination: str, 
+                                   avoid_options: List[str] = None, 
+                                   departure_time: Optional[datetime] = None) -> Dict:
+        """
+        Get route details using Google Directions API with avoid options
+        Returns route with polyline, steps, and visual data
+        """
+        try:
+            # Configure request parameters
+            params = {
+                'origin': origin,
+                'destination': destination,
+                'mode': 'driving',
+                'language': 'de',
+                'region': 'CH',
+                'units': 'metric'
+            }
+            
+            # Add avoid options if specified
+            if avoid_options:
+                params['avoid'] = avoid_options
+                
+            # Add departure time for traffic-aware routing
+            if departure_time:
+                params['departure_time'] = departure_time
+            else:
+                params['departure_time'] = datetime.now()
+                
+            # Call Google Directions API
+            directions_result = self.client.directions(**params)
+            
+            if not directions_result or len(directions_result) == 0:
+                raise Exception("No routes found")
+                
+            # Extract first (best) route
+            route = directions_result[0]
+            leg = route['legs'][0]
+            
+            # Extract route details
+            route_data = {
+                'distance_km': round(leg['distance']['value'] / 1000, 2),
+                'duration_minutes': round(leg['duration']['value'] / 60),
+                'duration_in_traffic_minutes': round(leg.get('duration_in_traffic', leg['duration'])['value'] / 60),
+                'origin_address': leg['start_address'],
+                'destination_address': leg['end_address'],
+                'polyline': route['overview_polyline']['points'],
+                'bounds': route['bounds'],
+                'steps': [
+                    {
+                        'instruction': step['html_instructions'],
+                        'distance': step['distance']['text'],
+                        'duration': step['duration']['text'],
+                        'polyline': step['polyline']['points']
+                    } for step in leg['steps']
+                ],
+                'warnings': route.get('warnings', []),
+                'copyrights': route.get('copyrights', '')
+            }
+            
+            # Calculate traffic factor
+            if 'duration_in_traffic' in leg:
+                normal_time = leg['duration']['value'] / 60
+                traffic_time = leg['duration_in_traffic']['value'] / 60
+                route_data['traffic_factor'] = round(traffic_time / normal_time, 2)
+            else:
+                route_data['traffic_factor'] = 1.0
+                
+            return route_data
+            
+        except Exception as e:
+            logger.error(f"Directions API error: {str(e)}")
+            raise Exception(f"Failed to get route directions: {str(e)}")
+            
+    async def get_multiple_route_options(self, origin: str, destination: str, 
+                                       departure_time: Optional[datetime] = None) -> Dict:
+        """
+        Get 4 different route options using Google Directions API:
+        1. Fastest route (optimized for time)
+        2. Shortest route (optimized for distance) 
+        3. Scenic route (avoid highways when possible)
+        4. Avoid highways (surface roads only)
+        """
+        try:
+            loop = asyncio.get_event_loop()
+            
+            # Define route options
+            route_configs = [
+                {'name': 'fastest', 'avoid': [], 'description': 'Schnellste Route'},
+                {'name': 'shortest', 'avoid': [], 'description': 'Kürzeste Route'},
+                {'name': 'scenic', 'avoid': ['highways'], 'description': 'Landschaftliche Route'},
+                {'name': 'avoid_highways', 'avoid': ['highways'], 'description': 'Ohne Autobahn'}
+            ]
+            
+            # Calculate all routes in parallel
+            route_tasks = []
+            for config in route_configs:
+                task = loop.run_in_executor(
+                    self.executor,
+                    self._get_directions_with_options,
+                    origin,
+                    destination, 
+                    config['avoid'],
+                    departure_time
+                )
+                route_tasks.append((config, task))
+            
+            # Wait for all route calculations
+            routes = []
+            for config, task in route_tasks:
+                try:
+                    route_data = await task
+                    route_data['route_type'] = config['name']
+                    route_data['route_description'] = config['description']
+                    route_data['route_option'] = config['name']
+                    routes.append(route_data)
+                except Exception as e:
+                    logger.warning(f"Route calculation failed for {config['name']}: {str(e)}")
+                    # Continue with other routes
+            
+            if not routes:
+                raise Exception("No routes could be calculated")
+            
+            # Sort routes: fastest by time, shortest by distance
+            fastest_route = min(routes, key=lambda r: r['duration_in_traffic_minutes'])
+            shortest_route = min(routes, key=lambda r: r['distance_km'])
+            
+            # Calculate comparison data
+            comparison = {
+                'total_routes': len(routes),
+                'fastest_time': fastest_route['duration_in_traffic_minutes'],
+                'shortest_distance': shortest_route['distance_km'],
+                'time_range_minutes': [
+                    min(r['duration_in_traffic_minutes'] for r in routes),
+                    max(r['duration_in_traffic_minutes'] for r in routes)
+                ],
+                'distance_range_km': [
+                    min(r['distance_km'] for r in routes),
+                    max(r['distance_km'] for r in routes)
+                ]
+            }
+            
+            return {
+                'routes': routes,
+                'comparison': comparison,
+                'status': 'OK',
+                'source': 'google_directions_api',
+                'total_options': len(routes)
+            }
+            
+        except Exception as e:
+            logger.error(f"Multiple routes calculation failed {origin} → {destination}: {str(e)}")
+            raise Exception(f"Route calculation failed: {str(e)}")
+            
+    # Keep the original method for backward compatibility
+    async def calculate_route_options(self, origin: str, destination: str, 
+                                    departure_time: Optional[datetime] = None) -> Dict:
+    
     def _sync_distance_calculation(self, origin: str, destination: str, departure_time: Optional[datetime] = None) -> Dict:
         """Synchronous Google Maps Distance Matrix API call"""
         try:
