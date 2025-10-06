@@ -407,7 +407,7 @@ const PriceCalculator = () => {
                   </p>
                 </div>
 
-                <SimpleInteractiveRoutes
+                <CompactRouteSelector
                   routes={interactiveRoutes.routes}
                   onRouteSelect={(routeType) => {
                     setSelectedInteractiveRoute(routeType);
