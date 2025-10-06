@@ -214,11 +214,11 @@ class GoogleMapsDistanceService:
         
         return error_messages.get(status, f'Google Maps API error: {status}')
     
-    async def calculate_route_options(self, origin: str, destination: str, 
-                                    departure_time: Optional[datetime] = None) -> Dict:
+    async def calculate_multiple_routes(self, origin: str, destination: str, 
+                                      departure_time: Optional[datetime] = None) -> Dict:
         """
-        Calculate multiple route options: fastest and shortest
-        Returns: {fastest_route, shortest_route, comparison}
+        Calculate multiple route options with Google Directions API for interactive selection
+        Returns: {routes: [fastest, shortest, scenic, avoid_highways], comparison}
         """
         try:
             # Calculate both route options in parallel
