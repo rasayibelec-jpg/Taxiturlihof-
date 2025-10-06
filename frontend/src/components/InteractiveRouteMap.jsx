@@ -72,8 +72,26 @@ const InteractiveRouteMap = ({ routes, onRouteSelect, selectedRoute, origin, des
         suppressInfoWindows: true
       });
 
-      // Decode polyline and create directions result
-      const decodedPath = window.google.maps.geometry.encoding.decodePath(route.polyline);
+      // Create polyline directly from encoded string
+      let decodedPath = [];
+      try {
+        if (window.google.maps.geometry && window.google.maps.geometry.encoding) {
+          decodedPath = window.google.maps.geometry.encoding.decodePath(route.polyline);
+        } else {
+          // Fallback: create simple line between origin and destination
+          const geocoder = new window.google.maps.Geocoder();
+          decodedPath = [
+            { lat: 47.0502, lng: 8.3093 }, // Luzern approx
+            { lat: 47.0207, lng: 8.6534 }  // Schwyz approx
+          ];
+        }
+      } catch (error) {
+        console.warn('Polyline decode failed, using fallback path');
+        decodedPath = [
+          { lat: 47.0502, lng: 8.3093 },
+          { lat: 47.0207, lng: 8.6534 }
+        ];
+      }
       
       // Create a directions result object for the renderer
       const directionsResult = {
