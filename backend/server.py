@@ -351,6 +351,89 @@ async def calculate_route_options(request: MultiRouteCalculationRequest):
             detail=f"Routenoptionen-Berechnung fehlgeschlagen: {str(e)}"
         )
 
+# Interactive Route Selection Endpoint
+@api_router.post("/get-interactive-routes", response_model=InteractiveRoutesResponse)
+async def get_interactive_routes(request: MultiRouteCalculationRequest):
+    """Get multiple route options with visual data for interactive selection"""
+    try:
+        # Parse departure time if provided
+        departure_time = None
+        if request.departure_time:
+            try:
+                departure_time = datetime.fromisoformat(request.departure_time.replace('Z', '+00:00'))
+            except ValueError:
+                pass  # Use current time as fallback
+        
+        # Get all route options from Google Directions API
+        route_data = await google_maps_service.get_multiple_route_options(
+            origin=request.origin,
+            destination=request.destination,
+            departure_time=departure_time
+        )
+        
+        # Swiss taxi fare calculation
+        base_fare = 6.60  # CHF Standard
+        distance_rate = 4.20  # CHF per km Standard
+        
+        def calculate_interactive_route_fare(route):
+            distance_km = route['distance_km']
+            distance_fare = distance_km * distance_rate
+            total_fare = base_fare + distance_fare
+            
+            return InteractiveRoute(
+                route_type=route['route_type'],
+                route_description=route['route_description'],
+                distance_km=route['distance_km'],
+                duration_minutes=route['duration_minutes'],
+                duration_in_traffic_minutes=route['duration_in_traffic_minutes'],
+                distance_fare=round(distance_fare, 2),
+                total_fare=round(total_fare, 2),
+                origin_address=route['origin_address'],
+                destination_address=route['destination_address'],
+                polyline=route['polyline'],
+                bounds=route['bounds'],
+                steps=route['steps'],
+                traffic_factor=route['traffic_factor'],
+                warnings=route.get('warnings', [])
+            )
+        
+        # Calculate fares for all routes
+        interactive_routes = []
+        for route in route_data['routes']:
+            interactive_route = calculate_interactive_route_fare(route)
+            interactive_routes.append(interactive_route)
+        
+        # Find recommended route (fastest with reasonable price)
+        if len(interactive_routes) > 0:
+            fastest = min(interactive_routes, key=lambda r: r.duration_in_traffic_minutes)
+            shortest = min(interactive_routes, key=lambda r: r.distance_km)
+            cheapest = min(interactive_routes, key=lambda r: r.total_fare)
+            
+            # Recommendation logic: balance time vs cost
+            time_diff = fastest.duration_in_traffic_minutes - cheapest.duration_in_traffic_minutes
+            price_diff = fastest.total_fare - cheapest.total_fare
+            
+            if time_diff <= 5 or price_diff <= 10:
+                recommended = fastest.route_type
+            else:
+                recommended = cheapest.route_type
+        else:
+            recommended = "fastest"
+        
+        return InteractiveRoutesResponse(
+            routes=interactive_routes,
+            comparison=route_data['comparison'],
+            total_options=len(interactive_routes),
+            recommended_route=recommended
+        )
+        
+    except Exception as e:
+        logger.error(f"Interactive routes calculation failed: {str(e)}")
+        raise HTTPException(
+            status_code=400,
+            detail=f"Interactive Routenberechnung fehlgeschlagen: {str(e)}"
+        )
+
 @api_router.get("/test-google-maps")
 async def test_google_maps_connection():
     """Test Google Maps API connection"""
