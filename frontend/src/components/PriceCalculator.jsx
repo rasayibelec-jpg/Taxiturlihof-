@@ -407,7 +407,7 @@ const PriceCalculator = () => {
                   </p>
                 </div>
 
-                <InteractiveRouteMap
+                <SimpleInteractiveRoutes
                   routes={interactiveRoutes.routes}
                   onRouteSelect={(routeType) => {
                     setSelectedInteractiveRoute(routeType);
@@ -420,8 +420,6 @@ const PriceCalculator = () => {
                     }
                   }}
                   selectedRoute={selectedInteractiveRoute}
-                  origin={startAddress}
-                  destination={endAddress}
                 />
 
                 {/* Summary of selected route */}
