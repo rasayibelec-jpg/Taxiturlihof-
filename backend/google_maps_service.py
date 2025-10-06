@@ -167,7 +167,11 @@ class GoogleMapsDistanceService:
                 'distance_range_km': [
                     min(r['distance_km'] for r in routes),
                     max(r['distance_km'] for r in routes)
-                ]
+                ],
+                # Add backward compatibility fields
+                'time_savings_minutes': max(r['duration_in_traffic_minutes'] for r in routes) - min(r['duration_in_traffic_minutes'] for r in routes),
+                'distance_savings_km': max(r['distance_km'] for r in routes) - min(r['distance_km'] for r in routes),
+                'faster_option': 'fastest' if fastest_route != shortest_route else 'same'
             }
             
             return {
