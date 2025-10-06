@@ -114,12 +114,10 @@ class GoogleMapsDistanceService:
         try:
             loop = asyncio.get_event_loop()
             
-            # Define route options
+            # Define route options - Only 2 routes for better UX
             route_configs = [
                 {'name': 'fastest', 'avoid': [], 'description': 'Schnellste Route'},
-                {'name': 'shortest', 'avoid': [], 'description': 'Kürzeste Route'},
-                {'name': 'scenic', 'avoid': ['highways'], 'description': 'Landschaftliche Route'},
-                {'name': 'avoid_highways', 'avoid': ['highways'], 'description': 'Ohne Autobahn'}
+                {'name': 'scenic', 'avoid': ['highways'], 'description': 'Landschaftliche Route'}
             ]
             
             # Calculate all routes in parallel
