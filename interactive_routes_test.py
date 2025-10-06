@@ -621,9 +621,8 @@ class InteractiveRoutesTester:
             successful_responses = 0
             for response in responses:
                 if not isinstance(response, Exception):
-                    if response.status == 200:
+                    if response == 200:
                         successful_responses += 1
-                    await response.close()
             
             # All requests should complete within reasonable time
             performance_ok = total_time < 15.0  # 15 seconds for 3 concurrent requests
