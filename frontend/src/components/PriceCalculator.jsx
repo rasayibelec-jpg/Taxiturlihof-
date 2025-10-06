@@ -342,28 +342,54 @@ const PriceCalculator = () => {
                 </div>
               </div>
 
-              <Button 
-                onClick={handleCalculatePrice}
-                disabled={isCalculating || !startAddress.trim() || !endAddress.trim()}
-                className={`w-full text-white transform transition-all duration-200 hover:scale-105 ${
-                  isCalculating 
-                    ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-yellow-600 hover:bg-yellow-700'
-                }`}
-                size="lg"
-              >
-                {isCalculating ? (
-                  <div className="flex items-center space-x-2">
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>Routenoptionen werden berechnet...</span>
-                  </div>
-                ) : (
-                  <div className="flex items-center space-x-2">
-                    <Calculator className="w-5 h-5" />
-                    <span>Routenoptionen berechnen</span>
-                  </div>
-                )}
-              </Button>
+              {/* Calculation Mode Selection */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Button 
+                  onClick={handleCalculatePrice}
+                  disabled={isCalculating || !startAddress.trim() || !endAddress.trim()}
+                  className={`text-white transform transition-all duration-200 hover:scale-105 ${
+                    isCalculating 
+                      ? 'bg-gray-400 cursor-not-allowed' 
+                      : 'bg-yellow-600 hover:bg-yellow-700'
+                  }`}
+                  size="lg"
+                >
+                  {isCalculating ? (
+                    <div className="flex items-center space-x-2">
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Berechnung...</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center space-x-2">
+                      <Calculator className="w-5 h-5" />
+                      <span>Schnell berechnen</span>
+                    </div>
+                  )}
+                </Button>
+
+                <Button 
+                  onClick={handleGetInteractiveRoutes}
+                  disabled={isCalculating || !startAddress.trim() || !endAddress.trim()}
+                  className={`text-white transform transition-all duration-200 hover:scale-105 ${
+                    isCalculating 
+                      ? 'bg-gray-400 cursor-not-allowed' 
+                      : 'bg-blue-600 hover:bg-blue-700'
+                  }`}
+                  size="lg"
+                >
+                  {isCalculating ? (
+                    <div className="flex items-center space-x-2">
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Lade Karte...</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center space-x-2">
+                      <Map className="w-5 h-5" />
+                      <span>Interaktive Karte</span>
+                    </div>
+                  )}
+                </Button>
+              </div>
             </CardContent>
           </Card>
 
