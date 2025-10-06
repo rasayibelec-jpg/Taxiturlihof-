@@ -8,7 +8,7 @@ import { contactInfo } from "../data/mockData";
 import { useToast } from "../hooks/use-toast";
 import axios from "axios";
 import GooglePlacesAutocomplete from "./GooglePlacesAutocomplete";
-import SimpleInteractiveRoutes from "./SimpleInteractiveRoutes";
+import CompactRouteSelector from "./CompactRouteSelector";
 // Simple inputs without GooglePlaces complexity
 
 const PriceCalculator = () => {
