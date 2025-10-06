@@ -395,6 +395,68 @@ const PriceCalculator = () => {
 
           {/* Results */}
           <div className="space-y-6">
+            
+            {/* Interactive Route Map */}
+            {showInteractiveMap && interactiveRoutes && (
+              <div className="space-y-6">
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">🗺️ Wählen Sie Ihre Route</h3>
+                  <p className="text-gray-600">
+                    {interactiveRoutes.total_options} Routenoptionen verfügbar. 
+                    Klicken Sie auf eine Route oder die Karte für Details.
+                  </p>
+                </div>
+
+                <InteractiveRouteMap
+                  routes={interactiveRoutes.routes}
+                  onRouteSelect={(routeType) => {
+                    setSelectedInteractiveRoute(routeType);
+                    const selectedRoute = interactiveRoutes.routes.find(r => r.route_type === routeType);
+                    if (selectedRoute) {
+                      toast({
+                        title: `${selectedRoute.route_description} gewählt`,
+                        description: `CHF ${selectedRoute.total_fare.toFixed(2)} - ${selectedRoute.distance_km.toFixed(1)} km - ${selectedRoute.duration_in_traffic_minutes} Min`,
+                      });
+                    }
+                  }}
+                  selectedRoute={selectedInteractiveRoute}
+                  origin={startAddress}
+                  destination={endAddress}
+                />
+
+                {/* Summary of selected route */}
+                {selectedInteractiveRoute && (
+                  <Card className="bg-green-50 border-green-200">
+                    <CardContent className="p-4">
+                      <div className="text-center">
+                        <h4 className="text-lg font-bold text-green-800 mb-2">
+                          ✅ Route ausgewählt
+                        </h4>
+                        {(() => {
+                          const route = interactiveRoutes.routes.find(r => r.route_type === selectedInteractiveRoute);
+                          return route ? (
+                            <div className="space-y-2">
+                              <p className="text-green-700">
+                                <strong>{route.route_description}</strong> - CHF {route.total_fare.toFixed(2)}
+                              </p>
+                              <p className="text-sm text-green-600">
+                                {route.distance_km.toFixed(1)} km • {route.duration_in_traffic_minutes} Min Fahrzeit
+                              </p>
+                              <Button 
+                                className="mt-2 bg-green-600 hover:bg-green-700"
+                                onClick={() => window.location.href = '/buchen'}
+                              >
+                                Jetzt buchen mit dieser Route
+                              </Button>
+                            </div>
+                          ) : null;
+                        })()}
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
+            )}
             {/* Route Options Display */}
             {routeOptions && (
               <div className="space-y-6">
