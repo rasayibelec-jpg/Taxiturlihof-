@@ -185,6 +185,38 @@ class GoogleMapsDistanceService:
     # Keep the original method for backward compatibility
     async def calculate_route_options(self, origin: str, destination: str, 
                                     departure_time: Optional[datetime] = None) -> Dict:
+        """
+        Original method for backward compatibility - calculates 2 route options
+        """
+        try:
+            # Use the new method and return first 2 routes in old format
+            multi_routes = await self.get_multiple_route_options(origin, destination, departure_time)
+            
+            if not multi_routes['routes'] or len(multi_routes['routes']) < 2:
+                raise Exception("Insufficient routes calculated")
+            
+            routes = multi_routes['routes']
+            fastest = min(routes, key=lambda r: r['duration_in_traffic_minutes'])
+            shortest = min(routes, key=lambda r: r['distance_km'])
+            
+            return {
+                'fastest_route': fastest,
+                'shortest_route': shortest, 
+                'comparison': multi_routes['comparison'],
+                'recommended_route': 'fastest' if fastest != shortest else 'same'
+            }
+            
+        except Exception as e:
+            logger.error(f"Backward compatibility route calculation failed: {str(e)}")
+            # Fallback to simple calculation
+            loop = asyncio.get_event_loop()
+            fastest_data = await loop.run_in_executor(self.executor, self._sync_distance_calculation, origin, destination, departure_time)
+            return {
+                'fastest_route': fastest_data,
+                'shortest_route': fastest_data,
+                'comparison': {'time_savings_minutes': 0, 'distance_savings_km': 0},
+                'recommended_route': 'same'
+            }
     
     def _sync_distance_calculation(self, origin: str, destination: str, departure_time: Optional[datetime] = None) -> Dict:
         """Synchronous Google Maps Distance Matrix API call"""
