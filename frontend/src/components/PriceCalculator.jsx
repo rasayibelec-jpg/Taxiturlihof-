@@ -400,10 +400,9 @@ const PriceCalculator = () => {
             {showInteractiveMap && interactiveRoutes && (
               <div className="space-y-6">
                 <div className="text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">🗺️ Wählen Sie Ihre Route</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">🗺️ Routenvergleich</h3>
                   <p className="text-gray-600">
-                    {interactiveRoutes.total_options} Routenoptionen verfügbar. 
-                    Klicken Sie auf eine Route oder die Karte für Details.
+                    Vergleichen Sie Schnellste vs. Landschaftliche Route - beide mit aktuellen Verkehrsdaten.
                   </p>
                 </div>
 
