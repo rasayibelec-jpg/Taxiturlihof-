@@ -9,6 +9,7 @@ import CompactCalculatorCTA from "./CompactCalculatorCTA";
 import StreamlinedContact from "./StreamlinedContact";
 import Footer from "./Footer";
 import FloatingActionButtons from "./FloatingActionButtons";
+import PWAInstaller from "./PWAInstaller";
 
 const HomePage = () => {
   return (
