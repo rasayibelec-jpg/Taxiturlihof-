@@ -19,6 +19,7 @@ import FlughafenZurichTransferPage from './components/FlughafenZurichTransferPag
 import BlogLuzernSehenswuerdigkeiten from './components/BlogLuzernSehenswuerdigkeiten';
 import AdminDashboard from './components/AdminDashboard';
 import BookingLookup from './components/BookingLookup';
+import PWATestInstructions from './components/PWATestInstructions';
 
 function App() {
   // Register Service Worker for PWA
