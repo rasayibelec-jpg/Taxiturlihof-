@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Taxi Türlihof Icon Generator</title>
+    <style>
+        canvas { 
+            border: 1px solid #ccc; 
+            margin: 10px;
+        }
+        .icon-container {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Taxi Türlihof App Icons</h1>
+    <div id="icons"></div>
+
+    <script>
+        // Icon sizes for PWA
+        const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+        
+        function createTaxiIcon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Background - Yellow/Taxi color
+            ctx.fillStyle = '#EAB308';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Rounded corners
+            ctx.globalCompositeOperation = 'destination-in';
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, size * 0.15);
+            ctx.fill();
+            ctx.globalCompositeOperation = 'source-over';
+            
+            // Car silhouette (simplified)
+            const carScale = size * 0.6;
+            const carX = (size - carScale) / 2;
+            const carY = size * 0.3;
+            
+            // Car body
+            ctx.fillStyle = '#1f2937';
+            ctx.fillRect(carX, carY + carScale * 0.3, carScale, carScale * 0.4);
+            
+            // Car roof
+            ctx.beginPath();
+            ctx.moveTo(carX + carScale * 0.2, carY + carScale * 0.3);
+            ctx.lineTo(carX + carScale * 0.8, carY + carScale * 0.3);
+            ctx.lineTo(carX + carScale * 0.7, carY);
+            ctx.lineTo(carX + carScale * 0.3, carY);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Wheels
+            ctx.fillStyle = '#374151';
+            const wheelSize = carScale * 0.15;
+            const wheelY = carY + carScale * 0.65;
+            
+            // Left wheel
+            ctx.beginPath();
+            ctx.arc(carX + carScale * 0.25, wheelY, wheelSize, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Right wheel
+            ctx.beginPath();
+            ctx.arc(carX + carScale * 0.75, wheelY, wheelSize, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // TAXI text
+            if (size >= 128) {
+                ctx.fillStyle = '#ffffff';
+                ctx.font = `bold ${size * 0.08}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.fillText('TAXI', size / 2, size * 0.9);
+            }
+            
+            return canvas;
+        }
+        
+        const iconsContainer = document.getElementById('icons');
+        
+        sizes.forEach(size => {
+            const container = document.createElement('div');
+            container.className = 'icon-container';
+            
+            const canvas = createTaxiIcon(size);
+            container.appendChild(canvas);
+            
+            const label = document.createElement('div');
+            label.textContent = `${size}x${size}`;
+            container.appendChild(label);
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = `icon-${size}x${size}.png`;
+            link.textContent = 'Download';
+            link.style.display = 'block';
+            link.style.marginTop = '5px';
+            container.appendChild(link);
+            
+            iconsContainer.appendChild(container);
+        });
+        
+        // Auto-download all icons
+        setTimeout(() => {
+            const links = document.querySelectorAll('a[download]');
+            links.forEach((link, index) => {
+                setTimeout(() => link.click(), index * 200);
+            });
+        }, 1000);
+    </script>
+</body>
+</html>
