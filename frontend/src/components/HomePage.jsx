@@ -24,6 +24,7 @@ const HomePage = () => {
       <StreamlinedContact />
       <Footer />
       <FloatingActionButtons />
+      <PWAInstaller />
     </div>
   );
 };
