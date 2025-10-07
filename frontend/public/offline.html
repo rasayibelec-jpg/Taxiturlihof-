@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Taxi Türlihof</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #EAB308 0%, #F59E0B 100%);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            max-width: 400px;
+            padding: 40px 20px;
+        }
+        .icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: white;
+            color: #EAB308;
+        }
+        .contact-info {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .phone {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .offline-features {
+            text-align: left;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .offline-features ul {
+            list-style: none;
+            padding: 0;
+        }
+        .offline-features li {
+            padding: 5px 0;
+            font-size: 0.9em;
+        }
+        .offline-features li:before {
+            content: "✓ ";
+            color: #10B981;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">📱🚫</div>
+        <h1>Offline-Modus</h1>
+        <p>Sie sind momentan offline, aber Sie können trotzdem wichtige Aktionen durchführen:</p>
+        
+        <div class="offline-features">
+            <h3>Verfügbare Funktionen:</h3>
+            <ul>
+                <li>Gespeicherte Seiten durchsuchen</li>
+                <li>Kontaktinformationen anzeigen</li>
+                <li>Direkt anrufen (falls Telefonsignal verfügbar)</li>
+                <li>App-Features nutzen</li>
+            </ul>
+        </div>
+        
+        <div class="contact-info">
+            <h3>📞 Sofort verfügbar</h3>
+            <div class="phone">
+                <a href="tel:+41766113131" class="btn">076 611 31 31 anrufen</a>
+            </div>
+            <p>24/7 Taxi-Service - auch ohne Internet!</p>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <button onclick="window.location.reload()" class="btn">
+                🔄 Neu laden
+            </button>
+            <button onclick="history.back()" class="btn">
+                ⬅️ Zurück
+            </button>
+        </div>
+        
+        <div style="margin-top: 40px; font-size: 0.9em; opacity: 0.8;">
+            <p>Taxi Türlihof - Ihr zuverlässiger Partner</p>
+            <p>seit 2010 in der Zentralschweiz</p>
+        </div>
+    </div>
+
+    <script>
+        // Check if online and redirect
+        window.addEventListener('online', () => {
+            console.log('Back online!');
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 1000);
+        });
+
+        // Service worker communication
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.ready.then((registration) => {
+                console.log('Offline page loaded with SW support');
+            });
+        }
+    </script>
+</body>
+</html>
