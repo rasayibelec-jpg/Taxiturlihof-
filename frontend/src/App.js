@@ -58,6 +58,7 @@ function App() {
             <Route path="/blog/luzern-sehenswuerdigkeiten" element={<BlogLuzernSehenswuerdigkeiten />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/booking-lookup" element={<BookingLookup />} />
+            <Route path="/pwa-test" element={<PWATestInstructions />} />
             <Route path="/booking/payment-success" element={<PaymentSuccess />} />
             <Route path="/booking/payment-cancelled" element={<BookingPage />} />
           </Routes>
