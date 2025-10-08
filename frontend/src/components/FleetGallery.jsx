@@ -8,6 +8,11 @@ const FleetGallery = () => {
 
   const fleetImages = [
     {
+      url: "https://customer-assets.emergentagent.com/job_taxi-booking-hub-2/artifacts/vzfxjeyp_20250504_053743.jpg",
+      title: "Mercedes-Flotte Taxi Türlihof",
+      description: "Unsere komplette Mercedes-Flotte: V-Klasse Van und Premium-Limousinen bei Nacht"
+    },
+    {
       url: "https://customer-assets.emergentagent.com/job_taxi-luzern-web/artifacts/1brf17uv_Screenshot_20250925_125059_Photos.jpg",
       title: "Mercedes S-Klasse Premium",
       description: "Elegante schwarze Mercedes-Limousine in der Zentralschweiz"
