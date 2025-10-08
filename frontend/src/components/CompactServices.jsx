@@ -44,11 +44,11 @@ const CompactServices = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           {mainServices.map((service, index) => (
             <Card 
               key={index} 
-              className="text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-yellow-200 overflow-hidden relative group"
+              className="text-center hover:shadow-xl transition-all duration-300 border-0 hover:border-2 hover:border-yellow-400 overflow-hidden relative group"
             >
               {/* Background Image with Overlay */}
               <div 
