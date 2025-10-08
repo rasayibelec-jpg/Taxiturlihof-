@@ -50,8 +50,16 @@ const FlottePage = () => {
       />
       <Breadcrumb />
       
-      {/* Header */}
-      <section className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-16">
+      {/* Header - mit Mercedes-Flottenbild */}
+      <section 
+        className="text-white py-16 relative"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url("https://customer-assets.emergentagent.com/job_taxi-booking-hub-2/artifacts/vzfxjeyp_20250504_053743.jpg")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="bg-white/20 p-4 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
