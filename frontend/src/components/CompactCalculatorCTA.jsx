@@ -39,7 +39,7 @@ const CompactCalculatorCTA = () => {
           </Card>
 
           {/* Online Buchung - kleiner Block */}
-          <Card className="p-3 hover:shadow-lg transition-shadow duration-300 bg-white border border-blue-200 text-center">
+          <Card className="p-3 hover:shadow-lg transition-all duration-300 bg-white border-0 hover:border hover:border-blue-300 text-center">
             <div className="bg-blue-100 p-2 rounded-full w-10 h-10 mx-auto mb-2 flex items-center justify-center">
               <Calendar className="w-5 h-5 text-blue-600" />
             </div>
@@ -60,7 +60,7 @@ const CompactCalculatorCTA = () => {
           </Card>
 
           {/* Direkt anrufen - kleiner Block */}
-          <Card className="p-3 hover:shadow-lg transition-shadow duration-300 bg-white border border-green-200 text-center">
+          <Card className="p-3 hover:shadow-lg transition-all duration-300 bg-white border-0 hover:border hover:border-green-300 text-center">
             <div className="bg-green-100 p-2 rounded-full w-10 h-10 mx-auto mb-2 flex items-center justify-center">
               <Phone className="w-5 h-5 text-green-600" />
             </div>
