@@ -35,11 +35,11 @@ const CompactServices = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Services */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">
             Unsere Hauptleistungen
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base text-gray-600 max-w-2xl mx-auto">
             Professioneller Taxi-Service für alle Ihre Transportbedürfnisse
           </p>
         </div>
