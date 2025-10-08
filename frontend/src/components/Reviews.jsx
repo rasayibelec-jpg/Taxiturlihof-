@@ -94,7 +94,7 @@ const Reviews = () => {
         </div>
 
         {/* Google Bewertung Übersicht - kompakt */}
-        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-6 mb-8 border border-yellow-200">
+        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-4 mb-6 border-0 hover:border hover:border-yellow-300 transition-all duration-300 hover:shadow-md">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="text-center md:text-left mb-4 md:mb-0">
               <div className="flex items-center justify-center md:justify-start mb-2">
