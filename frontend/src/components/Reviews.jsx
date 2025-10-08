@@ -135,7 +135,7 @@ const Reviews = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
           {/* Yeni kullanıcı yorumları - kompakt */}
           {userReviews.map((review) => (
-            <Card key={review.id} className="p-3 hover:shadow-lg transition-all duration-300 border-green-200 bg-green-50 text-center">
+            <Card key={review.id} className="p-3 hover:shadow-lg transition-all duration-300 border-0 hover:border hover:border-green-300 bg-green-50 text-center">
               <div className="flex justify-center mb-2">
                 {renderStars(review.rating)}
               </div>
@@ -148,7 +148,7 @@ const Reviews = () => {
           
           {/* Google Bewertungen - kompakt */}
           {googleReviews.map((review) => (
-            <Card key={review.id} className="p-3 hover:shadow-lg transition-all duration-300 border-gray-200 text-center">
+            <Card key={review.id} className="p-3 hover:shadow-lg transition-all duration-300 border-0 hover:border hover:border-gray-300 text-center">
               <div className="flex justify-center mb-2">
                 {renderStars(review.rating)}
               </div>
