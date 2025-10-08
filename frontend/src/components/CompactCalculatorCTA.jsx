@@ -18,7 +18,7 @@ const CompactCalculatorCTA = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           
           {/* Preisrechner - kleiner Block */}
-          <Card className="p-3 hover:shadow-lg transition-shadow duration-300 bg-white border border-yellow-200 text-center">
+          <Card className="p-3 hover:shadow-lg transition-all duration-300 bg-white border-0 hover:border hover:border-yellow-300 text-center">
             <div className="bg-yellow-100 p-2 rounded-full w-10 h-10 mx-auto mb-2 flex items-center justify-center">
               <Calculator className="w-5 h-5 text-yellow-600" />
             </div>
