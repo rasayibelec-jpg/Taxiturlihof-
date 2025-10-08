@@ -71,17 +71,27 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact Info - KLICKBAR GEMACHT */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Kontakt</h4>
             <div className="space-y-3 text-gray-300">
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-yellow-500" />
-                <span>{contactInfo.phone}</span>
+                <a 
+                  href={`tel:${contactInfo.phone.replace(/\s/g, '')}`}
+                  className="hover:text-yellow-500 transition-colors duration-200 cursor-pointer"
+                >
+                  {contactInfo.phone}
+                </a>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-yellow-500" />
-                <span>{contactInfo.email}</span>
+                <a 
+                  href={`mailto:${contactInfo.email}`}
+                  className="hover:text-yellow-500 transition-colors duration-200 cursor-pointer"
+                >
+                  {contactInfo.email}
+                </a>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-4 h-4 text-yellow-500" />
@@ -89,7 +99,12 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Globe className="w-4 h-4 text-yellow-500" />
-                <span>{contactInfo.website}</span>
+                <a 
+                  href="/"
+                  className="hover:text-yellow-500 transition-colors duration-200 cursor-pointer"
+                >
+                  {contactInfo.website}
+                </a>
               </div>
             </div>
           </div>
