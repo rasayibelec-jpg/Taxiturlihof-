@@ -226,20 +226,22 @@ const Reviews = () => {
                 </div>
               </div>
 
-              {/* Kontakt - kompakt */}
-              <div className="text-center space-y-2">
-                <a
-                  href="tel:076 611 31 31"
-                  className="block bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded text-xs font-semibold"
-                >
-                  📞 Anrufen
-                </a>
-                <a
-                  href="mailto:info@taxiturlihof.ch"
-                  className="block bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded text-xs font-semibold"
-                >
-                  ✉️ E-Mail
-                </a>
+              {/* Kontakt - kompakt & horizontal */}
+              <div className="text-center">
+                <div className="flex justify-center space-x-3">
+                  <a
+                    href="tel:076 611 31 31"
+                    className="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded text-xs font-semibold transition-colors duration-200"
+                  >
+                    📞 Anrufen
+                  </a>
+                  <a
+                    href="mailto:info@taxiturlihof.ch"
+                    className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded text-xs font-semibold transition-colors duration-200"
+                  >
+                    ✉️ E-Mail
+                  </a>
+                </div>
               </div>
 
             </div>
