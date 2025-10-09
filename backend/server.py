@@ -1215,6 +1215,60 @@ async def cancel_payment_admin(transaction_id: str, current_admin: dict = Depend
         logger.error(f"Failed to cancel payment {transaction_id}: {str(e)}")
         raise HTTPException(status_code=500, detail="Fehler beim Stornieren der Zahlung")
 
+@api_router.delete("/admin/payments/clear-all")
+async def clear_all_payments_admin(current_admin: dict = Depends(get_current_admin_user)):
+    """Admin-only: Delete all payment transactions and bookings"""
+    try:
+        # Delete all payment transactions
+        payment_result = await db.payment_transactions.delete_many({})
+        
+        # Delete all bookings
+        booking_result = await db.bookings.delete_many({})
+        
+        # Delete all customers
+        customer_result = await db.customers.delete_many({})
+        
+        total_deleted = payment_result.deleted_count + booking_result.deleted_count + customer_result.deleted_count
+        
+        return {
+            "success": True,
+            "message": f"Alle Daten erfolgreich gelöscht: {total_deleted} Einträge entfernt",
+            "details": {
+                "payment_transactions": payment_result.deleted_count,
+                "bookings": booking_result.deleted_count,
+                "customers": customer_result.deleted_count,
+                "total": total_deleted
+            }
+        }
+        
+    except Exception as e:
+        logger.error(f"Failed to clear all payments: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Löschen aller Zahlungen")
+
+@api_router.delete("/admin/payments/{transaction_id}")
+async def delete_single_payment_admin(transaction_id: str, current_admin: dict = Depends(get_current_admin_user)):
+    """Admin-only: Delete a single payment transaction"""
+    try:
+        # Delete the payment transaction
+        payment_result = await db.payment_transactions.delete_one({"id": transaction_id})
+        
+        if payment_result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail="Zahlung nicht gefunden")
+        
+        # Also delete associated booking if exists
+        await db.bookings.delete_many({"payment_transaction_id": transaction_id})
+        
+        return {
+            "success": True,
+            "message": f"Zahlung {transaction_id} erfolgreich gelöscht"
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to delete payment {transaction_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Löschen der Zahlung")
+
 @api_router.get("/admin/payments")
 async def get_all_payment_transactions(current_admin: dict = Depends(get_current_admin_user)):
     """Admin-only: Get all payment transactions"""
