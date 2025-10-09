@@ -712,6 +712,25 @@ class CustomerBookingLookupRequest(BaseModel):
     booking_id: str
     email: str
 
+# Password Reset Models
+class PasswordResetRequest(BaseModel):
+    method: str  # 'email' or 'sms'
+    
+class PasswordResetResponse(BaseModel):
+    success: bool
+    message: str
+    method: Optional[str] = None
+    
+class PasswordResetVerifyRequest(BaseModel):
+    token: Optional[str] = None  # for email method
+    code: Optional[str] = None   # for sms method
+    
+class PasswordResetCompleteRequest(BaseModel):
+    token: Optional[str] = None  # for email method 
+    code: Optional[str] = None   # for sms method
+    new_password: str
+    confirm_password: str
+
 # Authentication endpoints
 @api_router.post("/auth/admin/login", response_model=AdminLoginResponse)
 async def admin_login(request: AdminLoginRequest):
