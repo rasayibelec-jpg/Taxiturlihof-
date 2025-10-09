@@ -52,10 +52,10 @@ class RealPasswordResetTester:
                 import sys
                 import os
                 sys.path.insert(0, '/app/backend')
-                from password_reset_service import password_reset_service
+                from password_reset_service import reset_tokens
                 
                 # Get the most recent token (this simulates getting it from email)
-                if password_reset_service.reset_tokens:
+                if reset_tokens:
                     # Get the most recent token
                     latest_token = list(password_reset_service.reset_tokens.keys())[-1]
                     print(f"✅ Token extracted: {latest_token[:20]}...")
