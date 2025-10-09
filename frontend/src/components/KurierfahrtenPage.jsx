@@ -323,10 +323,10 @@ const KurierfahrtenPage = () => {
               <Button 
                 size="lg" 
                 className="bg-gray-900 hover:bg-gray-800 text-white"
-                onClick={() => setShowCalculator(true)}
+                onClick={() => window.location.href = 'tel:+41766113131'}
               >
                 <Package className="w-5 h-5 mr-2" />
-                Online Kurier beauftragen
+                Kurier anfragen
               </Button>
               
               <Button 
