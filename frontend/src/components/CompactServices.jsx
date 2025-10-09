@@ -28,6 +28,13 @@ const CompactServices = () => {
       description: "Termine, Meetings, Events",
       shortDesc: "Zuverlässig & diskret",
       backgroundImage: "https://images.unsplash.com/photo-1647281194826-11459827b123?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+      icon: <Package className="w-8 h-8 text-red-600" />,
+      title: "Kurierfahrten",
+      description: "Express & Same-Day Delivery",
+      shortDesc: "Ab CHF 25",
+      backgroundImage: "https://images.unsplash.com/photo-1605123525296-8d378e1f8f11?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
     }
   ];
 
