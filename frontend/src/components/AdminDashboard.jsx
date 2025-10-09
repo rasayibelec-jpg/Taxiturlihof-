@@ -258,7 +258,38 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Statistiken */}
+        {/* Tab Navigation */}
+        <div className="mb-6">
+          <div className="flex border-b border-gray-200">
+            <button
+              onClick={() => setActiveTab('bookings')}
+              className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${
+                activeTab === 'bookings'
+                  ? 'border-yellow-600 text-yellow-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              <Car className="w-4 h-4 inline mr-2" />
+              Buchungen
+            </button>
+            <button
+              onClick={() => setActiveTab('payments')}
+              className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${
+                activeTab === 'payments'
+                  ? 'border-yellow-600 text-yellow-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              <CreditCard className="w-4 h-4 inline mr-2" />
+              Zahlungen
+            </button>
+          </div>
+        </div>
+
+        {/* Content based on active tab */}
+        {activeTab === 'bookings' && (
+          <>
+            {/* Statistiken */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
           {Object.entries(statusOptions).map(([status, config]) => {
             const count = bookings.filter(b => b.status === status).length;
