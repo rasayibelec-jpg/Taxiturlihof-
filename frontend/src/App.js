@@ -65,7 +65,6 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/dienstleistungen" element={<Services />} />
             <Route path="/geschaeftsfahrten" element={<GeschaeftstaximPage />} />
-            <Route path="/kurierfahrten" element={<KurierfahrtenPage />} />
             <Route path="/booking-lookup" element={<BookingLookup />} />
             <Route path="/pwa-test" element={<PWATestInstructions />} />
             <Route path="/booking/payment-success" element={<PaymentSuccess />} />
