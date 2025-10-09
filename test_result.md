@@ -219,10 +219,11 @@ metadata:
 
 test_plan:
   current_focus: 
-    - "Admin Password Reset Frontend Testing"
-  stuck_tasks: []
+    - "New Service Links Testing - User Reported Issue"
+  stuck_tasks: 
+    - "New Service Links Testing - User Reported Issue"
   test_all: false
-  test_priority: "high_first"
+  test_priority: "critical_first"
 
   - task: "Online Booking System Email Debug"
     implemented: true
