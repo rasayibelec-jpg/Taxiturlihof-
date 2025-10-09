@@ -242,6 +242,100 @@ const GeschaeftstaximPage = () => {
           </div>
         </section>
 
+        {/* Preistabelle Section */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Business Taxi Preisliste
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Transparente Festpreise für Ihre Geschäftsfahrten - ohne versteckte Kosten
+              </p>
+            </div>
+
+            <div className="max-w-4xl mx-auto">
+              <Card className="overflow-hidden shadow-xl">
+                <CardHeader className="bg-gray-800 text-white text-center">
+                  <CardTitle className="text-2xl">
+                    🚗 Business Taxi Preistabelle
+                  </CardTitle>
+                  <p className="text-gray-300 mt-2">Alle Preise inklusive MwSt. und Anfahrt</p>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead className="bg-gray-50">
+                        <tr>
+                          <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 border-b">
+                            Strecke
+                          </th>
+                          <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 border-b">
+                            Preis ab*
+                          </th>
+                          <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 border-b">
+                            Fahrtzeit
+                          </th>
+                          <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 border-b">
+                            Aktion
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-200">
+                        {preisbeispiele.map((route, index) => (
+                          <tr key={index} className="hover:bg-gray-50 transition-colors">
+                            <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                              {route.route}
+                            </td>
+                            <td className="px-6 py-4 text-sm font-bold text-green-600">
+                              {route.price}
+                            </td>
+                            <td className="px-6 py-4 text-sm text-gray-600">
+                              {route.duration}
+                            </td>
+                            <td className="px-6 py-4 text-center">
+                              <Button 
+                                size="sm"
+                                onClick={() => setShowCalculator(true)}
+                                className="bg-gray-800 hover:bg-gray-900 text-white"
+                              >
+                                Jetzt buchen
+                              </Button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  
+                  <div className="bg-gray-50 px-6 py-4 text-center">
+                    <p className="text-sm text-gray-600">
+                      <strong>*</strong> Preise gelten für Standard Business-Fahrzeuge (Mercedes C/E-Klasse). 
+                      Premium-Fahrzeuge und Van-Service auf Anfrage. Wartezeit bis 30 Min inklusive.
+                    </p>
+                    <div className="mt-3 flex justify-center gap-4">
+                      <Button 
+                        onClick={() => setShowCalculator(true)}
+                        className="bg-yellow-600 hover:bg-yellow-700 text-white"
+                      >
+                        <Calculator className="w-4 h-4 mr-2" />
+                        Preis für andere Strecken berechnen
+                      </Button>
+                      <Button 
+                        variant="outline"
+                        onClick={() => window.location.href = 'tel:+41766113131'}
+                      >
+                        <Phone className="w-4 h-4 mr-2" />
+                        Sonderpreis anfragen
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         {/* Firmenkunden Section */}
         <section className="py-16 bg-gradient-to-r from-gray-100 to-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
