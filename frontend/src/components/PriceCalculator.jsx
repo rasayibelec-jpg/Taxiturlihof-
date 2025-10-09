@@ -204,9 +204,15 @@ const PriceCalculator = () => {
       setRouteOptions(data);
       setCalculationStatus('success');
       
+      // Activate map with route data (use fastest route as default)
+      if (data.fastest_route) {
+        setMapRouteData(data.fastest_route);
+        setShowMapRoute(true);
+      }
+      
       toast({
         title: "✅ Routenoptionen berechnet",
-        description: "Wählen Sie Ihre bevorzugte Route aus.",
+        description: "Route wird auf der Karte angezeigt. Wählen Sie Ihre bevorzugte Route aus.",
       });
 
     } catch (error) {
