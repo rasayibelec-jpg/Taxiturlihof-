@@ -62,6 +62,8 @@ function App() {
             <Route path="/blog/luzern-sehenswuerdigkeiten" element={<BlogLuzernSehenswuerdigkeiten />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin-reset" element={<AdminPasswordReset />} />
+            <Route path="/geschaeftsfahrten" element={<GeschaeftstaximPage />} />
+            <Route path="/kurierfahrten" element={<KurierfahrtenPage />} />
             <Route path="/booking-lookup" element={<BookingLookup />} />
             <Route path="/pwa-test" element={<PWATestInstructions />} />
             <Route path="/booking/payment-success" element={<PaymentSuccess />} />
