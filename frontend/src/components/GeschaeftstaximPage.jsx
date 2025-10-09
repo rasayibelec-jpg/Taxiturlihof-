@@ -303,7 +303,7 @@ const GeschaeftstaximPage = () => {
                     </p>
                     <div className="mt-3 flex justify-center gap-4">
                       <Button 
-                        onClick={() => setShowCalculator(true)}
+                        onClick={() => window.location.href = '/preisrechner'}
                         className="bg-yellow-600 hover:bg-yellow-700 text-white"
                       >
                         <Calculator className="w-4 h-4 mr-2" />
