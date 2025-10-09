@@ -70,11 +70,47 @@ const CompactServices = () => {
                   </CardTitle>
                   <p className="text-white/90 drop-shadow-md font-medium">{service.description}</p>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="space-y-3">
                   <div className="bg-yellow-300/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg">
                     <span className="text-sm font-bold text-black drop-shadow-sm">
                       {service.shortDesc}
                     </span>
+                  </div>
+                  
+                  {/* Service-specific buttons */}
+                  <div className="flex flex-col gap-2">
+                    {index === 0 && ( // Lokale Fahrten
+                      <div className="flex gap-1">
+                        <Link to="/taxi-luzern" className="flex-1">
+                          <Button size="sm" className="w-full bg-white/20 text-white border-white/30 hover:bg-white/30 backdrop-blur-sm">
+                            Luzern
+                          </Button>
+                        </Link>
+                        <Link to="/taxi-zug" className="flex-1">
+                          <Button size="sm" className="w-full bg-white/20 text-white border-white/30 hover:bg-white/30 backdrop-blur-sm">
+                            Zug
+                          </Button>
+                        </Link>
+                      </div>
+                    )}
+                    
+                    {index === 1 && ( // Flughafentransfer
+                      <Link to="/flughafentransfer" className="w-full">
+                        <Button size="sm" className="w-full bg-white/20 text-white border-white/30 hover:bg-white/30 backdrop-blur-sm">
+                          <Plane className="w-4 h-4 mr-1" />
+                          Jetzt buchen
+                        </Button>
+                      </Link>
+                    )}
+                    
+                    {index === 2 && ( // Geschäftsfahrten
+                      <Link to="/geschaeftsfahrten" className="w-full">
+                        <Button size="sm" className="w-full bg-white/20 text-white border-white/30 hover:bg-white/30 backdrop-blur-sm">
+                          <Briefcase className="w-4 h-4 mr-1" />
+                          Business buchen
+                        </Button>
+                      </Link>
+                    )}
                   </div>
                 </CardContent>
               </div>
