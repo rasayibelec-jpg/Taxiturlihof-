@@ -124,22 +124,38 @@ const KurierfahrtenPage = () => {
 
               <div className="relative">
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-                  <h3 className="text-2xl font-bold mb-6 text-center">Preis-Zonen</h3>
+                  <h3 className="text-2xl font-bold mb-6 text-center">{preisInfo.title}</h3>
                   
-                  <div className="space-y-4">
-                    {preisZonen.map((zone, index) => (
-                      <div key={index} className="bg-white/20 rounded-lg p-4">
-                        <div className="flex justify-between items-center mb-2">
-                          <div className="font-semibold">{zone.zone}</div>
-                          <div className="text-yellow-300 font-bold">{zone.preis}</div>
+                  <div className="text-center mb-6">
+                    <div className="bg-yellow-300/90 backdrop-blur-sm px-6 py-4 rounded-lg shadow-lg inline-block">
+                      <span className="text-xl font-bold text-black">
+                        💰 Preis auf Anfrage
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <p className="text-blue-100 mb-4 text-center">{preisInfo.description}</p>
+                  
+                  <div className="space-y-3">
+                    {preisInfo.factors.map((factor, index) => (
+                      <div key={index} className="bg-white/20 rounded-lg p-3 flex items-center">
+                        <div className="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                          <span className="text-black font-bold text-sm">{index + 1}</span>
                         </div>
-                        <div className="text-sm text-blue-100 mb-1">{zone.description}</div>
-                        <div className="flex justify-between text-xs text-blue-200">
-                          <span>{zone.distance}</span>
-                          <span>{zone.dauer}</span>
-                        </div>
+                        <span className="text-white font-medium">{factor}</span>
                       </div>
                     ))}
+                  </div>
+                  
+                  <div className="mt-6 text-center">
+                    <Button 
+                      size="lg"
+                      className="bg-yellow-600 hover:bg-yellow-700 text-white"
+                      onClick={() => window.location.href = 'tel:+41766113131'}
+                    >
+                      <Phone className="w-5 h-5 mr-2" />
+                      Kostenvoranschlag anfordern
+                    </Button>
                   </div>
                 </div>
               </div>
