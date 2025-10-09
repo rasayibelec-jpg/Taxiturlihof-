@@ -190,7 +190,7 @@ const GeschaeftstaximPage = () => {
                       
                       <Button 
                         className="w-full mt-4 bg-gray-800 hover:bg-gray-900"
-                        onClick={() => setShowCalculator(true)}
+                        onClick={() => window.location.href = '/preisrechner'}
                       >
                         {service.title} buchen
                         <ArrowRight className="w-4 h-4 ml-2" />
