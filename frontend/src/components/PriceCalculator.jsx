@@ -405,6 +405,16 @@ const PriceCalculator = () => {
           {/* Results */}
           <div className="space-y-6">
             
+            {/* Google Maps Route Visualization */}
+            {(showMapRoute || showInteractiveMap) && (
+              <GoogleMapsRoute
+                origin={startAddress}
+                destination={endAddress}
+                routeData={mapRouteData}
+                showRoute={showMapRoute || showInteractiveMap}
+              />
+            )}
+            
             {/* Interactive Route Map */}
             {showInteractiveMap && interactiveRoutes && (
               <div className="space-y-6">
