@@ -1178,7 +1178,69 @@ async def get_payment_status(session_id: str):
         logger.error(f"Failed to get payment status: {str(e)}")
         raise HTTPException(status_code=500, detail="Fehler beim Abrufen des Zahlungsstatus")
 
-@api_router.post("/webhooks/stripe")
+# Manual Payment Control Endpoints (Admin only)
+@api_router.post("/admin/payments/{transaction_id}/capture")
+async def capture_payment_admin(transaction_id: str, current_admin: dict = Depends(get_current_admin_user)):
+    """Admin-only: Manually capture an authorized payment"""
+    try:
+        success = await payment_service.capture_authorized_payment(transaction_id)
+        
+        if success:
+            return {
+                "success": True,
+                "message": f"Zahlung {transaction_id} erfolgreich eingezogen"
+            }
+        else:
+            raise HTTPException(status_code=400, detail="Zahlung konnte nicht eingezogen werden")
+            
+    except Exception as e:
+        logger.error(f"Failed to capture payment {transaction_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Einziehen der Zahlung")
+
+@api_router.post("/admin/payments/{transaction_id}/cancel")
+async def cancel_payment_admin(transaction_id: str, current_admin: dict = Depends(get_current_admin_user)):
+    """Admin-only: Cancel an authorized payment"""
+    try:
+        success = await payment_service.cancel_authorized_payment(transaction_id)
+        
+        if success:
+            return {
+                "success": True,
+                "message": f"Zahlung {transaction_id} erfolgreich storniert und freigegeben"
+            }
+        else:
+            raise HTTPException(status_code=400, detail="Zahlung konnte nicht storniert werden")
+            
+    except Exception as e:
+        logger.error(f"Failed to cancel payment {transaction_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Stornieren der Zahlung")
+
+@api_router.get("/admin/payments")
+async def get_all_payment_transactions(current_admin: dict = Depends(get_current_admin_user)):
+    """Admin-only: Get all payment transactions"""
+    try:
+        transactions = await db.payment_transactions.find().sort("created_at", -1).to_list(length=1000)
+        
+        # Convert to PaymentTransaction objects for consistent response
+        payment_transactions = []
+        for transaction_data in transactions:
+            try:
+                transaction = PaymentTransaction(**transaction_data)
+                payment_transactions.append(transaction.dict())
+            except Exception as e:
+                logger.warning(f"Skipping invalid transaction: {str(e)}")
+                continue
+        
+        return {
+            "success": True,
+            "transactions": payment_transactions
+        }
+        
+    except Exception as e:
+        logger.error(f"Failed to fetch payment transactions: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Laden der Zahlungen")
+
+@api_router.webhooks/stripe")
 async def stripe_webhook(request: Request):
     """Handle Stripe webhook events"""
     try:
