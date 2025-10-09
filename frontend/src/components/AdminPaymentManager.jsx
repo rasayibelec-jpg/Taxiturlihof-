@@ -328,6 +328,20 @@ Sind Sie absolut sicher?`;
                       </>
                     )}
                   </Button>
+
+                  <Button
+                    onClick={() => handleDeleteSinglePayment(transaction.id)}
+                    disabled={processing === transaction.id}
+                    variant="outline"
+                    className="text-red-600 hover:text-red-800 border-red-300 hover:bg-red-50"
+                    title="Zahlung permanent löschen"
+                  >
+                    {processing === transaction.id ? (
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-red-600"></div>
+                    ) : (
+                      <Trash2 className="w-4 h-4" />
+                    )}
+                  </Button>
                 </div>
               </div>
             ))}
