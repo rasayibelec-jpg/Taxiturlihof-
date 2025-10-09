@@ -18,22 +18,10 @@ const GeschaeftstaximPage = () => {
       features: ["Mercedes S-Klasse", "Diskrete Fahrer", "Warteservice", "Rechnung per E-Mail"]
     },
     {
-      title: "Meeting Shuttle", 
-      description: "Zuverlässiger Transport zu Geschäftsterminen und Meetings",
-      icon: Briefcase,
-      features: ["Pünktliche Abholung", "Wartezeit inklusive", "Flexible Termine", "Corporate Rabatte"]
-    },
-    {
       title: "Airport Business",
       description: "Geschäfts-Flughafentransfer mit Express-Service",
       icon: Clock,
       features: ["Flugverfolgung", "Meet & Greet", "Gepäckservice", "Festpreise"]
-    },
-    {
-      title: "Firmen-Account",
-      description: "Monatliche Abrechnung für Unternehmen",
-      icon: CreditCard,
-      features: ["Sammelrechnung", "Online Reporting", "Mitarbeiter-Accounts", "Kostenstellen"]
     }
   ];
 
