@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import { Package, Clock, Shield, Truck, Calculator, Phone, ArrowRight, CheckCircle, FileText, MapPin } from "lucide-react";
-import PriceCalculator from './PriceCalculator';
+import { Package, Clock, Shield, Truck, Phone, CheckCircle, FileText, MapPin } from "lucide-react";
 import Breadcrumb from './Breadcrumb';
 
 const KurierfahrtenPage = () => {
