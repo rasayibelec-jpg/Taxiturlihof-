@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import { CreditCard, Clock, CheckCircle, X, AlertCircle, Euro } from "lucide-react";
+import { CreditCard, Clock, CheckCircle, X, AlertCircle, Euro, Trash2, RefreshCw } from "lucide-react";
 
 const AdminPaymentManager = ({ adminToken, backendUrl }) => {
   const [transactions, setTransactions] = useState([]);
