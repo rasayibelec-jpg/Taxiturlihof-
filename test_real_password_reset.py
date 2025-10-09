@@ -57,7 +57,7 @@ class RealPasswordResetTester:
                 # Get the most recent token (this simulates getting it from email)
                 if reset_tokens:
                     # Get the most recent token
-                    latest_token = list(password_reset_service.reset_tokens.keys())[-1]
+                    latest_token = list(reset_tokens.keys())[-1]
                     print(f"✅ Token extracted: {latest_token[:20]}...")
                     
                     # Step 3: Verify the token
