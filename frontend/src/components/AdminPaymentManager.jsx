@@ -406,9 +406,25 @@ Sind Sie absolut sicher?`;
 
                   <div className="flex justify-between items-center text-sm text-gray-600">
                     <span className="capitalize">{transaction.payment_method}</span>
-                    {transaction.session_id && (
-                      <span className="font-mono text-xs">ID: {transaction.id.slice(0, 8)}</span>
-                    )}
+                    <div className="flex items-center gap-2">
+                      {transaction.session_id && (
+                        <span className="font-mono text-xs">ID: {transaction.id.slice(0, 8)}</span>
+                      )}
+                      <Button
+                        onClick={() => handleDeleteSinglePayment(transaction.id)}
+                        disabled={processing === transaction.id}
+                        variant="ghost"
+                        size="sm"
+                        className="text-red-600 hover:text-red-800 hover:bg-red-50 h-6 w-6 p-0"
+                        title="Zahlung löschen"
+                      >
+                        {processing === transaction.id ? (
+                          <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-red-600"></div>
+                        ) : (
+                          <Trash2 className="w-3 h-3" />
+                        )}
+                      </Button>
+                    </div>
                   </div>
                 </div>
               ))}
