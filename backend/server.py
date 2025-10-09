@@ -784,6 +784,169 @@ async def verify_admin_token(request: Request):
         logger.error(f"Token verification error: {str(e)}")
         raise HTTPException(status_code=500, detail="Token-Überprüfungsfehler")
 
+# Password Reset Endpoints
+@api_router.post("/admin/password-reset/request", response_model=PasswordResetResponse)
+async def request_password_reset(request: PasswordResetRequest):
+    """Request admin password reset via email or SMS"""
+    try:
+        method = request.method.lower()
+        
+        if method == 'email':
+            token = password_reset_service.create_email_reset_request(password_reset_service.admin_email)
+            if not token:
+                raise HTTPException(status_code=400, detail="Ungültige E-Mail-Adresse")
+            
+            success = password_reset_service.send_reset_email(token)
+            if not success:
+                raise HTTPException(status_code=500, detail="E-Mail konnte nicht gesendet werden")
+            
+            return PasswordResetResponse(
+                success=True,
+                message="Reset-Link wurde an Ihre E-Mail-Adresse gesendet. Überprüfen Sie Ihren Posteingang.",
+                method="email"
+            )
+            
+        elif method == 'sms':
+            code = password_reset_service.create_sms_reset_request(password_reset_service.admin_phone)
+            if not code:
+                raise HTTPException(status_code=400, detail="Ungültige Telefonnummer")
+            
+            success = password_reset_service.send_sms_code(code)
+            if not success:
+                raise HTTPException(status_code=500, detail="SMS konnte nicht gesendet werden")
+            
+            return PasswordResetResponse(
+                success=True,
+                message="Verifikationscode wurde an Ihre Telefonnummer gesendet.",
+                method="sms"
+            )
+            
+        else:
+            raise HTTPException(status_code=400, detail="Ungültige Reset-Methode. Verwenden Sie 'email' oder 'sms'")
+            
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Password reset request failed: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler bei der Passwort-Reset-Anfrage")
+
+@api_router.post("/admin/password-reset/verify", response_model=PasswordResetResponse)
+async def verify_password_reset(request: PasswordResetVerifyRequest):
+    """Verify password reset token or SMS code"""
+    try:
+        if request.token:
+            # Email method verification
+            is_valid = password_reset_service.verify_reset_token(request.token)
+            if not is_valid:
+                raise HTTPException(status_code=400, detail="Ungültiger oder abgelaufener Reset-Token")
+            
+            return PasswordResetResponse(
+                success=True,
+                message="Reset-Token ist gültig. Sie können nun ein neues Passwort festlegen.",
+                method="email"
+            )
+            
+        elif request.code:
+            # SMS method verification
+            is_valid = password_reset_service.verify_sms_code(request.code)
+            if not is_valid:
+                raise HTTPException(status_code=400, detail="Ungültiger oder abgelaufener Verifikationscode")
+            
+            return PasswordResetResponse(
+                success=True,
+                message="Verifikationscode ist gültig. Sie können nun ein neues Passwort festlegen.",
+                method="sms"
+            )
+            
+        else:
+            raise HTTPException(status_code=400, detail="Token oder Code erforderlich")
+            
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Password reset verification failed: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler bei der Token-Überprüfung")
+
+@api_router.post("/admin/password-reset/complete", response_model=PasswordResetResponse)
+async def complete_password_reset(request: PasswordResetCompleteRequest):
+    """Complete password reset by setting new password"""
+    try:
+        # Validate password confirmation
+        if request.new_password != request.confirm_password:
+            raise HTTPException(status_code=400, detail="Passwörter stimmen nicht überein")
+        
+        # Validate password strength
+        if len(request.new_password) < 8:
+            raise HTTPException(status_code=400, detail="Passwort muss mindestens 8 Zeichen lang sein")
+        
+        # Check if password contains at least one number and one letter
+        has_letter = any(c.isalpha() for c in request.new_password)
+        has_number = any(c.isdigit() for c in request.new_password)
+        
+        if not (has_letter and has_number):
+            raise HTTPException(
+                status_code=400, 
+                detail="Passwort muss mindestens einen Buchstaben und eine Zahl enthalten"
+            )
+        
+        if request.token:
+            # Email method completion
+            is_valid = password_reset_service.verify_reset_token(request.token)
+            if not is_valid:
+                raise HTTPException(status_code=400, detail="Ungültiger oder abgelaufener Reset-Token")
+            
+            # Mark token as used
+            password_reset_service.use_reset_token(request.token)
+            
+        elif request.code:
+            # SMS method completion
+            is_valid = password_reset_service.verify_sms_code(request.code)
+            if not is_valid:
+                raise HTTPException(status_code=400, detail="Ungültiger oder abgelaufener Verifikationscode")
+            
+            # Mark code as used
+            password_reset_service.use_sms_code(request.code)
+            
+        else:
+            raise HTTPException(status_code=400, detail="Token oder Code erforderlich")
+        
+        # Update the admin password
+        success = password_reset_service.update_admin_password(request.new_password)
+        if not success:
+            raise HTTPException(status_code=500, detail="Fehler beim Aktualisieren des Passworts")
+        
+        return PasswordResetResponse(
+            success=True,
+            message="Admin-Passwort wurde erfolgreich aktualisiert. Sie können sich nun mit dem neuen Passwort anmelden."
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Password reset completion failed: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Abschließen des Passwort-Resets")
+
+@api_router.get("/admin/password-reset/status")
+async def get_password_reset_status():
+    """Get available password reset methods"""
+    try:
+        status = password_reset_service.get_reset_method_status()
+        
+        return {
+            "success": True,
+            "available_methods": {
+                "email": status['email_available'],
+                "sms": status['sms_available']
+            },
+            "mock_mode": status['mock_mode'],
+            "admin_email": password_reset_service.admin_email if status['email_available'] or status['mock_mode'] else None,
+            "admin_phone": password_reset_service.admin_phone if status['sms_available'] or status['mock_mode'] else None
+        }
+        
+    except Exception as e:
+        logger.error(f"Failed to get password reset status: {str(e)}")
+        raise HTTPException(status_code=500, detail="Fehler beim Abrufen des Reset-Status")
+
 @api_router.post("/bookings/lookup")
 async def customer_booking_lookup(request: CustomerBookingLookupRequest):
     """Customer booking lookup (no admin required)"""
