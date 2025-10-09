@@ -208,10 +208,10 @@ const KurierfahrtenPage = () => {
                       
                       <Button 
                         className="w-full bg-blue-600 hover:bg-blue-700"
-                        onClick={() => setShowCalculator(true)}
+                        onClick={() => window.location.href = 'tel:+41766113131'}
                       >
-                        {service.title} buchen
-                        <ArrowRight className="w-4 h-4 ml-2" />
+                        {service.title} anfragen
+                        <Phone className="w-4 h-4 ml-2" />
                       </Button>
                     </CardContent>
                   </Card>
