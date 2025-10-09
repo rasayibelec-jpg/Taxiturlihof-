@@ -111,15 +111,6 @@ const CompactServices = () => {
                         </Button>
                       </Link>
                     )}
-                    
-                    {index === 3 && ( // Kurierfahrten
-                      <Link to="/kurierfahrten" className="w-full">
-                        <Button size="sm" className="w-full bg-white/20 text-white border-white/30 hover:bg-white/30 backdrop-blur-sm">
-                          <Package className="w-4 h-4 mr-1" />
-                          Kurier beauftragen
-                        </Button>
-                      </Link>
-                    )}
                   </div>
                 </CardContent>
               </div>
