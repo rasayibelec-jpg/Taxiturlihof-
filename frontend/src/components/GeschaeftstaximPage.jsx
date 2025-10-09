@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import { Briefcase, Clock, Shield, Star, Calculator, Phone, ArrowRight, CheckCircle, Users, CreditCard } from "lucide-react";
-import PriceCalculator from './PriceCalculator';
+import { Briefcase, Clock, Shield, Star, Calculator, Phone, ArrowRight, CheckCircle } from "lucide-react";
 import Breadcrumb from './Breadcrumb';
 
 const GeschaeftstaximPage = () => {
