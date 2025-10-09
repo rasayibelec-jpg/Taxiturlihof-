@@ -11,30 +11,30 @@ const KurierfahrtenPage = () => {
   const kurierServices = [
     {
       title: "Eilkurier Same Day",
-      description: "Expressversand am gleichen Tag - innerhalb von 2-4 Stunden",
+      description: "Expressversand am gleichen Tag",
       icon: Clock,
-      features: ["Abholung innerhalb 30 Min", "Direkttransport", "SMS-Tracking", "Zustellnachweis"],
+      features: ["Express-Abholung", "Direkttransport", "SMS-Tracking"],
       preis: "Preis auf Anfrage"
     },
     {
       title: "Dokumentenkurier", 
-      description: "Sichere Übertragung wichtiger Geschäftsdokumente",
+      description: "Sichere Dokumentenübertragung",
       icon: FileText,
-      features: ["Rechtssichere Zustellung", "Einschreiben-Ersatz", "Empfangsbestätigung", "Versicherung inkl."],
+      features: ["Sichere Zustellung", "Empfangsbestätigung", "Versicherung"],
       preis: "Preis auf Anfrage"
     },
     {
       title: "Paket Express",
-      description: "Schneller Versand von Paketen bis 30kg in der Zentralschweiz",
+      description: "Pakete bis 30kg",
       icon: Package,
-      features: ["Bis 30kg Gewicht", "Handling inklusive", "Foto-Nachweis", "Bis 60x40x40cm"],
+      features: ["Bis 30kg", "Foto-Nachweis", "Zentralschweiz"],
       preis: "Preis auf Anfrage"
     },
     {
       title: "Medizin Kurier",
-      description: "Spezialtransport für Medikamente und medizinische Proben", 
+      description: "Medizinischer Spezialtransport", 
       icon: Shield,
-      features: ["Kühlkette möglich", "Diskreter Transport", "24/7 Service", "Zertifizierte Fahrer"],
+      features: ["Kühlkette möglich", "24/7 Service", "Diskret"],
       preis: "Preis auf Anfrage"
     }
   ];
