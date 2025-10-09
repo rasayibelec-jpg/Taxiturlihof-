@@ -49,9 +49,11 @@ class PaymentTransaction(BaseModel):
     amount: float
     currency: str = "CHF"
     payment_method: str
-    payment_status: str = "pending"  # pending, processing, completed, failed, cancelled
+    payment_status: str = "pending"  # pending, authorized, processing, completed, failed, cancelled, refunded
     session_id: Optional[str] = None
     payment_intent_id: Optional[str] = None
+    authorization_id: Optional[str] = None  # For authorized but not captured payments
+    capture_method: str = "manual"  # manual or automatic
     metadata: Optional[Dict[str, Any]] = None
     created_at: datetime = Field(default_factory=lambda: datetime.now(pytz.timezone('Europe/Zurich')))
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
