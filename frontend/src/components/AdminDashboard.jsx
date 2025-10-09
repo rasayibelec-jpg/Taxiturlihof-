@@ -13,6 +13,7 @@ const AdminDashboard = () => {
   const [deleting, setDeleting] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [adminToken, setAdminToken] = useState(null);
+  const [activeTab, setActiveTab] = useState('bookings'); // 'bookings' or 'payments'
 
   const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:8001";
 
