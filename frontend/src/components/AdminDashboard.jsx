@@ -485,6 +485,16 @@ const AdminDashboard = () => {
             })
           )}
         </div>
+        </>
+        )}
+
+        {/* Payment Manager Tab */}
+        {activeTab === 'payments' && (
+          <AdminPaymentManager 
+            adminToken={adminToken} 
+            backendUrl={backendUrl} 
+          />
+        )}
       </div>
     </div>
   );
