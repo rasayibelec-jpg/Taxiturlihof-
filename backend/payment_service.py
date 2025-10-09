@@ -300,6 +300,86 @@ class PaymentService:
             logger.error(f"Payment status check failed: {str(e)}")
             return None
     
+    async def capture_authorized_payment(self, transaction_id: str) -> bool:
+        """Manually capture an authorized payment"""
+        try:
+            from emergentintegrations.payments.stripe.checkout import StripeCheckout
+            
+            if not self.stripe_api_key:
+                return False
+            
+            # Get transaction
+            transaction = await self.get_payment_transaction(transaction_id)
+            if not transaction or transaction.payment_status != "authorized":
+                logger.error(f"Transaction {transaction_id} not found or not in authorized state")
+                return False
+            
+            # Initialize Stripe checkout
+            stripe_checkout = StripeCheckout(api_key=self.stripe_api_key, webhook_url="")
+            
+            # Capture the payment using payment intent
+            if transaction.payment_intent_id:
+                capture_result = await stripe_checkout.capture_payment_intent(transaction.payment_intent_id)
+                
+                if capture_result.success:
+                    # Update transaction status
+                    await self.update_payment_status(transaction_id, "completed")
+                    
+                    # Update booking payment status
+                    await self._update_booking_payment_status(transaction.booking_id, "confirmed")
+                    
+                    logger.info(f"Payment {transaction_id} successfully captured")
+                    return True
+                else:
+                    logger.error(f"Failed to capture payment {transaction_id}: {capture_result.error}")
+                    return False
+            
+            return False
+            
+        except Exception as e:
+            logger.error(f"Payment capture failed: {str(e)}")
+            return False
+    
+    async def cancel_authorized_payment(self, transaction_id: str) -> bool:
+        """Cancel an authorized payment (release the hold)"""
+        try:
+            from emergentintegrations.payments.stripe.checkout import StripeCheckout
+            
+            if not self.stripe_api_key:
+                return False
+            
+            # Get transaction
+            transaction = await self.get_payment_transaction(transaction_id)
+            if not transaction or transaction.payment_status != "authorized":
+                logger.error(f"Transaction {transaction_id} not found or not in authorized state")
+                return False
+            
+            # Initialize Stripe checkout
+            stripe_checkout = StripeCheckout(api_key=self.stripe_api_key, webhook_url="")
+            
+            # Cancel the payment intent
+            if transaction.payment_intent_id:
+                cancel_result = await stripe_checkout.cancel_payment_intent(transaction.payment_intent_id)
+                
+                if cancel_result.success:
+                    # Update transaction status
+                    await self.update_payment_status(transaction_id, "cancelled")
+                    
+                    # Update booking payment status
+                    await self._update_booking_payment_status(transaction.booking_id, "cancelled")
+                    
+                    logger.info(f"Payment {transaction_id} successfully cancelled")
+                    return True
+                else:
+                    logger.error(f"Failed to cancel payment {transaction_id}: {cancel_result.error}")
+                    return False
+            
+            return False
+            
+        except Exception as e:
+            logger.error(f"Payment cancellation failed: {str(e)}")
+            return False
+
     async def _update_booking_payment_status(self, booking_id: str, status: str):
         """Update booking payment status"""
         try:
