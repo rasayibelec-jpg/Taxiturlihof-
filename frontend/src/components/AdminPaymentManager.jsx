@@ -104,6 +104,88 @@ const AdminPaymentManager = ({ adminToken, backendUrl }) => {
     }
   };
 
+  const handleDeleteSinglePayment = async (transactionId) => {
+    if (!window.confirm('Sind Sie sicher, dass Sie diese Zahlung permanent löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.')) {
+      return;
+    }
+
+    try {
+      setProcessing(transactionId);
+      setError('');
+
+      const response = await fetch(`${backendUrl}/api/admin/payments/${transactionId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${adminToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        // Refresh transactions list
+        await fetchPaymentTransactions();
+        alert('✅ Zahlung erfolgreich gelöscht!');
+      } else {
+        throw new Error(data.detail || 'Delete failed');
+      }
+    } catch (err) {
+      setError(`Fehler beim Löschen der Zahlung: ${err.message}`);
+    } finally {
+      setProcessing(null);
+    }
+  };
+
+  const handleClearAllPayments = async () => {
+    const confirmMessage = `⚠️ WARNUNG: Alle Zahlungen und Buchungen löschen?
+
+Dies wird PERMANENT löschen:
+• Alle Zahlungstransaktionen
+• Alle Buchungen 
+• Alle Kundendaten
+
+Diese Aktion kann NICHT rückgängig gemacht werden!
+
+Sind Sie absolut sicher?`;
+
+    if (!window.confirm(confirmMessage)) {
+      return;
+    }
+
+    // Double confirmation for safety
+    if (!window.confirm('LETZTE BESTÄTIGUNG: Wirklich ALLE Daten löschen?')) {
+      return;
+    }
+
+    try {
+      setProcessing('clear-all');
+      setError('');
+
+      const response = await fetch(`${backendUrl}/api/admin/payments/clear-all`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${adminToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        // Refresh transactions list
+        await fetchPaymentTransactions();
+        alert(`✅ ${data.message}\n\nDetails:\n• Zahlungen: ${data.details.payment_transactions}\n• Buchungen: ${data.details.bookings}\n• Kunden: ${data.details.customers}\n• Gesamt: ${data.details.total} gelöscht`);
+      } else {
+        throw new Error(data.detail || 'Clear all failed');
+      }
+    } catch (err) {
+      setError(`Fehler beim Löschen aller Daten: ${err.message}`);
+    } finally {
+      setProcessing(null);
+    }
+  };
+
   const getStatusBadge = (status) => {
     const statusConfig = {
       pending: { color: 'bg-gray-500', icon: Clock, text: 'Ausstehend' },
