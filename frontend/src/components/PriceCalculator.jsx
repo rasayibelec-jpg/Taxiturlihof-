@@ -520,7 +520,13 @@ const PriceCalculator = () => {
 
                   {/* Shortest Route */}
                   <div
-                    onClick={() => setSelectedRoute('shortest')}
+                    onClick={() => {
+                      setSelectedRoute('shortest');
+                      // Update map with shortest route data  
+                      if (routeOptions?.shortest_route) {
+                        setMapRouteData(routeOptions.shortest_route);
+                      }
+                    }}
                     className={`cursor-pointer border-2 rounded-lg p-6 transition-all duration-200 ${
                       selectedRoute === 'shortest'
                         ? 'border-yellow-500 bg-yellow-50 shadow-lg scale-105'
