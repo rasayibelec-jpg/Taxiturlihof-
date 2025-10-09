@@ -1240,7 +1240,7 @@ async def get_all_payment_transactions(current_admin: dict = Depends(get_current
         logger.error(f"Failed to fetch payment transactions: {str(e)}")
         raise HTTPException(status_code=500, detail="Fehler beim Laden der Zahlungen")
 
-@api_router.webhooks/stripe")
+@api_router.post("/webhooks/stripe")
 async def stripe_webhook(request: Request):
     """Handle Stripe webhook events"""
     try:
