@@ -184,10 +184,10 @@ class RealPasswordResetTester:
                 # Extract SMS code from system
                 import sys
                 sys.path.insert(0, '/app/backend')
-                from password_reset_service import password_reset_service
+                from password_reset_service import sms_codes
                 
-                if password_reset_service.sms_codes:
-                    latest_code = list(password_reset_service.sms_codes.keys())[-1]
+                if sms_codes:
+                    latest_code = list(sms_codes.keys())[-1]
                     print(f"✅ SMS code extracted: {latest_code}")
                     
                     # Verify SMS code
