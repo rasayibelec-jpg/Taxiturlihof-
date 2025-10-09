@@ -407,7 +407,7 @@ const PriceCalculator = () => {
             
             {/* Google Maps Route Visualization */}
             {(showMapRoute || showInteractiveMap) && (
-              <GoogleMapsRoute
+              <SimpleMapRoute
                 origin={startAddress}
                 destination={endAddress}
                 routeData={mapRouteData}
