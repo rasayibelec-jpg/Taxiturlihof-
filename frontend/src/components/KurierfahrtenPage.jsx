@@ -41,36 +41,18 @@ const KurierfahrtenPage = () => {
     }
   ];
 
-  const preisZonen = [
-    {
-      zone: "Zone 1 - Lokal",
-      description: "Innerhalb derselben Stadt (Luzern, Schwyz, Zug)",
-      distance: "bis 10 km",
-      preis: "CHF 25-35",
-      dauer: "30-60 Min"
-    },
-    {
-      zone: "Zone 2 - Regional", 
-      description: "Zwischen Städten in der Zentralschweiz",
-      distance: "10-30 km",
-      preis: "CHF 35-65",
-      dauer: "1-2 Std"
-    },
-    {
-      zone: "Zone 3 - Kantonal",
-      description: "Innerhalb der Kantone LU, SZ, ZG",
-      distance: "30-50 km", 
-      preis: "CHF 65-95",
-      dauer: "1.5-3 Std"
-    },
-    {
-      zone: "Zone 4 - Überregional",
-      description: "Zürich, Basel, Bern und weitere Kantone",
-      distance: "50+ km",
-      preis: "nach Vereinbarung",
-      dauer: "2+ Std"
-    }
-  ];
+  const preisInfo = {
+    title: "Individuelle Preisgestaltung",
+    description: "Jeder Kurierauftrag ist einzigartig. Unsere Preise richten sich nach:",
+    factors: [
+      "Entfernung und Fahrtzeit",
+      "Eiligkeit der Sendung", 
+      "Gewicht und Größe",
+      "Spezielle Anforderungen (Kühlkette, etc.)",
+      "Tageszeit und Wochentag",
+      "Versicherungswert"
+    ]
+  };
 
   const vorteile = [
     "Express-Abholung innerhalb 30 Minuten",
