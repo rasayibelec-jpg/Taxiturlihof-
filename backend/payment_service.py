@@ -156,7 +156,7 @@ class PaymentService:
         return False
     
     async def initiate_stripe_payment(self, transaction: PaymentTransaction, request: Request) -> PaymentInitiateResponse:
-        """Initiate Stripe checkout session for both card payments and TWINT"""
+        """Initiate Stripe checkout session with manual capture (authorization only)"""
         try:
             from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionRequest
             
@@ -180,22 +180,26 @@ class PaymentService:
                 "booking_id": transaction.booking_id,
                 "transaction_id": transaction.id,
                 "customer_email": transaction.customer_email,
-                "payment_method": transaction.payment_method
+                "payment_method": transaction.payment_method,
+                "capture_method": "manual"
             }
             
-            # Create checkout session request
+            # Create checkout session request with manual capture
             checkout_request = CheckoutSessionRequest(
                 amount=transaction.amount,
                 currency=transaction.currency.lower(),
                 success_url=success_url,
                 cancel_url=cancel_url,
-                metadata=metadata
+                metadata=metadata,
+                payment_intent_data={
+                    "capture_method": "manual"  # This authorizes but doesn't charge
+                }
             )
             
             # Create Stripe checkout session
             session = await stripe_checkout.create_checkout_session(checkout_request)
             
-            # Update transaction with session ID
+            # Update transaction with session ID and set status to processing
             await self.update_payment_status(transaction.id, "processing", session.session_id)
             
             message = "Kreditkarte" if transaction.payment_method == "stripe" else "TWINT"
@@ -205,7 +209,7 @@ class PaymentService:
                 transaction_id=transaction.id,
                 payment_url=session.url,
                 session_id=session.session_id,
-                message=f"{message} Zahlung initialisiert. Sie werden zur Zahlungsseite weitergeleitet."
+                message=f"{message} Autorisierung wird vorbereitet. Der Betrag wird zunächst nur reserviert."
             )
             
         except Exception as e:
