@@ -284,7 +284,7 @@ const GeschaeftstaximPage = () => {
                             <td className="px-6 py-4 text-center">
                               <Button 
                                 size="sm"
-                                onClick={() => setShowCalculator(true)}
+                                onClick={() => window.location.href = '/preisrechner'}
                                 className="bg-gray-800 hover:bg-gray-900 text-white"
                               >
                                 Jetzt buchen
