@@ -354,38 +354,49 @@ class PaymentService:
     async def cancel_authorized_payment(self, transaction_id: str) -> bool:
         """Cancel an authorized payment (release the hold)"""
         try:
-            from emergentintegrations.payments.stripe.checkout import StripeCheckout
+            import stripe
             
             if not self.stripe_api_key:
+                logger.error("Stripe API key not configured")
                 return False
+            
+            # Set Stripe API key
+            stripe.api_key = self.stripe_api_key
             
             # Get transaction
             transaction = await self.get_payment_transaction(transaction_id)
-            if not transaction or transaction.payment_status != "authorized":
-                logger.error(f"Transaction {transaction_id} not found or not in authorized state")
+            if not transaction:
+                logger.error(f"Transaction {transaction_id} not found")
                 return False
-            
-            # Initialize Stripe checkout
-            stripe_checkout = StripeCheckout(api_key=self.stripe_api_key, webhook_url="")
+                
+            if transaction.payment_status != "authorized":
+                logger.error(f"Transaction {transaction_id} not in authorized state (current: {transaction.payment_status})")
+                return False
             
             # Cancel the payment intent
             if transaction.payment_intent_id:
-                cancel_result = await stripe_checkout.cancel_payment_intent(transaction.payment_intent_id)
-                
-                if cancel_result.success:
-                    # Update transaction status
-                    await self.update_payment_status(transaction_id, "cancelled")
+                try:
+                    payment_intent = stripe.PaymentIntent.cancel(transaction.payment_intent_id)
                     
-                    # Update booking payment status
-                    await self._update_booking_payment_status(transaction.booking_id, "cancelled")
-                    
-                    logger.info(f"Payment {transaction_id} successfully cancelled")
-                    return True
-                else:
-                    logger.error(f"Failed to cancel payment {transaction_id}: {cancel_result.error}")
+                    if payment_intent.status == "canceled":
+                        # Update transaction status
+                        await self.update_payment_status(transaction_id, "cancelled")
+                        
+                        # Update booking payment status
+                        await self._update_booking_payment_status(transaction.booking_id, "cancelled")
+                        
+                        logger.info(f"Payment {transaction_id} successfully cancelled")
+                        return True
+                    else:
+                        logger.error(f"Payment cancellation failed with status: {payment_intent.status}")
+                        return False
+                        
+                except stripe.error.StripeError as e:
+                    logger.error(f"Stripe error cancelling payment {transaction_id}: {str(e)}")
                     return False
-            
-            return False
+            else:
+                logger.error(f"No payment_intent_id found for transaction {transaction_id}")
+                return False
             
         except Exception as e:
             logger.error(f"Payment cancellation failed: {str(e)}")
