@@ -16,28 +16,28 @@ const KurierfahrtenPage = () => {
       description: "Expressversand am gleichen Tag - innerhalb von 2-4 Stunden",
       icon: Clock,
       features: ["Abholung innerhalb 30 Min", "Direkttransport", "SMS-Tracking", "Zustellnachweis"],
-      preis: "ab CHF 35"
+      preis: "Preis auf Anfrage"
     },
     {
       title: "Dokumentenkurier", 
       description: "Sichere Übertragung wichtiger Geschäftsdokumente",
       icon: FileText,
       features: ["Rechtssichere Zustellung", "Einschreiben-Ersatz", "Empfangsbestätigung", "Versicherung inkl."],
-      preis: "ab CHF 25"
+      preis: "Preis auf Anfrage"
     },
     {
       title: "Paket Express",
       description: "Schneller Versand von Paketen bis 30kg in der Zentralschweiz",
       icon: Package,
       features: ["Bis 30kg Gewicht", "Handling inklusive", "Foto-Nachweis", "Bis 60x40x40cm"],
-      preis: "ab CHF 45"
+      preis: "Preis auf Anfrage"
     },
     {
       title: "Medizin Kurier",
       description: "Spezialtransport für Medikamente und medizinische Proben", 
       icon: Shield,
       features: ["Kühlkette möglich", "Diskreter Transport", "24/7 Service", "Zertifizierte Fahrer"],
-      preis: "ab CHF 50"
+      preis: "Preis auf Anfrage"
     }
   ];
 
