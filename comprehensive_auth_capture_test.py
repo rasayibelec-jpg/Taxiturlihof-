@@ -261,7 +261,7 @@ class ComprehensiveAuthCaptureTest:
             booking_result = await db.payment_transactions.find_one({"id": transaction_id})
             if booking_result:
                 booking_id = booking_result.get('booking_id')
-                await db.bookings.update_one(
+                booking_update_result = await db.bookings.update_one(
                     {"id": booking_id},
                     {
                         "$set": {
