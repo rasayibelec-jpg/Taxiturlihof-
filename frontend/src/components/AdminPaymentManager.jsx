@@ -338,9 +338,44 @@ Sind Sie absolut sicher?`;
       {/* All Recent Transactions */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <CreditCard className="w-5 h-5" />
-            Aktuelle Zahlungen
+          <CardTitle className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <CreditCard className="w-5 h-5" />
+              Aktuelle Zahlungen
+            </div>
+            <div className="flex gap-2">
+              <Button
+                onClick={fetchPaymentTransactions}
+                disabled={loading}
+                variant="outline"
+                size="sm"
+                className="flex items-center gap-2"
+              >
+                <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+                Aktualisieren
+              </Button>
+              {recentTransactions.length > 0 && (
+                <Button
+                  onClick={handleClearAllPayments}
+                  disabled={processing === 'clear-all'}
+                  variant="destructive"
+                  size="sm"
+                  className="flex items-center gap-2"
+                >
+                  {processing === 'clear-all' ? (
+                    <>
+                      <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white"></div>
+                      Lösche...
+                    </>
+                  ) : (
+                    <>
+                      <Trash2 className="w-4 h-4" />
+                      Alle löschen
+                    </>
+                  )}
+                </Button>
+              )}
+            </div>
           </CardTitle>
         </CardHeader>
         <CardContent>
