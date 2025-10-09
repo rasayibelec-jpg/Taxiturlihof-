@@ -40,6 +40,9 @@ class PasswordResetService:
         self.twilio_phone_number = os.getenv('TWILIO_PHONE_NUMBER')
         
         # Initialize clients
+        self.sendgrid_client = None
+        self.twilio_client = None
+        
         if self.sendgrid_api_key:
             self.sendgrid_client = SendGridAPIClient(self.sendgrid_api_key)
         
