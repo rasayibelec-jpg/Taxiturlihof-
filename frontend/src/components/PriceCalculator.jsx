@@ -9,7 +9,7 @@ import { useToast } from "../hooks/use-toast";
 import axios from "axios";
 import GooglePlacesAutocomplete from "./GooglePlacesAutocomplete";
 import CompactRouteSelector from "./CompactRouteSelector";
-import SimpleMapRoute from "./SimpleMapRoute";
+import RouteVisualization from "./RouteVisualization";
 // Simple inputs without GooglePlaces complexity
 
 const PriceCalculator = () => {
