@@ -484,7 +484,13 @@ const PriceCalculator = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Fastest Route */}
                   <div
-                    onClick={() => setSelectedRoute('fastest')}
+                    onClick={() => {
+                      setSelectedRoute('fastest');
+                      // Update map with fastest route data
+                      if (routeOptions?.fastest_route) {
+                        setMapRouteData(routeOptions.fastest_route);
+                      }
+                    }}
                     className={`cursor-pointer border-2 rounded-lg p-6 transition-all duration-200 ${
                       selectedRoute === 'fastest'
                         ? 'border-yellow-500 bg-yellow-50 shadow-lg scale-105'
