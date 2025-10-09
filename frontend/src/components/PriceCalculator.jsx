@@ -24,6 +24,8 @@ const PriceCalculator = () => {
   const [isCalculating, setIsCalculating] = useState(false);
   const [calculationStatus, setCalculationStatus] = useState(null);
   const [isGettingLocation, setIsGettingLocation] = useState(false);
+  const [showMapRoute, setShowMapRoute] = useState(false);
+  const [mapRouteData, setMapRouteData] = useState(null);
   const { toast } = useToast();
 
   // Geolocation function
