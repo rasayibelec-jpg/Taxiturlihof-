@@ -1207,21 +1207,45 @@ async def stripe_webhook(request: Request):
             if transaction_data:
                 transaction = PaymentTransaction(**transaction_data)
                 
-                # Update payment status
-                await payment_service.update_payment_status(transaction.id, "completed")
-                
-                # Update booking status
-                await db.bookings.update_one(
-                    {"id": transaction.booking_id},
-                    {
-                        "$set": {
-                            "payment_status": "confirmed",
-                            "updated_at": get_swiss_time()
+                # For manual capture, payment is only authorized at this point
+                if transaction.capture_method == "manual":
+                    # Update to authorized status (waiting for manual capture)
+                    await payment_service.update_payment_status(transaction.id, "authorized")
+                    
+                    # Store payment intent ID for later capture
+                    if hasattr(webhook_response, 'payment_intent_id'):
+                        await db.payment_transactions.update_one(
+                            {"id": transaction.id},
+                            {"$set": {"payment_intent_id": webhook_response.payment_intent_id}}
+                        )
+                    
+                    # Update booking status to "payment_authorized" (not confirmed yet)
+                    await db.bookings.update_one(
+                        {"id": transaction.booking_id},
+                        {
+                            "$set": {
+                                "payment_status": "authorized",
+                                "updated_at": get_swiss_time()
+                            }
                         }
-                    }
-                )
-                
-                logger.info(f"Payment completed for booking {transaction.booking_id}")
+                    )
+                    
+                    logger.info(f"Payment authorized for booking {transaction.booking_id} - awaiting manual confirmation")
+                else:
+                    # Automatic capture (old behavior)
+                    await payment_service.update_payment_status(transaction.id, "completed")
+                    
+                    await db.bookings.update_one(
+                        {"id": transaction.booking_id},
+                        {
+                            "$set": {
+                                "payment_status": "confirmed",
+                                "updated_at": get_swiss_time()
+                            }
+                        }
+                    )
+                    
+                    logger.info(f"Payment completed for booking {transaction.booking_id}")
         
         return {"status": "success", "event_type": webhook_response.event_type}
         
