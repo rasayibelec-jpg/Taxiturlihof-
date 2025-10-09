@@ -219,9 +219,8 @@ metadata:
 
 test_plan:
   current_focus: 
-    - "New Service Links Testing - User Reported Issue"
-  stuck_tasks: 
-    - "New Service Links Testing - User Reported Issue"
+    - "Business Taxi Page Button Testing - User Reported Issue"
+  stuck_tasks: []
   test_all: false
   test_priority: "critical_first"
 
