@@ -486,6 +486,18 @@ frontend:
         agent: "user"
         comment: "User reported: 'Ich konnte nicht mein Admin Passwort oder geändert werden' (I couldn't change my admin password). Need to test complete password reset workflow at /admin-reset page."
 
+  - task: "Admin Payments API - Verify All Payments Deleted"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "🎉 ADMIN PAYMENTS DELETION VERIFICATION COMPLETED SUCCESSFULLY! Comprehensive testing of Admin Payments API completed with 100% success rate (4/4 tests passed). DETAILED TEST RESULTS: ✅ Admin Login: SUCCESS (JWT token acquired with credentials admin/TaxiTurlihof2025!), ✅ GET /api/admin/payments Endpoint: SUCCESS (returns success=true with transactions=[] empty array), ✅ Payment Count Verification: SUCCESS (confirmed 0 payments in test_database), ✅ API Response Structure: SUCCESS (correct JSON structure with success=true and empty transactions array). VERIFICATION CONFIRMED: All 17 payments have been successfully removed from test_database as requested. The Admin Payments API is working correctly and returning the expected empty result, confirming complete payment deletion. No payment transactions remain in the system."
+
   - task: "Authorization & Capture Payment System"
     implemented: true
     working: true
