@@ -486,6 +486,21 @@ frontend:
         agent: "user"
         comment: "User reported: 'Ich konnte nicht mein Admin Passwort oder geändert werden' (I couldn't change my admin password). Need to test complete password reset workflow at /admin-reset page."
 
+  - task: "URGENT Admin Login Fix - User Cannot Login"
+    implemented: true
+    working: true
+    file: "/app/backend/auth_service.py"
+    stuck_count: 0
+    priority: "critical"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "user"
+        comment: "CRITICAL: User reports 'Ich konnte nicht einloggen' (I cannot login) with credentials: Username: admin, Password: TaxiTurlihof2025!"
+      - working: true
+        agent: "testing"
+        comment: "🎉 CRITICAL ADMIN LOGIN ISSUE COMPLETELY RESOLVED! Root cause identified and fixed: The password hash stored in auth_service.py was incorrect. TECHNICAL FIX: Updated ADMIN_PASSWORD_HASH from 'dd057ec3b6ca7beaa2465aca383982ef280eb49a7c90f82075eed7a9f7c569c4' to correct hash '89f995433c98053f01248f6daffb2629dd2b00f3ce6a8463b8c5d0e7f025d9b9' for password 'TaxiTurlihof2025!'. COMPREHENSIVE TESTING RESULTS: ✅ Admin Login API: SUCCESS (POST /api/auth/admin/login returns success=true with valid JWT token), ✅ Correct Credentials: SUCCESS (Username: 'admin', Password: 'TaxiTurlihof2025!' working perfectly), ✅ Token Generation: SUCCESS (JWT token created with 8-hour expiration), ✅ Token Verification: SUCCESS (Admin token validation working), ✅ Protected Endpoints: SUCCESS (Admin can access /api/bookings with Bearer token), ✅ Wrong Password Rejection: SUCCESS (Correctly returns 'Ungültige Anmeldedaten' for wrong passwords), ✅ CORS Configuration: SUCCESS (Proper headers configured). FINAL RESULT: Admin login system is 100% operational. User can now login successfully with the original credentials: Username='admin' and Password='TaxiTurlihof2025!'. The issue was a simple password hash mismatch that has been corrected."
+
 agent_communication:
   - agent: "main"
     message: "PAYMENT INTEGRATION PHASE COMPLETED! Implemented comprehensive payment system with TWINT, Stripe, and PayPal integration. TECHNICAL ACHIEVEMENTS: ✅ emergentintegrations library installed and configured, ✅ PaymentService class created with transaction management, ✅ Payment endpoints implemented (GET /payment-methods, POST /payments/initiate, GET /payments/status, POST /webhooks/stripe), ✅ Frontend PaymentSelection component created with secure payment UI, ✅ BookingSystem updated to include payment step after booking creation, ✅ PaymentSuccess component for handling post-payment redirects, ✅ Stripe API key configured from system environment, ✅ Payment transaction database collection for tracking payments, ✅ Webhook handling for payment completion, ✅ Multi-step booking flow (booking → payment → success). INTEGRATION STATUS: TWINT via Stripe (ready), Stripe direct (ready), PayPal (placeholder implemented). All German language interface with proper error handling. Ready for comprehensive testing to validate payment workflows."
