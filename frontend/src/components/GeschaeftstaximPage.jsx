@@ -8,7 +8,6 @@ import PriceCalculator from './PriceCalculator';
 import Breadcrumb from './Breadcrumb';
 
 const GeschaeftstaximPage = () => {
-  const [showCalculator, setShowCalculator] = useState(false);
 
   const businessServices = [
     {
