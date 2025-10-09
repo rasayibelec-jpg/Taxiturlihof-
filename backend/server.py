@@ -18,6 +18,7 @@ from payment_service import payment_service, PaymentMethod, PaymentTransactionCr
 from whatsapp_service import whatsapp_service
 from task_scheduler import task_scheduler
 from auth_service import auth_service, get_current_admin_user
+from password_reset_service import password_reset_service
 
 
 ROOT_DIR = Path(__file__).parent
