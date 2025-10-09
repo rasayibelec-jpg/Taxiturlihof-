@@ -20,7 +20,7 @@ from twilio.rest import Client as TwilioClient
 # Load environment variables
 load_dotenv()
 
-# Temporary reset tokens storage (in production use Redis/Database)
+# Temporary reset tokens storage (CLEARED)
 reset_tokens = {}
 sms_codes = {}
 
