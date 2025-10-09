@@ -90,6 +90,71 @@ const Services = () => {
                       </div>
                     </div>
                   )}
+                  
+                  {/* Action Buttons */}
+                  <div className="mt-6 flex flex-col gap-3">
+                    {/* Primary CTA - Service-specific Link */}
+                    {service.id === 1 && ( // Flughafentransfer
+                      <Link to="/flughafentransfer" className="w-full">
+                        <Button className="w-full bg-yellow-600 hover:bg-yellow-700 text-white group">
+                          <Plane className="w-4 h-4 mr-2" />
+                          Flughafentransfer buchen
+                          <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </Link>
+                    )}
+                    
+                    {service.id === 2 && ( // Stadtfahrten
+                      <div className="flex gap-2">
+                        <Link to="/taxi-luzern" className="flex-1">
+                          <Button variant="outline" className="w-full border-yellow-600 text-yellow-600 hover:bg-yellow-50">
+                            <Car className="w-4 h-4 mr-2" />
+                            Luzern
+                          </Button>
+                        </Link>
+                        <Link to="/taxi-zug" className="flex-1">
+                          <Button variant="outline" className="w-full border-yellow-600 text-yellow-600 hover:bg-yellow-50">
+                            <Car className="w-4 h-4 mr-2" />
+                            Zug
+                          </Button>
+                        </Link>
+                      </div>
+                    )}
+                    
+                    {service.id === 3 && ( // Geschäftsfahrten
+                      <Link to="/geschaeftsfahrten" className="w-full">
+                        <Button className="w-full bg-gray-800 hover:bg-gray-900 text-white group">
+                          <Briefcase className="w-4 h-4 mr-2" />
+                          Business Taxi buchen
+                          <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </Link>
+                    )}
+                    
+                    {service.id === 4 && ( // Kurierfahrten
+                      <Link to="/kurierfahrten" className="w-full">
+                        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white group">
+                          <Package className="w-4 h-4 mr-2" />
+                          Kurier beauftragen
+                          <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </Link>
+                    )}
+                    
+                    {/* Secondary Actions */}
+                    <div className="flex gap-2">
+                      <Link to="/preisrechner" className="flex-1">
+                        <Button variant="outline" size="sm" className="w-full">
+                          <Calculator className="w-4 h-4 mr-2" />
+                          Preis berechnen
+                        </Button>
+                      </Link>
+                      <Button variant="outline" size="sm" className="flex-1" onClick={() => window.location.href = 'tel:+41766113131'}>
+                        <Phone className="w-4 h-4 mr-2" />
+                        Anrufen
+                      </Button>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             );
