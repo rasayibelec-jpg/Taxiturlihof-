@@ -13,7 +13,7 @@ from pathlib import Path
 backend_dir = Path(__file__).parent / "backend"
 sys.path.insert(0, str(backend_dir))
 
-BACKEND_URL = "https://taxi-booking-hub-2.preview.emergentagent.com/api"
+BACKEND_URL = "https://turli-taxi-web.preview.emergentagent.com/api"
 
 async def check_payment_status():
     """Check payment status for the critical booking"""
