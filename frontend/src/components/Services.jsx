@@ -131,15 +131,6 @@ const Services = () => {
                       </Link>
                     )}
                     
-                    {service.id === 4 && ( // Kurierfahrten
-                      <Link to="/kurierfahrten" className="w-full">
-                        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white group">
-                          <Package className="w-4 h-4 mr-2" />
-                          Kurier beauftragen
-                          <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                        </Button>
-                      </Link>
-                    )}
                     
                     {/* Secondary Actions */}
                     <div className="flex gap-2">
