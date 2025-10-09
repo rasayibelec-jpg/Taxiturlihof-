@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
-import { MapPin, Plane, Briefcase, ChevronDown, ChevronUp, ArrowRight, Package } from "lucide-react";
+import { MapPin, Plane, Briefcase, ChevronDown, ChevronUp, ArrowRight } from "lucide-react";
 
 const CompactServices = () => {
   const [showDetails, setShowDetails] = useState(false);
