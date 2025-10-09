@@ -103,7 +103,7 @@ const GeschaeftstaximPage = () => {
                   <Button 
                     size="lg" 
                     className="bg-yellow-600 hover:bg-yellow-700 text-white"
-                    onClick={() => setShowCalculator(true)}
+                    onClick={() => window.location.href = '/preisrechner'}
                   >
                     <Calculator className="w-5 h-5 mr-2" />
                     Business Fahrt buchen
