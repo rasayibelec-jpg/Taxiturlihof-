@@ -21,6 +21,8 @@ import AdminDashboard from './components/AdminDashboard';
 import BookingLookup from './components/BookingLookup';
 import PWATestInstructions from './components/PWATestInstructions';
 import AdminPasswordReset from './components/AdminPasswordReset';
+import GeschaeftstaximPage from './components/GeschaeftstaximPage';
+import KurierfahrtenPage from './components/KurierfahrtenPage';
 
 function App() {
   // Register Service Worker for PWA
