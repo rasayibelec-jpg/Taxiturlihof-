@@ -10,6 +10,7 @@ import axios from "axios";
 import GooglePlacesAutocomplete from "./GooglePlacesAutocomplete";
 import CompactRouteSelector from "./CompactRouteSelector";
 import RouteVisualization from "./RouteVisualization";
+import GoogleMapViewer from "./GoogleMapViewer";
 // Simple inputs without GooglePlaces complexity
 
 const PriceCalculator = () => {
