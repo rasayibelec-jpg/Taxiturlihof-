@@ -303,38 +303,49 @@ class PaymentService:
     async def capture_authorized_payment(self, transaction_id: str) -> bool:
         """Manually capture an authorized payment"""
         try:
-            from emergentintegrations.payments.stripe.checkout import StripeCheckout
+            import stripe
             
             if not self.stripe_api_key:
+                logger.error("Stripe API key not configured")
                 return False
+            
+            # Set Stripe API key
+            stripe.api_key = self.stripe_api_key
             
             # Get transaction
             transaction = await self.get_payment_transaction(transaction_id)
-            if not transaction or transaction.payment_status != "authorized":
-                logger.error(f"Transaction {transaction_id} not found or not in authorized state")
+            if not transaction:
+                logger.error(f"Transaction {transaction_id} not found")
                 return False
-            
-            # Initialize Stripe checkout
-            stripe_checkout = StripeCheckout(api_key=self.stripe_api_key, webhook_url="")
+                
+            if transaction.payment_status != "authorized":
+                logger.error(f"Transaction {transaction_id} not in authorized state (current: {transaction.payment_status})")
+                return False
             
             # Capture the payment using payment intent
             if transaction.payment_intent_id:
-                capture_result = await stripe_checkout.capture_payment_intent(transaction.payment_intent_id)
-                
-                if capture_result.success:
-                    # Update transaction status
-                    await self.update_payment_status(transaction_id, "completed")
+                try:
+                    payment_intent = stripe.PaymentIntent.capture(transaction.payment_intent_id)
                     
-                    # Update booking payment status
-                    await self._update_booking_payment_status(transaction.booking_id, "confirmed")
-                    
-                    logger.info(f"Payment {transaction_id} successfully captured")
-                    return True
-                else:
-                    logger.error(f"Failed to capture payment {transaction_id}: {capture_result.error}")
+                    if payment_intent.status == "succeeded":
+                        # Update transaction status
+                        await self.update_payment_status(transaction_id, "completed")
+                        
+                        # Update booking payment status
+                        await self._update_booking_payment_status(transaction.booking_id, "confirmed")
+                        
+                        logger.info(f"Payment {transaction_id} successfully captured")
+                        return True
+                    else:
+                        logger.error(f"Payment capture failed with status: {payment_intent.status}")
+                        return False
+                        
+                except stripe.error.StripeError as e:
+                    logger.error(f"Stripe error capturing payment {transaction_id}: {str(e)}")
                     return False
-            
-            return False
+            else:
+                logger.error(f"No payment_intent_id found for transaction {transaction_id}")
+                return False
             
         except Exception as e:
             logger.error(f"Payment capture failed: {str(e)}")
