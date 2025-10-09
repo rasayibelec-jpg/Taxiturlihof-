@@ -20,6 +20,7 @@ import BlogLuzernSehenswuerdigkeiten from './components/BlogLuzernSehenswuerdigk
 import AdminDashboard from './components/AdminDashboard';
 import BookingLookup from './components/BookingLookup';
 import PWATestInstructions from './components/PWATestInstructions';
+import AdminPasswordReset from './components/AdminPasswordReset';
 
 function App() {
   // Register Service Worker for PWA
