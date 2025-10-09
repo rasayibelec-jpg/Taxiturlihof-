@@ -53,25 +53,25 @@ const GeschaeftstaximPage = () => {
       route: "Luzern → Zürich City",
       distance: "50 km",
       duration: "45 Min",
-      price: "ab CHF 120"
+      price: "CHF 180"
     },
     {
       route: "Schwyz → Bern",
       distance: "85 km", 
       duration: "75 Min",
-      price: "ab CHF 180"
+      price: "CHF 300"
     },
     {
       route: "Zug → Basel",
       distance: "95 km",
       duration: "90 Min", 
-      price: "ab CHF 200"
+      price: "CHF 350"
     },
     {
-      route: "Luzern → Flughafen Zürich",
+      route: "Luzern → Zürich Flughafen",
       distance: "55 km",
       duration: "50 Min",
-      price: "ab CHF 200"
+      price: "CHF 250"
     }
   ];
 
