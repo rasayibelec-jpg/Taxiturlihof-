@@ -40,16 +40,8 @@ const KurierfahrtenPage = () => {
   ];
 
   const preisInfo = {
-    title: "Individuelle Preisgestaltung",
-    description: "Jeder Kurierauftrag ist einzigartig. Unsere Preise richten sich nach:",
-    factors: [
-      "Entfernung und Fahrtzeit",
-      "Eiligkeit der Sendung", 
-      "Gewicht und Größe",
-      "Spezielle Anforderungen (Kühlkette, etc.)",
-      "Tageszeit und Wochentag",
-      "Versicherungswert"
-    ]
+    title: "Preis auf Anfrage",
+    description: "Rufen Sie uns an für ein individuelles Angebot"
   };
 
   const vorteile = [
