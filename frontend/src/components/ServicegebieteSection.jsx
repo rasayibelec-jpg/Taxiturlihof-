@@ -51,7 +51,7 @@ const ServicegebieteSection = () => {
       image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       alt: "Taxi Service Arth-Goldau am Fuße der Rigi",
       description: "Tor zu Rigi und Pilatus",
-      link: "/taxi-arth-goldau", 
+      link: "/taxi-schwyz", 
       linkText: "Taxi Arth-Goldau Servicegebiet"
     }
   ];
