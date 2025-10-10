@@ -23,6 +23,7 @@ import PWATestInstructions from './components/PWATestInstructions';
 import AdminPasswordReset from './components/AdminPasswordReset';
 import GeschaeftstaximPage from './components/GeschaeftstaximPage';
 import Services from './components/Services';
+import TaxiArthGoldauPage from './components/TaxiArthGoldauPage';
 
 function App() {
   // Register Service Worker for PWA
