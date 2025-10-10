@@ -115,7 +115,7 @@ const ServicegebieteSection = () => {
               className="inline-flex items-center bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200"
             >
               📞 076 611 31 31
-            </Link>
+            </a>
           </div>
         </div>
       </div>
