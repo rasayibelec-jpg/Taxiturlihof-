@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Card, CardContent } from "./ui/card";
-import { ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import "./ServicegebieteSection.css";
 
 const ServicegebieteSection = () => {
