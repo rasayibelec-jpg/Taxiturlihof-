@@ -97,7 +97,7 @@ const ServicegebieteSection = () => {
               <p className="seo-link">
                 <span>{gebiet.linkText}</span>
               </p>
-            </a>
+            </Link>
           ))}
         </div>
 
