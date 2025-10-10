@@ -24,6 +24,7 @@ import AdminPasswordReset from './components/AdminPasswordReset';
 import GeschaeftstaximPage from './components/GeschaeftstaximPage';
 import Services from './components/Services';
 import TaxiArthGoldauPage from './components/TaxiArthGoldauPage';
+import TaxiWeggisPage from './components/TaxiWeggisPage';
 
 function App() {
   // Register Service Worker for PWA
