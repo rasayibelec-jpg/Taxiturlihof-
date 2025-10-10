@@ -10,7 +10,7 @@ const ServicegebieteSection = () => {
       image: "https://images.unsplash.com/photo-1566789168779-73d46d92b809?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       alt: "Taxi Service Luzern am Vierwaldstättersee",
       description: "Historische Altstadt und Kapellbrücke",
-      link: "https://taxiturlihof.ch/",
+      link: "/taxi-luzern",
       linkText: "Taxi Luzern Servicegebiet"
     },
     {
@@ -18,7 +18,7 @@ const ServicegebieteSection = () => {
       image: "https://images.unsplash.com/photo-1517664604184-9c1d2962d0a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       alt: "Taxi Fahrten rund um den Vierwaldstättersee",
       description: "Wunderschöne Fahrten rund um den See",
-      link: "https://taxiturlihof.ch/landingpage/taxisevice-weggis/",
+      link: "/taxi-weggis",
       linkText: "Taxi Vierwaldstättersee Servicegebiet"
     },
     {
@@ -26,7 +26,7 @@ const ServicegebieteSection = () => {
       image: "https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
       alt: "Taxi Service Weggis und Vitznau am See",
       description: "Malerische Seeufer-Gemeinden",
-      link: "https://taxiturlihof.ch/landingpage/taxisevice-weggis/",
+      link: "/taxi-weggis",
       linkText: "Taxi Weggis & Vitznau Servicegebiet"
     },
     {
@@ -34,7 +34,7 @@ const ServicegebieteSection = () => {
       image: "https://images.unsplash.com/photo-1521292270410-a8c4d716d518?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       alt: "Taxi Service Schwyz und Brunnen - Traditionelle Schweizer Berglandschaft", 
       description: "Traditionelle Schweizer Berglandschaft",
-      link: "https://taxiturlihof.ch/landingpage/taxisevice-schwyz/",
+      link: "/taxi-schwyz",
       linkText: "Taxi Schwyz & Brunnen Servicegebiet"
     },
     {
@@ -42,7 +42,7 @@ const ServicegebieteSection = () => {
       image: "https://images.unsplash.com/photo-1541696724920-864a966cc4c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       alt: "Taxi Service in Zug am Zugersee",
       description: "Moderne Stadt am Zugersee", 
-      link: "https://taxiturlihof.ch/landingpage/taxisevice-zug/",
+      link: "/taxi-zug",
       linkText: "Taxi Zug Servicegebiet"
     },
     {
