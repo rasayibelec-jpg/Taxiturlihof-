@@ -74,11 +74,9 @@ const ServicegebieteSection = () => {
         {/* Service Cards Grid - Dark Theme mit CSS */}
         <div className="servicegebiete">
           {servicegebiete.map((gebiet, index) => (
-            <a
+            <Link
               key={index}
-              href={gebiet.link}
-              target="_blank"
-              rel="noopener noreferrer"
+              to={gebiet.link}
               className="card"
             >
               {/* Image */}
