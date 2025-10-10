@@ -54,6 +54,7 @@ function App() {
             <Route path="/taxi-schwyz" element={<TaxiSchwyzPage />} />
             <Route path="/taxi-zug" element={<TaxiZugPage />} />
             <Route path="/taxi-arth-goldau" element={<TaxiArthGoldauPage />} />
+            <Route path="/taxi-weggis" element={<TaxiWeggisPage />} />
             <Route path="/flughafentransfer" element={<FlughafentransferPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:id" element={<BlogPost />} />
