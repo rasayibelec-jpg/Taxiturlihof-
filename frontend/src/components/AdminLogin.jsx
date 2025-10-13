@@ -144,16 +144,7 @@ const AdminLogin = ({ onLogin }) => {
             </Button>
           </form>
 
-          <div className="mt-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-            <p className="text-xs text-blue-600">
-              <strong>Standardzugangsdaten:</strong><br/>
-              Benutzername: admin<br/>
-              Passwort: TaxiTurlihof2025!<br/>
-              <span className="text-blue-500">
-                (Diese können später geändert werden)
-              </span>
-            </p>
-          </div>
+          {/* Removed password display for security */}
 
           <div className="mt-6 text-center space-y-3">
             <a 
