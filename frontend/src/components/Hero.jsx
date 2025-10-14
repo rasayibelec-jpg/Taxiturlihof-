@@ -53,7 +53,7 @@ const Hero = () => {
               </h1>
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
                 Ihr zuverlässiger Taxi-Service in der Zentralschweiz. 
-                Schnell, sicher und professionell - 24/7 für Sie da.
+                Schnell, sicher und professionell - Zuverlässiger Service für Sie.
               </p>
             </div>
 
