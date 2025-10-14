@@ -26,7 +26,7 @@ const GeschaeftstaximPage = () => {
   const vorteile = [
     "Diskrete und professionelle Fahrer",
     "Mercedes Business-Klasse Fahrzeuge", 
-    "24/7 Verfügbarkeit auch am Wochenende",
+    "Zuverlässiger Service auch am Wochenende",
     "Rechnung mit ausgewiesener MwSt.",
     "Firmen-Accounts mit monatlicher Abrechnung",
     "Wartezeiten ohne Aufpreis (bis 30 Min)",
