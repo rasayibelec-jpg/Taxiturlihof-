@@ -73,7 +73,7 @@ const CompactHero = () => {
             <a href="tel:076 611 31 31" className="flex items-center text-white">
               <Phone className="w-6 h-6 mr-3" />
               <div className="text-left">
-                <div className="text-sm opacity-90">24/7 Service:</div>
+                <div className="text-sm opacity-90">Zuverlässiger Service:</div>
                 <div className="text-2xl font-bold">076 611 31 31</div>
               </div>
             </a>
