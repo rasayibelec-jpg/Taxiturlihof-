@@ -42,7 +42,7 @@ const CompactHero = () => {
             </h2>
             
             <p className="text-2xl text-gray-300 mb-12">
-              Schnell, sicher und professionell – 24/7 für Sie da
+              Schnell, sicher und professionell – Zuverlässiger Service für Sie
             </p>
           </div>
 
