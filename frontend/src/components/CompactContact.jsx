@@ -58,7 +58,7 @@ const CompactContact = () => {
             <Phone className="w-10 h-10 text-green-600" />
           </div>
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Kontakt & 24/7 Service
+            Kontakt & Zuverlässiger Service
           </h2>
           <p className="text-lg text-gray-600">
             Wir sind jederzeit für Sie da – rufen Sie uns an oder schreiben Sie uns
