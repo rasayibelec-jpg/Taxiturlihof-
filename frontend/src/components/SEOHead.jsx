@@ -2,9 +2,9 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 
 const SEOHead = ({ 
-  title = "Taxi Türlihof | Zuverlässiger Taxi-Service in Luzern, Schwyz, Zug | 24/7 Service",
-  description = "Taxi Türlihof - Ihr zuverlässiger 24/7 Taxi-Service in der Zentralschweiz. Mercedes-Flotte, Flughafentransfer Zürich/Basel, Stadtfahrten Luzern, Schwyz, Zug. Online buchen ☎️ 076 611 31 31",
-  keywords = "Taxi Luzern 24h, Taxi Schwyz, Taxi Zug, Flughafentransfer Zürich ab Luzern, Mercedes Taxi buchen, Notfall Taxi Zentralschweiz, Taxi Weggis Vitznau, Geschäftstaxi Schwyz, Kurierfahrten, Taxi online buchen",
+  title = "Taxi Türlihof | Zuverlässiger Taxi-Service in Luzern, Schwyz, Zug",
+  description = "Taxi Türlihof - Ihr zuverlässiger Taxi-Service in der Zentralschweiz. Mercedes-Flotte, Flughafentransfer Zürich/Basel, Stadtfahrten Luzern, Schwyz, Zug. Online buchen ☎️ 076 611 31 31",
+  keywords = "Taxi Luzern, Taxi Schwyz, Taxi Zug, Flughafentransfer Zürich ab Luzern, Mercedes Taxi buchen, zuverlässiger Taxi Zentralschweiz, Taxi Weggis Vitznau, Geschäftstaxi Schwyz, Kurierfahrten, Taxi online buchen",
   image = "https://customer-assets.emergentagent.com/job_taxi-booking-hub-2/artifacts/7qpvp7gy_20240707_163617.jpg",
   url = "https://www.taxiturlihof.ch/",
   type = "website",
