@@ -7,7 +7,7 @@ const FAQ = () => {
 
   const faqData = [
     {
-      question: "Bietet Taxi Türlihof 24/7 Service an?",
+      question: "Wie zuverlässig ist Taxi Türlihof?",
       answer: "Ja, Taxi Türlihof ist rund um die Uhr verfügbar. Sie können uns jederzeit unter 076 611 31 31 erreichen oder online buchen."
     },
     {
