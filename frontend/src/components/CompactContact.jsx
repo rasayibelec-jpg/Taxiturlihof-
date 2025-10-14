@@ -83,7 +83,7 @@ const CompactContact = () => {
               </a>
               <div className="flex items-center justify-center mt-2 text-sm text-gray-600">
                 <Clock className="w-4 h-4 mr-1" />
-                24/7 Service
+                Zuverlässiger Service
               </div>
             </CardContent>
           </Card>
