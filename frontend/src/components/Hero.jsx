@@ -63,7 +63,7 @@ const Hero = () => {
                   <Clock className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">24/7 Service</h3>
+                  <h3 className="font-semibold">Zuverlässiger Service</h3>
                   <p className="text-gray-400 text-sm">Rund um die Uhr</p>
                 </div>
               </div>
