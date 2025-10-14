@@ -220,7 +220,7 @@ const TaxiWeggisPage = () => {
                       <div className="flex items-center gap-3">
                         <Clock className="w-5 h-5 text-gray-600" />
                         <div>
-                          <div className="font-medium">24/7 Verfügbar</div>
+                          <div className="font-medium">Zuverlässig Verfügbar</div>
                           <div className="text-sm text-gray-600">Auch nachts und am Wochenende</div>
                         </div>
                       </div>
