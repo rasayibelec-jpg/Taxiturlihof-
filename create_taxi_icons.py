@@ -33,8 +33,7 @@ def create_taxi_icon(size):
     
     # Car body (dark blue/black)
     car_color = (31, 41, 55, 255)  # Dark gray #1f2937
-    draw.rounded_rectangle([car_x, car_y, car_x + car_width, car_y + car_height], 
-                          corner_radius=int(car_height * 0.1), fill=car_color)
+    draw.rectangle([car_x, car_y, car_x + car_width, car_y + car_height], fill=car_color)
     
     # Taxi roof sign
     sign_width = int(car_width * 0.4)
