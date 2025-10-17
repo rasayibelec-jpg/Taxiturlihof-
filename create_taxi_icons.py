@@ -38,63 +38,20 @@ def create_taxi_icon(size):
     bottom_y = size - bottom_area_height
     draw.rectangle([0, bottom_y, size, size], fill=black_color)
     
-    # Draw "TAXI" text in top yellow area
-    if size >= 72:
-        try:
-            # Calculate font size for TAXI
-            taxi_font_size = max(int(size * 0.15), 8)
-            
-            taxi_text = "TAXI"
-            # Simple text positioning
-            bbox = draw.textbbox((0, 0), taxi_text)
-            text_width = bbox[2] - bbox[0] if bbox else len(taxi_text) * taxi_font_size * 0.6
-            text_height = bbox[3] - bbox[1] if bbox else taxi_font_size
-            
-            taxi_x = (size - text_width) // 2
-            taxi_y = (top_area_height - text_height) // 2 - int(size * 0.05)
-            
-            draw.text((taxi_x, taxi_y), taxi_text, fill=black_color)
-            
-        except:
-            # Fallback for smaller sizes
-            draw.text((int(size * 0.1), int(size * 0.1)), "TAXI", fill=black_color)
+    # Draw "TAXI" text in top yellow area - BASIT VE NET
+    # TAXI text - big and bold
+    taxi_x = int(size * 0.15)  # Start from left with margin
+    taxi_y = int(size * 0.1)   # Start from top with margin
     
-    # Draw "TÜRLIHOF" text in bottom black area  
-    if size >= 96:
-        try:
-            # Calculate font size for TÜRLIHOF
-            turli_font_size = max(int(size * 0.08), 6)
-            
-            turli_text = "TÜRLIHOF"
-            # Simple text positioning
-            bbox = draw.textbbox((0, 0), turli_text)
-            text_width = bbox[2] - bbox[0] if bbox else len(turli_text) * turli_font_size * 0.6
-            text_height = bbox[3] - bbox[1] if bbox else turli_font_size
-            
-            turli_x = (size - text_width) // 2
-            turli_y = bottom_y + (bottom_area_height - text_height) // 2
-            
-            draw.text((turli_x, turli_y), turli_text, fill=yellow_color)
-            
-        except:
-            # Fallback
-            draw.text((int(size * 0.05), bottom_y + int(size * 0.05)), "TÜRLIHOF", fill=yellow_color)
+    # Use simple, large text
+    draw.text((taxi_x, taxi_y), "TAXI", fill=black_color)
     
-    elif size >= 72:
-        # For medium sizes, just show "T"
-        try:
-            t_font_size = max(int(size * 0.12), 8)
-            t_text = "T"
-            bbox = draw.textbbox((0, 0), t_text)
-            text_width = bbox[2] - bbox[0] if bbox else t_font_size * 0.6
-            text_height = bbox[3] - bbox[1] if bbox else t_font_size
-            
-            t_x = (size - text_width) // 2
-            t_y = bottom_y + (bottom_area_height - text_height) // 2
-            
-            draw.text((t_x, t_y), t_text, fill=yellow_color)
-        except:
-            draw.text((int(size * 0.4), bottom_y + int(size * 0.1)), "T", fill=yellow_color)
+    # Draw "T" in bottom black area - BÜYÜK VE KALLN
+    t_x = int(size * 0.45)  # Center position
+    t_y = bottom_y + int(size * 0.05)  # Small margin from top of black area
+    
+    # Large T for visibility
+    draw.text((t_x, t_y), "T", fill=yellow_color)
     
     return img
 
