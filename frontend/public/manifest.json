@@ -1,7 +1,7 @@
 {
   "name": "Taxi Türlihof - Luzern Taxi Service",
   "short_name": "Taxi Türlihof",
-  "description": "24/7 Taxi Service in Luzern, Schwyz, Zug. Mercedes-Flotte, Online-Buchung, Preisrechner",
+  "description": "Zuverlässiger Taxi Service in Luzern, Schwyz, Zug. Mercedes-Flotte, Online-Buchung, Preisrechner",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#1f2937",
