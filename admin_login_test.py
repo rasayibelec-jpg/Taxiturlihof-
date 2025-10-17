@@ -10,7 +10,7 @@ import json
 from datetime import datetime
 
 # Test configuration
-BACKEND_URL = "https://turli-taxi-web.preview.emergentagent.com/api"
+BACKEND_URL = "https://ride-manager-7.preview.emergentagent.com/api"
 
 class AdminLoginTester:
     def __init__(self):
@@ -347,7 +347,7 @@ class AdminLoginTester:
         try:
             # Test preflight OPTIONS request
             headers = {
-                "Origin": "https://turli-taxi-web.preview.emergentagent.com",
+                "Origin": "https://ride-manager-7.preview.emergentagent.com",
                 "Access-Control-Request-Method": "POST",
                 "Access-Control-Request-Headers": "Content-Type"
             }
@@ -369,7 +369,7 @@ class AdminLoginTester:
                 
                 # Check if CORS is properly configured
                 cors_ok = (
-                    cors_headers["access-control-allow-origin"] in ["*", "https://turli-taxi-web.preview.emergentagent.com"] and
+                    cors_headers["access-control-allow-origin"] in ["*", "https://ride-manager-7.preview.emergentagent.com"] and
                     ("POST" in (cors_headers["access-control-allow-methods"] or "") or response.status in [200, 204])
                 )
                 

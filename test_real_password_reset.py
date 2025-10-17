@@ -10,7 +10,7 @@ import re
 import sys
 from datetime import datetime
 
-BACKEND_URL = "https://turli-taxi-web.preview.emergentagent.com/api"
+BACKEND_URL = "https://ride-manager-7.preview.emergentagent.com/api"
 
 class RealPasswordResetTester:
     def __init__(self):

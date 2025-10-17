@@ -17,7 +17,7 @@ backend_dir = Path(__file__).parent / "backend"
 sys.path.insert(0, str(backend_dir))
 
 # Test configuration
-BACKEND_URL = "https://turli-taxi-web.preview.emergentagent.com/api"
+BACKEND_URL = "https://ride-manager-7.preview.emergentagent.com/api"
 
 class DistanceIssueTester:
     def __init__(self):
