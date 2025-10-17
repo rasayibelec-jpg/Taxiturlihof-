@@ -10,77 +10,91 @@ import os
 from io import BytesIO
 
 def create_taxi_icon(size):
-    """Create a professional taxi icon with Taxi Türlihof branding"""
+    """Create Taxi Türlihof icon based on original logo"""
     
-    # Create base image with yellow background (Taxi colors)
-    img = Image.new('RGBA', (size, size), (234, 179, 8, 255))  # Yellow #EAB308
+    # Create base image with yellow background (matching original logo)
+    yellow_color = (255, 215, 0, 255)  # Bright yellow like original logo
+    black_color = (0, 0, 0, 255)      # Pure black
+    
+    img = Image.new('RGBA', (size, size), yellow_color)
     draw = ImageDraw.Draw(img)
     
-    # Add rounded corners for modern look
+    # Add rounded corners for modern PWA look
     mask = Image.new('L', (size, size), 0)
     mask_draw = ImageDraw.Draw(mask)
-    corner_radius = size // 8
-    mask_draw.rounded_rectangle([0, 0, size, size], corner_radius, fill=255)
+    corner_radius = size // 12  # Subtle rounded corners
+    mask_draw.ellipse([corner_radius, corner_radius, size-corner_radius, size-corner_radius], fill=255)
+    mask_draw.rectangle([corner_radius, 0, size-corner_radius, size], fill=255)
+    mask_draw.rectangle([0, corner_radius, size, size-corner_radius], fill=255)
     
-    # Apply mask
+    # Apply mask for rounded corners
     img.putalpha(mask)
     
-    # Draw taxi car silhouette
-    car_width = int(size * 0.6)
-    car_height = int(size * 0.35)
-    car_x = (size - car_width) // 2
-    car_y = int(size * 0.35)
+    # Calculate text areas (similar to original logo layout)
+    top_area_height = int(size * 0.45)   # For "TAXI"
+    bottom_area_height = int(size * 0.35) # For "TÜRLIHOF"
     
-    # Car body (dark blue/black)
-    car_color = (31, 41, 55, 255)  # Dark gray #1f2937
-    draw.rectangle([car_x, car_y, car_x + car_width, car_y + car_height], fill=car_color)
+    # Create black bottom section for "TÜRLIHOF"
+    bottom_y = size - bottom_area_height
+    draw.rectangle([0, bottom_y, size, size], fill=black_color)
     
-    # Taxi roof sign
-    sign_width = int(car_width * 0.4)
-    sign_height = int(car_height * 0.3)
-    sign_x = car_x + (car_width - sign_width) // 2
-    sign_y = car_y - sign_height + 2
-    
-    draw.rectangle([sign_x, sign_y, sign_x + sign_width, sign_y + sign_height], 
-                  fill=(255, 255, 255, 255))
-    
-    # Add wheels
-    wheel_radius = int(size * 0.04)
-    wheel_y = car_y + car_height - wheel_radius // 2
-    
-    # Left wheel
-    wheel1_x = car_x + int(car_width * 0.25)
-    draw.ellipse([wheel1_x - wheel_radius, wheel_y - wheel_radius, 
-                  wheel1_x + wheel_radius, wheel_y + wheel_radius], 
-                 fill=car_color)
-    
-    # Right wheel  
-    wheel2_x = car_x + int(car_width * 0.75)
-    draw.ellipse([wheel2_x - wheel_radius, wheel_y - wheel_radius, 
-                  wheel2_x + wheel_radius, wheel_y + wheel_radius], 
-                 fill=car_color)
-    
-    # Add "T" for Türlihof in the taxi sign
-    if size >= 128:  # Only add text for larger icons
+    # Draw "TAXI" text in top yellow area
+    if size >= 72:
         try:
-            # Try to use a bold font
-            font_size = max(8, sign_height - 4)
+            # Calculate font size for TAXI
+            taxi_font_size = max(int(size * 0.15), 8)
             
-            # Draw "T" in the taxi sign
-            text = "T"
-            # Get text dimensions
-            bbox = draw.textbbox((0, 0), text)
-            text_width = bbox[2] - bbox[0] 
-            text_height = bbox[3] - bbox[1]
+            taxi_text = "TAXI"
+            # Simple text positioning
+            bbox = draw.textbbox((0, 0), taxi_text)
+            text_width = bbox[2] - bbox[0] if bbox else len(taxi_text) * taxi_font_size * 0.6
+            text_height = bbox[3] - bbox[1] if bbox else taxi_font_size
             
-            text_x = sign_x + (sign_width - text_width) // 2
-            text_y = sign_y + (sign_height - text_height) // 2 - 1
+            taxi_x = (size - text_width) // 2
+            taxi_y = (top_area_height - text_height) // 2 - int(size * 0.05)
             
-            draw.text((text_x, text_y), text, fill=car_color)
+            draw.text((taxi_x, taxi_y), taxi_text, fill=black_color)
             
         except:
-            # Fallback: simple text
-            draw.text((sign_x + 2, sign_y + 1), "T", fill=car_color)
+            # Fallback for smaller sizes
+            draw.text((int(size * 0.1), int(size * 0.1)), "TAXI", fill=black_color)
+    
+    # Draw "TÜRLIHOF" text in bottom black area  
+    if size >= 96:
+        try:
+            # Calculate font size for TÜRLIHOF
+            turli_font_size = max(int(size * 0.08), 6)
+            
+            turli_text = "TÜRLIHOF"
+            # Simple text positioning
+            bbox = draw.textbbox((0, 0), turli_text)
+            text_width = bbox[2] - bbox[0] if bbox else len(turli_text) * turli_font_size * 0.6
+            text_height = bbox[3] - bbox[1] if bbox else turli_font_size
+            
+            turli_x = (size - text_width) // 2
+            turli_y = bottom_y + (bottom_area_height - text_height) // 2
+            
+            draw.text((turli_x, turli_y), turli_text, fill=yellow_color)
+            
+        except:
+            # Fallback
+            draw.text((int(size * 0.05), bottom_y + int(size * 0.05)), "TÜRLIHOF", fill=yellow_color)
+    
+    elif size >= 72:
+        # For medium sizes, just show "T"
+        try:
+            t_font_size = max(int(size * 0.12), 8)
+            t_text = "T"
+            bbox = draw.textbbox((0, 0), t_text)
+            text_width = bbox[2] - bbox[0] if bbox else t_font_size * 0.6
+            text_height = bbox[3] - bbox[1] if bbox else t_font_size
+            
+            t_x = (size - text_width) // 2
+            t_y = bottom_y + (bottom_area_height - text_height) // 2
+            
+            draw.text((t_x, t_y), t_text, fill=yellow_color)
+        except:
+            draw.text((int(size * 0.4), bottom_y + int(size * 0.1)), "T", fill=yellow_color)
     
     return img
 
