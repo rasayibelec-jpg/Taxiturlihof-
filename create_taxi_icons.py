@@ -41,8 +41,8 @@ def create_taxi_icon(size):
     sign_x = car_x + (car_width - sign_width) // 2
     sign_y = car_y - sign_height + 2
     
-    draw.rounded_rectangle([sign_x, sign_y, sign_x + sign_width, sign_y + sign_height], 
-                          corner_radius=2, fill=(255, 255, 255, 255))
+    draw.rectangle([sign_x, sign_y, sign_x + sign_width, sign_y + sign_height], 
+                  fill=(255, 255, 255, 255))
     
     # Add wheels
     wheel_radius = int(size * 0.04)
