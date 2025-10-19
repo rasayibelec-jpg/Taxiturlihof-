@@ -51,10 +51,21 @@ const SEOHead = ({
       <meta name="author" content="Taxi Türlihof" />
       <meta name="robots" content="index, follow" />
       <meta name="language" content="de" />
-      <meta name="geo.region" content="CH-LU" />
-      <meta name="geo.placename" content="Luzern, Schwyz, Zug" />
-      <meta name="geo.position" content="47.0502;8.3093" />
-      <meta name="ICBM" content="47.0502, 8.3093" />
+      
+      {/* Lokale SEO - Geo Tags */}
+      <meta name="geo.region" content="CH-SZ" />
+      <meta name="geo.placename" content="Oberarth, Schwyz" />
+      <meta name="geo.position" content="47.0448;8.6266" />
+      <meta name="ICBM" content="47.0448, 8.6266" />
+      
+      {/* Local Business Info */}
+      <meta name="business:contact_data:street_address" content="Türlihof 4" />
+      <meta name="business:contact_data:locality" content="Oberarth" />
+      <meta name="business:contact_data:region" content="Schwyz" />
+      <meta name="business:contact_data:postal_code" content="6414" />
+      <meta name="business:contact_data:country_name" content="Switzerland" />
+      <meta name="business:contact_data:phone_number" content="+41766113131" />
+      <meta name="business:contact_data:email" content="taxituerlihof@gmail.com" />
       
       {/* Canonical URL */}
       <link rel="canonical" href={url} />
