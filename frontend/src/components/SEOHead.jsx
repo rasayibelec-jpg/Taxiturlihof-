@@ -65,7 +65,7 @@ const SEOHead = ({
       <meta name="business:contact_data:postal_code" content="6414" />
       <meta name="business:contact_data:country_name" content="Switzerland" />
       <meta name="business:contact_data:phone_number" content="+41766113131" />
-      <meta name="business:contact_data:email" content="taxituerlihof@gmail.com" />
+      <meta name="business:contact_data:email" content="info@taxiturlihof.ch" />
       
       {/* Canonical URL */}
       <link rel="canonical" href={url} />
