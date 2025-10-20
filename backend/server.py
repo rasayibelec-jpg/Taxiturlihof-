@@ -509,6 +509,62 @@ async def get_all_bookings(request: Request):
         
         # Get bookings
         bookings = await db.bookings.find().sort("created_at", -1).to_list(length=1000)
+        
+        # Convert all datetime fields to Swiss timezone for display
+        swiss_tz = pytz.timezone('Europe/Zurich')
+        for booking in bookings:
+            # Convert created_at to Swiss timezone
+            if booking.get('created_at'):
+                if isinstance(booking['created_at'], str):
+                    try:
+                        dt = datetime.fromisoformat(booking['created_at'].replace('Z', '+00:00'))
+                    except:
+                        dt = datetime.fromisoformat(booking['created_at'])
+                else:
+                    dt = booking['created_at']
+                
+                # If naive, assume UTC
+                if dt.tzinfo is None:
+                    dt = pytz.utc.localize(dt)
+                
+                # Convert to Swiss timezone and format as ISO string
+                swiss_dt = dt.astimezone(swiss_tz)
+                booking['created_at'] = swiss_dt.isoformat()
+            
+            # Convert pickup_datetime to Swiss timezone
+            if booking.get('pickup_datetime'):
+                if isinstance(booking['pickup_datetime'], str):
+                    try:
+                        dt = datetime.fromisoformat(booking['pickup_datetime'].replace('Z', '+00:00'))
+                    except:
+                        dt = datetime.fromisoformat(booking['pickup_datetime'])
+                else:
+                    dt = booking['pickup_datetime']
+                
+                # If naive, assume it's already in Swiss timezone
+                if dt.tzinfo is None:
+                    dt = swiss_tz.localize(dt)
+                else:
+                    dt = dt.astimezone(swiss_tz)
+                
+                booking['pickup_datetime'] = dt.isoformat()
+            
+            # Convert updated_at to Swiss timezone
+            if booking.get('updated_at'):
+                if isinstance(booking['updated_at'], str):
+                    try:
+                        dt = datetime.fromisoformat(booking['updated_at'].replace('Z', '+00:00'))
+                    except:
+                        dt = datetime.fromisoformat(booking['updated_at'])
+                else:
+                    dt = booking['updated_at']
+                
+                if dt.tzinfo is None:
+                    dt = pytz.utc.localize(dt)
+                
+                swiss_dt = dt.astimezone(swiss_tz)
+                booking['updated_at'] = swiss_dt.isoformat()
+        
         return bookings
         
     except HTTPException:
