@@ -57,7 +57,7 @@ class Booking(BaseModel):
     status: BookingStatus = BookingStatus.PENDING
     special_requests: Optional[str] = None
     created_at: datetime = Field(default_factory=lambda: datetime.now(pytz.timezone('Europe/Zurich')))
-    updated_at: datetime = Field(default_factory=datetime.now)
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(pytz.timezone('Europe/Zurich')))
     
     # Internal
     route_info: dict = Field(default_factory=dict)
