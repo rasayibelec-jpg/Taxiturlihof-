@@ -223,8 +223,10 @@ const BookingSystem = () => {
         throw new Error(`Bitte füllen Sie alle Pflichtfelder aus: ${missingFields.join(', ')}`);
       }
 
-      // Create pickup datetime - always scheduled
-      const pickupDatetime = new Date(`${bookingData.pickupDate}T${bookingData.pickupTime}:00`).toISOString();
+      // Create pickup datetime in Swiss timezone
+      // Combine date and time, then create in local timezone
+      const pickupDateTimeStr = `${bookingData.pickupDate}T${bookingData.pickupTime}:00`;
+      const pickupDatetime = new Date(pickupDateTimeStr).toISOString();
 
       const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
       const response = await axios.post(`${backendUrl}/api/bookings`, {
