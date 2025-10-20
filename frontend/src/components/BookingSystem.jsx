@@ -224,9 +224,13 @@ const BookingSystem = () => {
       }
 
       // Create pickup datetime in Swiss timezone
-      // Combine date and time, then create in local timezone
-      const pickupDateTimeStr = `${bookingData.pickupDate}T${bookingData.pickupTime}:00`;
-      const pickupDatetime = new Date(pickupDateTimeStr).toISOString();
+      // Parse date and time components, treat as Europe/Zurich time
+      const [year, month, day] = bookingData.pickupDate.split('-').map(Number);
+      const [hour, minute] = bookingData.pickupTime.split(':').map(Number);
+      
+      // Create date in local timezone then format as ISO string
+      const localDate = new Date(year, month - 1, day, hour, minute, 0);
+      const pickupDatetime = localDate.toISOString();
 
       const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
       const response = await axios.post(`${backendUrl}/api/bookings`, {
