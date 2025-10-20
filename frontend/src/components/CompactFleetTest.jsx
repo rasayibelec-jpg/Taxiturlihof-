@@ -29,7 +29,7 @@ const CompactFleetTest = () => {
     {
       icon: "🌙",
       title: "Nacht-Service",
-      description: "24/7 verfügbar",
+      description: "Zuverlässig verfügbar",
       passengers: "Alle Fahrzeuge",
       image: "https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/xkyxwgjm_IMG-20250908-WA0000.jpg"
     }

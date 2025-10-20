@@ -88,7 +88,7 @@ const Contact = () => {
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Buchen Sie Ihre Fahrt oder kontaktieren Sie uns für weitere Informationen. 
-            Wir sind 24/7 für Sie da.
+            Wir sind Zuverlässig für Sie da.
           </p>
         </div>
 

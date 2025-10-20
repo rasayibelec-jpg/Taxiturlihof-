@@ -822,7 +822,7 @@ const BookingSystem = () => {
                   </div>
                 </div>
                 <div className="text-sm text-gray-600">
-                  Unser Team steht Ihnen 24/7 zur Verfügung.
+                  Unser Team steht Ihnen Zuverlässig zur Verfügung.
                 </div>
               </CardContent>
             </Card>

@@ -30,7 +30,7 @@ const FleetGallery = () => {
     {
       url: "https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/xkyxwgjm_IMG-20250908-WA0000.jpg",
       title: "Mercedes Taxi bei Nacht",
-      description: "24/7 Service - auch nachts zuverlässig unterwegs"
+      description: "Zuverlässig Service - auch nachts zuverlässig unterwegs"
     },
     {
       url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/p68khw91_20240707_163617.jpg", 

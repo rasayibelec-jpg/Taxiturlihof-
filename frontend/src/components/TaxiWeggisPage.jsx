@@ -9,7 +9,7 @@ import CompactCalculatorCTA from "./CompactCalculatorCTA";
 const TaxiWeggisPage = () => {
   const seoData = {
     title: "Taxi Weggis & Vitznau | Taxi-Service am Vierwaldstättersee",
-    description: "Taxi Service Weggis & Vitznau ✓ Seepromenade Transfers ✓ Rigi-Fahrten ✓ 24/7 verfügbar ✓ Mercedes-Flotte ☎️ 076 611 31 31 - Ihr Taxi am See",
+    description: "Taxi Service Weggis & Vitznau ✓ Seepromenade Transfers ✓ Rigi-Fahrten ✓ Zuverlässig verfügbar ✓ Mercedes-Flotte ☎️ 076 611 31 31 - Ihr Taxi am See",
     keywords: "Taxi Weggis, Taxi Vitznau, Vierwaldstättersee Taxi, Rigi Taxi Service, Seepromenade Transfer, Mercedes Taxi Weggis, 24h Taxi Vitznau",
     url: "https://www.taxiturlihof.ch/taxi-weggis"
   };

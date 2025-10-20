@@ -75,7 +75,7 @@ const FlughafenZurichTransferPage = () => {
     <div className="min-h-screen bg-gray-50">
       <SEOHead 
         title="Flughafentransfer Zürich ab Luzern | Mercedes Taxi | Taxi Türlihof"
-        description="Flughafentransfer Zürich ✈️ Ab CHF 220 ✈️ Mercedes-Flotte ✈️ 24/7 verfügbar ☎️ 076 611 31 31 ✈️ Pünktlich & zuverlässig ✈️ Von/nach Luzern, Schwyz, Zug"
+        description="Flughafentransfer Zürich ✈️ Ab CHF 220 ✈️ Mercedes-Flotte ✈️ Zuverlässig verfügbar ☎️ 076 611 31 31 ✈️ Pünktlich & zuverlässig ✈️ Von/nach Luzern, Schwyz, Zug"
         keywords="Flughafentransfer Zürich, Airport Transfer Zürich, Luzern Flughafen Zürich, Taxi Flughafen Zürich, Zürich Airport Luzern, Mercedes Airport Transfer, 24h Flughafentaxi, Flughafen Transfer Zentralschweiz"
         url="https://www.taxiturlihof.ch/flughafen-zurich-transfer"
         structuredData={structuredData}
@@ -101,7 +101,7 @@ const FlughafenZurichTransferPage = () => {
               Zuverlässiger Transfer von/nach Flughafen Zürich
             </p>
             <p className="text-xl mb-8 opacity-80">
-              Mercedes-Flotte • 24/7 Service • Ab CHF 220 • Luzern ↔ Zug ↔ Schwyz
+              Mercedes-Flotte • Zuverlässig Service • Ab CHF 220 • Luzern ↔ Zug ↔ Schwyz
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a 
@@ -180,7 +180,7 @@ const FlughafenZurichTransferPage = () => {
                 <div className="bg-blue-100 p-4 rounded-full w-fit mx-auto mb-4">
                   <CheckCircle className="w-8 h-8 text-blue-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">24/7 Verfügbar</CardTitle>
+                <CardTitle className="text-xl text-gray-900">Zuverlässig Verfügbar</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-4">
@@ -543,7 +543,7 @@ const FlughafenZurichTransferPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 pt-8 border-t border-blue-400 opacity-75">
             <div className="text-center">
-              <div className="text-2xl font-bold">24/7</div>
+              <div className="text-2xl font-bold">Zuverlässig</div>
               <div className="text-sm">Service</div>
             </div>
             <div className="text-center">

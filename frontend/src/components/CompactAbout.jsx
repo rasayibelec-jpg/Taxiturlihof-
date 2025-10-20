@@ -29,7 +29,7 @@ const CompactAbout = () => {
                     <li>• Flughafentransfers (Zürich, Basel)</li>
                     <li>• Geschäfts- und Lokalfahrten</li>
                     <li>• Gruppenfahrten bis 8 Personen</li>
-                    <li>• 24/7 verfügbar</li>
+                    <li>• Zuverlässig verfügbar</li>
                   </ul>
                 </div>
                 <div>

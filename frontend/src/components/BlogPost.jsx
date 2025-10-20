@@ -52,7 +52,7 @@ Höchstgelegenes Dorf der Zentralschweiz.
 - Keine Parkplatzsuche
 - Lokale Geheimtipps von unseren Fahrern
 - Flexibler Transport zwischen den Zielen
-- 24/7 verfügbar für spontane Ausflüge
+- Zuverlässig verfügbar für spontane Ausflüge
 
 Buchen Sie noch heute Ihre Ausflugstour!`,
       date: "2024-12-08",
@@ -98,7 +98,7 @@ Buchen Sie noch heute Ihre Ausflugstour!`,
 - **Flug-Monitoring:** Wir verfolgen Ihren Flug
 - **Kostenlose Wartezeit:** Bei Verspätungen
 - **Mercedes-Komfort:** Geräumig für Gepäck
-- **24/7 Service:** Auch für frühe/späte Flüge
+- **Zuverlässig Service:** Auch für frühe/späte Flüge
 
 **Unser Geheimtipp:** Buchen Sie den Rückweg gleich mit - so haben Sie nach der Landung garantiert ein Taxi!`,
       date: "2024-12-05",
@@ -255,7 +255,7 @@ Buchen Sie noch heute Ihre Ausflugstour!`,
             Benötigen Sie eine Fahrt?
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Buchen Sie jetzt Ihr Taxi - 24/7 verfügbar!
+            Buchen Sie jetzt Ihr Taxi - Zuverlässig verfügbar!
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

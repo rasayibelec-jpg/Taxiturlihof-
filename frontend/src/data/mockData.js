@@ -107,7 +107,7 @@ export const services = [
     description: "Schnelle Fahrten innerhalb der Stadt und Umgebung",
     icon: "car",
     price: "Nach Vereinbarung",
-    features: ["24/7 verfügbar", "Kurze Wartezeiten", "Lokale Kenntnisse"],
+    features: ["Zuverlässig verfügbar", "Kurze Wartezeiten", "Lokale Kenntnisse"],
     image: "https://images.unsplash.com/photo-1641230011140-322910168cc4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwzfHxjaXR5JTIwdGF4aXxlbnwwfHx8fDE3NTczMjkzODN8MA&ixlib=rb-4.1.0&q=85"
   },
   {
@@ -156,7 +156,7 @@ export const contactInfo = {
   email: "info@taxiturlihof.ch",
   website: "www.taxiturlihof.ch",
   address: "Türlihof 4, 6414 Arth, Switzerland",
-  hours: "24/7 Service",
+  hours: "Zuverlässig Service",
   googleRating: 5.0,
   reviewCount: 39
 };

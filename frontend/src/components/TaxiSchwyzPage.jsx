@@ -10,7 +10,7 @@ const TaxiSchwyzPage = () => {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Taxi Türlihof Schwyz",
-    "description": "24/7 Taxi-Service in Schwyz und Brunnen. Sicher durch die Berglandschaft mit Mercedes-Flotte.",
+    "description": "Zuverlässig Taxi-Service in Schwyz und Brunnen. Sicher durch die Berglandschaft mit Mercedes-Flotte.",
     "url": "https://www.taxiturlihof.ch/taxi-schwyz",
     "telephone": "+41766113131",
     "address": {
@@ -37,8 +37,8 @@ const TaxiSchwyzPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <SEOHead 
-        title="Taxi Schwyz & Brunnen | 24/7 Berglandschaft Taxi | Taxi Türlihof"
-        description="Taxi Schwyz ➤ Mercedes-Flotte für Bergstraßen ➤ 24/7 Service ☎️ 076 611 31 31 ➤ Schwyz, Brunnen, Stoos, Muotathal ➤ Sicher durch die Mythenregion"
+        title="Taxi Schwyz & Brunnen | Zuverlässig Berglandschaft Taxi | Taxi Türlihof"
+        description="Taxi Schwyz ➤ Mercedes-Flotte für Bergstraßen ➤ Zuverlässig Service ☎️ 076 611 31 31 ➤ Schwyz, Brunnen, Stoos, Muotathal ➤ Sicher durch die Mythenregion"
         keywords="Taxi Schwyz, Taxi Brunnen, Taxi Stoos, Schwyz Bahnhof Taxi, Brunnen Bahnhof Taxi, Berg Taxi Schwyz, Mythenregion Taxi, Muotathal Taxi, Gersau Taxi, Morschach Taxi"
         url="https://www.taxiturlihof.ch/taxi-schwyz"
         structuredData={structuredData}
@@ -68,7 +68,7 @@ const TaxiSchwyzPage = () => {
               Sicher durch die Berglandschaft
             </h2>
             <p className="text-2xl mb-8 opacity-90 drop-shadow-md">
-              24/7 Mercedes-Taxi-Service in der Mythenregion
+              Zuverlässig Mercedes-Taxi-Service in der Mythenregion
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a 
@@ -123,7 +123,7 @@ const TaxiSchwyzPage = () => {
                 <div className="bg-green-100 p-3 rounded-full w-fit mx-auto mb-4">
                   <Clock className="w-8 h-8 text-green-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">24/7 Verfügbar</CardTitle>
+                <CardTitle className="text-xl text-gray-900">Zuverlässig Verfügbar</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">

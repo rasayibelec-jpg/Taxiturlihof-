@@ -30,7 +30,7 @@ const StreamlinedContact = () => {
             >
               076 611 31 31
             </a>
-            <p className="text-xs text-gray-600">24/7</p>
+            <p className="text-xs text-gray-600">Zuverlässig</p>
           </Card>
 
           {/* Email - kleiner Block */}

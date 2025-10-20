@@ -58,7 +58,7 @@ const FlughafentransferPage = () => {
     <div className="min-h-screen bg-gray-50">
       <SEOHead 
         title="Flughafentransfer Zürich & Basel | Taxi Türlihof | Ab Luzern"
-        description="Flughafentransfer Zürich & Basel ➤ Von Luzern, Schwyz, Zug ➤ Mercedes-Flotte ➤ 24/7 Service ☎️ 076 611 31 31 ➤ Pünktlich & zuverlässig ➤ Gepäckservice"
+        description="Flughafentransfer Zürich & Basel ➤ Von Luzern, Schwyz, Zug ➤ Mercedes-Flotte ➤ Zuverlässig Service ☎️ 076 611 31 31 ➤ Pünktlich & zuverlässig ➤ Gepäckservice"
         keywords="Flughafentransfer Zürich, Airport Transfer Basel, Luzern Flughafen Zürich, Taxi Flughafen Zürich, Schwyz Airport Basel, Zug Flughafentransfer, Mercedes Airport Transfer, 24h Flughafentaxi"
         url="https://www.taxiturlihof.ch/flughafentransfer"
         structuredData={structuredData}
@@ -217,7 +217,7 @@ const FlughafentransferPage = () => {
               <div className="bg-blue-100 p-3 rounded-full w-fit mx-auto mb-4">
                 <Phone className="w-8 h-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">24/7 Service</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Zuverlässig Service</h3>
               <p className="text-gray-600">
                 Auch für frühe Morgenstunden oder nächtliche Flüge verfügbar
               </p>
@@ -389,7 +389,7 @@ const FlughafentransferPage = () => {
 
           <div className="mt-8 pt-8 border-t border-blue-400 opacity-75">
             <p className="text-sm">
-              ✈️ Flughafen Zürich & Basel • 🚗 Mercedes-Flotte • ⭐ 5.0 Sterne • 📞 24/7 Service
+              ✈️ Flughafen Zürich & Basel • 🚗 Mercedes-Flotte • ⭐ 5.0 Sterne • 📞 Zuverlässig Service
             </p>
           </div>
         </div>

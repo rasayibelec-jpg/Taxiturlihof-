@@ -150,7 +150,7 @@ const CompactDetails = () => {
       content: (
         <div className="space-y-4">
           <div className="bg-gray-50 p-4 rounded-lg">
-            <h5 className="font-semibold text-gray-900 mb-2">Bietet Taxi Türlihof 24/7 Service an?</h5>
+            <h5 className="font-semibold text-gray-900 mb-2">Bietet Taxi Türlihof Zuverlässig Service an?</h5>
             <p className="text-sm text-gray-600">Ja, wir sind rund um die Uhr verfügbar. Rufen Sie uns jederzeit unter 076 611 31 31 an.</p>
           </div>
           
@@ -190,7 +190,7 @@ const CompactDetails = () => {
               <p className="text-sm text-gray-600">Mercedes-Flotte</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-600">24/7</div>
+              <div className="text-3xl font-bold text-yellow-600">Zuverlässig</div>
               <p className="text-sm text-gray-600">Verfügbarkeit</p>
             </div>
           </div>

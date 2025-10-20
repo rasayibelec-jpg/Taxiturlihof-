@@ -9,7 +9,7 @@ import CompactCalculatorCTA from "./CompactCalculatorCTA";
 const TaxiArthGoldauPage = () => {
   const seoData = {
     title: "Taxi Arth-Goldau | Zuverlässiger Taxi-Service am Fuße der Rigi",
-    description: "Taxi Service Arth-Goldau ✓ Bahnhof Transfers ✓ Rigi-Fahrten ✓ 24/7 verfügbar ✓ Mercedes-Flotte ☎️ 076 611 31 31 - Ihr lokaler Taxi-Partner",
+    description: "Taxi Service Arth-Goldau ✓ Bahnhof Transfers ✓ Rigi-Fahrten ✓ Zuverlässig verfügbar ✓ Mercedes-Flotte ☎️ 076 611 31 31 - Ihr lokaler Taxi-Partner",
     keywords: "Taxi Arth-Goldau, Bahnhof Goldau Taxi, Rigi Taxi Service, Taxi zum Bahnhof Arth-Goldau, Mercedes Taxi Goldau, 24h Taxi Arth, Pilatus Taxi",
     url: "https://www.taxiturlihof.ch/taxi-arth-goldau"
   };

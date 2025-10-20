@@ -10,7 +10,7 @@ export const getLocalBusinessSchema = () => ({
   "@id": "https://www.taxiturlihof.ch/#business",
   "name": "Taxi Türlihof",
   "legalName": "Taxi Türlihof",
-  "description": "Zuverlässiger Taxi-Service in der Zentralschweiz. Mercedes-Flotte, Flughafentransfer, Stadtfahrten, Geschäftsfahrten. 24/7 Service in Luzern, Schwyz, Zug und Umgebung.",
+  "description": "Zuverlässiger Taxi-Service in der Zentralschweiz. Mercedes-Flotte, Flughafentransfer, Stadtfahrten, Geschäftsfahrten. Zuverlässig Service in Luzern, Schwyz, Zug und Umgebung.",
   "url": "https://www.taxiturlihof.ch/",
   "logo": "https://www.taxiturlihof.ch/icons/icon-512x512.png",
   "image": "https://www.taxiturlihof.ch/icons/icon-512x512.png",
@@ -81,7 +81,7 @@ export const getLocalBusinessSchema = () => ({
     }
   ],
   
-  // Öffnungszeiten - Zuverlässiger Service (24/7 erreichbar)
+  // Öffnungszeiten - Zuverlässiger Service (Zuverlässig erreichbar)
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",

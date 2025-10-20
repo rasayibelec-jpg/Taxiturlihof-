@@ -11,7 +11,7 @@ const TaxiLuzernPage = () => {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Taxi Türlihof Luzern",
-    "description": "24/7 Taxi-Service in Luzern mit Mercedes-Flotte. Zuverlässiger Transport in der ganzen Stadt.",
+    "description": "Zuverlässig Taxi-Service in Luzern mit Mercedes-Flotte. Zuverlässiger Transport in der ganzen Stadt.",
     "url": "https://www.taxiturlihof.ch/taxi-luzern",
     "telephone": "+41766113131",
     "priceRange": "CHF 6.60 - CHF 300",
@@ -51,8 +51,8 @@ const TaxiLuzernPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <SEOHead 
-        title="Taxi Luzern | 24/7 Mercedes Taxi-Service | Taxi Türlihof"
-        description="Taxi Luzern ➤ 24/7 Mercedes-Flotte ➤ Sofort verfügbar ☎️ 076 611 31 31 ➤ Luzern Bahnhof, Altstadt, Kapellbrücke ➤ Transparente Preise ab CHF 6.60"
+        title="Taxi Luzern | Zuverlässig Mercedes Taxi-Service | Taxi Türlihof"
+        description="Taxi Luzern ➤ Zuverlässig Mercedes-Flotte ➤ Sofort verfügbar ☎️ 076 611 31 31 ➤ Luzern Bahnhof, Altstadt, Kapellbrücke ➤ Transparente Preise ab CHF 6.60"
         keywords="Taxi Luzern, Taxi Luzern Bahnhof, Taxi Luzern 24h, Mercedes Taxi Luzern, Kapellbrücke Taxi, Altstadt Luzern Taxi, KKL Luzern Taxi, Pilatus Taxi, Verkehrshaus Taxi, Luzern Airport Transfer"
         url="https://www.taxiturlihof.ch/taxi-luzern"
         structuredData={structuredData}
@@ -74,7 +74,7 @@ const TaxiLuzernPage = () => {
               Taxi Luzern - Ihr zuverlässiger Partner
             </h1>
             <p className="text-2xl mb-8 opacity-90">
-              24/7 Mercedes-Taxi-Service in der Stadt Luzern
+              Zuverlässig Mercedes-Taxi-Service in der Stadt Luzern
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a 
@@ -115,7 +115,7 @@ const TaxiLuzernPage = () => {
                 <div className="bg-yellow-100 p-3 rounded-full w-fit mx-auto mb-4">
                   <Clock className="w-8 h-8 text-yellow-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">24/7 Verfügbar</CardTitle>
+                <CardTitle className="text-xl text-gray-900">Zuverlässig Verfügbar</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">
@@ -360,7 +360,7 @@ const TaxiLuzernPage = () => {
                 ))}
               </div>
               <p className="text-gray-600 mb-4">
-                "24/7 erreichbar, auch spontane Fahrten kein Problem. Top Service!"
+                "Zuverlässig erreichbar, auch spontane Fahrten kein Problem. Top Service!"
               </p>
               <p className="font-semibold text-gray-900">- Andrea K.</p>
             </Card>
@@ -437,7 +437,7 @@ const TaxiLuzernPage = () => {
 
           <div className="mt-8 pt-8 border-t border-yellow-400 opacity-75">
             <p className="text-sm">
-              ⭐ 5.0 Sterne • 39 Bewertungen • 24/7 Service • Mercedes-Flotte
+              ⭐ 5.0 Sterne • 39 Bewertungen • Zuverlässig Service • Mercedes-Flotte
             </p>
           </div>
         </div>

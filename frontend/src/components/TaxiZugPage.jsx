@@ -9,7 +9,7 @@ const TaxiZugPage = () => {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Taxi Türlihof Zug",
-    "description": "24/7 Taxi-Service in Zug am Zugersee. Mercedes-Flotte für Business und Freizeit. Zug Bahnhof, Altstadt und Umgebung.",
+    "description": "Zuverlässig Taxi-Service in Zug am Zugersee. Mercedes-Flotte für Business und Freizeit. Zug Bahnhof, Altstadt und Umgebung.",
     "url": "https://www.taxiturlihof.ch/taxi-zug",
     "telephone": "+41766113131",
     "address": {
@@ -54,7 +54,7 @@ const TaxiZugPage = () => {
               Taxi Zug - Ihr zuverlässiger Partner am Zugersee
             </h1>
             <p className="text-2xl mb-8 opacity-90">
-              Stressfrei unterwegs mit 24/7 Mercedes-Taxi-Service
+              Stressfrei unterwegs mit Zuverlässig Mercedes-Taxi-Service
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a 
@@ -109,7 +109,7 @@ const TaxiZugPage = () => {
                 <div className="bg-teal-100 p-3 rounded-full w-fit mx-auto mb-4">
                   <Clock className="w-8 h-8 text-teal-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">24/7 Verfügbar</CardTitle>
+                <CardTitle className="text-xl text-gray-900">Zuverlässig Verfügbar</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">

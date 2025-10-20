@@ -470,7 +470,7 @@ const BlogLuzernSehenswuerdigkeiten = () => {
               <div className="text-sm">Top-Sehenswürdigkeiten</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold">24/7</div>
+              <div className="text-2xl font-bold">Zuverlässig</div>
               <div className="text-sm">Service verfügbar</div>
             </div>
             <div className="text-center">

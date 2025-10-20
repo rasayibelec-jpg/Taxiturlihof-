@@ -267,7 +267,7 @@ const PaymentSuccess = () => {
                     <div className="flex items-center space-x-3">
                       <Phone className="w-5 h-5 text-green-600" />
                       <div>
-                        <p className="font-semibold text-gray-900">24/7 Support</p>
+                        <p className="font-semibold text-gray-900">Zuverlässig Support</p>
                         <a href="tel:076 611 31 31" className="text-blue-600 hover:underline">
                           076 611 31 31
                         </a>
