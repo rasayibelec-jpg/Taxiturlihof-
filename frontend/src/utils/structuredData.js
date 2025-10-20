@@ -237,6 +237,58 @@ export const getHomePageSchema = () => ({
     getWebsiteSchema(),
     getBreadcrumbSchema([
       { name: "Home", url: "https://www.taxiturlihof.ch/" }
-    ])
+    ]),
+    // Individuelle Reviews
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Sema Celebi"
+      },
+      "datePublished": "2024-04-17",
+      "reviewBody": "Vielen Dank für die ausgezeichnete Fahrt mit TaxiTürlihof! Ihr professioneller Fahrstil und die freundliche, zuvorkommende Art haben die Fahrt wirklich angenehm gemacht. Es ist klar, dass Sie nicht nur ein guter Fahrer sind, sondern auch ein echter Botschafter für Ihr Unternehmen.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "itemReviewed": {
+        "@id": "https://www.taxiturlihof.ch/#business"
+      }
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "M K"
+      },
+      "datePublished": "2024-01-17",
+      "reviewBody": "Absolut zuverlässig. Sehr sauber und pünktlich. Kann ich nur weiterempfehlen!",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "itemReviewed": {
+        "@id": "https://www.taxiturlihof.ch/#business"
+      }
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Hasan Hatipoglu"
+      },
+      "datePublished": "2024-08-17",
+      "reviewBody": "Sehr freundlich, nochmals vielen Dank! Perfekter Service und immer pünktlich.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "itemReviewed": {
+        "@id": "https://www.taxiturlihof.ch/#business"
+      }
+    }
   ]
 });
