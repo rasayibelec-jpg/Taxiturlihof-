@@ -106,17 +106,21 @@ class BookingService:
     async def create_booking(self, booking_request: BookingRequest) -> BookingResponse:
         """Create a new taxi booking"""
         try:
-            # Parse pickup datetime and ensure it's in Swiss timezone
+            # Parse pickup datetime - treat as Swiss local time
             swiss_tz = pytz.timezone('Europe/Zurich')
-            pickup_datetime_str = booking_request.pickup_datetime.replace('Z', '+00:00')
-            pickup_datetime = datetime.fromisoformat(pickup_datetime_str)
             
-            # If pickup_datetime is timezone-naive, make it timezone-aware (assume UTC, then convert to Swiss time)
-            if pickup_datetime.tzinfo is None:
-                pickup_datetime = pickup_datetime.replace(tzinfo=timezone.utc)
+            # Remove timezone info if present
+            pickup_datetime_str = booking_request.pickup_datetime.replace('Z', '').replace('+00:00', '')
             
-            # Convert to Swiss timezone
-            pickup_datetime = pickup_datetime.astimezone(swiss_tz)
+            # Parse as naive datetime first
+            try:
+                pickup_datetime_naive = datetime.fromisoformat(pickup_datetime_str)
+            except:
+                # Try alternative parsing
+                pickup_datetime_naive = datetime.strptime(pickup_datetime_str, '%Y-%m-%dT%H:%M:%S')
+            
+            # Treat as Swiss local time (localize it to Swiss timezone)
+            pickup_datetime = swiss_tz.localize(pickup_datetime_naive)
             
             # Validate pickup time (must be at least 30 minutes in future for scheduled bookings)
             if booking_request.booking_type == BookingType.SCHEDULED:
