@@ -682,6 +682,49 @@ const BookingSystem = () => {
                     </div>
                   </div>
 
+                  {/* Wartezeit */}
+                  <div className="border-t pt-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Wartezeit (optional)</h3>
+                    <div className="space-y-4">
+                      <div>
+                        <label htmlFor="waitingTimeHours" className="block text-sm font-medium text-gray-700 mb-2">
+                          <Clock className="w-4 h-4 inline mr-1" />
+                          Wartezeit in Stunden
+                        </label>
+                        <select
+                          id="waitingTimeHours"
+                          value={bookingData.waitingTimeHours}
+                          onChange={(e) => handleInputChange('waitingTimeHours', parseFloat(e.target.value))}
+                          disabled={isSubmitting}
+                          className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        >
+                          <option value={0}>Keine Wartezeit</option>
+                          <option value={0.5}>0.5 Stunden (30 Min) - CHF 36.00</option>
+                          <option value={1}>1 Stunde - CHF 72.00</option>
+                          <option value={1.5}>1.5 Stunden - CHF 108.00</option>
+                          <option value={2}>2 Stunden - CHF 144.00</option>
+                          <option value={2.5}>2.5 Stunden - CHF 180.00</option>
+                          <option value={3}>3 Stunden - CHF 216.00</option>
+                          <option value={4}>4 Stunden - CHF 288.00</option>
+                          <option value={5}>5 Stunden - CHF 360.00</option>
+                          <option value={6}>6 Stunden - CHF 432.00</option>
+                          <option value={8}>8 Stunden (Ganztag) - CHF 576.00</option>
+                        </select>
+                      </div>
+                      
+                      {bookingData.waitingTimeHours > 0 && (
+                        <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                          <p className="text-sm text-blue-800">
+                            <strong>Wartezeit:</strong> {bookingData.waitingTimeHours} Stunde{bookingData.waitingTimeHours !== 1 ? 'n' : ''} = CHF {(bookingData.waitingTimeHours * 72).toFixed(2)}
+                          </p>
+                          <p className="text-xs text-blue-600 mt-1">
+                            Der Fahrer wartet am Zielort auf Sie. Ideal für Meetings, Besorgungen oder mehrstündige Events.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
                   {/* Special Requests */}
                   <div className="border-t pt-6">
                     <label htmlFor="specialRequests" className="block text-sm font-medium text-gray-700 mb-2">
