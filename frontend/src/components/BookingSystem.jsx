@@ -240,6 +240,7 @@ const BookingSystem = () => {
         pickup_datetime: pickupDatetime,
         passenger_count: parseInt(bookingData.passengerCount),
         vehicle_type: bookingData.vehicleType,
+        waiting_time_hours: parseFloat(bookingData.waitingTimeHours) || 0,
         special_requests: bookingData.specialRequests || null
       });
 
