@@ -327,6 +327,7 @@ const BookingSystem = () => {
         pickupTime: "",
         passengerCount: 1,
         vehicleType: "standard",
+        waitingTimeHours: 0,
         specialRequests: ""
       });
       setEstimatedPrice(null);
