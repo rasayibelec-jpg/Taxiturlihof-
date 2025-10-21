@@ -76,6 +76,7 @@ class BookingRequest(BaseModel):
     pickup_datetime: str  # ISO format datetime string
     passenger_count: int = Field(default=1, ge=1, le=8)
     vehicle_type: VehicleType = VehicleType.STANDARD
+    waiting_time_hours: float = Field(default=0.0, ge=0, le=24)  # Wartezeit 0-24 Stunden
     special_requests: Optional[str] = None
 
 class BookingResponse(BaseModel):
