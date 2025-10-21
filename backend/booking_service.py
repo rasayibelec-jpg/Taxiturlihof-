@@ -137,15 +137,14 @@ class BookingService:
                 departure_time=pickup_datetime
             )
             
-            # Calculate pricing with vehicle type multiplier (NO TIME-BASED SURCHARGES)
-            vehicle_multiplier = self.vehicle_multipliers[booking_request.vehicle_type]
+            # Calculate pricing - DIREKTE PREISE ohne Multiplikatoren
             base_fare = self.base_fares[booking_request.vehicle_type]
             distance_rate = self.distance_rates[booking_request.vehicle_type]
             
             distance_km = distance_result['distance_km']
-            distance_fare = distance_km * distance_rate * vehicle_multiplier
+            distance_fare = distance_km * distance_rate  # Kein Multiplikator mehr
             
-            # Simple pricing: Base + Distance (no time-based surcharges)
+            # Simple pricing: Base + Distance (no time-based surcharges, no multipliers)
             total_base = base_fare + distance_fare
             
             # No booking fee (removed per client request)
