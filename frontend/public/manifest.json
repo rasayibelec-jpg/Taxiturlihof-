@@ -1,7 +1,7 @@
 {
-  "name": "NOVA TAXI - Ihr zuverlässiger Taxi-Service",
-  "short_name": "NOVA TAXI",
-  "description": "NOVA TAXI - Zuverlässiger Taxi-Service in der Zentralschweiz. Mercedes-Flotte, Flughafentransfer, Stadtfahrten. Jederzeit erreichbar.",
+  "name": "Taxi Türlihof - Luzern, Zug, Schwyz",
+  "short_name": "Taxi Türlihof",
+  "description": "Taxi Türlihof - Ihr zuverlässiger Taxi-Service in Luzern, Schwyz, Zug. Mercedes-Flotte, Flughafentransfer, Stadtfahrten. Zuverlässiger Service.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#1f2937",
