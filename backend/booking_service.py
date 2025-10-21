@@ -44,12 +44,14 @@ class Booking(BaseModel):
     pickup_datetime: datetime
     passenger_count: int = Field(default=1, ge=1, le=8)
     vehicle_type: VehicleType = VehicleType.STANDARD
+    waiting_time_hours: float = Field(default=0.0, ge=0)  # Wartezeit in Stunden
     
     # Pricing
     estimated_distance_km: float
     estimated_duration_minutes: int
     base_fare: float
     distance_fare: float
+    waiting_time_fare: float = Field(default=0.0)  # Wartezeit-Kosten
     booking_fee: float = Field(default=0.0)  # No booking fee (removed)
     total_fare: float
     
