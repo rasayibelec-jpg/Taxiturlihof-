@@ -150,8 +150,11 @@ class BookingService:
             distance_km = distance_result['distance_km']
             distance_fare = distance_km * distance_rate  # Kein Multiplikator mehr
             
-            # Simple pricing: Base + Distance (no time-based surcharges, no multipliers)
-            total_base = base_fare + distance_fare
+            # Wartezeit-Kosten berechnen
+            waiting_time_fare = booking_request.waiting_time_hours * self.waiting_time_rate
+            
+            # Simple pricing: Base + Distance + Wartezeit
+            total_base = base_fare + distance_fare + waiting_time_fare
             
             # No booking fee (removed per client request)
             booking_fee = 0.0  # CHF 0 booking fee
