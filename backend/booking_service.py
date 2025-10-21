@@ -84,11 +84,8 @@ class BookingResponse(BaseModel):
 
 class BookingService:
     def __init__(self):
-        self.vehicle_multipliers = {
-            VehicleType.STANDARD: 1.0,
-            VehicleType.PREMIUM: 1.2,    # 20% Aufschlag (reduziert)
-            VehicleType.VAN: 1.25        # 25% Aufschlag (reduziert)
-        }
+        # Neue Preisstruktur ohne Multiplikatoren
+        # Jedes Fahrzeug hat eigenen km-Preis
         
         self.base_fares = {
             VehicleType.STANDARD: 6.60,
@@ -98,9 +95,9 @@ class BookingService:
         
         # Distance rates per km for different vehicle types
         self.distance_rates = {
-            VehicleType.STANDARD: 4.20,
-            VehicleType.PREMIUM: 4.20,   # Gleicher Rate für alle
-            VehicleType.VAN: 4.20        # Gleicher Rate, nur Multiplikator unterschiedlich
+            VehicleType.STANDARD: 4.20,  # CHF 4.20/km
+            VehicleType.PREMIUM: 5.00,   # CHF 5.00/km
+            VehicleType.VAN: 5.00        # CHF 5.00/km
         }
 
     async def create_booking(self, booking_request: BookingRequest) -> BookingResponse:
