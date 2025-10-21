@@ -102,6 +102,9 @@ class BookingService:
             VehicleType.PREMIUM: 5.00,   # CHF 5.00/km
             VehicleType.VAN: 5.00        # CHF 5.00/km
         }
+        
+        # Wartezeit-Preis pro Stunde
+        self.waiting_time_rate = 72.00  # CHF 72.00 pro Stunde
 
     async def create_booking(self, booking_request: BookingRequest) -> BookingResponse:
         """Create a new taxi booking"""
