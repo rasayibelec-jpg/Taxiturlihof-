@@ -91,7 +91,7 @@ const StreamlinedContact = () => {
         </div>
 
         {/* Location Footer - kompakt */}
-        <div className="text-center pt-3 border-t border-gray-200">
+        <div className="text-center pt-2 border-t border-gray-200">
           <p className="text-xs text-gray-500">
             Taxi Türlihof – Zuverlässiger Partner seit 2010
           </p>
