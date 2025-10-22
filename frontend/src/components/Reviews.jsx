@@ -135,34 +135,34 @@ const Reviews = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
           {/* Yeni kullanıcı yorumları - kompakt */}
           {userReviews.map((review) => (
-            <Card key={review.id} className="p-2 hover:shadow-lg transition-all duration-300 border-0 hover:border hover:border-green-300 bg-green-50 text-center">
+            <Card key={review.id} className="p-2 hover:shadow-xl transition-all duration-300 border border-yellow-400 bg-gradient-to-br from-yellow-400 to-yellow-300 text-center shadow-lg">
               <div className="flex justify-center mb-1">
                 {renderStars(review.rating)}
               </div>
               <h4 className="text-xs font-semibold text-gray-900 mb-1">
                 {review.name}
               </h4>
-              <Badge className="bg-green-100 text-green-800 text-xs py-0">NEU</Badge>
+              <Badge className="bg-gray-900 text-yellow-400 text-xs py-0">NEU</Badge>
             </Card>
           ))}
           
           {/* Google Bewertungen - kompakt */}
           {googleReviews.map((review) => (
-            <Card key={review.id} className="p-2 hover:shadow-lg transition-all duration-300 border-0 hover:border hover:border-gray-300 text-center">
+            <Card key={review.id} className="p-2 hover:shadow-xl transition-all duration-300 border border-gray-500 bg-gradient-to-br from-gray-100 to-gray-50 text-center shadow-lg">
               <div className="flex justify-center mb-1">
                 {renderStars(review.rating)}
               </div>
               <h4 className="text-xs font-semibold text-gray-900 mb-1">
                 {review.name}
               </h4>
-              <p className="text-xs text-gray-500">Google</p>
+              <p className="text-xs text-gray-600">Google</p>
             </Card>
           ))}
         </div>
 
         {/* Call-to-Action für mehr Bewertungen - sehr kompakt */}
         <div className="text-center">
-          <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-3 border border-yellow-200">
+          <div className="bg-gradient-to-br from-gray-100 to-gray-50 rounded-lg p-3 border border-gray-300 shadow-lg">
             <h4 className="text-sm font-bold text-gray-900 mb-2">
               Bewerten Sie uns
             </h4>
