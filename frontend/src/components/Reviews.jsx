@@ -82,38 +82,38 @@ const Reviews = () => {
   };
 
   return (
-    <section id="reviews" className="py-6 bg-white">
+    <section id="reviews" className="py-4 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+        <div className="text-center mb-4">
+          <h2 className="text-xl font-bold text-gray-900 mb-1">
             Kundenbewertungen
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm text-gray-600">
             Lesen Sie, was unsere Kunden über unseren Service sagen.
           </p>
         </div>
 
         {/* Google Bewertung Übersicht - kompakt */}
-        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-4 mb-6 border-0 hover:border hover:border-yellow-300 transition-all duration-300 hover:shadow-md">
+        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg p-3 mb-4 border-0 hover:border hover:border-yellow-300 transition-all duration-300 hover:shadow-md">
           <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="text-center md:text-left mb-4 md:mb-0">
-              <div className="flex items-center justify-center md:justify-start mb-2">
+            <div className="text-center md:text-left mb-2 md:mb-0">
+              <div className="flex items-center justify-center md:justify-start mb-1">
                 <img 
                   src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
                   alt="Google"
-                  className="w-6 h-6 mr-2"
+                  className="w-5 h-5 mr-2"
                 />
-                <h3 className="text-lg font-bold text-gray-900">Google Bewertungen</h3>
+                <h3 className="text-base font-bold text-gray-900">Google Bewertungen</h3>
               </div>
-              <div className="flex items-center justify-center md:justify-start space-x-3">
-                <div className="text-3xl font-bold text-yellow-600">
+              <div className="flex items-center justify-center md:justify-start space-x-2">
+                <div className="text-2xl font-bold text-yellow-600">
                   {contactInfo.googleRating}
                 </div>
                 <div>
-                  <div className="flex space-x-1 mb-1">
+                  <div className="flex space-x-0.5 mb-0.5">
                     {renderStars(5)}
                   </div>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-xs text-gray-600">
                     {contactInfo.reviewCount} Bewertungen
                   </p>
                 </div>
@@ -121,7 +121,7 @@ const Reviews = () => {
             </div>
             
             <div className="text-center">
-              <Badge className="bg-green-100 text-green-800 px-4 py-2 mb-2">
+              <Badge className="bg-green-100 text-green-800 px-3 py-1 mb-1 text-xs">
                 ⭐ Ausgezeichneter Service
               </Badge>
               <p className="text-xs text-gray-600">
