@@ -132,27 +132,27 @@ const Reviews = () => {
         </div>
 
         {/* Individuelle Bewertungen - kleine Blöcke */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
           {/* Yeni kullanıcı yorumları - kompakt */}
           {userReviews.map((review) => (
-            <Card key={review.id} className="p-3 hover:shadow-lg transition-all duration-300 border-0 hover:border hover:border-green-300 bg-green-50 text-center">
-              <div className="flex justify-center mb-2">
+            <Card key={review.id} className="p-2 hover:shadow-lg transition-all duration-300 border-0 hover:border hover:border-green-300 bg-green-50 text-center">
+              <div className="flex justify-center mb-1">
                 {renderStars(review.rating)}
               </div>
-              <h4 className="text-sm font-semibold text-gray-900 mb-1">
+              <h4 className="text-xs font-semibold text-gray-900 mb-1">
                 {review.name}
               </h4>
-              <Badge className="bg-green-100 text-green-800 text-xs">NEU</Badge>
+              <Badge className="bg-green-100 text-green-800 text-xs py-0">NEU</Badge>
             </Card>
           ))}
           
           {/* Google Bewertungen - kompakt */}
           {googleReviews.map((review) => (
-            <Card key={review.id} className="p-3 hover:shadow-lg transition-all duration-300 border-0 hover:border hover:border-gray-300 text-center">
-              <div className="flex justify-center mb-2">
+            <Card key={review.id} className="p-2 hover:shadow-lg transition-all duration-300 border-0 hover:border hover:border-gray-300 text-center">
+              <div className="flex justify-center mb-1">
                 {renderStars(review.rating)}
               </div>
-              <h4 className="text-sm font-semibold text-gray-900 mb-1">
+              <h4 className="text-xs font-semibold text-gray-900 mb-1">
                 {review.name}
               </h4>
               <p className="text-xs text-gray-500">Google</p>
@@ -162,12 +162,12 @@ const Reviews = () => {
 
         {/* Call-to-Action für mehr Bewertungen - sehr kompakt */}
         <div className="text-center">
-          <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-4 border border-yellow-200">
-            <h4 className="text-base font-bold text-gray-900 mb-3">
+          <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-3 border border-yellow-200">
+            <h4 className="text-sm font-bold text-gray-900 mb-2">
               Bewerten Sie uns
             </h4>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               
               {/* QR-Code - sehr klein */}
               <div className="text-center">
