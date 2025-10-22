@@ -19,74 +19,74 @@ const StreamlinedContact = () => {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-4">
           
           {/* Phone - kleiner Block */}
-          <Card className="p-2 text-center border border-green-400 bg-gradient-to-br from-gray-50 to-gray-100 hover:shadow-xl transition-shadow shadow-lg">
+          <Card className="p-2 text-center border border-green-400 bg-gradient-to-br from-gray-800 to-gray-900 hover:shadow-xl transition-shadow shadow-lg">
             <div className="bg-green-600 p-1.5 rounded-full w-7 h-7 mx-auto mb-1 flex items-center justify-center shadow-md">
               <Phone className="w-3.5 h-3.5 text-white" />
             </div>
-            <h3 className="text-xs font-bold text-gray-900 mb-0.5">Anrufen</h3>
+            <h3 className="text-xs font-bold text-white mb-0.5">Anrufen</h3>
             <a 
               href="tel:076 611 31 31"
-              className="text-xs font-bold text-green-600 hover:text-green-700 block mb-0.5"
+              className="text-xs font-bold text-green-400 hover:text-green-300 block mb-0.5"
             >
               076 611 31 31
             </a>
-            <p className="text-xs text-gray-600">Zuverlässig</p>
+            <p className="text-xs text-gray-400">Zuverlässig</p>
           </Card>
 
           {/* Email - kleiner Block */}
-          <Card className="p-2 text-center border border-blue-400 bg-gradient-to-br from-gray-50 to-gray-100 hover:shadow-xl transition-shadow shadow-lg">
+          <Card className="p-2 text-center border border-blue-400 bg-gradient-to-br from-gray-800 to-gray-900 hover:shadow-xl transition-shadow shadow-lg">
             <div className="bg-blue-600 p-1.5 rounded-full w-7 h-7 mx-auto mb-1 flex items-center justify-center shadow-md">
               <Mail className="w-3.5 h-3.5 text-white" />
             </div>
-            <h3 className="text-xs font-bold text-gray-900 mb-0.5">E-Mail</h3>
+            <h3 className="text-xs font-bold text-white mb-0.5">E-Mail</h3>
             <a 
               href="mailto:info@taxiturlihof.ch"
-              className="text-xs font-semibold text-blue-600 hover:text-blue-700 block mb-0.5"
+              className="text-xs font-semibold text-blue-400 hover:text-blue-300 block mb-0.5"
             >
               E-Mail
             </a>
-            <p className="text-xs text-gray-600">24h</p>
+            <p className="text-xs text-gray-400">24h</p>
           </Card>
 
           {/* WhatsApp - kleiner Block */}
-          <Card className="p-2 text-center border border-yellow-400 bg-gradient-to-br from-gray-50 to-gray-100 hover:shadow-xl transition-shadow shadow-lg">
+          <Card className="p-2 text-center border border-yellow-400 bg-gradient-to-br from-gray-800 to-gray-900 hover:shadow-xl transition-shadow shadow-lg">
             <div className="bg-yellow-500 p-1.5 rounded-full w-7 h-7 mx-auto mb-1 flex items-center justify-center shadow-md">
-              <MessageCircle className="w-3.5 h-3.5 text-white" />
+              <MessageCircle className="w-3.5 h-3.5 text-gray-900" />
             </div>
-            <h3 className="text-xs font-bold text-gray-900 mb-0.5">WhatsApp</h3>
+            <h3 className="text-xs font-bold text-white mb-0.5">WhatsApp</h3>
             <a 
               href="https://wa.me/41766113131"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-semibold text-yellow-600 hover:text-yellow-700 block mb-0.5"
+              className="text-xs font-semibold text-yellow-400 hover:text-yellow-300 block mb-0.5"
             >
               Chat
             </a>
-            <p className="text-xs text-gray-600">Schnell</p>
+            <p className="text-xs text-gray-400">Schnell</p>
           </Card>
 
           {/* Zahlung - kleiner Block */}
-          <Card className="p-2 text-center border border-purple-400 bg-gradient-to-br from-gray-50 to-gray-100 hover:shadow-xl transition-shadow shadow-lg">
+          <Card className="p-2 text-center border border-purple-400 bg-gradient-to-br from-gray-800 to-gray-900 hover:shadow-xl transition-shadow shadow-lg">
             <div className="bg-purple-600 p-1.5 rounded-full w-7 h-7 mx-auto mb-1 flex items-center justify-center shadow-md">
               <CreditCard className="w-3.5 h-3.5 text-white" />
             </div>
-            <h3 className="text-xs font-bold text-gray-900 mb-0.5">Zahlung</h3>
-            <div className="text-xs text-purple-600 mb-0.5">
+            <h3 className="text-xs font-bold text-white mb-0.5">Zahlung</h3>
+            <div className="text-xs text-purple-400 mb-0.5">
               💳 💰 📱
             </div>
-            <p className="text-xs text-gray-600">Alle</p>
+            <p className="text-xs text-gray-400">Alle</p>
           </Card>
 
           {/* Service - kleiner Block */}
-          <Card className="p-2 text-center border border-teal-400 bg-gradient-to-br from-gray-50 to-gray-100 hover:shadow-xl transition-shadow shadow-lg">
+          <Card className="p-2 text-center border border-teal-400 bg-gradient-to-br from-gray-800 to-gray-900 hover:shadow-xl transition-shadow shadow-lg">
             <div className="bg-teal-600 p-1.5 rounded-full w-7 h-7 mx-auto mb-1 flex items-center justify-center shadow-md">
               <MapPin className="w-3.5 h-3.5 text-white" />
             </div>
-            <h3 className="text-xs font-bold text-gray-900 mb-0.5">Gebiet</h3>
-            <div className="text-xs text-gray-600 mb-0.5">
+            <h3 className="text-xs font-bold text-white mb-0.5">Gebiet</h3>
+            <div className="text-xs text-teal-400 mb-0.5">
               LU • SZ • ZG
             </div>
-            <p className="text-xs text-gray-600">Region</p>
+            <p className="text-xs text-gray-400">Region</p>
           </Card>
         </div>
 
