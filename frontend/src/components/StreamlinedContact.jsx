@@ -5,18 +5,18 @@ import { Phone, Mail, MessageCircle, ChevronDown, ChevronUp, Star, CreditCard, M
 
 const StreamlinedContact = () => {
   return (
-    <section id="contact" className="py-6 bg-gray-50">
+    <section id="contact" className="py-4 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Contact - kleine Blöcke */}
-        <div className="text-center mb-4">
-          <h2 className="text-lg font-bold text-gray-900 mb-2">
+        <div className="text-center mb-3">
+          <h2 className="text-base font-bold text-gray-900">
             Kontakt & Service
           </h2>
         </div>
 
         {/* Contact Options - sehr kompakt */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-4">
           
           {/* Phone - kleiner Block */}
           <Card className="p-3 text-center border border-green-200 bg-green-50 hover:shadow-lg transition-shadow">
