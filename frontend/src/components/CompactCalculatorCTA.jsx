@@ -18,9 +18,9 @@ const CompactCalculatorCTA = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           
           {/* Preisrechner - kleiner Block */}
-          <Card className="p-2 hover:shadow-lg transition-all duration-300 bg-white border-0 hover:border hover:border-yellow-300 text-center">
-            <div className="bg-yellow-100 p-1.5 rounded-full w-8 h-8 mx-auto mb-1 flex items-center justify-center">
-              <Calculator className="w-4 h-4 text-yellow-600" />
+          <Card className="p-2 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-gray-50 to-gray-100 border border-yellow-500 text-center shadow-lg">
+            <div className="bg-yellow-500 p-1.5 rounded-full w-8 h-8 mx-auto mb-1 flex items-center justify-center shadow-md">
+              <Calculator className="w-4 h-4 text-gray-900" />
             </div>
             
             <h3 className="text-xs font-bold text-gray-900 mb-0.5">
@@ -32,16 +32,16 @@ const CompactCalculatorCTA = () => {
             </p>
 
             <Link to="/preisrechner">
-              <Button className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-1 text-xs font-semibold">
+              <Button className="w-full bg-yellow-500 hover:bg-yellow-600 text-gray-900 py-1 text-xs font-bold shadow-md">
                 Preisrechner
               </Button>
             </Link>
           </Card>
 
           {/* Online Buchung - kleiner Block */}
-          <Card className="p-2 hover:shadow-lg transition-all duration-300 bg-white border-0 hover:border hover:border-blue-300 text-center">
-            <div className="bg-blue-100 p-1.5 rounded-full w-8 h-8 mx-auto mb-1 flex items-center justify-center">
-              <Calendar className="w-4 h-4 text-blue-600" />
+          <Card className="p-2 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-gray-50 to-gray-100 border border-blue-400 text-center shadow-lg">
+            <div className="bg-blue-500 p-1.5 rounded-full w-8 h-8 mx-auto mb-1 flex items-center justify-center shadow-md">
+              <Calendar className="w-4 h-4 text-white" />
             </div>
             
             <h3 className="text-xs font-bold text-gray-900 mb-0.5">
@@ -53,16 +53,16 @@ const CompactCalculatorCTA = () => {
             </p>
 
             <Link to="/buchen">
-              <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-1 text-xs font-semibold">
+              <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-1 text-xs font-semibold shadow-md">
                 Jetzt buchen
               </Button>
             </Link>
           </Card>
 
           {/* Direkt anrufen - kleiner Block */}
-          <Card className="p-2 hover:shadow-lg transition-all duration-300 bg-white border-0 hover:border hover:border-green-300 text-center">
-            <div className="bg-green-100 p-1.5 rounded-full w-8 h-8 mx-auto mb-1 flex items-center justify-center">
-              <Phone className="w-4 h-4 text-green-600" />
+          <Card className="p-2 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-gray-50 to-gray-100 border border-green-400 text-center shadow-lg">
+            <div className="bg-green-600 p-1.5 rounded-full w-8 h-8 mx-auto mb-1 flex items-center justify-center shadow-md">
+              <Phone className="w-4 h-4 text-white" />
             </div>
             
             <h3 className="text-xs font-bold text-gray-900 mb-0.5">
@@ -74,7 +74,7 @@ const CompactCalculatorCTA = () => {
             </p>
 
             <a href="tel:076 611 31 31">
-              <Button className="w-full bg-green-600 hover:bg-green-700 text-white py-1 text-xs font-semibold">
+              <Button className="w-full bg-green-600 hover:bg-green-700 text-white py-1 text-xs font-semibold shadow-md">
                 Anrufen
               </Button>
             </a>
