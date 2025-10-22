@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const CompactCalculatorCTA = () => {
   return (
-    <section id="calculator-cta" className="py-4 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
+    <section id="calculator-cta" className="py-4 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-850">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center mb-3">
