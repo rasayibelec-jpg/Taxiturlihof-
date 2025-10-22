@@ -18,16 +18,16 @@ const CompactCalculatorCTA = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           
           {/* Preisrechner - kleiner Block */}
-          <Card className="p-3 hover:shadow-lg transition-all duration-300 bg-white border-0 hover:border hover:border-yellow-300 text-center">
-            <div className="bg-yellow-100 p-2 rounded-full w-10 h-10 mx-auto mb-2 flex items-center justify-center">
-              <Calculator className="w-5 h-5 text-yellow-600" />
+          <Card className="p-2 hover:shadow-lg transition-all duration-300 bg-white border-0 hover:border hover:border-yellow-300 text-center">
+            <div className="bg-yellow-100 p-1.5 rounded-full w-8 h-8 mx-auto mb-1 flex items-center justify-center">
+              <Calculator className="w-4 h-4 text-yellow-600" />
             </div>
             
-            <h3 className="text-sm font-bold text-gray-900 mb-1">
+            <h3 className="text-xs font-bold text-gray-900 mb-0.5">
               Preis berechnen
             </h3>
             
-            <p className="text-xs text-gray-600 mb-3">
+            <p className="text-xs text-gray-600 mb-2">
               Sofort Kostenübersicht
             </p>
 
@@ -39,16 +39,16 @@ const CompactCalculatorCTA = () => {
           </Card>
 
           {/* Online Buchung - kleiner Block */}
-          <Card className="p-3 hover:shadow-lg transition-all duration-300 bg-white border-0 hover:border hover:border-blue-300 text-center">
-            <div className="bg-blue-100 p-2 rounded-full w-10 h-10 mx-auto mb-2 flex items-center justify-center">
-              <Calendar className="w-5 h-5 text-blue-600" />
+          <Card className="p-2 hover:shadow-lg transition-all duration-300 bg-white border-0 hover:border hover:border-blue-300 text-center">
+            <div className="bg-blue-100 p-1.5 rounded-full w-8 h-8 mx-auto mb-1 flex items-center justify-center">
+              <Calendar className="w-4 h-4 text-blue-600" />
             </div>
             
-            <h3 className="text-sm font-bold text-gray-900 mb-1">
+            <h3 className="text-xs font-bold text-gray-900 mb-0.5">
               Online buchen
             </h3>
             
-            <p className="text-xs text-gray-600 mb-3">
+            <p className="text-xs text-gray-600 mb-2">
               Fahrt direkt buchen
             </p>
 
@@ -60,16 +60,16 @@ const CompactCalculatorCTA = () => {
           </Card>
 
           {/* Direkt anrufen - kleiner Block */}
-          <Card className="p-3 hover:shadow-lg transition-all duration-300 bg-white border-0 hover:border hover:border-green-300 text-center">
-            <div className="bg-green-100 p-2 rounded-full w-10 h-10 mx-auto mb-2 flex items-center justify-center">
-              <Phone className="w-5 h-5 text-green-600" />
+          <Card className="p-2 hover:shadow-lg transition-all duration-300 bg-white border-0 hover:border hover:border-green-300 text-center">
+            <div className="bg-green-100 p-1.5 rounded-full w-8 h-8 mx-auto mb-1 flex items-center justify-center">
+              <Phone className="w-4 h-4 text-green-600" />
             </div>
             
-            <h3 className="text-sm font-bold text-gray-900 mb-1">
+            <h3 className="text-xs font-bold text-gray-900 mb-0.5">
               Direkt anrufen
             </h3>
             
-            <p className="text-xs text-gray-600 mb-3">
+            <p className="text-xs text-gray-600 mb-2">
               076 611 31 31
             </p>
 
