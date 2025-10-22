@@ -57,15 +57,15 @@ const ServicegebieteSection = () => {
   ];
 
   return (
-    <section className="py-8 bg-gray-100">
+    <section className="py-8 bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold text-white mb-4">
             🗺️ Unsere Servicegebiete
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-200 max-w-3xl mx-auto">
             Von der historischen Stadt Luzern bis zu den malerischen Bergdörfern - 
             wir bringen Sie sicher an Ihr Ziel in der schönsten Region der Schweiz.
           </p>
