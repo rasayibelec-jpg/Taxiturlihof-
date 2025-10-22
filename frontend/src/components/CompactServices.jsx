@@ -32,15 +32,15 @@ const CompactServices = () => {
   ];
 
   return (
-    <section className="py-8 bg-white">
+    <section className="py-8 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Services */}
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-3">
+          <h2 className="text-2xl font-bold text-white mb-3">
             Unsere Hauptleistungen
           </h2>
-          <p className="text-base text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base text-gray-200 max-w-2xl mx-auto">
             Professioneller Taxi-Service für alle Ihre Transportbedürfnisse
           </p>
         </div>
