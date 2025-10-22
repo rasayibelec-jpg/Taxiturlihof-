@@ -19,8 +19,8 @@ const StreamlinedContact = () => {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-4">
           
           {/* Phone - kleiner Block */}
-          <Card className="p-2 text-center border border-green-200 bg-green-50 hover:shadow-lg transition-shadow">
-            <div className="bg-green-600 p-1.5 rounded-full w-7 h-7 mx-auto mb-1 flex items-center justify-center">
+          <Card className="p-2 text-center border border-green-400 bg-gradient-to-br from-gray-50 to-gray-100 hover:shadow-xl transition-shadow shadow-lg">
+            <div className="bg-green-600 p-1.5 rounded-full w-7 h-7 mx-auto mb-1 flex items-center justify-center shadow-md">
               <Phone className="w-3.5 h-3.5 text-white" />
             </div>
             <h3 className="text-xs font-bold text-gray-900 mb-0.5">Anrufen</h3>
@@ -34,8 +34,8 @@ const StreamlinedContact = () => {
           </Card>
 
           {/* Email - kleiner Block */}
-          <Card className="p-2 text-center border border-blue-200 bg-blue-50 hover:shadow-lg transition-shadow">
-            <div className="bg-blue-600 p-1.5 rounded-full w-7 h-7 mx-auto mb-1 flex items-center justify-center">
+          <Card className="p-2 text-center border border-blue-400 bg-gradient-to-br from-gray-50 to-gray-100 hover:shadow-xl transition-shadow shadow-lg">
+            <div className="bg-blue-600 p-1.5 rounded-full w-7 h-7 mx-auto mb-1 flex items-center justify-center shadow-md">
               <Mail className="w-3.5 h-3.5 text-white" />
             </div>
             <h3 className="text-xs font-bold text-gray-900 mb-0.5">E-Mail</h3>
@@ -49,8 +49,8 @@ const StreamlinedContact = () => {
           </Card>
 
           {/* WhatsApp - kleiner Block */}
-          <Card className="p-2 text-center border border-yellow-200 bg-yellow-50 hover:shadow-lg transition-shadow">
-            <div className="bg-yellow-600 p-1.5 rounded-full w-7 h-7 mx-auto mb-1 flex items-center justify-center">
+          <Card className="p-2 text-center border border-yellow-400 bg-gradient-to-br from-gray-50 to-gray-100 hover:shadow-xl transition-shadow shadow-lg">
+            <div className="bg-yellow-500 p-1.5 rounded-full w-7 h-7 mx-auto mb-1 flex items-center justify-center shadow-md">
               <MessageCircle className="w-3.5 h-3.5 text-white" />
             </div>
             <h3 className="text-xs font-bold text-gray-900 mb-0.5">WhatsApp</h3>
@@ -66,8 +66,8 @@ const StreamlinedContact = () => {
           </Card>
 
           {/* Zahlung - kleiner Block */}
-          <Card className="p-2 text-center border border-purple-200 bg-purple-50 hover:shadow-lg transition-shadow">
-            <div className="bg-purple-600 p-1.5 rounded-full w-7 h-7 mx-auto mb-1 flex items-center justify-center">
+          <Card className="p-2 text-center border border-purple-400 bg-gradient-to-br from-gray-50 to-gray-100 hover:shadow-xl transition-shadow shadow-lg">
+            <div className="bg-purple-600 p-1.5 rounded-full w-7 h-7 mx-auto mb-1 flex items-center justify-center shadow-md">
               <CreditCard className="w-3.5 h-3.5 text-white" />
             </div>
             <h3 className="text-xs font-bold text-gray-900 mb-0.5">Zahlung</h3>
@@ -78,8 +78,8 @@ const StreamlinedContact = () => {
           </Card>
 
           {/* Service - kleiner Block */}
-          <Card className="p-2 text-center border border-gray-200 bg-gray-50 hover:shadow-lg transition-shadow">
-            <div className="bg-gray-600 p-1.5 rounded-full w-7 h-7 mx-auto mb-1 flex items-center justify-center">
+          <Card className="p-2 text-center border border-teal-400 bg-gradient-to-br from-gray-50 to-gray-100 hover:shadow-xl transition-shadow shadow-lg">
+            <div className="bg-teal-600 p-1.5 rounded-full w-7 h-7 mx-auto mb-1 flex items-center justify-center shadow-md">
               <MapPin className="w-3.5 h-3.5 text-white" />
             </div>
             <h3 className="text-xs font-bold text-gray-900 mb-0.5">Gebiet</h3>
