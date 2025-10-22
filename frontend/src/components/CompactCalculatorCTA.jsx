@@ -6,16 +6,16 @@ import { Link } from "react-router-dom";
 
 const CompactCalculatorCTA = () => {
   return (
-    <section id="calculator-cta" className="py-6 bg-gradient-to-r from-yellow-50 to-orange-50">
+    <section id="calculator-cta" className="py-4 bg-gradient-to-r from-yellow-50 to-orange-50">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="text-center mb-4">
-          <h2 className="text-lg font-bold text-gray-900 mb-1">
+        <div className="text-center mb-3">
+          <h2 className="text-base font-bold text-gray-900">
             Preis berechnen & Online buchen
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           
           {/* Preisrechner - kleiner Block */}
           <Card className="p-3 hover:shadow-lg transition-all duration-300 bg-white border-0 hover:border hover:border-yellow-300 text-center">
