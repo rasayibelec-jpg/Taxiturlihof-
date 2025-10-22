@@ -162,8 +162,8 @@ const Reviews = () => {
 
         {/* Call-to-Action für mehr Bewertungen - sehr kompakt */}
         <div className="text-center">
-          <div className="bg-gradient-to-br from-gray-100 to-gray-50 rounded-lg p-3 border border-gray-300 shadow-lg">
-            <h4 className="text-sm font-bold text-gray-900 mb-2">
+          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-3 border border-yellow-500 shadow-lg">
+            <h4 className="text-sm font-bold text-white mb-2">
               Bewerten Sie uns
             </h4>
             
@@ -171,19 +171,19 @@ const Reviews = () => {
               
               {/* QR-Code - sehr klein */}
               <div className="text-center">
-                <div className="bg-white p-2 rounded-lg shadow border inline-block mb-2">
+                <div className="bg-gray-700 p-2 rounded-lg shadow border border-gray-600 inline-block mb-2">
                   <img 
                     src="https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/pnol6tzt_IMG-20250911-WA0008.jpg"
                     alt="QR-Code"
                     className="w-16 h-16 mx-auto object-contain"
                   />
                 </div>
-                <p className="text-xs font-semibold text-gray-800">Bewerten</p>
+                <p className="text-xs font-semibold text-yellow-400">Bewerten</p>
               </div>
 
               {/* Direkte Bewertung - sehr kompakt */}
               <div className="text-center">
-                <div className="bg-white p-2 rounded-lg shadow border">
+                <div className="bg-gray-700 p-2 rounded-lg shadow border border-gray-600">
                   <div className="flex justify-center gap-1 mb-2">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <button
@@ -192,7 +192,7 @@ const Reviews = () => {
                         className={`text-lg transition-colors ${
                           star <= (hoveredRating || rating) 
                             ? 'text-yellow-400' 
-                            : 'text-gray-300 hover:text-yellow-400'
+                            : 'text-gray-500 hover:text-yellow-400'
                         }`}
                         onClick={() => setRating(star)}
                         onMouseEnter={() => setHoveredRating(star)}
@@ -206,20 +206,20 @@ const Reviews = () => {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-2 py-1 text-xs border border-gray-300 rounded mb-2"
+                    className="w-full px-2 py-1 text-xs border border-gray-600 rounded mb-2 bg-gray-800 text-white placeholder-gray-400"
                     placeholder="Name"
                   />
                   <textarea
                     rows="2"
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
-                    className="w-full px-2 py-1 text-xs border border-gray-300 rounded mb-2"
+                    className="w-full px-2 py-1 text-xs border border-gray-600 rounded mb-2 bg-gray-800 text-white placeholder-gray-400"
                     placeholder="Kommentar"
                   ></textarea>
                   <button 
                     type="button"
                     onClick={handleSubmitReview}
-                    className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-1 px-2 rounded text-xs font-semibold"
+                    className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-gray-900 py-1 px-2 rounded text-xs font-bold shadow-md"
                   >
                     Senden
                   </button>
@@ -231,13 +231,13 @@ const Reviews = () => {
                 <div className="flex justify-center space-x-3">
                   <a
                     href="tel:076 611 31 31"
-                    className="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded text-xs font-semibold transition-colors duration-200"
+                    className="inline-flex items-center bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-3 py-2 rounded text-xs font-semibold transition-colors duration-200 shadow-md"
                   >
                     📞 Anrufen
                   </a>
                   <a
                     href="mailto:info@taxiturlihof.ch"
-                    className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded text-xs font-semibold transition-colors duration-200"
+                    className="inline-flex items-center bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-3 py-2 rounded text-xs font-semibold transition-colors duration-200 shadow-md"
                   >
                     ✉️ E-Mail
                   </a>
