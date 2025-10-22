@@ -57,7 +57,7 @@ const ServicegebieteSection = () => {
   ];
 
   return (
-    <section className="py-8 bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-800">
+    <section className="py-8 bg-gradient-to-br from-gray-900 via-gray-850 to-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
