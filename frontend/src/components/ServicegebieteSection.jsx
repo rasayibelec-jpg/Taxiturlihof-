@@ -15,18 +15,10 @@ const ServicegebieteSection = () => {
       linkText: "Taxi Luzern Servicegebiet"
     },
     {
-      name: "Vierwaldstättersee", 
-      image: "https://images.unsplash.com/photo-1517664604184-9c1d2962d0a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "Taxi Fahrten rund um den Vierwaldstättersee",
-      description: "Wunderschöne Fahrten rund um den See",
-      link: "/taxi-weggis",
-      linkText: "Taxi Vierwaldstättersee Servicegebiet"
-    },
-    {
       name: "Weggis & Vitznau",
       image: "https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
       alt: "Taxi Service Weggis und Vitznau am See",
-      description: "Malerische Seeufer-Gemeinden",
+      description: "Wunderschöne Fahrten rund um den See",
       link: "/taxi-weggis",
       linkText: "Taxi Weggis & Vitznau Servicegebiet"
     },
