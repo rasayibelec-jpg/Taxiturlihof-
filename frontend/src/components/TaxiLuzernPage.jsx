@@ -110,7 +110,7 @@ const TaxiLuzernPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:border-yellow-600 transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Clock className="w-8 h-8 text-yellow-600" />
@@ -124,7 +124,7 @@ const TaxiLuzernPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:border-yellow-600 transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Car className="w-8 h-8 text-yellow-600" />
@@ -138,7 +138,7 @@ const TaxiLuzernPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:border-yellow-600 transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <MapPin className="w-8 h-8 text-yellow-600" />
@@ -246,7 +246,7 @@ const TaxiLuzernPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:border-yellow-600 transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <MapPin className="w-8 h-8 text-green-600" />
@@ -267,7 +267,7 @@ const TaxiLuzernPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:border-yellow-600 transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <MapPin className="w-8 h-8 text-teal-600" />
@@ -288,7 +288,7 @@ const TaxiLuzernPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:border-yellow-600 transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Car className="w-8 h-8 text-blue-600" />
