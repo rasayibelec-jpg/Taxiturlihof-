@@ -76,51 +76,51 @@ const FlottePage = () => {
       </section>
 
       {/* Fleet Gallery */}
-      <section className="py-16">
+      <section className="py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FleetGallery />
         </div>
       </section>
 
       {/* Fleet Details */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               Warum Mercedes-Fahrzeuge?
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Wir setzen ausschließlich auf Mercedes-Benz für höchste Qualität und Sicherheit
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="p-6 text-center">
-              <div className="bg-blue-100 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <Star className="w-8 h-8 text-blue-600" />
+            <Card className="bg-gray-900 border border-gray-800 p-6 text-center hover:border-yellow-600 transition-all">
+              <div className="bg-gray-800 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center border border-gray-700">
+                <Star className="w-8 h-8 text-yellow-500" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Sicherheit</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-bold text-white mb-3">Sicherheit</h3>
+              <p className="text-gray-300">
                 5-Sterne Euro-NCAP-Bewertung und modernste Sicherheitssysteme in allen Fahrzeugen
               </p>
             </Card>
 
-            <Card className="p-6 text-center">
-              <div className="bg-green-100 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <Users className="w-8 h-8 text-green-600" />
+            <Card className="bg-gray-900 border border-gray-800 p-6 text-center hover:border-yellow-600 transition-all">
+              <div className="bg-gray-800 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center border border-gray-700">
+                <Users className="w-8 h-8 text-yellow-500" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Komfort</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-bold text-white mb-3">Komfort</h3>
+              <p className="text-gray-300">
                 Ledersitze, Klimaanlage und viel Beinfreiheit für eine angenehme Fahrt
               </p>
             </Card>
 
-            <Card className="p-6 text-center">
-              <div className="bg-yellow-100 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <Car className="w-8 h-8 text-yellow-600" />
+            <Card className="bg-gray-900 border border-gray-800 p-6 text-center hover:border-yellow-600 transition-all">
+              <div className="bg-gray-800 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center border border-gray-700">
+                <Car className="w-8 h-8 text-yellow-500" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Zuverlässigkeit</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-bold text-white mb-3">Zuverlässigkeit</h3>
+              <p className="text-gray-300">
                 Regelmäßige Wartung und bewährte Mercedes-Qualität für maximale Verfügbarkeit
               </p>
             </Card>
