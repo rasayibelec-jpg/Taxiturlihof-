@@ -248,10 +248,10 @@ const PriceCalculator = () => {
     <section id="calculator" className="py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold text-white mb-4">
             Preisrechner
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Berechnen Sie den geschätzten Fahrpreis für Ihre Route in der Zentralschweiz.
             Unsere intelligente Berechnung berücksichtigt Distanz, Verkehr und Tageszeit.
           </p>
@@ -261,7 +261,7 @@ const PriceCalculator = () => {
           {/* Calculator Form */}
           <Card className="shadow-lg">
             <CardHeader>
-              <CardTitle className="text-2xl font-bold text-gray-900 flex items-center">
+              <CardTitle className="text-2xl font-bold text-white flex items-center">
                 <Calculator className="w-6 h-6 text-yellow-600 mr-3" />
                 Fahrpreis berechnen
               </CardTitle>
@@ -290,7 +290,7 @@ const PriceCalculator = () => {
 
               <div className="space-y-4">
                 <div>
-                  <label htmlFor="start" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="start" className="block text-sm font-medium text-gray-300 mb-2">
                     <MapPin className="w-4 h-4 inline mr-1" />
                     Startadresse
                   </label>
@@ -321,7 +321,7 @@ const PriceCalculator = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="end" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="end" className="block text-sm font-medium text-gray-300 mb-2">
                     <Navigation className="w-4 h-4 inline mr-1" />
                     Zieladresse
                   </label>
@@ -427,8 +427,8 @@ const PriceCalculator = () => {
             {showInteractiveMap && interactiveRoutes && (
               <div className="space-y-6">
                 <div className="text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">🗺️ Routenvergleich</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-2xl font-bold text-white mb-2">🗺️ Routenvergleich</h3>
+                  <p className="text-gray-300">
                     Vergleichen Sie Schnellste vs. Landschaftliche Route - beide mit aktuellen Verkehrsdaten.
                   </p>
                 </div>
@@ -485,8 +485,8 @@ const PriceCalculator = () => {
             {routeOptions && (
               <div className="space-y-6">
                 <div className="text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Wählen Sie Ihre Route</h3>
-                  <p className="text-gray-600">Beide Optionen basieren auf aktuellen Verkehrsdaten</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">Wählen Sie Ihre Route</h3>
+                  <p className="text-gray-300">Beide Optionen basieren auf aktuellen Verkehrsdaten</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -502,15 +502,15 @@ const PriceCalculator = () => {
                     className={`cursor-pointer border-2 rounded-lg p-6 transition-all duration-200 ${
                       selectedRoute === 'fastest'
                         ? 'border-yellow-500 bg-yellow-50 shadow-lg scale-105'
-                        : 'border-gray-200 bg-white hover:border-yellow-300 hover:shadow-md'
+                        : 'border-gray-800 bg-gray-900 hover:border-yellow-300 hover:shadow-md'
                     }`}
                   >
                     <div className="text-center">
                       <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                         <div className="text-2xl">🚀</div>
                       </div>
-                      <h4 className="text-xl font-bold text-gray-900 mb-2">Schnellste Route</h4>
-                      <div className="space-y-2 text-sm text-gray-600 mb-4">
+                      <h4 className="text-xl font-bold text-white mb-2">Schnellste Route</h4>
+                      <div className="space-y-2 text-sm text-gray-300 mb-4">
                         <p><strong>Distanz:</strong> {routeOptions?.fastest_route?.distance_km?.toFixed(1) || '10.7'} km</p>
                         <p><strong>Fahrzeit:</strong> {routeOptions?.fastest_route?.duration_minutes || '10'} Minuten</p>
                         <p><strong>Route:</strong> Hauptsächlich Autobahn</p>
@@ -538,15 +538,15 @@ const PriceCalculator = () => {
                     className={`cursor-pointer border-2 rounded-lg p-6 transition-all duration-200 ${
                       selectedRoute === 'shortest'
                         ? 'border-yellow-500 bg-yellow-50 shadow-lg scale-105'
-                        : 'border-gray-200 bg-white hover:border-yellow-300 hover:shadow-md'
+                        : 'border-gray-800 bg-gray-900 hover:border-yellow-300 hover:shadow-md'
                     }`}
                   >
                     <div className="text-center">
                       <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
                         <div className="text-2xl">💰</div>
                       </div>
-                      <h4 className="text-xl font-bold text-gray-900 mb-2">Günstigste Route</h4>
-                      <div className="space-y-2 text-sm text-gray-600 mb-4">
+                      <h4 className="text-xl font-bold text-white mb-2">Günstigste Route</h4>
+                      <div className="space-y-2 text-sm text-gray-300 mb-4">
                         <p><strong>Distanz:</strong> {routeOptions?.shortest_route?.distance_km?.toFixed(1) || '10.7'} km</p>
                         <p><strong>Fahrzeit:</strong> {routeOptions?.shortest_route?.duration_minutes || '12'} Minuten</p>
                         <p><strong>Route:</strong> Kürzeste Strecke</p>
@@ -566,7 +566,7 @@ const PriceCalculator = () => {
                 {/* Recommendation */}
                 {routeOptions?.recommended_route !== 'same' && (
                   <div className="text-center p-4 bg-gradient-to-r from-yellow-50 to-yellow-100 border border-yellow-200 rounded-lg">
-                    <p className="text-sm text-gray-700">
+                    <p className="text-sm text-gray-300">
                       <strong>💡 Empfehlung:</strong> Die{' '}
                       {routeOptions?.recommended_route === 'fastest' ? 'schnellste' : 'günstigste'} Route
                       bietet das beste Preis-Leistungs-Verhältnis für diese Strecke.
@@ -619,33 +619,33 @@ const PriceCalculator = () => {
             {calculatedPrice ? (
               <Card className="shadow-lg border-yellow-200 bg-gradient-to-br from-yellow-50 to-orange-50">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-gray-900">
+                  <CardTitle className="text-2xl font-bold text-white">
                     Berechnungsergebnis
                   </CardTitle>
-                  <CardDescription className="text-gray-700">
+                  <CardDescription className="text-gray-300">
                     Geschätzte Kosten für Ihre Fahrt
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white p-4 rounded-lg">
-                      <div className="text-sm text-gray-600 mb-1">Distanz</div>
-                      <div className="text-2xl font-bold text-gray-900">
+                    <div className="bg-gray-900 p-4 rounded-lg">
+                      <div className="text-sm text-gray-300 mb-1">Distanz</div>
+                      <div className="text-2xl font-bold text-white">
                         {calculatedPrice.distance_km} km
                       </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg">
-                      <div className="text-sm text-gray-600 mb-1">Fahrzeit</div>
-                      <div className="text-2xl font-bold text-gray-900 flex items-center">
+                    <div className="bg-gray-900 p-4 rounded-lg">
+                      <div className="text-sm text-gray-300 mb-1">Fahrzeit</div>
+                      <div className="text-2xl font-bold text-white flex items-center">
                         <Clock className="w-5 h-5 mr-1" />
                         {calculatedPrice.estimated_duration_minutes} min
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-white p-6 rounded-lg border-2 border-yellow-300">
+                  <div className="bg-gray-900 p-6 rounded-lg border-2 border-yellow-300">
                     <div className="text-center">
-                      <div className="text-sm text-gray-600 mb-2">Geschätzte Gesamtkosten</div>
+                      <div className="text-sm text-gray-300 mb-2">Geschätzte Gesamtkosten</div>
                       <div className="text-4xl font-bold text-yellow-600 mb-2">
                         CHF {calculatedPrice.total_fare}
                       </div>
@@ -657,22 +657,22 @@ const PriceCalculator = () => {
 
                   <div className="space-y-2">
                     <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-600">Route:</span>
+                      <span className="text-gray-300">Route:</span>
                       <Badge variant="secondary">
                         <Route className="w-3 h-3 mr-1" />
                         {calculatedPrice.route_info?.route_type || 'Standard'}
                       </Badge>
                     </div>
                     <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-600">Von:</span>
+                      <span className="text-gray-300">Von:</span>
                       <span className="font-medium">{calculatedPrice.origin}</span>
                     </div>
                     <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-600">Nach:</span>
+                      <span className="text-gray-300">Nach:</span>
                       <span className="font-medium">{calculatedPrice.destination}</span>
                     </div>
                     <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-600">Berechnung:</span>
+                      <span className="text-gray-300">Berechnung:</span>
                       <Badge variant="outline" className="text-green-700 border-green-300">
                         Intelligente Schätzung
                       </Badge>
@@ -709,10 +709,10 @@ const PriceCalculator = () => {
               <Card className="shadow-lg">
                 <CardContent className="flex flex-col items-center justify-center py-12 text-center">
                   <Calculator className="w-16 h-16 text-gray-300 mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  <h3 className="text-lg font-semibold text-white mb-2">
                     Bereit für die Berechnung
                   </h3>
-                  <p className="text-gray-600 max-w-sm">
+                  <p className="text-gray-300 max-w-sm">
                     Geben Sie Start- und Zieladresse ein, um eine genaue Kostenschätzung zu erhalten.
                   </p>
                 </CardContent>
@@ -722,21 +722,21 @@ const PriceCalculator = () => {
             {/* Pricing Info */}
             <Card className="shadow-lg">
               <CardHeader>
-                <CardTitle className="text-lg font-bold text-gray-900">
+                <CardTitle className="text-lg font-bold text-white">
                   Tarifübersicht
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Grundtarif</span>
+                  <span className="text-gray-300">Grundtarif</span>
                   <span className="font-semibold">CHF 6.60</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Pro Kilometer</span>
+                  <span className="text-gray-300">Pro Kilometer</span>
                   <span className="font-semibold">CHF 4.20</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Wartezeit</span>
+                  <span className="text-gray-300">Wartezeit</span>
                   <span className="font-semibold">CHF 73.00/Std</span>
                 </div>
                 <hr className="my-3" />
