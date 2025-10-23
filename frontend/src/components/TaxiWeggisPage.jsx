@@ -75,42 +75,9 @@ const TaxiWeggisPage = () => {
         <section 
           className="relative h-96 bg-cover bg-center bg-no-repeat flex items-center"
           style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')`
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')`
           }}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white relative z-10">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl lg:text-5xl font-bold mb-4">
-                Taxi Service am Vierwaldstättersee
-              </h1>
-              
-              <p className="text-xl mb-6 text-gray-200">
-                Der Vierwaldstättersee verbindet vier Kantone – Luzern, Schwyz, Uri und Unterwalden. 
-                Genießen Sie entspannte Fahrten entlang des Ufers, vorbei an charmanten Dörfern und majestätischen Bergen. 
-                Von Luzern bis Brunnen, von Weggis bis Vitznau – Taxi Türlihof ist Ihr zuverlässiger Fahrdienst rund um den Vierwaldstättersee.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  size="lg"
-                  className="bg-yellow-600 hover:bg-yellow-700 text-white"
-                  onClick={() => window.location.href = 'tel:+41766113131'}
-                >
-                  <Phone className="w-5 h-5 mr-2" />
-                  Jetzt anrufen: 076 611 31 31
-                </Button>
-                
-                <Button 
-                  size="lg"
-                  variant="outline" 
-                  className="border-white text-white hover:bg-white hover:text-white"
-                  onClick={() => window.location.href = '/preisrechner'}
-                >
-                  Online Preis berechnen
-                </Button>
-              </div>
-            </div>
-          </div>
         </section>
 
         {/* Service Highlights */}
