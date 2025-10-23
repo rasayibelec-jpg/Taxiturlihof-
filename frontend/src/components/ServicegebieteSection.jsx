@@ -103,16 +103,16 @@ const ServicegebieteSection = () => {
 
         {/* Call to Action */}
         <div className="text-center mt-12">
-          <div className="bg-white border border-gray-200 rounded-lg p-6 max-w-2xl mx-auto shadow-sm">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">
+          <div className="bg-gray-800 border border-gray-700 rounded-lg p-8 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-white mb-3">
               📞 Ihr Gebiet nicht dabei?
             </h3>
-            <p className="text-gray-700 mb-4">
+            <p className="text-gray-300 mb-6 text-lg">
               Kontaktieren Sie uns! Wir decken auch umliegende Gebiete ab.
             </p>
             <a
               href="tel:0766113131"
-              className="inline-flex items-center bg-gray-200 hover:bg-gray-300 text-gray-900 px-6 py-3 rounded-lg font-bold transition-colors duration-200 border border-gray-300"
+              className="inline-flex items-center bg-yellow-600 hover:bg-yellow-700 text-gray-900 px-8 py-4 rounded-lg font-bold transition-colors duration-200 text-lg"
             >
               📞 076 611 31 31
             </a>
