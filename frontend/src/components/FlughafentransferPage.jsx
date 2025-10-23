@@ -373,14 +373,14 @@ const FlughafentransferPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a 
               href="tel:076 611 31 31" 
-              className="flex items-center space-x-2 bg-white text-white px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-bold text-lg"
+              className="flex items-center space-x-2 bg-yellow-500 text-gray-900 px-8 py-4 rounded-lg hover:bg-yellow-600 transition-colors duration-200 font-bold text-lg shadow-lg"
             >
               <Phone className="w-6 h-6" />
               <span>Jetzt anrufen: 076 611 31 31</span>
             </a>
             <a 
               href="/#buchen" 
-              className="flex items-center space-x-2 bg-blue-800 hover:bg-blue-900 text-white px-8 py-4 rounded-lg transition-colors duration-200 font-bold text-lg"
+              className="flex items-center space-x-2 bg-white hover:bg-gray-100 text-gray-900 px-8 py-4 rounded-lg transition-colors duration-200 font-bold text-lg shadow-lg"
             >
               <Plane className="w-6 h-6" />
               <span>Online Buchen</span>
