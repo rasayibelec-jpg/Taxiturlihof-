@@ -366,14 +366,14 @@ const BookingSystem = () => {
     return (
       <section className="py-20 bg-gradient-to-br from-green-50 to-emerald-50 min-h-screen">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-white rounded-lg shadow-xl p-8">
+          <div className="bg-gray-900 rounded-lg shadow-xl p-8">
             <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckCircle className="w-10 h-10 text-white" />
             </div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-white mb-4">
               Buchung und Zahlung erfolgreich!
             </h2>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-gray-300 mb-8">
               Ihre Taxi-Buchung wurde bestätigt und bezahlt. Sie erhalten eine Bestätigungs-E-Mail.
             </p>
             <Button 
@@ -398,10 +398,10 @@ const BookingSystem = () => {
     <section id="booking" className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold text-white mb-4">
             Online Buchen
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Buchen Sie Ihre Taxi-Fahrt einfach und bequem online. 
             Wählen Sie Datum, Uhrzeit und alle Details für Ihre Fahrt.
           </p>
@@ -412,7 +412,7 @@ const BookingSystem = () => {
           <div className="lg:col-span-2">
             <Card className="shadow-lg">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold text-gray-900 flex items-center">
+                <CardTitle className="text-2xl font-bold text-white flex items-center">
                   <Calendar className="w-6 h-6 text-blue-600 mr-3" />
                   Taxi online buchen
                 </CardTitle>
@@ -449,10 +449,10 @@ const BookingSystem = () => {
 
                   {/* Customer Information */}
                   <div className="border-t pt-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Ihre Kontaktdaten</h3>
+                    <h3 className="text-lg font-semibold text-white mb-4">Ihre Kontaktdaten</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor="customerName" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="customerName" className="block text-sm font-medium text-gray-300 mb-2">
                           Name *
                         </label>
                         <Input
@@ -465,7 +465,7 @@ const BookingSystem = () => {
                         />
                       </div>
                       <div>
-                        <label htmlFor="customerPhone" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="customerPhone" className="block text-sm font-medium text-gray-300 mb-2">
                           Telefon *
                         </label>
                         <Input
@@ -479,7 +479,7 @@ const BookingSystem = () => {
                       </div>
                     </div>
                     <div className="mt-4">
-                      <label htmlFor="customerEmail" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="customerEmail" className="block text-sm font-medium text-gray-300 mb-2">
                         E-Mail *
                       </label>
                       <Input
@@ -496,10 +496,10 @@ const BookingSystem = () => {
 
                   {/* Route Information */}
                   <div className="border-t pt-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Route</h3>
+                    <h3 className="text-lg font-semibold text-white mb-4">Route</h3>
                     <div className="space-y-4">
                       <div>
-                        <label htmlFor="pickupLocation" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="pickupLocation" className="block text-sm font-medium text-gray-300 mb-2">
                           <MapPin className="w-4 h-4 inline mr-1" />
                           Abholort *
                         </label>
@@ -531,7 +531,7 @@ const BookingSystem = () => {
                       </div>
                       
                       <div>
-                        <label htmlFor="destination" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="destination" className="block text-sm font-medium text-gray-300 mb-2">
                           <Navigation className="w-4 h-4 inline mr-1" />
                           Zielort *
                         </label>
@@ -599,10 +599,10 @@ const BookingSystem = () => {
 
                   {/* Date and Time - Always required */}
                   <div className="border-t pt-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Datum und Uhrzeit</h3>
+                    <h3 className="text-lg font-semibold text-white mb-4">Datum und Uhrzeit</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor="pickupDate" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="pickupDate" className="block text-sm font-medium text-gray-300 mb-2">
                           Datum *
                         </label>
                         <Input
@@ -616,7 +616,7 @@ const BookingSystem = () => {
                         />
                       </div>
                       <div>
-                        <label htmlFor="pickupTime" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="pickupTime" className="block text-sm font-medium text-gray-300 mb-2">
                           Uhrzeit *
                         </label>
                         <select
@@ -625,7 +625,7 @@ const BookingSystem = () => {
                           onChange={(e) => handleInputChange('pickupTime', e.target.value)}
                           disabled={isSubmitting || !bookingData.pickupDate}
                           required
-                          className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full p-2 border border-gray-700 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         >
                           <option value="">Uhrzeit wählen</option>
                           {availableSlots.map(slot => (
@@ -638,10 +638,10 @@ const BookingSystem = () => {
 
                   {/* Vehicle and Passengers */}
                   <div className="border-t pt-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Fahrzeug und Passagiere</h3>
+                    <h3 className="text-lg font-semibold text-white mb-4">Fahrzeug und Passagiere</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor="passengerCount" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="passengerCount" className="block text-sm font-medium text-gray-300 mb-2">
                           <Users className="w-4 h-4 inline mr-1" />
                           Anzahl Passagiere
                         </label>
@@ -650,7 +650,7 @@ const BookingSystem = () => {
                           value={bookingData.passengerCount}
                           onChange={(e) => handleInputChange('passengerCount', e.target.value)}
                           disabled={isSubmitting}
-                          className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full p-2 border border-gray-700 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         >
                           {[1,2,3,4,5,6,7,8].map(num => (
                             <option key={num} value={num}>{num} Person{num > 1 ? 'en' : ''}</option>
@@ -658,7 +658,7 @@ const BookingSystem = () => {
                         </select>
                       </div>
                       <div>
-                        <label htmlFor="vehicleType" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="vehicleType" className="block text-sm font-medium text-gray-300 mb-2">
                           <Car className="w-4 h-4 inline mr-1" />
                           Fahrzeugtyp
                         </label>
@@ -667,7 +667,7 @@ const BookingSystem = () => {
                           value={bookingData.vehicleType}
                           onChange={(e) => handleInputChange('vehicleType', e.target.value)}
                           disabled={isSubmitting}
-                          className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full p-2 border border-gray-700 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         >
                           {Object.entries(vehicleTypes).map(([key, vehicle]) => (
                             <option key={key} value={key}>{vehicle.name}</option>
@@ -677,8 +677,8 @@ const BookingSystem = () => {
                     </div>
                     
                     {/* Vehicle Description */}
-                    <div className="mt-3 p-3 bg-gray-50 rounded-lg">
-                      <p className="text-sm text-gray-600">
+                    <div className="mt-3 p-3 bg-black rounded-lg">
+                      <p className="text-sm text-gray-300">
                         {vehicleTypes[bookingData.vehicleType].description}
                       </p>
                     </div>
@@ -686,10 +686,10 @@ const BookingSystem = () => {
 
                   {/* Wartezeit */}
                   <div className="border-t pt-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Wartezeit (optional)</h3>
+                    <h3 className="text-lg font-semibold text-white mb-4">Wartezeit (optional)</h3>
                     <div className="space-y-4">
                       <div>
-                        <label htmlFor="waitingTimeHours" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="waitingTimeHours" className="block text-sm font-medium text-gray-300 mb-2">
                           <Clock className="w-4 h-4 inline mr-1" />
                           Wartezeit in Stunden
                         </label>
@@ -698,7 +698,7 @@ const BookingSystem = () => {
                           value={bookingData.waitingTimeHours}
                           onChange={(e) => handleInputChange('waitingTimeHours', parseFloat(e.target.value))}
                           disabled={isSubmitting}
-                          className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full p-2 border border-gray-700 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         >
                           <option value={0}>Keine Wartezeit</option>
                           <option value={0.5}>0.5 Stunden (30 Min) - CHF 36.00</option>
@@ -729,7 +729,7 @@ const BookingSystem = () => {
 
                   {/* Special Requests */}
                   <div className="border-t pt-6">
-                    <label htmlFor="specialRequests" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="specialRequests" className="block text-sm font-medium text-gray-300 mb-2">
                       Besondere Wünsche
                     </label>
                     <Textarea
@@ -797,7 +797,7 @@ const BookingSystem = () => {
             {showEstimate && estimatedPrice && (
               <Card className="shadow-lg border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100">
                 <CardHeader>
-                  <CardTitle className="text-lg font-bold text-gray-900">
+                  <CardTitle className="text-lg font-bold text-white">
                     Preisschätzung
                   </CardTitle>
                 </CardHeader>
@@ -845,7 +845,7 @@ const BookingSystem = () => {
             {/* Contact Info */}
             <Card className="shadow-lg">
               <CardHeader>
-                <CardTitle className="text-lg font-bold text-gray-900">
+                <CardTitle className="text-lg font-bold text-white">
                   Brauchen Sie Hilfe?
                 </CardTitle>
               </CardHeader>
@@ -868,7 +868,7 @@ const BookingSystem = () => {
                     </a>
                   </div>
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-gray-300">
                   Unser Team steht Ihnen Zuverlässig zur Verfügung.
                 </div>
               </CardContent>
@@ -877,11 +877,11 @@ const BookingSystem = () => {
             {/* Booking Info */}
             <Card className="shadow-lg">
               <CardHeader>
-                <CardTitle className="text-lg font-bold text-gray-900">
+                <CardTitle className="text-lg font-bold text-white">
                   Buchungshinweise
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-sm text-gray-600">
+              <CardContent className="space-y-3 text-sm text-gray-300">
                 <div className="flex items-start space-x-2">
                   <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span>Buchungen mindestens 30 Minuten im Voraus</span>
