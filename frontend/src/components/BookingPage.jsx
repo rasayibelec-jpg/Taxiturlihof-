@@ -57,31 +57,31 @@ const BookingPage = () => {
       </section>
 
       {/* Booking System */}
-      <section className="py-16">
+      <section className="py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <BookingSystem />
         </div>
       </section>
 
       {/* Alternative Options */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-white mb-4">
               Andere Optionen
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-300">
               Benötigen Sie erst eine Preiskalkulation oder bevorzugen Sie den direkten Kontakt?
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
-              <div className="bg-yellow-100 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <Calculator className="w-8 h-8 text-yellow-600" />
+            <Card className="bg-gray-900 border border-gray-800 p-6 text-center hover:border-yellow-600 transition-all duration-300">
+              <div className="bg-gray-800 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center border border-gray-700">
+                <Calculator className="w-8 h-8 text-yellow-500" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Preis berechnen</h3>
-              <p className="text-gray-600 mb-6">
+              <h3 className="text-xl font-bold text-white mb-4">Preis berechnen</h3>
+              <p className="text-gray-300 mb-6">
                 Kalkulieren Sie zunächst den ungefähren Fahrpreis für Ihre Route
               </p>
               <Link 
@@ -92,12 +92,12 @@ const BookingPage = () => {
               </Link>
             </Card>
 
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
-              <div className="bg-green-100 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <Phone className="w-8 h-8 text-green-600" />
+            <Card className="bg-gray-900 border border-gray-800 p-6 text-center hover:border-yellow-600 transition-all duration-300">
+              <div className="bg-gray-800 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center border border-gray-700">
+                <Phone className="w-8 h-8 text-yellow-500" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Telefonisch buchen</h3>
-              <p className="text-gray-600 mb-6">
+              <h3 className="text-xl font-bold text-white mb-4">Telefonisch buchen</h3>
+              <p className="text-gray-300 mb-6">
                 Für spontane Fahrten oder bei speziellen Wünschen rufen Sie uns an
               </p>
               <a 
