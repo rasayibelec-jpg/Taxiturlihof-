@@ -242,27 +242,27 @@ const FlughafentransferPage = () => {
             <Card className="bg-gray-900 border border-gray-800 p-6">
               <h3 className="text-2xl font-bold text-white mb-4">Flughafen Zürich</h3>
               <div className="space-y-3">
-                <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                  <span>Luzern → Flughafen Zürich</span>
-                  <a href="tel:0766113131" className="bg-gray-800 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                <div className="flex justify-between items-center py-2 border-b border-gray-700">
+                  <span className="text-gray-200">Luzern → Flughafen Zürich</span>
+                  <a href="tel:0766113131" className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
                     📞 auf Anfrage
                   </a>
                 </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                  <span>Schwyz → Flughafen Zürich</span>
-                  <a href="tel:0766113131" className="bg-gray-800 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                <div className="flex justify-between items-center py-2 border-b border-gray-700">
+                  <span className="text-gray-200">Schwyz → Flughafen Zürich</span>
+                  <a href="tel:0766113131" className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
                     📞 auf Anfrage
                   </a>
                 </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                  <span>Zug → Flughafen Zürich</span>
-                  <a href="tel:0766113131" className="bg-gray-800 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                <div className="flex justify-between items-center py-2 border-b border-gray-700">
+                  <span className="text-gray-200">Zug → Flughafen Zürich</span>
+                  <a href="tel:0766113131" className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
                     📞 auf Anfrage
                   </a>
                 </div>
                 <div className="flex justify-between items-center py-2">
-                  <span>Weggis → Flughafen Zürich</span>
-                  <a href="tel:0766113131" className="bg-gray-800 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                  <span className="text-gray-200">Weggis → Flughafen Zürich</span>
+                  <a href="tel:0766113131" className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
                     📞 auf Anfrage
                   </a>
                 </div>
