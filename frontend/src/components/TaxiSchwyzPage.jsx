@@ -104,7 +104,7 @@ const TaxiSchwyzPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Mountain className="w-8 h-8 text-green-600" />
@@ -118,7 +118,7 @@ const TaxiSchwyzPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Clock className="w-8 h-8 text-green-600" />
@@ -132,7 +132,7 @@ const TaxiSchwyzPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Car className="w-8 h-8 text-green-600" />
@@ -231,7 +231,7 @@ const TaxiSchwyzPage = () => {
           </div>
 
           <div className="space-y-6">
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <h3 className="text-xl font-semibold text-white mb-3">
                 Fahren Sie auch auf den Stoos?
               </h3>
@@ -240,7 +240,7 @@ const TaxiSchwyzPage = () => {
               </p>
             </Card>
 
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <h3 className="text-xl font-semibold text-white mb-3">
                 Sind Ihre Fahrzeuge für Bergstraßen geeignet?
               </h3>

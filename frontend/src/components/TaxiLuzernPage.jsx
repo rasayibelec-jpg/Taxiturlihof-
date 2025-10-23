@@ -110,7 +110,7 @@ const TaxiLuzernPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Clock className="w-8 h-8 text-yellow-600" />
@@ -124,7 +124,7 @@ const TaxiLuzernPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Car className="w-8 h-8 text-yellow-600" />
@@ -138,7 +138,7 @@ const TaxiLuzernPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <MapPin className="w-8 h-8 text-yellow-600" />
@@ -197,7 +197,7 @@ const TaxiLuzernPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="text-center">
+            <Card className="bg-gray-900 border border-gray-800 text-center">
               <CardHeader>
                 <CardTitle className="text-2xl text-yellow-600">Grundtaxe</CardTitle>
               </CardHeader>
@@ -207,7 +207,7 @@ const TaxiLuzernPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center border-yellow-200 border-2">
+            <Card className="bg-gray-900 border border-gray-800 text-center border-yellow-200 border-2">
               <CardHeader>
                 <Badge className="bg-yellow-600 text-white mb-2">Beliebt</Badge>
                 <CardTitle className="text-2xl text-yellow-600">Standard</CardTitle>
@@ -219,7 +219,7 @@ const TaxiLuzernPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center">
+            <Card className="bg-gray-900 border border-gray-800 text-center">
               <CardHeader>
                 <CardTitle className="text-2xl text-yellow-600">Premium/Van</CardTitle>
               </CardHeader>
@@ -246,7 +246,7 @@ const TaxiLuzernPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <MapPin className="w-8 h-8 text-green-600" />
@@ -267,7 +267,7 @@ const TaxiLuzernPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <MapPin className="w-8 h-8 text-teal-600" />
@@ -288,7 +288,7 @@ const TaxiLuzernPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Car className="w-8 h-8 text-blue-600" />
@@ -329,7 +329,7 @@ const TaxiLuzernPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <div className="flex items-center mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
@@ -341,7 +341,7 @@ const TaxiLuzernPage = () => {
               <p className="font-semibold text-white">- Maria S.</p>
             </Card>
 
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <div className="flex items-center mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
@@ -353,7 +353,7 @@ const TaxiLuzernPage = () => {
               <p className="font-semibold text-white">- Thomas M.</p>
             </Card>
 
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <div className="flex items-center mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
@@ -378,7 +378,7 @@ const TaxiLuzernPage = () => {
           </div>
 
           <div className="space-y-6">
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <h3 className="text-xl font-semibold text-white mb-3">
                 Wie lange dauert es bis ein Taxi in Luzern kommt?
               </h3>
@@ -387,7 +387,7 @@ const TaxiLuzernPage = () => {
               </p>
             </Card>
 
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <h3 className="text-xl font-semibold text-white mb-3">
                 Fahren Sie auch vom Flughafen Zürich nach Luzern?
               </h3>
@@ -396,7 +396,7 @@ const TaxiLuzernPage = () => {
               </p>
             </Card>
 
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <h3 className="text-xl font-semibold text-white mb-3">
                 Kann ich ein Taxi für mehrere Personen buchen?
               </h3>

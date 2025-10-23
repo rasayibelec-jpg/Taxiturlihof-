@@ -90,7 +90,7 @@ const TaxiZugPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Train className="w-8 h-8 text-teal-600" />
@@ -104,7 +104,7 @@ const TaxiZugPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Clock className="w-8 h-8 text-teal-600" />
@@ -118,7 +118,7 @@ const TaxiZugPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Car className="w-8 h-8 text-teal-600" />
@@ -180,7 +180,7 @@ const TaxiZugPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <div className="flex items-center mb-4">
                 <div className="bg-gray-800 p-2 rounded-full mr-3">
                   <Train className="w-6 h-6 text-teal-600" />
@@ -192,7 +192,7 @@ const TaxiZugPage = () => {
               </p>
             </Card>
 
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <div className="flex items-center mb-4">
                 <div className="bg-gray-800 p-2 rounded-full mr-3">
                   <Car className="w-6 h-6 text-teal-600" />
@@ -217,7 +217,7 @@ const TaxiZugPage = () => {
           </div>
 
           <div className="space-y-6">
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <h3 className="text-xl font-semibold text-white mb-3">
                 Wie schnell sind Sie am Bahnhof Zug?
               </h3>
@@ -226,7 +226,7 @@ const TaxiZugPage = () => {
               </p>
             </Card>
 
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <h3 className="text-xl font-semibold text-white mb-3">
                 Bieten Sie auch Firmen-Accounts an?
               </h3>

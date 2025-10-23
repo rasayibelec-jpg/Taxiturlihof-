@@ -114,7 +114,7 @@ const FlughafentransferPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mb-4">
                   <Plane className="w-8 h-8 text-blue-600" />
@@ -147,7 +147,7 @@ const FlughafentransferPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow duration-300">
+            <Card className="bg-gray-900 border border-gray-800 hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-purple-100 p-3 rounded-full w-fit mb-4">
                   <Plane className="w-8 h-8 text-purple-600" />
@@ -193,7 +193,7 @@ const FlughafentransferPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="text-center p-6">
+            <Card className="bg-gray-900 border border-gray-800 text-center p-6">
               <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                 <Clock className="w-8 h-8 text-blue-600" />
               </div>
@@ -203,7 +203,7 @@ const FlughafentransferPage = () => {
               </p>
             </Card>
 
-            <Card className="text-center p-6">
+            <Card className="bg-gray-900 border border-gray-800 text-center p-6">
               <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                 <Car className="w-8 h-8 text-blue-600" />
               </div>
@@ -213,7 +213,7 @@ const FlughafentransferPage = () => {
               </p>
             </Card>
 
-            <Card className="text-center p-6">
+            <Card className="bg-gray-900 border border-gray-800 text-center p-6">
               <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                 <Phone className="w-8 h-8 text-blue-600" />
               </div>
@@ -239,7 +239,7 @@ const FlughafentransferPage = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <h3 className="text-2xl font-bold text-blue-600 mb-4">Flughafen Zürich</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
@@ -269,7 +269,7 @@ const FlughafentransferPage = () => {
               </div>
             </Card>
 
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <h3 className="text-2xl font-bold text-purple-600 mb-4">Flughafen Basel</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
@@ -312,7 +312,7 @@ const FlughafentransferPage = () => {
           </div>
 
           <div className="space-y-6">
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <h3 className="text-xl font-semibold text-white mb-3">
                 Wie früh sollte ich den Transfer buchen?
               </h3>
@@ -321,7 +321,7 @@ const FlughafentransferPage = () => {
               </p>
             </Card>
 
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <h3 className="text-xl font-semibold text-white mb-3">
                 Was passiert bei Flugverspätungen?
               </h3>
@@ -330,7 +330,7 @@ const FlughafentransferPage = () => {
               </p>
             </Card>
 
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <h3 className="text-xl font-semibold text-white mb-3">
                 Haben Ihre Fahrzeuge genug Platz für Gepäck?
               </h3>
@@ -339,7 +339,7 @@ const FlughafentransferPage = () => {
               </p>
             </Card>
 
-            <Card className="p-6">
+            <Card className="bg-gray-900 border border-gray-800 p-6">
               <h3 className="text-xl font-semibold text-white mb-3">
                 Sind die Preise fix oder gibt es Aufschläge?
               </h3>

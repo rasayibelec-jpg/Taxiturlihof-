@@ -160,7 +160,7 @@ const TaxiArthGoldauPage = () => {
               </div>
 
               <div className="relative">
-                <Card className="p-6">
+                <Card className="bg-gray-900 border border-gray-800 p-6">
                   <CardHeader className="text-center">
                     <CardTitle className="flex items-center justify-center gap-2">
                       <Star className="w-5 h-5 text-yellow-500" />

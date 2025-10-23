@@ -208,7 +208,7 @@ const TaxiWeggisPage = () => {
               </div>
 
               <div className="relative">
-                <Card className="p-6">
+                <Card className="bg-gray-900 border border-gray-800 p-6">
                   <CardHeader className="text-center">
                     <CardTitle className="flex items-center justify-center gap-2">
                       <Waves className="w-5 h-5 text-blue-500" />
@@ -274,7 +274,7 @@ const TaxiWeggisPage = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card className="overflow-hidden">
+              <Card className="bg-gray-900 border border-gray-800 overflow-hidden">
                 <div 
                   className="h-48 bg-cover bg-center"
                   style={{
@@ -295,7 +295,7 @@ const TaxiWeggisPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="overflow-hidden">
+              <Card className="bg-gray-900 border border-gray-800 overflow-hidden">
                 <div 
                   className="h-48 bg-cover bg-center"
                   style={{

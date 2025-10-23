@@ -241,7 +241,7 @@ const GeschaeftstaximPage = () => {
             </div>
 
             <div className="max-w-4xl mx-auto">
-              <Card className="overflow-hidden shadow-xl">
+              <Card className="bg-gray-900 border border-gray-800 overflow-hidden shadow-xl">
                 <CardHeader className="bg-gray-800 text-white text-center">
                   <CardTitle className="text-2xl">
                     🚗 Business Taxi Preistabelle
