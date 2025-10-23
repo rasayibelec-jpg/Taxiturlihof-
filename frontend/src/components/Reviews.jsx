@@ -82,22 +82,22 @@ const Reviews = () => {
   };
 
   return (
-    <section id="reviews" className="py-4 bg-gradient-to-br from-gray-800 via-gray-700 to-gray-600">
+    <section id="reviews" className="py-8 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-4">
-          <h2 className="text-xl font-bold text-white mb-1">
+        <div className="text-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
             Kundenbewertungen
           </h2>
-          <p className="text-sm text-gray-200">
+          <p className="text-sm text-gray-700">
             Lesen Sie, was unsere Kunden über unseren Service sagen.
           </p>
         </div>
 
         {/* Google Bewertung Übersicht - kompakt */}
-        <div className="bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-lg p-3 mb-4 border-0 hover:border hover:border-yellow-300 transition-all duration-300 hover:shadow-xl shadow-lg">
+        <div className="bg-white rounded-lg p-4 mb-6 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="text-center md:text-left mb-2 md:mb-0">
-              <div className="flex items-center justify-center md:justify-start mb-1">
+              <div className="flex items-center justify-center md:justify-start mb-2">
                 <img 
                   src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
                   alt="Google"
@@ -113,7 +113,7 @@ const Reviews = () => {
                   <div className="flex space-x-0.5 mb-0.5">
                     {renderStars(5)}
                   </div>
-                  <p className="text-xs text-gray-800">
+                  <p className="text-xs text-gray-600">
                     {contactInfo.reviewCount} Bewertungen
                   </p>
                 </div>
@@ -121,10 +121,10 @@ const Reviews = () => {
             </div>
             
             <div className="text-center">
-              <Badge className="bg-gray-900 text-yellow-400 px-3 py-1 mb-1 text-xs">
+              <Badge className="bg-gray-900 text-white px-3 py-1 mb-1 text-xs">
                 ⭐ Ausgezeichneter Service
               </Badge>
-              <p className="text-xs text-gray-900">
+              <p className="text-xs text-gray-600">
                 Verifizierte Kundenbewertungen
               </p>
             </div>
