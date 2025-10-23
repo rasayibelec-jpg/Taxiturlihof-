@@ -152,12 +152,11 @@ const TaxiWeggisPage = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-white mb-6">
-                  Beliebte Fahrziele rund um den Vierwaldstättersee
+                  Beliebte Fahrziele ab Weggis & Vitznau
                 </h2>
                 <p className="text-lg text-gray-300 mb-6">
-                  Der Vierwaldstättersee liegt im Herzen der vier Kantone Luzern, Schwyz, Uri und Unterwalden. 
-                  Von der historischen Stadt Luzern über die malerischen Dörfer Weggis und Vitznau bis nach Brunnen – 
-                  wir bringen Sie sicher zu allen Zielen rund um den See.
+                  Von der romantischen Seepromenade bis zur spektakulären Rigi - 
+                  wir kennen alle Wege am Vierwaldstättersee.
                 </p>
 
                 <div className="grid grid-cols-2 gap-4">
