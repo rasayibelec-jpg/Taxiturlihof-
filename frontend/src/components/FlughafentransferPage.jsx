@@ -162,8 +162,8 @@ const FlughafentransferPage = () => {
                     <Badge className="bg-purple-100 text-purple-800">ca. 1.5 Stunden</Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-500">Preis:</span>
-                    <a href="tel:0766113131" className="bg-gray-800 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                    <span className="text-sm text-gray-400">Preis:</span>
+                    <a href="tel:0766113131" className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
                       📞 auf Anfrage
                     </a>
                   </div>
