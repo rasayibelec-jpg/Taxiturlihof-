@@ -80,7 +80,7 @@ const TaxiWeggisPage = () => {
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white relative z-10">
             <div className="max-w-3xl">
-              <Badge className="bg-blue-600 text-white mb-4">
+              <Badge className="bg-gray-800 text-white mb-4">
                 <Waves className="w-4 h-4 mr-2" />
                 Servicegebiet Vierwaldstättersee
               </Badge>
@@ -191,7 +191,7 @@ const TaxiWeggisPage = () => {
                 <div className="grid grid-cols-2 gap-4">
                   {beliebteZiele.map((ziel, index) => (
                     <div key={index} className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                      <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
                       <span className="text-gray-300">{ziel}</span>
                     </div>
                   ))}
@@ -199,7 +199,7 @@ const TaxiWeggisPage = () => {
 
                 <div className="mt-8">
                   <Button 
-                    className="bg-blue-600 hover:bg-blue-700 text-white"
+                    className="bg-gray-800 hover:bg-gray-700 text-white"
                     onClick={() => window.location.href = '/preisrechner'}
                   >
                     Fahrt nach Weggis/Vitznau berechnen
