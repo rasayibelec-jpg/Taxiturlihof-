@@ -158,8 +158,8 @@ const TaxiZugPage = () => {
               "Steinhausen",
               "Walchwil"
             ].map((destination, index) => (
-              <div key={index} className="bg-gray-800 p-4 rounded-lg text-center hover:bg-teal-50 transition-colors duration-200">
-                <MapPin className="w-6 h-6 text-teal-600 mx-auto mb-2" />
+              <div key={index} className="bg-gray-800 p-4 rounded-lg text-center hover:bg-gray-700 transition-colors duration-200">
+                <MapPin className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
                 <h3 className="font-semibold text-white">{destination}</h3>
               </div>
             ))}
