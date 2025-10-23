@@ -547,6 +547,14 @@ frontend:
     stuck_count: 0
     priority: "critical"
     needs_retesting: false
+  
+  - task: "Readability Fixes Across All Pages - Dark Theme Text Contrast"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/FlughafentransferPage.jsx, /app/frontend/src/components/TaxiLuzernPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "user"
