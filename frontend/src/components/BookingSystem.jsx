@@ -819,7 +819,7 @@ const BookingSystem = () => {
                     <span>Geschätzte Kosten:</span>
                     <span>CHF {estimatedPrice.vehicle_adjusted_fare?.toFixed(2) || estimatedPrice.total_fare}</span>
                   </div>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-gray-400">
                     * Preis kann je nach Verkehr und Tageszeit variieren
                   </p>
                   

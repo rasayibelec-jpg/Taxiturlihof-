@@ -609,7 +609,7 @@ const PriceCalculator = () => {
                 )}
 
                 {/* Additional Info */}
-                <div className="text-center text-sm text-gray-500 border-t pt-4">
+                <div className="text-center text-sm text-gray-400 border-t pt-4">
                   <p>* Preise können je nach Verkehrslage und Tageszeit variieren</p>
                   <p>* Routenberechnung basiert auf aktuellen Google Maps Daten</p>
                 </div>
@@ -649,7 +649,7 @@ const PriceCalculator = () => {
                       <div className="text-4xl font-bold text-yellow-600 mb-2">
                         CHF {calculatedPrice.total_fare}
                       </div>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-gray-400">
                         Grundtarif CHF {calculatedPrice.base_fare} + Distanz CHF {calculatedPrice.distance_fare}
                       </div>
                     </div>
@@ -740,7 +740,7 @@ const PriceCalculator = () => {
                   <span className="font-semibold">CHF 73.00/Std</span>
                 </div>
                 <hr className="my-3" />
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-gray-400">
                   * Preise können je nach Tageszeit, Verkehrslage und besonderen Umständen variieren.
                   Nacht- und Wochenendzuschläge möglich.
                 </div>
