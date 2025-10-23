@@ -40,16 +40,16 @@ const BookingPage = () => {
       <Breadcrumb />
       
       {/* Header */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+      <section className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="bg-white/20 p-4 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-              <Calendar className="w-10 h-10 text-white" />
+            <div className="bg-yellow-500/20 p-4 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center border-2 border-yellow-500">
+              <Calendar className="w-10 h-10 text-yellow-500" />
             </div>
-            <h1 className="text-4xl font-bold mb-4">
+            <h1 className="text-5xl font-bold mb-4">
               Online buchen
             </h1>
-            <p className="text-xl opacity-90 max-w-2xl mx-auto">
+            <p className="text-2xl opacity-90 max-w-2xl mx-auto">
               Buchen Sie Ihre Fahrt bequem online - Bestätigung per E-Mail
             </p>
           </div>
