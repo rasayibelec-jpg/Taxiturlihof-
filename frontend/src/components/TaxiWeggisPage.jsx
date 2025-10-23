@@ -73,11 +73,19 @@ const TaxiWeggisPage = () => {
       <div className="min-h-screen bg-black">
         {/* Hero Section */}
         <section 
-          className="relative h-96 bg-cover bg-center bg-no-repeat flex items-center"
+          className="relative h-96 bg-cover bg-center bg-no-repeat flex items-center justify-center"
           style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')`
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')`
           }}
         >
+          <div className="text-center text-white">
+            <h1 className="text-5xl lg:text-6xl font-bold mb-4">
+              Vierwaldstättersee
+            </h1>
+            <p className="text-2xl lg:text-3xl font-light">
+              Vier Kantone. Ein See. Ihr Taxi.
+            </p>
+          </div>
         </section>
 
         {/* Service Highlights */}
