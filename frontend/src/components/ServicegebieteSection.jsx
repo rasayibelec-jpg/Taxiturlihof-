@@ -112,7 +112,7 @@ const ServicegebieteSection = () => {
             </p>
             <a
               href="tel:0766113131"
-              className="inline-flex items-center bg-yellow-600 hover:bg-yellow-700 text-gray-900 px-8 py-4 rounded-lg font-bold transition-colors duration-200 text-lg"
+              className="inline-flex items-center bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-4 rounded-lg font-bold transition-colors duration-200 text-lg"
             >
               📞 076 611 31 31
             </a>

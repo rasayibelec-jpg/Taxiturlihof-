@@ -121,7 +121,7 @@ const Reviews = () => {
             </div>
             
             <div className="text-center">
-              <Badge className="bg-yellow-600 text-gray-900 px-4 py-1 mb-1 text-sm font-semibold">
+              <Badge className="bg-yellow-600 text-white px-4 py-1 mb-1 text-sm font-semibold">
                 ⭐ Ausgezeichneter Service
               </Badge>
               <p className="text-xs text-gray-400">
