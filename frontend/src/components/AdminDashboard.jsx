@@ -224,26 +224,26 @@ const AdminDashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
-          <Clock className="w-8 h-8 animate-spin mx-auto mb-4" />
-          <p>Lade Buchungen...</p>
+          <Clock className="w-8 h-8 animate-spin mx-auto mb-4 text-yellow-500" />
+          <p className="text-white">Lade Buchungen...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-black p-4">
       <div className="max-w-7xl mx-auto">
         <div className="mb-6">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center">
-                <Shield className="w-8 h-8 text-yellow-600 mr-3" />
+              <h1 className="text-3xl font-bold text-white mb-2 flex items-center">
+                <Shield className="w-8 h-8 text-yellow-500 mr-3" />
                 Taxi Türlihof - Admin Dashboard
               </h1>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 Verwalten Sie Ihre Buchungen und bestätigen Sie Fahrten
               </p>
             </div>
