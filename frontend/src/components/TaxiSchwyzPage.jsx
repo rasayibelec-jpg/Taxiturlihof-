@@ -94,10 +94,10 @@ const TaxiSchwyzPage = () => {
       <section className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               Ihr zuverlässiger Taxi-Partner in Schwyz
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Mit Taxi Turlihof gelangen Sie sicher durch die Berglandschaft und erreichen 
               jedes Ziel in Schwyz und Brunnen - von der Mythenregion bis zum Vierwaldstättersee.
             </p>
@@ -109,10 +109,10 @@ const TaxiSchwyzPage = () => {
                 <div className="bg-green-100 p-3 rounded-full w-fit mx-auto mb-4">
                   <Mountain className="w-8 h-8 text-green-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">Berglandschaft</CardTitle>
+                <CardTitle className="text-xl text-white">Berglandschaft</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   Erfahrene Fahrer, die alle Bergstraßen und Routen in Schwyz perfekt kennen
                 </p>
               </CardContent>
@@ -123,10 +123,10 @@ const TaxiSchwyzPage = () => {
                 <div className="bg-green-100 p-3 rounded-full w-fit mx-auto mb-4">
                   <Clock className="w-8 h-8 text-green-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">Zuverlässig Verfügbar</CardTitle>
+                <CardTitle className="text-xl text-white">Zuverlässig Verfügbar</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   Auch in den Bergen immer erreichbar - rund um die Uhr für Sie da
                 </p>
               </CardContent>
@@ -137,10 +137,10 @@ const TaxiSchwyzPage = () => {
                 <div className="bg-green-100 p-3 rounded-full w-fit mx-auto mb-4">
                   <Car className="w-8 h-8 text-green-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">Mercedes-Flotte</CardTitle>
+                <CardTitle className="text-xl text-white">Mercedes-Flotte</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   Sichere, moderne Fahrzeuge für alle Wetterbedingungen in den Bergen
                 </p>
               </CardContent>
@@ -193,10 +193,10 @@ const TaxiSchwyzPage = () => {
       <section className="py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               Beliebte Ziele in Schwyz & Brunnen
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-300">
               Wir bringen Sie zu allen wichtigen Orten in der Mythenregion
             </p>
           </div>
@@ -214,7 +214,7 @@ const TaxiSchwyzPage = () => {
             ].map((destination, index) => (
               <div key={index} className="bg-gray-50 p-4 rounded-lg text-center hover:bg-green-50 transition-colors duration-200">
                 <MapPin className="w-6 h-6 text-green-600 mx-auto mb-2" />
-                <h3 className="font-semibold text-gray-900">{destination}</h3>
+                <h3 className="font-semibold text-white">{destination}</h3>
               </div>
             ))}
           </div>
@@ -225,26 +225,26 @@ const TaxiSchwyzPage = () => {
       <section className="py-16 bg-gray-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               Häufige Fragen zu Taxi Schwyz
             </h2>
           </div>
 
           <div className="space-y-6">
             <Card className="p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+              <h3 className="text-xl font-semibold text-white mb-3">
                 Fahren Sie auch auf den Stoos?
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 Ja, wir fahren Sie gerne zur Stoosbahn-Talstation in Schwyz. Von dort können Sie mit der steilsten Standseilbahn der Welt auf den Stoos fahren.
               </p>
             </Card>
 
             <Card className="p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+              <h3 className="text-xl font-semibold text-white mb-3">
                 Sind Ihre Fahrzeuge für Bergstraßen geeignet?
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 Selbstverständlich! Unsere Mercedes-Flotte ist perfekt für alle Wetterbedingungen und Bergstraßen in der Region Schwyz ausgerüstet.
               </p>
             </Card>

@@ -89,7 +89,7 @@ const TaxiArthGoldauPage = () => {
                 <Button 
                   size="lg"
                   variant="outline" 
-                  className="border-white text-white hover:bg-white hover:text-gray-900"
+                  className="border-white text-white hover:bg-white hover:text-white"
                   onClick={() => window.location.href = '/preisrechner'}
                 >
                   Online Preis berechnen
@@ -103,10 +103,10 @@ const TaxiArthGoldauPage = () => {
         <section className="py-16 bg-gray-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Warum Taxi Türlihof in Arth-Goldau?
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Als lokaler Anbieter kennen wir Arth-Goldau und die Umgebung wie unsere Westentasche
               </p>
             </div>
@@ -132,10 +132,10 @@ const TaxiArthGoldauPage = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                <h2 className="text-3xl font-bold text-white mb-6">
                   Beliebte Fahrziele ab Arth-Goldau
                 </h2>
-                <p className="text-lg text-gray-600 mb-6">
+                <p className="text-lg text-gray-300 mb-6">
                   Ob Bahnhof-Transfer, Berg-Ausflug oder lokale Fahrten - 
                   wir kennen den schnellsten Weg zu Ihrem Ziel.
                 </p>
@@ -144,7 +144,7 @@ const TaxiArthGoldauPage = () => {
                   {beliebteZiele.map((ziel, index) => (
                     <div key={index} className="flex items-center space-x-2">
                       <div className="w-2 h-2 bg-yellow-600 rounded-full"></div>
-                      <span className="text-gray-700">{ziel}</span>
+                      <span className="text-gray-300">{ziel}</span>
                     </div>
                   ))}
                 </div>
@@ -170,32 +170,32 @@ const TaxiArthGoldauPage = () => {
                   <CardContent>
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
-                        <Clock className="w-5 h-5 text-gray-600" />
+                        <Clock className="w-5 h-5 text-gray-300" />
                         <div>
                           <div className="font-medium">Zuverlässig Verfügbar</div>
-                          <div className="text-sm text-gray-600">Auch nachts und am Wochenende</div>
+                          <div className="text-sm text-gray-300">Auch nachts und am Wochenende</div>
                         </div>
                       </div>
                       
                       <div className="flex items-center gap-3">
-                        <Car className="w-5 h-5 text-gray-600" />
+                        <Car className="w-5 h-5 text-gray-300" />
                         <div>
                           <div className="font-medium">Mercedes-Flotte</div>
-                          <div className="text-sm text-gray-600">Komfort und Sicherheit</div>
+                          <div className="text-sm text-gray-300">Komfort und Sicherheit</div>
                         </div>
                       </div>
                       
                       <div className="flex items-center gap-3">
-                        <MapPin className="w-5 h-5 text-gray-600" />
+                        <MapPin className="w-5 h-5 text-gray-300" />
                         <div>
                           <div className="font-medium">Ortskenntnis</div>
-                          <div className="text-sm text-gray-600">Schnellste Routen</div>
+                          <div className="text-sm text-gray-300">Schnellste Routen</div>
                         </div>
                       </div>
                     </div>
 
                     <div className="mt-6 pt-4 border-t text-center">
-                      <div className="text-2xl font-bold text-gray-900 mb-2">
+                      <div className="text-2xl font-bold text-white mb-2">
                         076 611 31 31
                       </div>
                       <Button 
@@ -217,10 +217,10 @@ const TaxiArthGoldauPage = () => {
         <section className="py-16 bg-gray-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Arth-Goldau entdecken
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Tor zu den Bergen und wichtiger Verkehrsknotenpunkt
               </p>
             </div>
@@ -234,7 +234,7 @@ const TaxiArthGoldauPage = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600">
+                  <p className="text-gray-300">
                     Wichtiger Bahnknotenpunkt mit Verbindungen nach Zürich, 
                     Luzern und zur Rigi-Bahn.
                   </p>
@@ -249,7 +249,7 @@ const TaxiArthGoldauPage = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600">
+                  <p className="text-gray-300">
                     Start zur berühmten Rigi-Bahn und zu Wanderungen 
                     auf der "Königin der Berge".
                   </p>
@@ -264,7 +264,7 @@ const TaxiArthGoldauPage = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600">
+                  <p className="text-gray-300">
                     Beliebtes Ausflugsziel für Familien mit einheimischen 
                     Tieren in naturnaher Umgebung.
                   </p>

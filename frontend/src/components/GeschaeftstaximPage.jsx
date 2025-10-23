@@ -152,10 +152,10 @@ const GeschaeftstaximPage = () => {
         <section className="py-16 bg-gray-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Unsere Business Services
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Maßgeschneiderte Lösungen für Ihre geschäftlichen Mobilitätsbedürfnisse
               </p>
             </div>
@@ -172,14 +172,14 @@ const GeschaeftstaximPage = () => {
                         </div>
                         {service.title}
                       </CardTitle>
-                      <CardDescription className="text-gray-600">
+                      <CardDescription className="text-gray-300">
                         {service.description}
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <ul className="space-y-2">
                         {service.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-center gap-2 text-sm text-gray-700">
+                          <li key={featureIndex} className="flex items-center gap-2 text-sm text-gray-300">
                             <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
                             {feature}
                           </li>
@@ -205,10 +205,10 @@ const GeschaeftstaximPage = () => {
         <section className="py-16 bg-black">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Warum Business Kunden Taxi Türlihof wählen
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Über 500+ Unternehmen vertrauen bereits auf unseren professionellen Service
               </p>
             </div>
@@ -219,7 +219,7 @@ const GeschaeftstaximPage = () => {
                   <CardContent className="p-6">
                     <div className="flex items-start gap-3">
                       <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
-                      <p className="text-gray-700 font-medium">{vorteil}</p>
+                      <p className="text-gray-300 font-medium">{vorteil}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -232,10 +232,10 @@ const GeschaeftstaximPage = () => {
         <section className="py-16 bg-black">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Business Taxi Preisliste
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Transparente Festpreise für Ihre Geschäftsfahrten - ohne versteckte Kosten
               </p>
             </div>
@@ -253,16 +253,16 @@ const GeschaeftstaximPage = () => {
                     <table className="w-full">
                       <thead className="bg-gray-50">
                         <tr>
-                          <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 border-b">
+                          <th className="px-6 py-4 text-left text-sm font-semibold text-white border-b">
                             Strecke
                           </th>
-                          <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 border-b">
+                          <th className="px-6 py-4 text-left text-sm font-semibold text-white border-b">
                             Preis ab*
                           </th>
-                          <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 border-b">
+                          <th className="px-6 py-4 text-left text-sm font-semibold text-white border-b">
                             Fahrtzeit
                           </th>
-                          <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 border-b">
+                          <th className="px-6 py-4 text-center text-sm font-semibold text-white border-b">
                             Aktion
                           </th>
                         </tr>
@@ -270,13 +270,13 @@ const GeschaeftstaximPage = () => {
                       <tbody className="divide-y divide-gray-200">
                         {preisbeispiele.map((route, index) => (
                           <tr key={index} className="hover:bg-gray-50 transition-colors">
-                            <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                            <td className="px-6 py-4 text-sm font-medium text-white">
                               {route.route}
                             </td>
                             <td className="px-6 py-4 text-sm font-bold text-green-600">
                               {route.price}
                             </td>
-                            <td className="px-6 py-4 text-sm text-gray-600">
+                            <td className="px-6 py-4 text-sm text-gray-300">
                               {route.duration}
                             </td>
                             <td className="px-6 py-4 text-center">
@@ -295,7 +295,7 @@ const GeschaeftstaximPage = () => {
                   </div>
                   
                   <div className="bg-gray-50 px-6 py-4 text-center">
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-300">
                       <strong>*</strong> Preise gelten für Standard Business-Fahrzeuge (Mercedes C/E-Klasse). 
                       Premium-Fahrzeuge und Van-Service auf Anfrage. Wartezeit bis 30 Min inklusive.
                     </p>
@@ -327,7 +327,7 @@ const GeschaeftstaximPage = () => {
         {/* CTA Section */}
         <section className="py-16 bg-gradient-to-r from-yellow-400 to-yellow-600">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-white mb-4">
               Bereit für professionelle Geschäftsfahrten?
             </h2>
             <p className="text-xl text-gray-800 mb-8">
@@ -347,7 +347,7 @@ const GeschaeftstaximPage = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"
+                className="border-gray-900 text-white hover:bg-gray-900 hover:text-white"
                 onClick={() => window.location.href = 'tel:+41766113131'}
               >
                 <Phone className="w-5 h-5 mr-2" />

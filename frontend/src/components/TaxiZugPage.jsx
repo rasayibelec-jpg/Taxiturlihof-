@@ -80,10 +80,10 @@ const TaxiZugPage = () => {
       <section className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               Taxi Zug - Ihr Taxi Bahnhof Partner
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Stressfrei unterwegs mit Taxi Turlihof – Ihr Taxi Bahnhof und zuverlässiger 
               Partner am Zugersee für alle Ihre Transportbedürfnisse.
             </p>
@@ -95,10 +95,10 @@ const TaxiZugPage = () => {
                 <div className="bg-teal-100 p-3 rounded-full w-fit mx-auto mb-4">
                   <Train className="w-8 h-8 text-teal-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">Bahnhof-Service</CardTitle>
+                <CardTitle className="text-xl text-white">Bahnhof-Service</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   Direkter Service vom und zum Bahnhof Zug - immer pünktlich zu Ihrem Zug
                 </p>
               </CardContent>
@@ -109,10 +109,10 @@ const TaxiZugPage = () => {
                 <div className="bg-teal-100 p-3 rounded-full w-fit mx-auto mb-4">
                   <Clock className="w-8 h-8 text-teal-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">Zuverlässig Verfügbar</CardTitle>
+                <CardTitle className="text-xl text-white">Zuverlässig Verfügbar</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   Rund um die Uhr erreichbar - auch für frühe Züge oder späte Ankünfte
                 </p>
               </CardContent>
@@ -123,10 +123,10 @@ const TaxiZugPage = () => {
                 <div className="bg-teal-100 p-3 rounded-full w-fit mx-auto mb-4">
                   <Car className="w-8 h-8 text-teal-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">Business-Fahrten</CardTitle>
+                <CardTitle className="text-xl text-white">Business-Fahrten</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   Perfekt für Geschäftsreisende - diskret, pünktlich und komfortabel
                 </p>
               </CardContent>
@@ -139,10 +139,10 @@ const TaxiZugPage = () => {
       <section className="py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               Beliebte Ziele in und um Zug
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-300">
               Wir bringen Sie überall in der Region Zug hin
             </p>
           </div>
@@ -160,7 +160,7 @@ const TaxiZugPage = () => {
             ].map((destination, index) => (
               <div key={index} className="bg-gray-50 p-4 rounded-lg text-center hover:bg-teal-50 transition-colors duration-200">
                 <MapPin className="w-6 h-6 text-teal-600 mx-auto mb-2" />
-                <h3 className="font-semibold text-gray-900">{destination}</h3>
+                <h3 className="font-semibold text-white">{destination}</h3>
               </div>
             ))}
           </div>
@@ -171,10 +171,10 @@ const TaxiZugPage = () => {
       <section className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               Business-Services in Zug
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-300">
               Zug als Wirtschaftsstandort - wir bringen Sie zu allen wichtigen Terminen
             </p>
           </div>
@@ -185,9 +185,9 @@ const TaxiZugPage = () => {
                 <div className="bg-teal-100 p-2 rounded-full mr-3">
                   <Train className="w-6 h-6 text-teal-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900">Bahnhof-Transfer</h3>
+                <h3 className="text-xl font-semibold text-white">Bahnhof-Transfer</h3>
               </div>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 Zuverlässiger Transport vom und zum Bahnhof Zug. Wir sorgen dafür, dass Sie Ihren Zug nicht verpassen.
               </p>
             </Card>
@@ -197,9 +197,9 @@ const TaxiZugPage = () => {
                 <div className="bg-teal-100 p-2 rounded-full mr-3">
                   <Car className="w-6 h-6 text-teal-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900">Firmen-Fahrten</h3>
+                <h3 className="text-xl font-semibold text-white">Firmen-Fahrten</h3>
               </div>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 Geschäftsfahrten zu Kunden, Meetings oder Events - diskret und professionell.
               </p>
             </Card>
@@ -211,26 +211,26 @@ const TaxiZugPage = () => {
       <section className="py-16 bg-black">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               Häufige Fragen zu Taxi Zug
             </h2>
           </div>
 
           <div className="space-y-6">
             <Card className="p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+              <h3 className="text-xl font-semibold text-white mb-3">
                 Wie schnell sind Sie am Bahnhof Zug?
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 Vom Bahnhof Zug aus erreichen wir die meisten Ziele in der Stadt innerhalb von 5-15 Minuten.
               </p>
             </Card>
 
             <Card className="p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+              <h3 className="text-xl font-semibold text-white mb-3">
                 Bieten Sie auch Firmen-Accounts an?
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 Ja, für Unternehmen in Zug bieten wir spezielle Business-Tarife und Abrechnungsmodelle an. Kontaktieren Sie uns für ein individuelles Angebot.
               </p>
             </Card>

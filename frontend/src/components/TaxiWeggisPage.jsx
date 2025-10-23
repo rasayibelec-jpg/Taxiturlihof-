@@ -107,7 +107,7 @@ const TaxiWeggisPage = () => {
                 <Button 
                   size="lg"
                   variant="outline" 
-                  className="border-white text-white hover:bg-white hover:text-gray-900"
+                  className="border-white text-white hover:bg-white hover:text-white"
                   onClick={() => window.location.href = '/preisrechner'}
                 >
                   Online Preis berechnen
@@ -121,10 +121,10 @@ const TaxiWeggisPage = () => {
         <section className="py-16 bg-gray-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Warum Taxi Türlihof in Weggis & Vitznau?
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Als lokaler Anbieter kennen wir jede Kurve der Seestraße und jeden Aussichtspunkt
               </p>
             </div>
@@ -149,10 +149,10 @@ const TaxiWeggisPage = () => {
         <section className="py-16 bg-black">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Entdecken Sie Weggis & Vitznau
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Perlen am Vierwaldstättersee mit einzigartigen Attraktionen
               </p>
             </div>
@@ -167,7 +167,7 @@ const TaxiWeggisPage = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600">{attraktion.description}</p>
+                    <p className="text-gray-300">{attraktion.description}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -180,10 +180,10 @@ const TaxiWeggisPage = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                <h2 className="text-3xl font-bold text-white mb-6">
                   Beliebte Fahrziele ab Weggis & Vitznau
                 </h2>
-                <p className="text-lg text-gray-600 mb-6">
+                <p className="text-lg text-gray-300 mb-6">
                   Von der romantischen Seepromenade bis zur spektakulären Rigi - 
                   wir kennen alle Wege am Vierwaldstättersee.
                 </p>
@@ -192,7 +192,7 @@ const TaxiWeggisPage = () => {
                   {beliebteZiele.map((ziel, index) => (
                     <div key={index} className="flex items-center space-x-2">
                       <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                      <span className="text-gray-700">{ziel}</span>
+                      <span className="text-gray-300">{ziel}</span>
                     </div>
                   ))}
                 </div>
@@ -218,32 +218,32 @@ const TaxiWeggisPage = () => {
                   <CardContent>
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
-                        <Clock className="w-5 h-5 text-gray-600" />
+                        <Clock className="w-5 h-5 text-gray-300" />
                         <div>
                           <div className="font-medium">Zuverlässig Verfügbar</div>
-                          <div className="text-sm text-gray-600">Auch nachts und am Wochenende</div>
+                          <div className="text-sm text-gray-300">Auch nachts und am Wochenende</div>
                         </div>
                       </div>
                       
                       <div className="flex items-center gap-3">
-                        <Car className="w-5 h-5 text-gray-600" />
+                        <Car className="w-5 h-5 text-gray-300" />
                         <div>
                           <div className="font-medium">Mercedes-Flotte</div>
-                          <div className="text-sm text-gray-600">Komfort für Seefahrten</div>
+                          <div className="text-sm text-gray-300">Komfort für Seefahrten</div>
                         </div>
                       </div>
                       
                       <div className="flex items-center gap-3">
-                        <MapPin className="w-5 h-5 text-gray-600" />
+                        <MapPin className="w-5 h-5 text-gray-300" />
                         <div>
                           <div className="font-medium">Ortskenntnis</div>
-                          <div className="text-sm text-gray-600">Schönste Panoramarouten</div>
+                          <div className="text-sm text-gray-300">Schönste Panoramarouten</div>
                         </div>
                       </div>
                     </div>
 
                     <div className="mt-6 pt-4 border-t text-center">
-                      <div className="text-2xl font-bold text-gray-900 mb-2">
+                      <div className="text-2xl font-bold text-white mb-2">
                         076 611 31 31
                       </div>
                       <Button 
@@ -265,10 +265,10 @@ const TaxiWeggisPage = () => {
         <section className="py-16 bg-black">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Panorama-Fahrten am Vierwaldstättersee
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Erleben Sie die schönsten Ausblicke während der Fahrt
               </p>
             </div>
@@ -283,7 +283,7 @@ const TaxiWeggisPage = () => {
                 ></div>
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-2">Seestraße Weggis</h3>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-gray-300 mb-4">
                     Malerische Fahrt entlang der Uferpromenade mit Blick auf die Berge.
                   </p>
                   <Button 
@@ -304,7 +304,7 @@ const TaxiWeggisPage = () => {
                 ></div>
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-2">Rigi-Route Vitznau</h3>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-gray-300 mb-4">
                     Spektakuläre Fahrt zur historischen Rigi-Bahn mit Bergpanorama.
                   </p>
                   <Button 

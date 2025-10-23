@@ -105,10 +105,10 @@ const FlughafentransferPage = () => {
       <section className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               Unsere Flughafentransfer-Services
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Bequemer und zuverlässiger Transfer zu allen wichtigen Flughäfen der Schweiz
             </p>
           </div>
@@ -119,11 +119,11 @@ const FlughafentransferPage = () => {
                 <div className="bg-blue-100 p-3 rounded-full w-fit mb-4">
                   <Plane className="w-8 h-8 text-blue-600" />
                 </div>
-                <CardTitle className="text-2xl text-gray-900">Flughafen Zürich</CardTitle>
+                <CardTitle className="text-2xl text-white">Flughafen Zürich</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <p className="text-gray-600">Der größte Flughafen der Schweiz</p>
+                  <p className="text-gray-300">Der größte Flughafen der Schweiz</p>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-500">Fahrtzeit von Luzern:</span>
                     <Badge className="bg-blue-100 text-blue-800">ca. 1 Stunde</Badge>
@@ -135,7 +135,7 @@ const FlughafentransferPage = () => {
                     </a>
                   </div>
                   <div className="mt-4">
-                    <h4 className="font-semibold text-gray-900 mb-2">Abfahrtsorte:</h4>
+                    <h4 className="font-semibold text-white mb-2">Abfahrtsorte:</h4>
                     <div className="flex flex-wrap gap-2">
                       <Badge variant="outline">Luzern</Badge>
                       <Badge variant="outline">Schwyz</Badge>
@@ -152,11 +152,11 @@ const FlughafentransferPage = () => {
                 <div className="bg-purple-100 p-3 rounded-full w-fit mb-4">
                   <Plane className="w-8 h-8 text-purple-600" />
                 </div>
-                <CardTitle className="text-2xl text-gray-900">Flughafen Basel</CardTitle>
+                <CardTitle className="text-2xl text-white">Flughafen Basel</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <p className="text-gray-600">EuroAirport Basel-Mulhouse-Freiburg</p>
+                  <p className="text-gray-300">EuroAirport Basel-Mulhouse-Freiburg</p>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-500">Fahrtzeit von Luzern:</span>
                     <Badge className="bg-purple-100 text-purple-800">ca. 1.5 Stunden</Badge>
@@ -168,7 +168,7 @@ const FlughafentransferPage = () => {
                     </a>
                   </div>
                   <div className="mt-4">
-                    <h4 className="font-semibold text-gray-900 mb-2">Abfahrtsorte:</h4>
+                    <h4 className="font-semibold text-white mb-2">Abfahrtsorte:</h4>
                     <div className="flex flex-wrap gap-2">
                       <Badge variant="outline">Luzern</Badge>
                       <Badge variant="outline">Schwyz</Badge>
@@ -187,7 +187,7 @@ const FlughafentransferPage = () => {
       <section className="py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               Warum Taxi Türlihof für Ihren Flughafentransfer?
             </h2>
           </div>
@@ -197,8 +197,8 @@ const FlughafentransferPage = () => {
               <div className="bg-blue-100 p-3 rounded-full w-fit mx-auto mb-4">
                 <Clock className="w-8 h-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Pünktlichkeit</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold text-white mb-3">Pünktlichkeit</h3>
+              <p className="text-gray-300">
                 Wir berücksichtigen Verkehr und Flugzeiten - Sie verpassen garantiert keinen Flug
               </p>
             </Card>
@@ -207,8 +207,8 @@ const FlughafentransferPage = () => {
               <div className="bg-blue-100 p-3 rounded-full w-fit mx-auto mb-4">
                 <Car className="w-8 h-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Komfort</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold text-white mb-3">Komfort</h3>
+              <p className="text-gray-300">
                 Mercedes-Flotte mit viel Platz für Gepäck und entspannte Fahrt
               </p>
             </Card>
@@ -217,8 +217,8 @@ const FlughafentransferPage = () => {
               <div className="bg-blue-100 p-3 rounded-full w-fit mx-auto mb-4">
                 <Phone className="w-8 h-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Zuverlässig Service</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold text-white mb-3">Zuverlässig Service</h3>
+              <p className="text-gray-300">
                 Auch für frühe Morgenstunden oder nächtliche Flüge verfügbar
               </p>
             </Card>
@@ -230,10 +230,10 @@ const FlughafentransferPage = () => {
       <section className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               Flughafentransfer Preise
             </h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-lg text-gray-300 mb-8">
               Individuelle Preise auf Anfrage - kontaktieren Sie uns für ein unverbindliches Angebot
             </p>
           </div>
@@ -306,44 +306,44 @@ const FlughafentransferPage = () => {
       <section className="py-16 bg-black">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               Häufige Fragen zum Flughafentransfer
             </h2>
           </div>
 
           <div className="space-y-6">
             <Card className="p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+              <h3 className="text-xl font-semibold text-white mb-3">
                 Wie früh sollte ich den Transfer buchen?
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 Idealerweise 24 Stunden im Voraus, aber wir können oft auch kurzfristige Buchungen umsetzen. Rufen Sie uns einfach an!
               </p>
             </Card>
 
             <Card className="p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+              <h3 className="text-xl font-semibold text-white mb-3">
                 Was passiert bei Flugverspätungen?
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 Wir überwachen Ihren Flug und passen die Abholzeit automatisch an. Bei Verspätungen entstehen keine zusätzlichen Kosten.
               </p>
             </Card>
 
             <Card className="p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+              <h3 className="text-xl font-semibold text-white mb-3">
                 Haben Ihre Fahrzeuge genug Platz für Gepäck?
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 Ja, unsere Mercedes-Fahrzeuge haben große Kofferräume. Für Gruppen mit viel Gepäck empfehlen wir unsere V-Klasse Vans.
               </p>
             </Card>
 
             <Card className="p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+              <h3 className="text-xl font-semibold text-white mb-3">
                 Sind die Preise fix oder gibt es Aufschläge?
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 Unsere Flughafentransfer-Preise werden individuell kalkuliert und sind abhängig von Strecke, Fahrzeugtyp und Uhrzeit. Kontaktieren Sie uns für ein unverbindliches Angebot.
               </p>
             </Card>
