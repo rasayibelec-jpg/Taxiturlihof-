@@ -124,28 +124,28 @@ const FleetGallery = () => {
             </Button>
           </div>
 
-          {/* Fleet Features - Kleine Blöcke */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Card className="text-center p-4 bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all">
-              <div className="bg-gray-100 p-2 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center border border-gray-300">
-                <Car className="w-6 h-6 text-gray-900" />
+          {/* Fleet Features */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="text-center p-6 bg-gray-900 border border-gray-800 hover:border-yellow-600 transition-all">
+              <div className="bg-gray-800 p-3 rounded-full w-14 h-14 mx-auto mb-4 flex items-center justify-center border border-gray-700">
+                <Car className="w-7 h-7 text-yellow-500" />
               </div>
-              <h3 className="text-sm font-semibold mb-1 text-gray-900">Mercedes-Fahrzeuge</h3>
-              <p className="text-xs text-gray-600">Hochwertige Mercedes-Benz Fahrzeuge</p>
+              <h3 className="text-base font-semibold mb-2 text-white">Mercedes-Fahrzeuge</h3>
+              <p className="text-sm text-gray-400">Hochwertige Mercedes-Benz Fahrzeuge</p>
             </Card>
-            <Card className="text-center p-4 bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all">
-              <div className="bg-gray-100 p-2 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center border border-gray-300">
-                <Star className="w-6 h-6 text-gray-900" />
+            <Card className="text-center p-6 bg-gray-900 border border-gray-800 hover:border-yellow-600 transition-all">
+              <div className="bg-gray-800 p-3 rounded-full w-14 h-14 mx-auto mb-4 flex items-center justify-center border border-gray-700">
+                <Star className="w-7 h-7 text-yellow-500" />
               </div>
-              <h3 className="text-sm font-semibold mb-1 text-gray-900">Top-Ausstattung</h3>
-              <p className="text-xs text-gray-600">Klimaanlage, Ledersitze, WLAN</p>
+              <h3 className="text-base font-semibold mb-2 text-white">Top-Ausstattung</h3>
+              <p className="text-sm text-gray-400">Klimaanlage, Ledersitze, WLAN</p>
             </Card>
-            <Card className="text-center p-4 bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all">
-              <div className="bg-gray-100 p-2 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center border border-gray-300">
-                <MapPin className="w-6 h-6 text-gray-900" />
+            <Card className="text-center p-6 bg-gray-900 border border-gray-800 hover:border-yellow-600 transition-all">
+              <div className="bg-gray-800 p-3 rounded-full w-14 h-14 mx-auto mb-4 flex items-center justify-center border border-gray-700">
+                <MapPin className="w-7 h-7 text-yellow-500" />
               </div>
-              <h3 className="text-sm font-semibold mb-1 text-gray-900">GPS-Navigation</h3>
-              <p className="text-xs text-gray-600">Modernste Navigationstechnik</p>
+              <h3 className="text-base font-semibold mb-2 text-white">GPS-Navigation</h3>
+              <p className="text-sm text-gray-400">Modernste Navigationstechnik</p>
             </Card>
           </div>
         </div>
