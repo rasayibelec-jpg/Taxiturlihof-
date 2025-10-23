@@ -219,7 +219,7 @@ const Reviews = () => {
                   <button 
                     type="button"
                     onClick={handleSubmitReview}
-                    className="w-full bg-yellow-600 hover:bg-yellow-700 text-gray-900 py-2 px-4 rounded text-sm font-bold transition-colors"
+                    className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded text-sm font-bold transition-colors"
                   >
                     Senden
                   </button>
