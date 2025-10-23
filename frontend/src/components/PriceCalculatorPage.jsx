@@ -29,7 +29,7 @@ const PriceCalculatorPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black">
       <SEOHead 
         title="Taxi Preisrechner Luzern, Schwyz, Zug | Route & Preis berechnen | Taxi Türlihof"
         description="🚗 Berechnen Sie Taxipreise in Luzern, Schwyz, Zug. Schnellste vs günstigste Route mit Echtzeit-Verkehrsdaten. Mercedes Taxi ab CHF 6.60 + 4.20/km. Jetzt online buchen!"
