@@ -80,10 +80,10 @@ const TaxiWeggisPage = () => {
         >
           <div className="text-center text-white px-4">
             <h1 className="text-4xl lg:text-5xl font-bold mb-3">
-              Vierwaldstättersee
+              Weggis & Vitznau
             </h1>
             <p className="text-xl lg:text-2xl font-light">
-              Vier Kantone · Ein Taxi
+              Malerische Seeufer-Gemeinden
             </p>
           </div>
         </section>
