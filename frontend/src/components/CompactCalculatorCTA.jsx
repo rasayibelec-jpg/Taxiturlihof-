@@ -1,84 +1,85 @@
 import React from "react";
-import { Card, CardContent } from "./ui/card";
-import { Button } from "./ui/button";
-import { Calculator, Calendar, Phone, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Calculator, Calendar, Phone } from "lucide-react";
+import { Button } from "./ui/button";
+import { Card } from "./ui/card";
 
 const CompactCalculatorCTA = () => {
   return (
-    <section id="calculator-cta" className="py-4 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-850">
+    <section id="calculator-cta" className="py-8 bg-gray-50">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="text-center mb-3">
-          <h2 className="text-base font-bold text-white">
+        <div className="text-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-900">
             Preis berechnen & Online buchen
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-          
-          {/* Preisrechner - kleiner Block */}
-          <Card className="p-2 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-gray-800 to-gray-900 border border-yellow-500 text-center shadow-lg">
-            <div className="bg-yellow-500 p-1.5 rounded-full w-8 h-8 mx-auto mb-1 flex items-center justify-center shadow-md">
-              <Calculator className="w-4 h-4 text-gray-900" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+          {/* Preisrechner */}
+          <Card className="p-4 hover:shadow-md transition-all duration-300 bg-white border border-gray-200 text-center">
+            <div className="bg-gray-100 p-2 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center border border-gray-300">
+              <Calculator className="w-6 h-6 text-gray-900" />
             </div>
             
-            <h3 className="text-xs font-bold text-white mb-0.5">
+            <h3 className="text-sm font-bold text-gray-900 mb-1">
               Preis berechnen
             </h3>
             
-            <p className="text-xs text-gray-300 mb-2">
+            <p className="text-xs text-gray-600 mb-3">
               Sofort Kostenübersicht
             </p>
 
             <Link to="/preisrechner">
-              <Button className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-gray-900 py-1 text-xs font-bold shadow-md">
+              <Button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-900 py-2 text-sm font-semibold border border-gray-300">
                 Preisrechner
               </Button>
             </Link>
           </Card>
 
-          {/* Online Buchung - kleiner Block */}
-          <Card className="p-2 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-gray-800 to-gray-900 border border-blue-400 text-center shadow-lg">
-            <div className="bg-blue-500 p-1.5 rounded-full w-8 h-8 mx-auto mb-1 flex items-center justify-center shadow-md">
-              <Calendar className="w-4 h-4 text-white" />
+          {/* Online Buchung */}
+          <Card className="p-4 hover:shadow-md transition-all duration-300 bg-white border border-gray-200 text-center">
+            <div className="bg-gray-100 p-2 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center border border-gray-300">
+              <Calendar className="w-6 h-6 text-gray-900" />
             </div>
             
-            <h3 className="text-xs font-bold text-white mb-0.5">
+            <h3 className="text-sm font-bold text-gray-900 mb-1">
               Online buchen
             </h3>
             
-            <p className="text-xs text-gray-300 mb-2">
+            <p className="text-xs text-gray-600 mb-3">
               Fahrt direkt buchen
             </p>
 
             <Link to="/buchen">
-              <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-1 text-xs font-semibold shadow-md">
+              <Button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-900 py-2 text-sm font-semibold border border-gray-300">
                 Jetzt buchen
               </Button>
             </Link>
           </Card>
 
-          {/* Direkt anrufen - kleiner Block */}
-          <Card className="p-2 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-gray-800 to-gray-900 border border-green-400 text-center shadow-lg">
-            <div className="bg-green-600 p-1.5 rounded-full w-8 h-8 mx-auto mb-1 flex items-center justify-center shadow-md">
-              <Phone className="w-4 h-4 text-white" />
+          {/* Direkt anrufen */}
+          <Card className="p-4 hover:shadow-md transition-all duration-300 bg-white border border-gray-200 text-center">
+            <div className="bg-gray-100 p-2 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center border border-gray-300">
+              <Phone className="w-6 h-6 text-gray-900" />
             </div>
             
-            <h3 className="text-xs font-bold text-white mb-0.5">
+            <h3 className="text-sm font-bold text-gray-900 mb-1">
               Direkt anrufen
             </h3>
             
-            <p className="text-xs text-gray-300 mb-2">
+            <p className="text-xs text-gray-600 mb-3">
               076 611 31 31
             </p>
 
-            <a href="tel:076 611 31 31">
-              <Button className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-1 text-xs font-semibold shadow-md">
+            <a href="tel:0766113131">
+              <Button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-900 py-2 text-sm font-semibold border border-gray-300">
                 Anrufen
               </Button>
             </a>
           </Card>
+
         </div>
       </div>
     </section>
