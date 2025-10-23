@@ -28,7 +28,7 @@ import sys
 from pathlib import Path
 
 # Test configuration
-BACKEND_URL = "https://ride-manager-7.preview.emergentagent.com/api"
+BACKEND_URL = "https://nova-taxi-portal.preview.emergentagent.com/api"
 
 class AdminPasswordResetTester:
     def __init__(self):

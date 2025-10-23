@@ -10,7 +10,7 @@ import json
 from datetime import datetime
 
 # Test configuration
-BACKEND_URL = "https://ride-manager-7.preview.emergentagent.com/api"
+BACKEND_URL = "https://nova-taxi-portal.preview.emergentagent.com/api"
 ADMIN_CREDENTIALS = {
     "username": "admin",
     "password": "TaxiTurlihof2025!"
