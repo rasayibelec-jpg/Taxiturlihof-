@@ -16,17 +16,17 @@ const TaxiArthGoldauPage = () => {
 
   const highlights = [
     {
-      icon: <Train className="w-6 h-6 text-blue-600" />,
+      icon: <Train className="w-6 h-6 text-white" />,
       title: "Bahnhof-Service",
       description: "Direkter Transfer zum/vom Bahnhof Arth-Goldau"
     },
     {
-      icon: <Mountain className="w-6 h-6 text-green-600" />,
+      icon: <Mountain className="w-6 h-6 text-white" />,
       title: "Berg-Ausflüge", 
       description: "Fahrten zur Rigi-Bahn und Pilatus-Bahn"
     },
     {
-      icon: <Car className="w-6 h-6 text-yellow-600" />,
+      icon: <Car className="w-6 h-6 text-yellow-500" />,
       title: "Lokaler Service",
       description: "Bestens vertraut mit Arth-Goldau und Umgebung"
     }
@@ -229,7 +229,7 @@ const TaxiArthGoldauPage = () => {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Train className="w-5 h-5 text-blue-600" />
+                    <Train className="w-5 h-5 text-white" />
                     Bahnhof Arth-Goldau
                   </CardTitle>
                 </CardHeader>
@@ -244,7 +244,7 @@ const TaxiArthGoldauPage = () => {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Mountain className="w-5 h-5 text-green-600" />
+                    <Mountain className="w-5 h-5 text-white" />
                     Rigi-Ausgangspunkt
                   </CardTitle>
                 </CardHeader>
@@ -259,7 +259,7 @@ const TaxiArthGoldauPage = () => {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-yellow-600" />
+                    <MapPin className="w-5 h-5 text-yellow-500" />
                     Tierpark Goldau
                   </CardTitle>
                 </CardHeader>

@@ -79,7 +79,7 @@ const TaxiLuzernPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a 
                 href="tel:076 611 31 31" 
-                className="flex items-center space-x-2 bg-white text-yellow-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-bold text-lg"
+                className="flex items-center space-x-2 bg-white text-yellow-500 px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-bold text-lg"
               >
                 <Phone className="w-6 h-6" />
                 <span>076 611 31 31</span>
@@ -113,7 +113,7 @@ const TaxiLuzernPage = () => {
             <Card className="bg-gray-900 border border-gray-800 text-center hover:border-yellow-600 transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
-                  <Clock className="w-8 h-8 text-yellow-600" />
+                  <Clock className="w-8 h-8 text-yellow-500" />
                 </div>
                 <CardTitle className="text-xl text-white">Zuverlässig Verfügbar</CardTitle>
               </CardHeader>
@@ -127,7 +127,7 @@ const TaxiLuzernPage = () => {
             <Card className="bg-gray-900 border border-gray-800 text-center hover:border-yellow-600 transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
-                  <Car className="w-8 h-8 text-yellow-600" />
+                  <Car className="w-8 h-8 text-yellow-500" />
                 </div>
                 <CardTitle className="text-xl text-white">Mercedes-Flotte</CardTitle>
               </CardHeader>
@@ -141,7 +141,7 @@ const TaxiLuzernPage = () => {
             <Card className="bg-gray-900 border border-gray-800 text-center hover:border-yellow-600 transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
-                  <MapPin className="w-8 h-8 text-yellow-600" />
+                  <MapPin className="w-8 h-8 text-yellow-500" />
                 </div>
                 <CardTitle className="text-xl text-white">Lokale Expertise</CardTitle>
               </CardHeader>
@@ -179,7 +179,7 @@ const TaxiLuzernPage = () => {
               "Universität Luzern"
             ].map((destination, index) => (
               <div key={index} className="bg-gray-800 p-4 rounded-lg text-center hover:bg-gray-700 transition-colors duration-200">
-                <MapPin className="w-6 h-6 text-yellow-600 mx-auto mb-2" />
+                <MapPin className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
                 <h3 className="font-semibold text-white">{destination}</h3>
               </div>
             ))}
@@ -199,7 +199,7 @@ const TaxiLuzernPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="bg-gray-900 border border-gray-800 text-center">
               <CardHeader>
-                <CardTitle className="text-2xl text-yellow-600">Grundtaxe</CardTitle>
+                <CardTitle className="text-2xl text-yellow-500">Grundtaxe</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-4xl font-bold text-white mb-2">CHF 6.60</div>
@@ -210,7 +210,7 @@ const TaxiLuzernPage = () => {
             <Card className="bg-gray-900 border border-gray-800 text-center border-yellow-600 border-2 bg-gray-800">
               <CardHeader>
                 <Badge className="bg-yellow-600 text-white mb-2">Beliebt</Badge>
-                <CardTitle className="text-2xl text-yellow-600">Standard</CardTitle>
+                <CardTitle className="text-2xl text-yellow-500">Standard</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-4xl font-bold text-white mb-2">CHF 4.20</div>
@@ -221,7 +221,7 @@ const TaxiLuzernPage = () => {
 
             <Card className="bg-gray-900 border border-gray-800 text-center">
               <CardHeader>
-                <CardTitle className="text-2xl text-yellow-600">Premium/Van</CardTitle>
+                <CardTitle className="text-2xl text-yellow-500">Premium/Van</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-4xl font-bold text-white mb-2">CHF 5.00</div>
@@ -249,7 +249,7 @@ const TaxiLuzernPage = () => {
             <Card className="bg-gray-900 border border-gray-800 text-center hover:border-yellow-600 transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
-                  <MapPin className="w-8 h-8 text-green-600" />
+                  <MapPin className="w-8 h-8 text-white" />
                 </div>
                 <CardTitle className="text-xl text-white">Taxi Schwyz</CardTitle>
               </CardHeader>
@@ -259,7 +259,7 @@ const TaxiLuzernPage = () => {
                 </p>
                 <a 
                   href="/taxi-schwyz"
-                  className="inline-flex items-center text-green-600 hover:text-green-700 font-medium transition-colors duration-200"
+                  className="inline-flex items-center text-white hover:text-green-700 font-medium transition-colors duration-200"
                 >
                   Mehr erfahren
                   <MapPin className="w-4 h-4 ml-2" />
@@ -291,7 +291,7 @@ const TaxiLuzernPage = () => {
             <Card className="bg-gray-900 border border-gray-800 text-center hover:border-yellow-600 transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
-                  <Car className="w-8 h-8 text-blue-600" />
+                  <Car className="w-8 h-8 text-white" />
                 </div>
                 <CardTitle className="text-xl text-white">Flughafentransfer</CardTitle>
               </CardHeader>
@@ -301,7 +301,7 @@ const TaxiLuzernPage = () => {
                 </p>
                 <a 
                   href="/flughafentransfer"
-                  className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
+                  className="inline-flex items-center text-white hover:text-blue-700 font-medium transition-colors duration-200"
                 >
                   Mehr erfahren
                   <Car className="w-4 h-4 ml-2" />
@@ -421,7 +421,7 @@ const TaxiLuzernPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a 
               href="tel:076 611 31 31" 
-              className="flex items-center space-x-2 bg-white text-yellow-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-bold text-lg"
+              className="flex items-center space-x-2 bg-white text-yellow-500 px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-bold text-lg"
             >
               <Phone className="w-6 h-6" />
               <span>Jetzt anrufen: 076 611 31 31</span>

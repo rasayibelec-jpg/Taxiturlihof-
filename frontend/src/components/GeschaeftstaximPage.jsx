@@ -273,7 +273,7 @@ const GeschaeftstaximPage = () => {
                             <td className="px-6 py-4 text-sm font-medium text-white">
                               {route.route}
                             </td>
-                            <td className="px-6 py-4 text-sm font-bold text-green-600">
+                            <td className="px-6 py-4 text-sm font-bold text-white">
                               {route.price}
                             </td>
                             <td className="px-6 py-4 text-sm text-gray-300">

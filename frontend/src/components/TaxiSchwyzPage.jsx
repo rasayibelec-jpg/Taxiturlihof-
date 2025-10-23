@@ -73,7 +73,7 @@ const TaxiSchwyzPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a 
                 href="tel:076 611 31 31" 
-                className="flex items-center space-x-2 bg-white text-green-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-bold text-lg"
+                className="flex items-center space-x-2 bg-white text-white px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-bold text-lg"
               >
                 <Phone className="w-6 h-6" />
                 <span>076 611 31 31</span>
@@ -107,7 +107,7 @@ const TaxiSchwyzPage = () => {
             <Card className="bg-gray-900 border border-gray-800 text-center hover:border-yellow-600 transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
-                  <Mountain className="w-8 h-8 text-green-600" />
+                  <Mountain className="w-8 h-8 text-white" />
                 </div>
                 <CardTitle className="text-xl text-white">Berglandschaft</CardTitle>
               </CardHeader>
@@ -121,7 +121,7 @@ const TaxiSchwyzPage = () => {
             <Card className="bg-gray-900 border border-gray-800 text-center hover:border-yellow-600 transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
-                  <Clock className="w-8 h-8 text-green-600" />
+                  <Clock className="w-8 h-8 text-white" />
                 </div>
                 <CardTitle className="text-xl text-white">Zuverlässig Verfügbar</CardTitle>
               </CardHeader>
@@ -135,7 +135,7 @@ const TaxiSchwyzPage = () => {
             <Card className="bg-gray-900 border border-gray-800 text-center hover:border-yellow-600 transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
-                  <Car className="w-8 h-8 text-green-600" />
+                  <Car className="w-8 h-8 text-white" />
                 </div>
                 <CardTitle className="text-xl text-white">Mercedes-Flotte</CardTitle>
               </CardHeader>
@@ -213,7 +213,7 @@ const TaxiSchwyzPage = () => {
               "Muotathal"
             ].map((destination, index) => (
               <div key={index} className="bg-gray-800 p-4 rounded-lg text-center hover:bg-green-50 transition-colors duration-200">
-                <MapPin className="w-6 h-6 text-green-600 mx-auto mb-2" />
+                <MapPin className="w-6 h-6 text-white mx-auto mb-2" />
                 <h3 className="font-semibold text-white">{destination}</h3>
               </div>
             ))}
@@ -279,7 +279,7 @@ const TaxiSchwyzPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a 
               href="tel:076 611 31 31" 
-              className="flex items-center space-x-2 bg-white text-green-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-bold text-lg"
+              className="flex items-center space-x-2 bg-white text-white px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-bold text-lg"
             >
               <Phone className="w-6 h-6" />
               <span>Jetzt anrufen: 076 611 31 31</span>

@@ -84,7 +84,7 @@ const FlughafentransferPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a 
                 href="tel:076 611 31 31" 
-                className="flex items-center space-x-2 bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-bold text-lg"
+                className="flex items-center space-x-2 bg-white text-white px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-bold text-lg"
               >
                 <Phone className="w-6 h-6" />
                 <span>076 611 31 31</span>
@@ -117,7 +117,7 @@ const FlughafentransferPage = () => {
             <Card className="bg-gray-900 border border-gray-800 hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="bg-gray-800 p-3 rounded-full w-fit mb-4">
-                  <Plane className="w-8 h-8 text-blue-600" />
+                  <Plane className="w-8 h-8 text-white" />
                 </div>
                 <CardTitle className="text-2xl text-white">Flughafen Zürich</CardTitle>
               </CardHeader>
@@ -195,7 +195,7 @@ const FlughafentransferPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="bg-gray-900 border border-gray-800 text-center p-6">
               <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
-                <Clock className="w-8 h-8 text-blue-600" />
+                <Clock className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">Pünktlichkeit</h3>
               <p className="text-gray-300">
@@ -205,7 +205,7 @@ const FlughafentransferPage = () => {
 
             <Card className="bg-gray-900 border border-gray-800 text-center p-6">
               <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
-                <Car className="w-8 h-8 text-blue-600" />
+                <Car className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">Komfort</h3>
               <p className="text-gray-300">
@@ -215,7 +215,7 @@ const FlughafentransferPage = () => {
 
             <Card className="bg-gray-900 border border-gray-800 text-center p-6">
               <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
-                <Phone className="w-8 h-8 text-blue-600" />
+                <Phone className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">Zuverlässig Service</h3>
               <p className="text-gray-300">
@@ -240,7 +240,7 @@ const FlughafentransferPage = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <Card className="bg-gray-900 border border-gray-800 p-6">
-              <h3 className="text-2xl font-bold text-blue-600 mb-4">Flughafen Zürich</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">Flughafen Zürich</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span>Luzern → Flughafen Zürich</span>
@@ -373,7 +373,7 @@ const FlughafentransferPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a 
               href="tel:076 611 31 31" 
-              className="flex items-center space-x-2 bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-bold text-lg"
+              className="flex items-center space-x-2 bg-white text-white px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-bold text-lg"
             >
               <Phone className="w-6 h-6" />
               <span>Jetzt anrufen: 076 611 31 31</span>

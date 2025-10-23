@@ -16,17 +16,17 @@ const TaxiWeggisPage = () => {
 
   const highlights = [
     {
-      icon: <Waves className="w-6 h-6 text-blue-600" />,
+      icon: <Waves className="w-6 h-6 text-white" />,
       title: "See-Service",
       description: "Fahrten entlang der malerischen Seepromenade"
     },
     {
-      icon: <Mountain className="w-6 h-6 text-green-600" />,
+      icon: <Mountain className="w-6 h-6 text-white" />,
       title: "Rigi-Zugang", 
       description: "Direkter Transfer zur Rigi-Bahn Vitznau"
     },
     {
-      icon: <Car className="w-6 h-6 text-yellow-600" />,
+      icon: <Car className="w-6 h-6 text-yellow-500" />,
       title: "Lokaler Service",
       description: "Bestens vertraut mit Weggis und Vitznau"
     }
@@ -47,17 +47,17 @@ const TaxiWeggisPage = () => {
     {
       title: "Rigi-Bahn Vitznau",
       description: "Historische Zahnradbahn auf die 'Königin der Berge'",
-      icon: <Mountain className="w-5 h-5 text-green-600" />
+      icon: <Mountain className="w-5 h-5 text-white" />
     },
     {
       title: "Seepromenade Weggis",
       description: "Wunderschöne Uferpromenade mit Palmen und Seeblick",
-      icon: <Waves className="w-5 h-5 text-blue-600" />
+      icon: <Waves className="w-5 h-5 text-white" />
     },
     {
       title: "Park Hotel Vitznau",
       description: "Luxushotel direkt am Vierwaldstättersee",
-      icon: <Star className="w-5 h-5 text-yellow-600" />
+      icon: <Star className="w-5 h-5 text-yellow-500" />
     }
   ];
 
