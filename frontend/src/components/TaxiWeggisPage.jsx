@@ -78,14 +78,6 @@ const TaxiWeggisPage = () => {
             backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')`
           }}
         >
-          <div className="text-center text-white px-4">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-3">
-              Weggis & Vitznau
-            </h1>
-            <p className="text-xl lg:text-2xl font-light">
-              Malerische Seeufer-Gemeinden
-            </p>
-          </div>
         </section>
 
         {/* Service Highlights */}
