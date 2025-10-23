@@ -270,29 +270,29 @@ const FlughafentransferPage = () => {
             </Card>
 
             <Card className="bg-gray-900 border border-gray-800 p-6">
-              <h3 className="text-2xl font-bold text-purple-600 mb-4">Flughafen Basel</h3>
+              <h3 className="text-2xl font-bold text-yellow-500 mb-4">Flughafen Basel</h3>
               <div className="space-y-3">
-                <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                  <span>Luzern → Flughafen Basel</span>
-                  <a href="tel:0766113131" className="bg-purple-100 hover:bg-purple-200 text-purple-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                <div className="flex justify-between items-center py-2 border-b border-gray-700">
+                  <span className="text-gray-200">Luzern → Flughafen Basel</span>
+                  <a href="tel:0766113131" className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
                     📞 auf Anfrage
                   </a>
                 </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                  <span>Schwyz → Flughafen Basel</span>
-                  <a href="tel:0766113131" className="bg-purple-100 hover:bg-purple-200 text-purple-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                <div className="flex justify-between items-center py-2 border-b border-gray-700">
+                  <span className="text-gray-200">Schwyz → Flughafen Basel</span>
+                  <a href="tel:0766113131" className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
                     📞 auf Anfrage
                   </a>
                 </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                  <span>Zug → Flughafen Basel</span>
-                  <a href="tel:0766113131" className="bg-purple-100 hover:bg-purple-200 text-purple-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                <div className="flex justify-between items-center py-2 border-b border-gray-700">
+                  <span className="text-gray-200">Zug → Flughafen Basel</span>
+                  <a href="tel:0766113131" className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
                     📞 auf Anfrage
                   </a>
                 </div>
                 <div className="flex justify-between items-center py-2">
-                  <span>Brunnen → Flughafen Basel</span>
-                  <a href="tel:0766113131" className="bg-purple-100 hover:bg-purple-200 text-purple-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                  <span className="text-gray-200">Brunnen → Flughafen Basel</span>
+                  <a href="tel:0766113131" className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
                     📞 auf Anfrage
                   </a>
                 </div>
