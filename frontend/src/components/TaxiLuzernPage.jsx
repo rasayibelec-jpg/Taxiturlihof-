@@ -215,7 +215,7 @@ const TaxiLuzernPage = () => {
               <CardContent>
                 <div className="text-4xl font-bold text-white mb-2">CHF 4.20</div>
                 <p className="text-gray-300">Pro Kilometer</p>
-                <p className="text-sm text-gray-500 mt-2">Mercedes C-Klasse, E-Klasse</p>
+                <p className="text-sm text-gray-400 mt-2">Mercedes C-Klasse, E-Klasse</p>
               </CardContent>
             </Card>
 
