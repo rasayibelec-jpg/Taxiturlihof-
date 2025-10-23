@@ -165,7 +165,7 @@ Buchen Sie noch heute Ihre Ausflugstour!`,
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black">
       <SEOHead 
         title="Taxi Blog Luzern | Ausflugstipps & Geheimtipps Zentralschweiz | Taxi Türlihof"
         description="🏔️ Entdecken Sie die Zentralschweiz! Pilatus, Rigi, Vierwaldstättersee Tipps vom lokalen Taxi-Service ➤ Insider-Wissen ➤ Beste Routen & Zeiten ☎️ 076 611 31 31"

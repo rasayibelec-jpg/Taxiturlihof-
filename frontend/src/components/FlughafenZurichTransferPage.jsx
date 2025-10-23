@@ -72,7 +72,7 @@ const FlughafenZurichTransferPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black">
       <SEOHead 
         title="Flughafentransfer Zürich ab Luzern | Mercedes Taxi | Taxi Türlihof"
         description="Flughafentransfer Zürich ✈️ Ab CHF 220 ✈️ Mercedes-Flotte ✈️ Zuverlässig verfügbar ☎️ 076 611 31 31 ✈️ Pünktlich & zuverlässig ✈️ Von/nach Luzern, Schwyz, Zug"
