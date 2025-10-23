@@ -123,10 +123,11 @@ const TaxiWeggisPage = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-white mb-4">
-                Warum Taxi Türlihof in Weggis & Vitznau?
+                Warum Taxi Türlihof am Vierwaldstättersee?
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Der Vierwaldstättersee verbindet Natur, Geschichte und Panorama. Genießen Sie entspannte Fahrten entlang des Ufers, vorbei an charmanten Dörfern und majestätischen Bergen.
+                Der Vierwaldstättersee verbindet die vier Kantone Luzern, Schwyz, Uri und Unterwalden. 
+                Wir kennen alle Routen rund um den See – von historischen Städten bis zu malerischen Bergdörfern.
               </p>
             </div>
 
