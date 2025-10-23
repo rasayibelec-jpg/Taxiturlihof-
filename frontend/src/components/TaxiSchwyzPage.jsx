@@ -35,7 +35,7 @@ const TaxiSchwyzPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black">
       <SEOHead 
         title="Taxi Schwyz & Brunnen | Zuverlässig Berglandschaft Taxi | Taxi Türlihof"
         description="Taxi Schwyz ➤ Mercedes-Flotte für Bergstraßen ➤ Zuverlässig Service ☎️ 076 611 31 31 ➤ Schwyz, Brunnen, Stoos, Muotathal ➤ Sicher durch die Mythenregion"

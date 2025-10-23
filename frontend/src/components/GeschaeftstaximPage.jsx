@@ -76,7 +76,7 @@ const GeschaeftstaximPage = () => {
         <link rel="canonical" href="https://www.taxiturlihof.ch/geschaeftsfahrten" />
       </Helmet>
 
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-black">
         {/* Breadcrumb */}
         <Breadcrumb items={breadcrumbItems} />
 

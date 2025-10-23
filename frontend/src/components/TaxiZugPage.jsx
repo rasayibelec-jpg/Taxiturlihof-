@@ -30,7 +30,7 @@ const TaxiZugPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black">
       <SEOHead 
         title="Taxi Zug | Zuverlässiger Business & Freizeit Transport am Zugersee | Taxi Türlihof"
         description="Taxi Zug ➤ Zuverlässiger Mercedes-Service am Zugersee ☎️ 076 611 31 31 ➤ Business Transport, Zug Bahnhof, Altstadt ➤ Schnell & zuverlässig ab CHF 6.60"

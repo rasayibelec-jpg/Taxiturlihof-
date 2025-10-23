@@ -49,7 +49,7 @@ const TaxiLuzernPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black">
       <SEOHead 
         title="Taxi Luzern | Zuverlässig Mercedes Taxi-Service | Taxi Türlihof"
         description="Taxi Luzern ➤ Zuverlässig Mercedes-Flotte ➤ Sofort verfügbar ☎️ 076 611 31 31 ➤ Luzern Bahnhof, Altstadt, Kapellbrücke ➤ Transparente Preise ab CHF 6.60"

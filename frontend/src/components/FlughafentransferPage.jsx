@@ -55,7 +55,7 @@ const FlughafentransferPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black">
       <SEOHead 
         title="Flughafentransfer Zürich & Basel | Taxi Türlihof | Ab Luzern"
         description="Flughafentransfer Zürich & Basel ➤ Von Luzern, Schwyz, Zug ➤ Mercedes-Flotte ➤ Zuverlässig Service ☎️ 076 611 31 31 ➤ Pünktlich & zuverlässig ➤ Gepäckservice"

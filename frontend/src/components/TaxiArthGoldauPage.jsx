@@ -52,7 +52,7 @@ const TaxiArthGoldauPage = () => {
         url={seoData.url}
       />
       
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-black">
         {/* Hero Section */}
         <section 
           className="relative h-96 bg-cover bg-center bg-no-repeat flex items-center"
