@@ -251,7 +251,7 @@ const GeschaeftstaximPage = () => {
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
                     <table className="w-full">
-                      <thead className="bg-gray-50">
+                      <thead className="bg-gray-800">
                         <tr>
                           <th className="px-6 py-4 text-left text-sm font-semibold text-white border-b">
                             Strecke
@@ -269,7 +269,7 @@ const GeschaeftstaximPage = () => {
                       </thead>
                       <tbody className="divide-y divide-gray-200">
                         {preisbeispiele.map((route, index) => (
-                          <tr key={index} className="hover:bg-gray-50 transition-colors">
+                          <tr key={index} className="hover:bg-gray-800 transition-colors">
                             <td className="px-6 py-4 text-sm font-medium text-white">
                               {route.route}
                             </td>
@@ -294,7 +294,7 @@ const GeschaeftstaximPage = () => {
                     </table>
                   </div>
                   
-                  <div className="bg-gray-50 px-6 py-4 text-center">
+                  <div className="bg-gray-800 px-6 py-4 text-center">
                     <p className="text-sm text-gray-300">
                       <strong>*</strong> Preise gelten für Standard Business-Fahrzeuge (Mercedes C/E-Klasse). 
                       Premium-Fahrzeuge und Van-Service auf Anfrage. Wartezeit bis 30 Min inklusive.
