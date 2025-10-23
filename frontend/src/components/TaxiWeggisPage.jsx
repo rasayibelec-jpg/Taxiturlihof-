@@ -90,8 +90,9 @@ const TaxiWeggisPage = () => {
               </h1>
               
               <p className="text-xl mb-6 text-gray-200">
-                Ihr zuverlässiger Taxi-Partner am Vierwaldstättersee. Von der Seepromenade 
-                zur Rigi-Bahn - wir bringen Sie komfortabel ans Ziel.
+                Der Vierwaldstättersee verbindet Natur, Geschichte und Panorama – von Luzern bis Brunnen. 
+                Genießen Sie entspannte Fahrten entlang des Ufers, vorbei an charmanten Dörfern und majestätischen Bergen. 
+                Taxi Türlihof – Ihr zuverlässiger Fahrdienst rund um den Vierwaldstättersee.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
