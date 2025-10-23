@@ -8,9 +8,9 @@ import CompactCalculatorCTA from "./CompactCalculatorCTA";
 
 const TaxiWeggisPage = () => {
   const seoData = {
-    title: "Taxi Service Vierwaldstättersee | 4 Kantone - Luzern, Schwyz, Uri, Unterwalden",
-    description: "Taxi Service am Vierwaldstättersee ✓ Alle 4 Kantone ✓ Luzern-Brunnen-Weggis-Vitznau ✓ Zuverlässig verfügbar ✓ Mercedes-Flotte ☎️ 076 611 31 31",
-    keywords: "Taxi Vierwaldstättersee, Taxi Luzern Schwyz Uri, Taxi 4 Kantone, Vierwaldstättersee Transfer, Taxi Weggis Vitznau Brunnen, Mercedes Taxi See, Rundfahrt Vierwaldstättersee",
+    title: "Taxi Weggis & Vitznau | Taxi-Service am Vierwaldstättersee",
+    description: "Taxi Service Weggis & Vitznau ✓ Seepromenade Transfers ✓ Rigi-Fahrten ✓ Zuverlässig verfügbar ✓ Mercedes-Flotte ☎️ 076 611 31 31 - Ihr Taxi am See",
+    keywords: "Taxi Weggis, Taxi Vitznau, Vierwaldstättersee Taxi, Rigi Taxi Service, Seepromenade Transfer, Mercedes Taxi Weggis, 24h Taxi Vitznau",
     url: "https://www.taxiturlihof.ch/taxi-weggis"
   };
 
