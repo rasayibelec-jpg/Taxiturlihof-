@@ -207,7 +207,7 @@ const TaxiLuzernPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gray-900 border border-gray-800 text-center border-yellow-200 border-2">
+            <Card className="bg-gray-900 border border-gray-800 text-center border-yellow-600 border-2 bg-gray-800">
               <CardHeader>
                 <Badge className="bg-yellow-600 text-white mb-2">Beliebt</Badge>
                 <CardTitle className="text-2xl text-yellow-600">Standard</CardTitle>
