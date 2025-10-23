@@ -137,10 +137,10 @@ const FlughafentransferPage = () => {
                   <div className="mt-4">
                     <h4 className="font-semibold text-white mb-2">Abfahrtsorte:</h4>
                     <div className="flex flex-wrap gap-2">
-                      <Badge variant="outline">Luzern</Badge>
-                      <Badge variant="outline">Schwyz</Badge>
-                      <Badge variant="outline">Zug</Badge>
-                      <Badge variant="outline">Weggis</Badge>
+                      <Badge className="bg-yellow-500 text-gray-900 border-none">Luzern</Badge>
+                      <Badge className="bg-yellow-500 text-gray-900 border-none">Schwyz</Badge>
+                      <Badge className="bg-yellow-500 text-gray-900 border-none">Zug</Badge>
+                      <Badge className="bg-yellow-500 text-gray-900 border-none">Weggis</Badge>
                     </div>
                   </div>
                 </div>
