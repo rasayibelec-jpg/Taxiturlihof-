@@ -78,12 +78,12 @@ const TaxiWeggisPage = () => {
             backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')`
           }}
         >
-          <div className="text-center text-white">
-            <h1 className="text-5xl lg:text-6xl font-bold mb-4">
+          <div className="text-center text-white px-4">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-3">
               Vierwaldstättersee
             </h1>
-            <p className="text-2xl lg:text-3xl font-light">
-              Vier Kantone. Ein See. Ihr Taxi.
+            <p className="text-xl lg:text-2xl font-light">
+              Vier Kantone · Ein Taxi
             </p>
           </div>
         </section>
