@@ -80,11 +80,6 @@ const TaxiWeggisPage = () => {
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white relative z-10">
             <div className="max-w-3xl">
-              <Badge className="bg-gray-800 text-white mb-4">
-                <Waves className="w-4 h-4 mr-2" />
-                Servicegebiet Vierwaldstättersee
-              </Badge>
-              
               <h1 className="text-4xl lg:text-5xl font-bold mb-4">
                 Taxi Service am Vierwaldstättersee
               </h1>
