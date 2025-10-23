@@ -123,7 +123,7 @@ const CompactServices = () => {
           <Button
             onClick={() => setShowDetails(!showDetails)}
             variant="outline"
-            className="border-yellow-500 text-yellow-400 hover:bg-yellow-500 hover:text-gray-900 bg-gray-800"
+            className="border-gray-300 text-gray-900 hover:bg-gray-100 bg-white"
           >
             {showDetails ? (
               <>
