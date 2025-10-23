@@ -106,7 +106,7 @@ const TaxiSchwyzPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
-                <div className="bg-green-100 p-3 rounded-full w-fit mx-auto mb-4">
+                <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Mountain className="w-8 h-8 text-green-600" />
                 </div>
                 <CardTitle className="text-xl text-white">Berglandschaft</CardTitle>
@@ -120,7 +120,7 @@ const TaxiSchwyzPage = () => {
 
             <Card className="text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
-                <div className="bg-green-100 p-3 rounded-full w-fit mx-auto mb-4">
+                <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Clock className="w-8 h-8 text-green-600" />
                 </div>
                 <CardTitle className="text-xl text-white">Zuverlässig Verfügbar</CardTitle>
@@ -134,7 +134,7 @@ const TaxiSchwyzPage = () => {
 
             <Card className="text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
-                <div className="bg-green-100 p-3 rounded-full w-fit mx-auto mb-4">
+                <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Car className="w-8 h-8 text-green-600" />
                 </div>
                 <CardTitle className="text-xl text-white">Mercedes-Flotte</CardTitle>

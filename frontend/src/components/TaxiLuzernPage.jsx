@@ -112,7 +112,7 @@ const TaxiLuzernPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
-                <div className="bg-yellow-100 p-3 rounded-full w-fit mx-auto mb-4">
+                <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Clock className="w-8 h-8 text-yellow-600" />
                 </div>
                 <CardTitle className="text-xl text-white">Zuverlässig Verfügbar</CardTitle>
@@ -126,7 +126,7 @@ const TaxiLuzernPage = () => {
 
             <Card className="text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
-                <div className="bg-yellow-100 p-3 rounded-full w-fit mx-auto mb-4">
+                <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Car className="w-8 h-8 text-yellow-600" />
                 </div>
                 <CardTitle className="text-xl text-white">Mercedes-Flotte</CardTitle>
@@ -140,7 +140,7 @@ const TaxiLuzernPage = () => {
 
             <Card className="text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
-                <div className="bg-yellow-100 p-3 rounded-full w-fit mx-auto mb-4">
+                <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <MapPin className="w-8 h-8 text-yellow-600" />
                 </div>
                 <CardTitle className="text-xl text-white">Lokale Expertise</CardTitle>
@@ -248,7 +248,7 @@ const TaxiLuzernPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
-                <div className="bg-green-100 p-3 rounded-full w-fit mx-auto mb-4">
+                <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <MapPin className="w-8 h-8 text-green-600" />
                 </div>
                 <CardTitle className="text-xl text-white">Taxi Schwyz</CardTitle>
@@ -269,7 +269,7 @@ const TaxiLuzernPage = () => {
 
             <Card className="text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
-                <div className="bg-teal-100 p-3 rounded-full w-fit mx-auto mb-4">
+                <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <MapPin className="w-8 h-8 text-teal-600" />
                 </div>
                 <CardTitle className="text-xl text-white">Taxi Zug</CardTitle>
@@ -290,7 +290,7 @@ const TaxiLuzernPage = () => {
 
             <Card className="text-center hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
-                <div className="bg-blue-100 p-3 rounded-full w-fit mx-auto mb-4">
+                <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                   <Car className="w-8 h-8 text-blue-600" />
                 </div>
                 <CardTitle className="text-xl text-white">Flughafentransfer</CardTitle>

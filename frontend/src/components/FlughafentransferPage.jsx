@@ -116,7 +116,7 @@ const FlughafentransferPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Card className="hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
-                <div className="bg-blue-100 p-3 rounded-full w-fit mb-4">
+                <div className="bg-gray-800 p-3 rounded-full w-fit mb-4">
                   <Plane className="w-8 h-8 text-blue-600" />
                 </div>
                 <CardTitle className="text-2xl text-white">Flughafen Zürich</CardTitle>
@@ -126,11 +126,11 @@ const FlughafentransferPage = () => {
                   <p className="text-gray-300">Der größte Flughafen der Schweiz</p>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-500">Fahrtzeit von Luzern:</span>
-                    <Badge className="bg-blue-100 text-blue-800">ca. 1 Stunde</Badge>
+                    <Badge className="bg-gray-800 text-blue-800">ca. 1 Stunde</Badge>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-500">Preis:</span>
-                    <a href="tel:0766113131" className="bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                    <a href="tel:0766113131" className="bg-gray-800 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
                       📞 auf Anfrage
                     </a>
                   </div>
@@ -163,7 +163,7 @@ const FlughafentransferPage = () => {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-500">Preis:</span>
-                    <a href="tel:0766113131" className="bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                    <a href="tel:0766113131" className="bg-gray-800 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
                       📞 auf Anfrage
                     </a>
                   </div>
@@ -194,7 +194,7 @@ const FlughafentransferPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="text-center p-6">
-              <div className="bg-blue-100 p-3 rounded-full w-fit mx-auto mb-4">
+              <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                 <Clock className="w-8 h-8 text-blue-600" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">Pünktlichkeit</h3>
@@ -204,7 +204,7 @@ const FlughafentransferPage = () => {
             </Card>
 
             <Card className="text-center p-6">
-              <div className="bg-blue-100 p-3 rounded-full w-fit mx-auto mb-4">
+              <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                 <Car className="w-8 h-8 text-blue-600" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">Komfort</h3>
@@ -214,7 +214,7 @@ const FlughafentransferPage = () => {
             </Card>
 
             <Card className="text-center p-6">
-              <div className="bg-blue-100 p-3 rounded-full w-fit mx-auto mb-4">
+              <div className="bg-gray-800 p-3 rounded-full w-fit mx-auto mb-4">
                 <Phone className="w-8 h-8 text-blue-600" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">Zuverlässig Service</h3>
@@ -244,25 +244,25 @@ const FlughafentransferPage = () => {
               <div className="space-y-3">
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span>Luzern → Flughafen Zürich</span>
-                  <a href="tel:0766113131" className="bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                  <a href="tel:0766113131" className="bg-gray-800 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
                     📞 auf Anfrage
                   </a>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span>Schwyz → Flughafen Zürich</span>
-                  <a href="tel:0766113131" className="bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                  <a href="tel:0766113131" className="bg-gray-800 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
                     📞 auf Anfrage
                   </a>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span>Zug → Flughafen Zürich</span>
-                  <a href="tel:0766113131" className="bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                  <a href="tel:0766113131" className="bg-gray-800 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
                     📞 auf Anfrage
                   </a>
                 </div>
                 <div className="flex justify-between items-center py-2">
                   <span>Weggis → Flughafen Zürich</span>
-                  <a href="tel:0766113131" className="bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
+                  <a href="tel:0766113131" className="bg-gray-800 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200">
                     📞 auf Anfrage
                   </a>
                 </div>
