@@ -126,7 +126,7 @@ const TaxiWeggisPage = () => {
                 Warum Taxi Türlihof in Weggis & Vitznau?
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Als lokaler Anbieter kennen wir jede Kurve der Seestraße und jeden Aussichtspunkt
+                Der Vierwaldstättersee verbindet Natur, Geschichte und Panorama. Genießen Sie entspannte Fahrten entlang des Ufers, vorbei an charmanten Dörfern und majestätischen Bergen.
               </p>
             </div>
 
