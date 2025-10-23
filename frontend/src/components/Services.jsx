@@ -15,13 +15,13 @@ const iconMap = {
 
 const Services = () => {
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold text-white mb-4">
             Unsere Dienstleistungen
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Von der historischen Stadt Luzern bis zu den malerischen Bergdörfern - wir bringen Sie sicher an Ihr Ziel in der schönsten Region der Schweiz.
           </p>
         </div>
@@ -30,7 +30,7 @@ const Services = () => {
           {services.map((service) => {
             const IconComponent = iconMap[service.icon];
             return (
-              <Card key={service.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-gray-200 overflow-hidden">
+              <Card key={service.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-gray-800 overflow-hidden">
                 {/* Service Image */}
                 <div className="h-48 overflow-hidden">
                   <img 
@@ -45,21 +45,21 @@ const Services = () => {
                     <div className="bg-yellow-100 p-3 rounded-full group-hover:bg-yellow-200 transition-colors duration-300">
                       <IconComponent className="w-6 h-6 text-yellow-600" />
                     </div>
-                    <Badge variant="secondary" className="bg-gray-100 text-gray-700">
+                    <Badge variant="secondary" className="bg-gray-100 text-gray-300">
                       {service.price}
                     </Badge>
                   </div>
-                  <CardTitle className="text-xl font-semibold text-gray-900 group-hover:text-yellow-600 transition-colors duration-300">
+                  <CardTitle className="text-xl font-semibold text-white group-hover:text-yellow-600 transition-colors duration-300">
                     {service.title}
                   </CardTitle>
-                  <CardDescription className="text-gray-600 leading-relaxed">
+                  <CardDescription className="text-gray-300 leading-relaxed">
                     {service.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
                     {service.features.map((feature, index) => (
-                      <li key={index} className="flex items-center text-sm text-gray-600">
+                      <li key={index} className="flex items-center text-sm text-gray-300">
                         <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3"></div>
                         {feature}
                       </li>
@@ -68,9 +68,9 @@ const Services = () => {
                   
                   {/* Spezielle Preisdetails für Flughafentransfer */}
                   {service.priceDetails && (
-                    <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                      <h4 className="font-semibold text-sm text-gray-900 mb-2">Preise:</h4>
-                      <div className="space-y-2 text-xs text-gray-600">
+                    <div className="mt-4 p-3 bg-gray-900 rounded-lg">
+                      <h4 className="font-semibold text-sm text-white mb-2">Preise:</h4>
+                      <div className="space-y-2 text-xs text-gray-300">
                         <div>
                           <strong>Flughafen Zürich:</strong>
                           <div className="ml-2">
