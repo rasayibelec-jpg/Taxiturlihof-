@@ -97,7 +97,7 @@ const TaxiLuzernPage = () => {
       </section>
 
       {/* Warum Taxi Türlihof in Luzern */}
-      <section className="py-16">
+      <section className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -156,7 +156,7 @@ const TaxiLuzernPage = () => {
       </section>
 
       {/* Luzern Sehenswürdigkeiten */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -188,7 +188,7 @@ const TaxiLuzernPage = () => {
       </section>
 
       {/* Preise */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -234,7 +234,7 @@ const TaxiLuzernPage = () => {
       </section>
 
       {/* Andere Städte */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -313,7 +313,7 @@ const TaxiLuzernPage = () => {
       </section>
 
       {/* Bewertungen */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -369,7 +369,7 @@ const TaxiLuzernPage = () => {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">

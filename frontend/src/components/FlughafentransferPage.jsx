@@ -102,7 +102,7 @@ const FlughafentransferPage = () => {
       </section>
 
       {/* Flughäfen */}
-      <section className="py-16">
+      <section className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -184,7 +184,7 @@ const FlughafentransferPage = () => {
       </section>
 
       {/* Vorteile */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -227,7 +227,7 @@ const FlughafentransferPage = () => {
       </section>
 
       {/* Preise & Strecken */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -303,7 +303,7 @@ const FlughafentransferPage = () => {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-black">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
