@@ -185,8 +185,8 @@ const TaxiWeggisPage = () => {
                   Beliebte Fahrziele ab Weggis & Vitznau
                 </h2>
                 <p className="text-lg text-gray-300 mb-6">
-                  Von der romantischen Seepromenade bis zur spektakulären Rigi - 
-                  wir kennen alle Wege am Vierwaldstättersee.
+                  Der Vierwaldstättersee verbindet Natur, Geschichte und Panorama – von Luzern bis Brunnen. 
+                  Genießen Sie entspannte Fahrten entlang des Ufers, vorbei an charmanten Dörfern und majestätischen Bergen.
                 </p>
 
                 <div className="grid grid-cols-2 gap-4">
