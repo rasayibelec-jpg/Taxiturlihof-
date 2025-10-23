@@ -33,14 +33,14 @@ const TaxiWeggisPage = () => {
   ];
 
   const beliebteZiele = [
-    "Rigi-Bahn Vitznau",
-    "Seepromenade Weggis", 
-    "Park Hotel Vitznau",
-    "Weggis Zentrum",
-    "Vitznau Bahnhof",
-    "Gersau",
-    "Küssnacht am Rigi",
-    "Luzern Bahnhof"
+    "Luzern (Kanton Luzern)",
+    "Weggis (Kanton Luzern)", 
+    "Vitznau (Kanton Luzern)",
+    "Brunnen (Kanton Schwyz)",
+    "Schwyz (Kanton Schwyz)",
+    "Flüelen (Kanton Uri)",
+    "Stansstad (Kanton Nidwalden)",
+    "Beckenried (Kanton Nidwalden)"
   ];
 
   const seeAttraktionen = [
