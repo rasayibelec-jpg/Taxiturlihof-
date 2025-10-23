@@ -364,7 +364,7 @@ const BookingSystem = () => {
   // Show success step
   if (currentStep === 'success') {
     return (
-      <section className="py-20 bg-gradient-to-br from-green-50 to-emerald-50 min-h-screen">
+      <section className="py-20 bg-black min-h-screen">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-gray-900 rounded-lg shadow-xl p-8">
             <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
