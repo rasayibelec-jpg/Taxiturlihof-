@@ -29,7 +29,7 @@ const BookingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black">
       <SEOHead 
         title="Taxi Online Buchen Luzern, Schwyz, Zug | Mercedes Taxi reservieren | Taxi Türlihof"
         description="🚗 Taxi online buchen in Luzern, Schwyz, Zug! Mercedes-Flotte, Zuverlässig Service, sofortige Bestätigung per E-Mail. Standard, Premium & Van verfügbar. Jetzt reservieren!"
