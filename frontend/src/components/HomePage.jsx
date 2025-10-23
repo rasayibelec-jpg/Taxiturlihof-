@@ -15,7 +15,7 @@ import { getHomePageSchema } from "../utils/structuredData";
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-black">
       <SEOHead 
         title="Taxi Türlihof | Zuverlässiger Taxi-Service in Luzern, Schwyz, Zug"
         description="Taxi Türlihof Oberarth - Ihr zuverlässiger Taxi-Service in der Zentralschweiz. Mercedes-Flotte, Flughafentransfer Zürich/Basel, Stadtfahrten. Online buchen ☎️ 076 611 31 31"
