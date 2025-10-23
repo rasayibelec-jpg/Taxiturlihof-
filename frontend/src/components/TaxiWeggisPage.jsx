@@ -45,19 +45,19 @@ const TaxiWeggisPage = () => {
 
   const seeAttraktionen = [
     {
-      title: "Luzern - Kanton Luzern",
-      description: "Historische Altstadt, Kapellbrücke und kulturelles Zentrum",
-      icon: <Star className="w-5 h-5 text-yellow-500" />
-    },
-    {
-      title: "Brunnen - Kanton Schwyz",
-      description: "Tor zu den Mythen, Rütli und Schweizer Geschichte",
+      title: "Rigi-Bahn Vitznau",
+      description: "Historische Zahnradbahn auf die 'Königin der Berge'",
       icon: <Mountain className="w-5 h-5 text-white" />
     },
     {
-      title: "Uri & Unterwalden",
-      description: "Flüelen, Beckenried und weitere Perlen am See",
+      title: "Seepromenade Weggis",
+      description: "Wunderschöne Uferpromenade mit Palmen und Seeblick",
       icon: <Waves className="w-5 h-5 text-white" />
+    },
+    {
+      title: "Park Hotel Vitznau",
+      description: "Luxushotel direkt am Vierwaldstättersee",
+      icon: <Star className="w-5 h-5 text-yellow-500" />
     }
   ];
 
