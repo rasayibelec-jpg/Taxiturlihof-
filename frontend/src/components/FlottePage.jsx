@@ -40,7 +40,7 @@ const FlottePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black">
       <SEOHead 
         title="Mercedes Taxi-Flotte Luzern | Standard, Premium & Van | Taxi Türlihof"
         description="🚗 Mercedes Taxi-Flotte in Luzern ➤ Standard-Taxis, Premium & Vans (bis 8 Personen) ➤ Moderne, gepflegte Fahrzeuge ➤ Klimaanlage, Komfort ☎️ 076 611 31 31"
