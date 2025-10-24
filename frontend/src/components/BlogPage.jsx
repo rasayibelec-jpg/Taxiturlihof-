@@ -203,11 +203,11 @@ Buchen Sie noch heute Ihre Ausflugstour!`,
                 <CardHeader>
                   <div className="flex items-center gap-2 mb-2">
                     <Badge className="bg-yellow-100 text-yellow-800">{post.category}</Badge>
-                    <div className="flex items-center text-sm text-gray-500">
+                    <div className="flex items-center text-sm text-gray-400">
                       <Calendar className="w-4 h-4 mr-1" />
                       {new Date(post.date).toLocaleDateString('de-CH')}
                     </div>
-                    <div className="flex items-center text-sm text-gray-500">
+                    <div className="flex items-center text-sm text-gray-400">
                       <Clock className="w-4 h-4 mr-1" />
                       {post.readTime}
                     </div>
@@ -217,7 +217,7 @@ Buchen Sie noch heute Ihre Ausflugstour!`,
                       {post.title}
                     </Link>
                   </CardTitle>
-                  <CardDescription className="text-gray-600 leading-relaxed">
+                  <CardDescription className="text-gray-300 leading-relaxed">
                     {post.excerpt}
                   </CardDescription>
                 </CardHeader>
@@ -251,7 +251,7 @@ Buchen Sie noch heute Ihre Ausflugstour!`,
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Bleiben Sie informiert
           </h2>
-          <p className="text-lg text-gray-600 mb-8">
+          <p className="text-lg text-gray-300 mb-8">
             Erhalten Sie die neuesten Tipps und Angebote von Taxi Türlihof
           </p>
           
