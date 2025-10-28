@@ -78,8 +78,7 @@ const DatenschutzPage = () => {
                 </p>
                 <div className="bg-gray-900 p-4 rounded-lg">
                   <p className="text-white font-semibold">Taxi Türlihof</p>
-                  <p className="text-gray-300">Yasar Türlihof</p>
-                  <p className="text-gray-300">Türlihofstrasse</p>
+                  <p className="text-gray-300">Yaşar Çelebi</p>
                   <p className="text-gray-300">Zentralschweiz, Schweiz</p>
                   <p className="text-gray-300 mt-2">
                     Telefon: <a href="tel:0766113131" className="text-yellow-500 hover:text-yellow-600">076 611 31 31</a>
