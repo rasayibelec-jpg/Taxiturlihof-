@@ -138,13 +138,13 @@ const Footer = () => {
               © 2024 Taxi Türlihof. Alle Rechte vorbehalten.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition-colors duration-200">
+              <a href="/datenschutz" className="text-gray-400 hover:text-yellow-500 text-sm transition-colors duration-200">
                 Datenschutz
               </a>
-              <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition-colors duration-200">
+              <a href="/impressum" className="text-gray-400 hover:text-yellow-500 text-sm transition-colors duration-200">
                 Impressum
               </a>
-              <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition-colors duration-200">
+              <a href="/agb" className="text-gray-400 hover:text-yellow-500 text-sm transition-colors duration-200">
                 AGB
               </a>
             </div>
