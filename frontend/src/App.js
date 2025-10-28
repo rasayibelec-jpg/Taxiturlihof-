@@ -25,6 +25,9 @@ import GeschaeftstaximPage from './components/GeschaeftstaximPage';
 import Services from './components/Services';
 import TaxiArthGoldauPage from './components/TaxiArthGoldauPage';
 import TaxiWeggisPage from './components/TaxiWeggisPage';
+import AGBPage from './components/AGBPage';
+import ImpressumPage from './components/ImpressumPage';
+import DatenschutzPage from './components/DatenschutzPage';
 
 function App() {
   // Register Service Worker for PWA
