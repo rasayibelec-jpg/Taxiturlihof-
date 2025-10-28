@@ -58,13 +58,12 @@ const ImpressumPage = () => {
                 
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-2">Inhaber</h3>
-                  <p className="text-gray-300">Yasar Türlihof</p>
+                  <p className="text-gray-300">Yaşar Çelebi</p>
                 </div>
                 
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-2">Adresse</h3>
                   <p className="text-gray-300">
-                    Türlihofstrasse<br />
                     Zentralschweiz<br />
                     Schweiz
                   </p>
