@@ -128,6 +128,12 @@ const Header = () => {
               🔍 <span className="ml-1">Buchung suchen</span>
             </Link>
             <Link
+              to="/agb"
+              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 font-medium"
+            >
+              AGB
+            </Link>
+            <Link
               to="/admin"
               className="text-red-600 hover:text-red-700 font-medium transition-colors duration-200 flex items-center"
               title="Admin Dashboard"
