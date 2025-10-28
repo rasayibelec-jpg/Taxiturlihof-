@@ -202,7 +202,7 @@ const DatenschutzPage = () => {
                   <li>Datenübertragbarkeit zu verlangen</li>
                 </ul>
                 <p className="text-gray-300 leading-relaxed mt-4">
-                  Bei Fragen wenden Sie sich bitte an: <a href="mailto:datenschutz@taxiturlihof.ch" className="text-yellow-500 hover:text-yellow-600 underline">datenschutz@taxiturlihof.ch</a>
+                  Bei Fragen wenden Sie sich bitte an: <a href="mailto:info@taxiturlihof.ch" className="text-yellow-500 hover:text-yellow-600 underline">info@taxiturlihof.ch</a>
                 </p>
               </CardContent>
             </Card>
