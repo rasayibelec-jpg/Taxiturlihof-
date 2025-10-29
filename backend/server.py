@@ -1172,18 +1172,20 @@ async def initiate_payment(request: PaymentInitiateRequest, http_request: Reques
                 destination=booking.destination
             )
             
-            # Apply vehicle multiplier from booking service
+            # Get vehicle-specific rates from booking service
             from booking_service import BookingService
             booking_service_instance = BookingService()
             
-            base_fare = 6.60
-            distance_rate = 4.20
+            # Use vehicle-specific distance rates
+            base_fare = booking_service_instance.base_fares.get(booking.vehicle_type, 6.60)
+            distance_rate = booking_service_instance.distance_rates.get(booking.vehicle_type, 4.20)
             distance_km = distance_result['distance_km']
-            base_total = base_fare + (distance_km * distance_rate)
             
-            # Apply vehicle type multiplier
-            vehicle_multiplier = booking_service_instance.vehicle_multipliers.get(booking.vehicle_type, 1.0)
-            payment_amount = base_total * vehicle_multiplier
+            # Calculate total fare with waiting time if applicable
+            payment_amount = base_fare + (distance_km * distance_rate)
+            if hasattr(booking, 'waiting_time_hours') and booking.waiting_time_hours > 0:
+                waiting_time_cost = booking.waiting_time_hours * booking_service_instance.waiting_time_rate
+                payment_amount += waiting_time_cost
         
         # Create payment transaction
         payment_data = PaymentTransactionCreate(
