@@ -205,7 +205,14 @@ const Header = () => {
               {/* Wichtigste Links zuerst */}
               <Link
                 to="/booking-lookup"
-                className="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded font-semibold text-center transition-colors duration-200"
+                className="text-white p-3 rounded font-semibold text-center transition-colors duration-200"
+                style={{
+                  backgroundColor: '#007BFF',
+                  borderRadius: '6px',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0056B3'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#007BFF'}
                 onClick={() => setIsMenuOpen(false)}
               >
                 🔍 Buchung suchen
@@ -213,7 +220,14 @@ const Header = () => {
               
               <Link
                 to="/admin"
-                className="bg-red-600 hover:bg-red-700 text-white p-3 rounded font-semibold text-center transition-colors duration-200"
+                className="text-white p-3 rounded font-semibold text-center transition-colors duration-200"
+                style={{
+                  backgroundColor: '#DC3545',
+                  borderRadius: '6px',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#C82333'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#DC3545'}
                 onClick={() => setIsMenuOpen(false)}
               >
                 🔧 Admin Dashboard
@@ -221,7 +235,14 @@ const Header = () => {
               
               <Link
                 to="/preisrechner"
-                className="bg-yellow-600 hover:bg-yellow-700 text-white p-3 rounded font-semibold text-center transition-colors duration-200"
+                className="text-white p-3 rounded font-semibold text-center transition-colors duration-200"
+                style={{
+                  backgroundColor: '#007BFF',
+                  borderRadius: '6px',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0056B3'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#007BFF'}
                 onClick={() => setIsMenuOpen(false)}
               >
                 💰 Preisrechner
@@ -229,7 +250,14 @@ const Header = () => {
               
               <Link
                 to="/buchen"
-                className="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded font-semibold text-center transition-colors duration-200"
+                className="text-white p-3 rounded font-semibold text-center transition-colors duration-200"
+                style={{
+                  backgroundColor: '#007BFF',
+                  borderRadius: '6px',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0056B3'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#007BFF'}
                 onClick={() => setIsMenuOpen(false)}
               >
                 📱 Jetzt Buchen
