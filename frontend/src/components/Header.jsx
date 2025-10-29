@@ -197,7 +197,8 @@ const Header = () => {
               backgroundColor: '#F5F5F5',
               color: '#2C2C2C',
               fontFamily: "'Helvetica Neue', sans-serif",
-              boxShadow: '0 0 10px rgba(0,0,0,0.1)'
+              boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+              padding: '20px'
             }}
           >
             <div className="flex flex-col space-y-3">
