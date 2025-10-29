@@ -191,7 +191,15 @@ const Header = () => {
 
         {/* Mobile/Tablet Navigation - Kompakt */}
         {isMenuOpen && (
-          <nav className="lg:hidden py-4 border-t">
+          <nav 
+            className="lg:hidden py-4 border-t"
+            style={{
+              backgroundColor: '#F5F5F5',
+              color: '#2C2C2C',
+              fontFamily: "'Helvetica Neue', sans-serif",
+              boxShadow: '0 0 10px rgba(0,0,0,0.1)'
+            }}
+          >
             <div className="flex flex-col space-y-3">
               
               {/* Wichtigste Links zuerst */}
