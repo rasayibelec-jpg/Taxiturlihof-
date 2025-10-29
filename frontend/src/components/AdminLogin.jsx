@@ -133,6 +133,18 @@ const AdminLogin = ({ onLogin }) => {
               type="submit"
               className="w-full bg-yellow-600 hover:bg-yellow-700 text-white"
               disabled={isLoading || !credentials.username || !credentials.password}
+              style={{
+                backgroundColor: '#007BFF',
+                color: 'white',
+                border: 'none',
+                borderRadius: '6px',
+                padding: '10px 20px',
+                fontWeight: '500',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                transition: 'background-color 0.3s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0056B3'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#007BFF'}
             >
               {isLoading ? (
                 <div className="flex items-center">
