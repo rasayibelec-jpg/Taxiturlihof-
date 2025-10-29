@@ -85,17 +85,17 @@ const AdminLogin = ({ onLogin }) => {
             )}
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-300">
+              <label className="text-sm font-medium text-gray-700">
                 Benutzername
               </label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <Input
                   type="text"
                   value={credentials.username}
                   onChange={(e) => handleInputChange('username', e.target.value)}
                   placeholder="Admin-Benutzername"
-                  className="pl-10 bg-gray-800 border-gray-700 text-white placeholder:text-gray-500"
+                  className="pl-10 bg-white border-gray-300 text-gray-900 placeholder:text-gray-400"
                   required
                   disabled={isLoading}
                 />
@@ -103,25 +103,26 @@ const AdminLogin = ({ onLogin }) => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-300">
+              <label className="text-sm font-medium text-gray-700">
                 Passwort
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <Input
                   type={showPassword ? "text" : "password"}
                   value={credentials.password}
                   onChange={(e) => handleInputChange('password', e.target.value)}
                   placeholder="Admin-Passwort"
-                  className="pl-10 pr-10 bg-gray-800 border-gray-700 text-white placeholder:text-gray-500"
+                  className="pl-10 pr-10 bg-white border-gray-300 text-gray-900 placeholder:text-gray-400"
                   required
                   disabled={isLoading}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-300"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   disabled={isLoading}
+                  style={{ backgroundColor: 'transparent', border: 'none', padding: 0 }}
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
