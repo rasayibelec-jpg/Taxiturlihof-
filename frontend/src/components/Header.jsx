@@ -208,12 +208,15 @@ const Header = () => {
                 to="/booking-lookup"
                 className="text-white p-3 rounded font-semibold text-center transition-colors duration-200"
                 style={{
-                  backgroundColor: '#007BFF',
+                  backgroundColor: '#4B3F2F',
                   borderRadius: '6px',
+                  padding: '10px 20px',
+                  fontWeight: '500',
+                  marginBottom: '10px',
                   boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0056B3'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#007BFF'}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3A2F23'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4B3F2F'}
                 onClick={() => setIsMenuOpen(false)}
               >
                 🔍 Buchung suchen
@@ -223,12 +226,15 @@ const Header = () => {
                 to="/admin"
                 className="text-white p-3 rounded font-semibold text-center transition-colors duration-200"
                 style={{
-                  backgroundColor: '#DC3545',
+                  backgroundColor: '#4B3F2F',
                   borderRadius: '6px',
+                  padding: '10px 20px',
+                  fontWeight: '500',
+                  marginBottom: '10px',
                   boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#C82333'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#DC3545'}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3A2F23'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4B3F2F'}
                 onClick={() => setIsMenuOpen(false)}
               >
                 🔧 Admin Dashboard
@@ -238,12 +244,15 @@ const Header = () => {
                 to="/preisrechner"
                 className="text-white p-3 rounded font-semibold text-center transition-colors duration-200"
                 style={{
-                  backgroundColor: '#007BFF',
+                  backgroundColor: '#4B3F2F',
                   borderRadius: '6px',
+                  padding: '10px 20px',
+                  fontWeight: '500',
+                  marginBottom: '10px',
                   boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0056B3'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#007BFF'}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3A2F23'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4B3F2F'}
                 onClick={() => setIsMenuOpen(false)}
               >
                 💰 Preisrechner
@@ -253,12 +262,15 @@ const Header = () => {
                 to="/buchen"
                 className="text-white p-3 rounded font-semibold text-center transition-colors duration-200"
                 style={{
-                  backgroundColor: '#007BFF',
+                  backgroundColor: '#4B3F2F',
                   borderRadius: '6px',
+                  padding: '10px 20px',
+                  fontWeight: '500',
+                  marginBottom: '10px',
                   boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0056B3'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#007BFF'}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3A2F23'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4B3F2F'}
                 onClick={() => setIsMenuOpen(false)}
               >
                 📱 Jetzt Buchen
