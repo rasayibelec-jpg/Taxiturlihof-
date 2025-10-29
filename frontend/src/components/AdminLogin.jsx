@@ -150,12 +150,12 @@ const AdminLogin = ({ onLogin }) => {
           <div className="mt-6 text-center space-y-3">
             <a 
               href="/admin-reset" 
-              className="text-sm text-gray-400 hover:text-gray-200 hover:underline block"
+              className="text-sm text-blue-600 hover:text-blue-800 hover:underline block"
             >
               🔐 Passwort vergessen? Hier zurücksetzen
             </a>
             
-            <Badge variant="outline" className="text-xs border-gray-700 text-gray-400">
+            <Badge variant="outline" className="text-xs border-gray-300 text-gray-600">
               🔒 Sichere Admin-Authentifizierung
             </Badge>
           </div>
