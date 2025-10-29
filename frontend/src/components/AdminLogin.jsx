@@ -59,16 +59,16 @@ const AdminLogin = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md bg-gray-900 border-gray-800">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4" style={{ fontFamily: "'Helvetica Neue', sans-serif" }}>
+      <Card className="w-full max-w-md bg-white border-gray-200 shadow-lg">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-4 p-3 bg-yellow-500/20 rounded-full w-16 h-16 flex items-center justify-center border-2 border-yellow-500">
-            <Shield className="w-8 h-8 text-yellow-500" />
+          <div className="mx-auto mb-4 p-3 bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center">
+            <Shield className="w-8 h-8 text-blue-600" />
           </div>
-          <CardTitle className="text-2xl font-bold text-white">
+          <CardTitle className="text-2xl font-bold text-gray-900">
             Admin-Anmeldung
           </CardTitle>
-          <CardDescription className="text-gray-300">
+          <CardDescription className="text-gray-600">
             Taxi Türlihof - Verwaltungsbereich
           </CardDescription>
         </CardHeader>
