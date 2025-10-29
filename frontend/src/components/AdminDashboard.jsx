@@ -260,14 +260,15 @@ const AdminDashboard = () => {
 
         {/* Tab Navigation */}
         <div className="mb-6">
-          <div className="flex border-b border-gray-800">
+          <div className="flex border-b border-gray-200">
             <button
               onClick={() => setActiveTab('bookings')}
               className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${
                 activeTab === 'bookings'
-                  ? 'border-yellow-500 text-yellow-500'
-                  : 'border-transparent text-gray-500 hover:text-gray-300'
+                  ? 'border-blue-600 text-blue-600'
+                  : 'border-transparent text-gray-600 hover:text-gray-900'
               }`}
+              style={{ backgroundColor: 'transparent' }}
             >
               <Car className="w-4 h-4 inline mr-2" />
               Buchungen
@@ -276,9 +277,10 @@ const AdminDashboard = () => {
               onClick={() => setActiveTab('payments')}
               className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${
                 activeTab === 'payments'
-                  ? 'border-yellow-500 text-yellow-500'
-                  : 'border-transparent text-gray-500 hover:text-gray-300'
+                  ? 'border-blue-600 text-blue-600'
+                  : 'border-transparent text-gray-600 hover:text-gray-900'
               }`}
+              style={{ backgroundColor: 'transparent' }}
             >
               <CreditCard className="w-4 h-4 inline mr-2" />
               Zahlungen
