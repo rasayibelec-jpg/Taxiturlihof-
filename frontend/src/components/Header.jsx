@@ -267,21 +267,36 @@ const Header = () => {
               <div className="grid grid-cols-2 gap-2">
                 <Link
                   to="/taxi-luzern"
-                  className="text-center py-2 px-3 bg-gray-100 rounded text-sm hover:bg-yellow-100 transition-colors duration-200"
+                  className="text-center py-2 px-3 rounded text-sm transition-colors duration-200"
+                  style={{
+                    backgroundColor: 'white',
+                    color: '#2C2C2C',
+                    border: '1px solid #E5E5E5'
+                  }}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   🏰 Luzern
                 </Link>
                 <Link
                   to="/taxi-schwyz"
-                  className="text-center py-2 px-3 bg-gray-100 rounded text-sm hover:bg-yellow-100 transition-colors duration-200"
+                  className="text-center py-2 px-3 rounded text-sm transition-colors duration-200"
+                  style={{
+                    backgroundColor: 'white',
+                    color: '#2C2C2C',
+                    border: '1px solid #E5E5E5'
+                  }}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   🏔️ Schwyz
                 </Link>
                 <Link
                   to="/taxi-zug"
-                  className="text-center py-2 px-3 bg-gray-100 rounded text-sm hover:bg-yellow-100 transition-colors duration-200"
+                  className="text-center py-2 px-3 rounded text-sm transition-colors duration-200"
+                  style={{
+                    backgroundColor: 'white',
+                    color: '#2C2C2C',
+                    border: '1px solid #E5E5E5'
+                  }}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   🚂 Zug
