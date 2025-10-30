@@ -236,25 +236,25 @@ const BookingLookup = () => {
                 </div>
 
                 {/* Booking Details */}
-                <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="bg-white p-4 rounded-lg border border-gray-200">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                     <div>
-                      <span className="text-gray-600">Fahrzeugtyp:</span>
-                      <p className="font-medium">{booking.vehicle_type || 'Standard'}</p>
+                      <span className="text-gray-600 block mb-1">Fahrzeugtyp:</span>
+                      <p className="font-semibold text-gray-900">{booking.vehicle_type || 'Standard'}</p>
                     </div>
                     <div>
-                      <span className="text-gray-600">Personen:</span>
-                      <p className="font-medium">{booking.passenger_count || 1}</p>
+                      <span className="text-gray-600 block mb-1">Personen:</span>
+                      <p className="font-semibold text-gray-900">{booking.passenger_count || 1}</p>
                     </div>
                     <div>
-                      <span className="text-gray-600">Preis:</span>
-                      <p className="font-medium text-green-600">
-                        CHF {booking.total_fare || 'N/A'}
+                      <span className="text-gray-600 block mb-1">Preis:</span>
+                      <p className="font-semibold text-green-600 text-lg">
+                        CHF {booking.total_fare ? booking.total_fare.toFixed(2) : 'N/A'}
                       </p>
                     </div>
                     <div>
-                      <span className="text-gray-600">Status:</span>
-                      <p className="font-medium">{statusInfo.label}</p>
+                      <span className="text-gray-600 block mb-1">Status:</span>
+                      <p className="font-semibold text-gray-900">{statusInfo.label}</p>
                     </div>
                   </div>
                 </div>
