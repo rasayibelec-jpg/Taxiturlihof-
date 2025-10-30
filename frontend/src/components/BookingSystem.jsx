@@ -11,6 +11,7 @@ import {
 import { useToast } from "../hooks/use-toast";
 import axios from "axios";
 import PaymentSelection from "./PaymentSelection";
+import './BookingSystem.css';
 // Simple inputs without GooglePlaces complexity
 
 const BookingSystem = () => {
