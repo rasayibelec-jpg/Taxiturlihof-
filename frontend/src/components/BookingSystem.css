@@ -1,0 +1,134 @@
+/* BookingSystem - Einheitliche graue Buttons und Inputs */
+
+/* Alle Buttons auf der Buchungsseite */
+#booking button,
+#booking .btn,
+#booking button[type="button"],
+#booking button[type="submit"] {
+  background-color: #808080 !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  font-weight: 500 !important;
+  transition: background-color 0.3s ease !important;
+}
+
+/* Button Hover-Zustand */
+#booking button:hover,
+#booking .btn:hover {
+  background-color: #999999 !important;
+  color: #FFFFFF !important;
+}
+
+/* Button Focus-Zustand */
+#booking button:focus,
+#booking .btn:focus {
+  background-color: #808080 !important;
+  color: #FFFFFF !important;
+  outline: 2px solid #AAAAAA !important;
+}
+
+/* Disabled Buttons */
+#booking button:disabled {
+  background-color: #666666 !important;
+  color: #CCCCCC !important;
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+}
+
+/* Input-Felder */
+#booking input[type="text"],
+#booking input[type="email"],
+#booking input[type="tel"],
+#booking input[type="date"],
+#booking input[type="time"],
+#booking input[type="number"],
+#booking textarea,
+#booking select {
+  background-color: #808080 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #999999 !important;
+  font-weight: 400 !important;
+}
+
+/* Input Focus */
+#booking input:focus,
+#booking textarea:focus,
+#booking select:focus {
+  background-color: #808080 !important;
+  color: #FFFFFF !important;
+  border-color: #BBBBBB !important;
+  outline: none !important;
+  ring: 1px solid #BBBBBB !important;
+}
+
+/* Placeholder Text */
+#booking input::placeholder,
+#booking textarea::placeholder,
+#booking select::placeholder {
+  color: #DDDDDD !important;
+  opacity: 0.8 !important;
+}
+
+/* Input Placeholder in Firefox */
+#booking input::-moz-placeholder,
+#booking textarea::-moz-placeholder {
+  color: #DDDDDD !important;
+  opacity: 0.8 !important;
+}
+
+/* Dropdown/Select Elemente */
+#booking select {
+  background-color: #808080 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #999999 !important;
+}
+
+#booking select option {
+  background-color: #666666 !important;
+  color: #FFFFFF !important;
+}
+
+/* Radio Buttons und Checkboxes */
+#booking input[type="radio"],
+#booking input[type="checkbox"] {
+  accent-color: #808080 !important;
+}
+
+/* Label Text */
+#booking label {
+  color: #FFFFFF !important;
+  font-weight: 500 !important;
+}
+
+/* Card Text */
+#booking .card-description {
+  color: #DDDDDD !important;
+}
+
+/* Success Button (grün - Ausnahme) */
+#booking button.bg-green-600,
+#booking button.bg-green-500 {
+  background-color: #16A34A !important;
+}
+
+#booking button.bg-green-600:hover,
+#booking button.bg-green-500:hover {
+  background-color: #15803D !important;
+}
+
+/* Error/Cancel Button (rot - Ausnahme) */
+#booking button.bg-red-600,
+#booking button.bg-red-500 {
+  background-color: #DC2626 !important;
+}
+
+#booking button.bg-red-600:hover,
+#booking button.bg-red-500:hover {
+  background-color: #B91C1C !important;
+}
+
+/* Ensure white text is visible on all backgrounds */
+#booking * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
