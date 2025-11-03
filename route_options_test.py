@@ -12,7 +12,7 @@ from datetime import datetime
 from pathlib import Path
 
 # Test configuration
-BACKEND_URL = "https://nova-taxi-portal.preview.emergentagent.com/api"
+BACKEND_URL = "https://taxibooking-fix.preview.emergentagent.com/api"
 
 class RouteOptionsDebugger:
     def __init__(self):
