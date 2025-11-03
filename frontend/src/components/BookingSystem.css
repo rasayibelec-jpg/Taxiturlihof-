@@ -12,11 +12,23 @@
   pointer-events: auto !important;
 }
 
-/* Button Hover-Zustand */
-#booking button:hover,
-#booking .btn:hover {
+/* Button Hover-Zustand für outline Buttons */
+#booking button[type="button"]:hover,
+#booking button[class*="outline"]:hover {
   background-color: #999999 !important;
   color: #FFFFFF !important;
+}
+
+/* Submit Button behält seine Farbe */
+#booking button[type="submit"] {
+  background-color: #2563EB !important;
+  color: #FFFFFF !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+#booking button[type="submit"]:hover {
+  background-color: #1D4ED8 !important;
 }
 
 /* Button Focus-Zustand */
