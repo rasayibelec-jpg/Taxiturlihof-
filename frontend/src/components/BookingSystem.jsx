@@ -509,31 +509,16 @@ const BookingSystem = () => {
                           <Navigation className="w-4 h-4 inline mr-1" />
                           Zielort *
                         </label>
-                        <div className="flex space-x-2">
-                          <Input
-                            id="destination"
-                            type="text"
-                            placeholder="z.B. Zürich Flughafen"
-                            value={bookingData.destination}
-                            onChange={(e) => handleInputChange('destination', e.target.value)}
-                            disabled={isSubmitting}
-                            required
-                            className="flex-1"
-                          />
-                          <Button
-                            type="button"
-                            onClick={() => getCurrentLocation('destination')}
-                            disabled={isSubmitting || isGettingLocation}
-                            variant="outline"
-                            className="px-3 py-2 whitespace-nowrap"
-                          >
-                            {isGettingLocation ? (
-                              <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                            ) : (
-                              <>📍 Mein Standort</>
-                            )}
-                          </Button>
-                        </div>
+                        <Input
+                          id="destination"
+                          type="text"
+                          placeholder="z.B. Zürich Flughafen"
+                          value={bookingData.destination}
+                          onChange={(e) => handleInputChange('destination', e.target.value)}
+                          disabled={isSubmitting}
+                          required
+                          className="w-full"
+                        />
                       </div>
 
                       {/* Additional Stops */}
