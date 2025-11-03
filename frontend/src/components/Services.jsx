@@ -45,7 +45,7 @@ const Services = () => {
                     <div className="bg-yellow-100 p-3 rounded-full group-hover:bg-yellow-200 transition-colors duration-300">
                       <IconComponent className="w-6 h-6 text-yellow-600" />
                     </div>
-                    <Badge variant="secondary" className="bg-gray-100 text-gray-300">
+                    <Badge variant="secondary" className="bg-gray-800 text-gray-100">
                       {service.price}
                     </Badge>
                   </div>
