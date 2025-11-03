@@ -32,11 +32,16 @@
 }
 
 /* Button Focus-Zustand */
-#booking button:focus,
-#booking .btn:focus {
+#booking button[type="button"]:focus,
+#booking button[class*="outline"]:focus {
   background-color: #808080 !important;
   color: #FFFFFF !important;
   outline: 2px solid #AAAAAA !important;
+}
+
+#booking button[type="submit"]:focus {
+  background-color: #2563EB !important;
+  outline: 2px solid #60A5FA !important;
 }
 
 /* Disabled Buttons */
