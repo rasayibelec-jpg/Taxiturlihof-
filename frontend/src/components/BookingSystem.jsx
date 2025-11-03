@@ -99,24 +99,32 @@ const BookingSystem = () => {
       },
       (error) => {
         setIsGettingLocation(false);
+        let title = "Standort-Fehler";
         let message = "Standort konnte nicht bestimmt werden.";
         
         switch (error.code) {
           case error.PERMISSION_DENIED:
-            message = "Standortzugriff wurde verweigert. Bitte erlauben Sie den Zugriff in den Browser-Einstellungen.";
+            title = "Standortzugriff benötigt";
+            message = "So aktivieren Sie den Standortzugriff:\n\n" +
+                     "📱 Samsung Internet:\n" +
+                     "1. Tippen Sie auf das Schloss-Symbol in der Adressleiste\n" +
+                     "2. Wählen Sie 'Berechtigungen'\n" +
+                     "3. Aktivieren Sie 'Standort'\n\n" +
+                     "💡 Alternative: Geben Sie Ihren Abholort manuell ein";
             break;
           case error.POSITION_UNAVAILABLE:
-            message = "Standortinformationen sind nicht verfügbar.";
+            message = "Standortinformationen sind nicht verfügbar.\n\n💡 Tipp: Geben Sie Ihren Abholort manuell ein.";
             break;
           case error.TIMEOUT:
-            message = "Zeitüberschreitung bei der Standortbestimmung.";
+            message = "Zeitüberschreitung bei der Standortbestimmung.\n\n💡 Tipp: Versuchen Sie es erneut oder geben Sie den Ort manuell ein.";
             break;
         }
         
         toast({
-          title: "Standort-Fehler",
+          title: title,
           description: message,
-          variant: "destructive"
+          variant: "destructive",
+          duration: 8000
         });
       },
       {
