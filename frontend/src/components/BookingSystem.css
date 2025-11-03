@@ -1,10 +1,8 @@
 /* BookingSystem - Einheitliche graue Buttons und Inputs */
 
-/* Alle Buttons auf der Buchungsseite */
-.booking-container button,
-.booking-container .btn,
-.booking-container button[type="button"],
-.booking-container button[type="submit"] {
+/* Alle Buttons auf der Buchungsseite AUSSER Submit Button */
+#booking button[type="button"],
+#booking button[class*="outline"] {
   background-color: #808080 !important;
   color: #FFFFFF !important;
   border: none !important;
