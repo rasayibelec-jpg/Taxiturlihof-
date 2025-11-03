@@ -92,6 +92,12 @@ const PaymentSelection = ({ bookingId, bookingDetails, onBack, onPaymentSuccess 
       return;
     }
 
+    // For TWINT, show QR code instead of Stripe checkout
+    if (selectedMethod.id === 'twint') {
+      handleQRPayment(selectedMethod);
+      return;
+    }
+
     setIsProcessing(true);
     
     try {
