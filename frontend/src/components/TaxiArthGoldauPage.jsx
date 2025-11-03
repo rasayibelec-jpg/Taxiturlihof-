@@ -89,7 +89,7 @@ const TaxiArthGoldauPage = () => {
                 <Button 
                   size="lg"
                   variant="outline" 
-                  className="border-white text-white hover:bg-white hover:text-white"
+                  className="border-white text-white hover:bg-white hover:text-gray-900"
                   onClick={() => window.location.href = '/preisrechner'}
                 >
                   Online Preis berechnen
