@@ -60,7 +60,7 @@ const CompactHero = () => {
             <Button 
               onClick={() => scrollToSection("calculator-cta")}
               variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-white px-10 py-5 text-xl font-semibold rounded-xl"
+              className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-10 py-5 text-xl font-semibold rounded-xl"
               size="lg"
             >
               <Car className="w-6 h-6 mr-3" />
