@@ -1,15 +1,17 @@
 /* BookingSystem - Einheitliche graue Buttons und Inputs */
 
 /* Alle Buttons auf der Buchungsseite */
-#booking button,
-#booking .btn,
-#booking button[type="button"],
-#booking button[type="submit"] {
+.booking-container button,
+.booking-container .btn,
+.booking-container button[type="button"],
+.booking-container button[type="submit"] {
   background-color: #808080 !important;
   color: #FFFFFF !important;
   border: none !important;
   font-weight: 500 !important;
   transition: background-color 0.3s ease !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
 }
 
 /* Button Hover-Zustand */
