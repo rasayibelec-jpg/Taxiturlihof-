@@ -294,60 +294,7 @@ const BookingSystem = () => {
     }
   }, [bookingData.pickupDate]);
 
-  // Handle payment completion
-  const handlePaymentSuccess = () => {
-    setCurrentStep('success');
-    
-    // Show review request after payment success
-    setTimeout(() => {
-      toast({
-        title: "⭐ Wie war unser Service?",
-        description: "Helfen Sie anderen Kunden mit einer ehrlichen Bewertung!",
-        action: (
-          <div className="flex gap-2">
-            <a 
-              href="https://google.com/search?q=Taxi+T%C3%BCrlihof&hl=de#lrd=0x0:0x0,3" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="bg-yellow-600 hover:bg-yellow-700 text-white px-3 py-1 rounded text-sm transition-colors duration-200"
-            >
-              Bewerten
-            </a>
-          </div>
-        ),
-      });
-    }, 3000);
-
-    // Reset form
-    setTimeout(() => {
-      setBookingData({
-        customerName: "",
-        customerEmail: "",
-        customerPhone: "",
-        pickupLocation: "",
-        destination: "",
-        additionalStops: [],
-        bookingType: "scheduled",
-        pickupDate: "",
-        pickupTime: "",
-        passengerCount: 1,
-        vehicleType: "standard",
-        waitingTimeHours: 0,
-        specialRequests: ""
-      });
-      setEstimatedPrice(null);
-      setShowEstimate(false);
-      setCurrentStep('booking');
-      setBookingId(null);
-      setSubmitStatus(null);
-    }, 10000); // Reset after 10 seconds
-  };
-
-  const handleBackToBooking = () => {
-    setCurrentStep('booking');
-  };
-
-  // Show payment selection step
+  // Show booking form
   if (currentStep === 'payment' && bookingId) {
     return (
       <section className="py-20 bg-black min-h-screen">
