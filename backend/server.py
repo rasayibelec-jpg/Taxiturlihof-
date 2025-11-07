@@ -149,10 +149,7 @@ class AvailabilityResponse(BaseModel):
     date: str
     available_slots: List[str]
 
-# Payment Models
-class PaymentInitiateRequest(BaseModel):
-    booking_id: str
-    payment_method: str  # 'twint', 'stripe', 'paypal'
+# Payment models removed - no longer needed
 
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
