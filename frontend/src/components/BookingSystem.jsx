@@ -239,14 +239,32 @@ const BookingSystem = () => {
         });
 
         setBookingId(response.data.booking_id);
-        setCurrentStep('payment');
 
         toast({
-          title: "✅ Buchung erfolgreich!",
-          description: `Buchungsnummer: ${response.data.booking_id.slice(0, 8)}. Bitte wählen Sie eine Zahlungsmethode.`,
+          title: "✅ Buchung erfolgreich abgeschlossen!",
+          description: `Buchungsnummer: ${response.data.booking_id.slice(0, 8)}. Wir werden uns bald bei Ihnen melden.`,
         });
 
-        // Don't reset form - wait for payment completion
+        // Reset form after successful booking
+        setTimeout(() => {
+          setBookingData({
+            customerName: "",
+            customerEmail: "",
+            customerPhone: "",
+            pickupLocation: "",
+            destination: "",
+            additionalStops: [],
+            bookingType: "scheduled",
+            pickupDate: "",
+            pickupTime: "",
+            passengerCount: 1,
+            vehicleType: "standard",
+            waitingTimeHours: 0,
+            specialRequests: ""
+          });
+          setSubmitStatus(null);
+          setBookingId(null);
+        }, 5000);
       }
 
     } catch (error) {
