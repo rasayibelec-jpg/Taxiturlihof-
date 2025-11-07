@@ -1128,35 +1128,6 @@ async def get_availability(date: str):
 
 # Payment endpoints removed - no longer needed
 
-# Temporary cleanup endpoint
-@api_router.post("/admin/cleanup-payments-temp")
-async def cleanup_payments_temp():
-    """Temporary endpoint to clean up payment data"""
-    try:
-        # Cancel pending bookings
-        pending_result = await db.bookings.update_many(
-            {"payment_status": "pending"},
-            {
-                "$set": {
-                    "payment_status": "cancelled",
-                    "status": "cancelled",
-                    "updated_at": get_swiss_time()
-                }
-            }
-        )
-        
-        # Delete payment transactions
-        payment_result = await db.payment_transactions.delete_many({})
-        
-        return {
-            "success": True,
-            "pending_cancelled": pending_result.modified_count,
-            "payments_deleted": payment_result.deleted_count
-        }
-    except Exception as e:
-        logger.error(f"Cleanup failed: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
-
 # Include the router in the main app
 
 # All payment admin endpoints removed - no longer needed
