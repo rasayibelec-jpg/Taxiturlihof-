@@ -1129,34 +1129,9 @@ async def get_availability(date: str):
         logger.error(f"Failed to get availability: {str(e)}")
         raise HTTPException(status_code=500, detail="Fehler beim Abrufen der Verfügbarkeit")
 
-# Payment Endpoints
 # Payment endpoints removed - no longer needed
 
 # Include the router in the main app
-        payment_result = await db.payment_transactions.delete_many({})
-        
-        # Delete all bookings
-        booking_result = await db.bookings.delete_many({})
-        
-        # Delete all customers
-        customer_result = await db.customers.delete_many({})
-        
-        total_deleted = payment_result.deleted_count + booking_result.deleted_count + customer_result.deleted_count
-        
-        return {
-            "success": True,
-            "message": f"Alle Daten erfolgreich gelöscht: {total_deleted} Einträge entfernt",
-            "details": {
-                "payment_transactions": payment_result.deleted_count,
-                "bookings": booking_result.deleted_count,
-                "customers": customer_result.deleted_count,
-                "total": total_deleted
-            }
-        }
-        
-    except Exception as e:
-        logger.error(f"Failed to clear all payments: {str(e)}")
-        raise HTTPException(status_code=500, detail="Fehler beim Löschen aller Zahlungen")
 
 @api_router.delete("/admin/payments/{transaction_id}")
 async def delete_single_payment_admin(transaction_id: str, current_admin: dict = Depends(get_current_admin_user)):
