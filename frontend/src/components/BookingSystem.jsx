@@ -294,56 +294,6 @@ const BookingSystem = () => {
     }
   }, [bookingData.pickupDate]);
 
-  // Show booking form
-  if (currentStep === 'payment' && bookingId) {
-    return (
-      <section className="py-20 bg-black min-h-screen">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <PaymentSelection 
-            bookingId={bookingId}
-            bookingDetails={{
-              ...bookingData,
-              estimated_fare: estimatedPrice?.vehicle_adjusted_fare || estimatedPrice?.total_fare || 0
-            }}
-            onBack={handleBackToBooking}
-            onPaymentSuccess={handlePaymentSuccess}
-          />
-        </div>
-      </section>
-    );
-  }
-
-  // Show success step
-  if (currentStep === 'success') {
-    return (
-      <section className="py-20 bg-black min-h-screen">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-gray-900 rounded-lg shadow-xl p-8">
-            <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="w-10 h-10 text-white" />
-            </div>
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Buchung und Zahlung erfolgreich!
-            </h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Ihre Taxi-Buchung wurde bestätigt und bezahlt. Sie erhalten eine Bestätigungs-E-Mail.
-            </p>
-            <Button 
-              onClick={() => {
-                setCurrentStep('booking');
-                setBookingId(null);
-                setSubmitStatus(null);
-              }}
-              className="bg-blue-600 hover:bg-blue-700"
-            >
-              Neue Buchung erstellen
-            </Button>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   // Main booking form
 
   return (
