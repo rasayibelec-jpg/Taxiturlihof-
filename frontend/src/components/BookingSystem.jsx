@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 import { useToast } from "../hooks/use-toast";
 import axios from "axios";
-import PaymentSelection from "./PaymentSelection";
 import './BookingSystem.css';
 // Simple inputs without GooglePlaces complexity
 
@@ -36,7 +35,6 @@ const BookingSystem = () => {
   const [submitStatus, setSubmitStatus] = useState(null);
   const [estimatedPrice, setEstimatedPrice] = useState(null);
   const [showEstimate, setShowEstimate] = useState(false);
-  const [currentStep, setCurrentStep] = useState('booking'); // booking, payment
   const [bookingId, setBookingId] = useState(null);
   const [isGettingLocation, setIsGettingLocation] = useState(false);
   const { toast } = useToast();
