@@ -73,8 +73,6 @@ function App() {
             <Route path="/geschaeftsfahrten" element={<GeschaeftstaximPage />} />
             <Route path="/booking-lookup" element={<BookingLookup />} />
             <Route path="/pwa-test" element={<PWATestInstructions />} />
-            <Route path="/booking/payment-success" element={<PaymentSuccess />} />
-            <Route path="/booking/payment-cancelled" element={<BookingPage />} />
             <Route path="/agb" element={<AGBPage />} />
             <Route path="/impressum" element={<ImpressumPage />} />
             <Route path="/datenschutz" element={<DatenschutzPage />} />
