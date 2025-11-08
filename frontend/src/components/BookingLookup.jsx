@@ -15,7 +15,7 @@ const BookingLookup = () => {
   const [error, setError] = useState("");
   const [searched, setSearched] = useState(false);
 
-  const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:8001";
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   const statusConfig = {
     pending: { label: "Wartend", color: "bg-yellow-500", icon: Clock },
