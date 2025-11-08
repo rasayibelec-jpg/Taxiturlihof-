@@ -33,7 +33,7 @@ const Contact = () => {
     setSubmitStatus(null);
 
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
       
       const response = await axios.post(`${backendUrl}/api/contact`, {
         name: formData.name,
