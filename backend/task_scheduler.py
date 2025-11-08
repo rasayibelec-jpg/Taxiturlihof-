@@ -21,8 +21,9 @@ logger = logging.getLogger(__name__)
 
 class TaskScheduler:
     def __init__(self):
-        self.mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
-        self.db_name = os.environ.get('DB_NAME', 'taxi_luzern')
+        # Load from environment - no fallbacks for production safety
+        self.mongo_url = os.environ['MONGO_URL']
+        self.db_name = os.environ['DB_NAME']
         self.client = None
         self.db = None
         self.running = False
