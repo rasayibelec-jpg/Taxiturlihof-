@@ -215,7 +215,7 @@ const BookingSystem = () => {
       // Format: YYYY-MM-DDTHH:MM:SS (without Z, so backend treats it as local Swiss time)
       const pickupDatetime = `${bookingData.pickupDate}T${bookingData.pickupTime}:00`;
 
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
       const response = await axios.post(`${backendUrl}/api/bookings`, {
         customer_name: bookingData.customerName,
         customer_email: bookingData.customerEmail,
