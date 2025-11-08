@@ -15,7 +15,7 @@ const AdminDashboard = () => {
   const [adminToken, setAdminToken] = useState(null);
   const [activeTab, setActiveTab] = useState('bookings'); // 'bookings' or 'payments'
 
-  const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:8001";
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   // Check for existing admin token on component mount
   useEffect(() => {
