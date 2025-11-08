@@ -9,12 +9,18 @@ from typing import Optional, Dict
 import pytz
 import os
 
-# Admin credentials (you can change these later)
+# Admin credentials - Load from environment variables
 ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD_HASH = "89f995433c98053f01248f6daffb2629dd2b00f3ce6a8463b8c5d0e7f025d9b9"  # sha256 of "TaxiTurlihof2025!"
-JWT_SECRET_KEY = "taxi-turlihof-secret-key-2025-secure"
+ADMIN_PASSWORD_HASH = os.environ.get('ADMIN_PASSWORD_HASH')
+JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY')
 JWT_ALGORITHM = "HS256"
 SESSION_EXPIRE_HOURS = 8
+
+# Validate that required environment variables are set
+if not ADMIN_PASSWORD_HASH:
+    raise ValueError("ADMIN_PASSWORD_HASH environment variable not set")
+if not JWT_SECRET_KEY:
+    raise ValueError("JWT_SECRET_KEY environment variable not set")
 
 class AuthService:
     def __init__(self):
