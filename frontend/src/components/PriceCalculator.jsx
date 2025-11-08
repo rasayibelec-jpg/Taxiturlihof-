@@ -122,7 +122,7 @@ const PriceCalculator = () => {
     setSelectedInteractiveRoute(null);
 
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
       const response = await fetch(`${backendUrl}/api/get-interactive-routes`, {
         method: 'POST',
         headers: {
@@ -182,7 +182,7 @@ const PriceCalculator = () => {
     setSelectedRoute(null);
 
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
       const response = await fetch(`${backendUrl}/api/calculate-route-options`, {
         method: 'POST',
         headers: {
