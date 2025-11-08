@@ -149,7 +149,7 @@ const BookingSystem = () => {
 
   const fetchAvailableSlots = async (date) => {
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
       const response = await axios.get(`${backendUrl}/api/availability?date=${date}`);
       setAvailableSlots(response.data.available_slots);
     } catch (error) {
