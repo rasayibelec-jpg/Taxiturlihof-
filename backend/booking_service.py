@@ -396,8 +396,11 @@ Türlihof 4, 6414 Arth, Switzerland
             </html>
             """
             
+            # Get business email from environment
+            business_email = os.getenv('BUSINESS_EMAIL', 'info@taxiturlihof.ch')
+            
             await email_service.send_email(
-                "rasayibelec@gmail.com",
+                business_email,
                 subject,
                 html_content
             )
