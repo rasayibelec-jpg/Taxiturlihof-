@@ -214,14 +214,6 @@ const DatenschutzPage = () => {
                     Anbieter ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.
                   </p>
                 </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Stripe (Zahlungsabwicklung)</h3>
-                  <p className="text-gray-300 leading-relaxed">
-                    Für die Zahlungsabwicklung nutzen wir Stripe. Die Datenübertragung erfolgt 
-                    verschlüsselt über SSL/TLS. Stripe ist PCI-DSS Level 1 zertifiziert.
-                  </p>
-                </div>
               </CardContent>
             </Card>
 
