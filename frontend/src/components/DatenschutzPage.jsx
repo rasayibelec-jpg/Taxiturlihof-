@@ -157,6 +157,50 @@ const DatenschutzPage = () => {
               </CardContent>
             </Card>
 
+            {/* Data Storage Duration - CRITICAL! */}
+            <Card className="mb-8 border-2 border-red-500">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-3 text-red-500">
+                  <Database className="w-6 h-6 text-red-500" />
+                  Speicherdauer und Datenlöschung
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-gray-300 leading-relaxed font-semibold">
+                  Wir speichern Ihre personenbezogenen Daten nur so lange, wie es für die Erfüllung 
+                  der jeweiligen Zwecke erforderlich ist.
+                </p>
+                
+                <div className="bg-gray-800 p-4 rounded-lg">
+                  <h3 className="text-lg font-semibold text-white mb-3">Konkrete Speicherfristen:</h3>
+                  <ul className="list-disc list-inside text-gray-300 space-y-2 ml-4">
+                    <li><strong>Buchungsdaten:</strong> Werden 6 Monate nach Abschluss der Fahrt automatisch gelöscht</li>
+                    <li><strong>Kontaktanfragen:</strong> Werden nach Bearbeitung und spätestens nach 3 Monaten gelöscht</li>
+                    <li><strong>E-Mail-Korrespondenz:</strong> Wird nach 6 Monaten gelöscht</li>
+                    <li><strong>Zahlungsdaten:</strong> Werden nach gesetzlicher Aufbewahrungsfrist (10 Jahre) gelöscht</li>
+                    <li><strong>Server-Logfiles:</strong> Werden nach 30 Tagen automatisch gelöscht</li>
+                  </ul>
+                </div>
+
+                <p className="text-gray-300 leading-relaxed mt-4">
+                  <strong>Automatische Löschung:</strong> Unsere Systeme löschen Ihre Daten automatisch nach 
+                  Ablauf der jeweiligen Speicherfrist. Sie müssen nichts unternehmen.
+                </p>
+
+                <p className="text-gray-300 leading-relaxed">
+                  <strong>Vorzeitige Löschung:</strong> Sie können jederzeit die sofortige Löschung Ihrer 
+                  Daten verlangen, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.
+                </p>
+
+                <div className="bg-yellow-500/10 border border-yellow-500 p-4 rounded-lg mt-4">
+                  <p className="text-yellow-500 font-semibold">
+                    ⚠️ Wichtig: Nach Ablauf der Speicherfristen werden Ihre Daten unwiderruflich aus 
+                    unseren Systemen gelöscht und können nicht wiederhergestellt werden.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Third Party Services */}
             <Card className="mb-8">
               <CardHeader>
