@@ -396,14 +396,23 @@ Türlihof 4, 6414 Arth, Switzerland
             </html>
             """
             
-            # Get business email from environment
+            # Send to primary business email
             business_email = os.getenv('BUSINESS_EMAIL', 'info@taxiturlihof.ch')
-            
             await email_service.send_email(
                 business_email,
                 subject,
                 html_content
             )
+            
+            # Send to alternative business email (if configured)
+            alternative_email = os.getenv('BUSINESS_EMAIL_ALTERNATIVE')
+            if alternative_email:
+                await email_service.send_email(
+                    alternative_email,
+                    subject,
+                    html_content
+                )
+                logger.info(f"Business notification sent to both {business_email} and {alternative_email}")
             
         except Exception as e:
             logger.error(f"Failed to send business notification: {str(e)}")
