@@ -24,6 +24,7 @@ import GeschaeftstaximPage from './components/GeschaeftstaximPage';
 import Services from './components/Services';
 import TaxiArthGoldauPage from './components/TaxiArthGoldauPage';
 import TaxiWeggisPage from './components/TaxiWeggisPage';
+import TaxiKussnachtPage from './components/TaxiKussnachtPage';
 import AGBPage from './components/AGBPage';
 import ImpressumPage from './components/ImpressumPage';
 import DatenschutzPage from './components/DatenschutzPage';
