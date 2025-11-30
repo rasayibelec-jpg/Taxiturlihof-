@@ -72,6 +72,19 @@ function App() {
             <Route path="/taxi-arth-goldau" element={<TaxiArthGoldauPage />} />
             <Route path="/taxi-weggis" element={<TaxiWeggisPage />} />
             <Route path="/taxi-kussnacht" element={<TaxiKussnachtPage />} />
+            <Route path="/taxi-vitznau" element={<TaxiVitznauPage />} />
+            <Route path="/taxi-root" element={<TaxiRootPage />} />
+            <Route path="/taxi-gersau" element={<TaxiGersauPage />} />
+            <Route path="/taxi-ingenbohl" element={<TaxiIngenbohlPage />} />
+            <Route path="/taxi-unteraegeri" element={<TaxiUnteraegeriPage />} />
+            <Route path="/taxi-walchwil" element={<TaxiWalchwilPage />} />
+            <Route path="/taxi-meggen" element={<TaxiMeggenPage />} />
+            <Route path="/taxi-ebikon" element={<TaxiEbikonPage />} />
+            <Route path="/taxi-kriens" element={<TaxiKriensPage />} />
+            <Route path="/taxi-horw" element={<TaxiHorwPage />} />
+            <Route path="/taxi-rothenburg" element={<TaxiRothenburgPage />} />
+            <Route path="/taxi-rothenthurm" element={<TaxiRothenThurmPage />} />
+            <Route path="/taxi-rotkreuz" element={<TaxiRotkreuzPage />} />
             <Route path="/flughafentransfer" element={<FlughafentransferPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:id" element={<BlogPost />} />
