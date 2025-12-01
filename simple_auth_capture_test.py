@@ -10,7 +10,7 @@ import json
 from datetime import datetime
 
 # Test configuration
-BACKEND_URL = "https://taxibooking-fix.preview.emergentagent.com/api"
+BACKEND_URL = "https://seo-landing-page-4.preview.emergentagent.com/api"
 
 class SimpleAuthCaptureTest:
     def __init__(self):

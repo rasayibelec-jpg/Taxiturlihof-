@@ -7,7 +7,7 @@ import asyncio
 import aiohttp
 import json
 
-BACKEND_URL = "https://taxibooking-fix.preview.emergentagent.com/api"
+BACKEND_URL = "https://seo-landing-page-4.preview.emergentagent.com/api"
 
 async def verify_booking():
     """Verify the specific booking found"""
