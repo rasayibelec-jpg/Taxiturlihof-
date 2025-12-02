@@ -14,7 +14,7 @@ IMPORTANT DETAILS:
 - The system should work in "mock mode" since we don't have real SendGrid/Twilio credentials configured
 - Email method should generate tokens and SMS method should generate 6-digit codes
 - Both methods should display output in console since we're in development mode
-- The admin email is "info@taxiturlihof.ch" and admin phone is "+41766113131"
+- The admin email is "rasayibelec@gmail.com" and admin phone is "+41766113131"
 - Password requirements: minimum 8 characters, at least one letter and one number
 - After successful password reset, verify the new password works with admin login
 """
