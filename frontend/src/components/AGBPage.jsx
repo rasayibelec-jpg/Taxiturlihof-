@@ -192,7 +192,7 @@ const AGBPage = () => {
                     📞 076 611 31 31
                   </a>
                   <a 
-                    href="mailto:info@taxiturlihof.ch"
+                    href="mailto:rasayibelec@gmail.com"
                     className="bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold text-center transition-colors duration-200"
                   >
                     ✉️ E-Mail senden

@@ -264,7 +264,7 @@ const Reviews = () => {
                 Anrufen & bewerten
               </a>
               <a
-                href="mailto:info@taxiturlihof.ch?subject=Bewertung&body=Meine%20Bewertung:%0A%0ASterne:%20⭐⭐⭐⭐⭐%0A%0AKommentar:%20"
+                href="mailto:rasayibelec@gmail.com?subject=Bewertung&body=Meine%20Bewertung:%0A%0ASterne:%20⭐⭐⭐⭐⭐%0A%0AKommentar:%20"
                 className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 font-semibold shadow-md"
               >
                 <Mail className="w-5 h-5 mr-2" />

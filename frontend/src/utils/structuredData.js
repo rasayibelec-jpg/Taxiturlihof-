@@ -15,7 +15,7 @@ export const getLocalBusinessSchema = () => ({
   "logo": "https://www.taxiturlihof.ch/icons/icon-512x512.png",
   "image": "https://www.taxiturlihof.ch/icons/icon-512x512.png",
   "telephone": "+41766113131",
-  "email": "info@taxiturlihof.ch",
+  "email": "rasayibelec@gmail.com",
   "priceRange": "CHF",
   
   // Adresse

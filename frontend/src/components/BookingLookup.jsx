@@ -266,7 +266,7 @@ const BookingLookup = () => {
                   </p>
                   <div className="flex flex-wrap gap-4 text-sm text-blue-700">
                     <span>📞 076 611 31 31</span>
-                    <span>📧 info@taxiturlihof.ch</span>
+                    <span>📧 rasayibelec@gmail.com</span>
                   </div>
                 </div>
               </CardContent>

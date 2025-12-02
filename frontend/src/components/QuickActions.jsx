@@ -67,7 +67,7 @@ const QuickActions = () => {
 
           {/* E-Mail */}
           <a 
-            href="mailto:info@taxiturlihof.ch"
+            href="mailto:rasayibelec@gmail.com"
             className="bg-white rounded-lg p-4 text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105 group"
           >
             <div className="bg-purple-100 p-2 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center group-hover:bg-purple-200 transition-colors">

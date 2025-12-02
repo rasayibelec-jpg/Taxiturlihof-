@@ -96,10 +96,10 @@ const CompactContact = () => {
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">E-Mail</h3>
               <a 
-                href="mailto:info@taxiturlihof.ch"
+                href="mailto:rasayibelec@gmail.com"
                 className="text-lg font-semibold text-blue-600 hover:text-blue-700 transition-colors duration-200"
               >
-                info@taxiturlihof.ch
+                rasayibelec@gmail.com
               </a>
               <p className="text-sm text-gray-600 mt-2">Antwort innerhalb 24h</p>
             </CardContent>

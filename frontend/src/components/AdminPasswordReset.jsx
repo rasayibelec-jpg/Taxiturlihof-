@@ -194,7 +194,7 @@ const AdminPasswordReset = () => {
                     <div>
                       <div className="font-medium">📧 E-Mail Reset</div>
                       <div className="text-sm text-gray-600">
-                        Reset-Link an info@taxiturlihof.ch senden
+                        Reset-Link an rasayibelec@gmail.com senden
                       </div>
                     </div>
                   </label>

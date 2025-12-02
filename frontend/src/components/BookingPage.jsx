@@ -17,7 +17,7 @@ const BookingPage = () => {
       "@type": "LocalBusiness",
       "name": "Taxi Türlihof",
       "telephone": "+41766113131",
-      "email": "info@taxiturlihof.ch"
+      "email": "rasayibelec@gmail.com"
     },
     "availableChannel": [
       {

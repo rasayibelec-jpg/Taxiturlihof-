@@ -94,8 +94,8 @@ const ImpressumPage = () => {
                   <Mail className="w-5 h-5 text-gray-400" />
                   <div>
                     <h3 className="text-sm font-semibold text-white">E-Mail</h3>
-                    <a href="mailto:info@taxiturlihof.ch" className="text-yellow-500 hover:text-yellow-600">
-                      info@taxiturlihof.ch
+                    <a href="mailto:rasayibelec@gmail.com" className="text-yellow-500 hover:text-yellow-600">
+                      rasayibelec@gmail.com
                     </a>
                   </div>
                 </div>

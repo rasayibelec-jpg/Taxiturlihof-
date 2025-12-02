@@ -750,8 +750,8 @@ const BookingSystem = () => {
                   <Mail className="w-5 h-5 text-blue-600" />
                   <div>
                     <div className="font-semibold">E-Mail</div>
-                    <a href="mailto:info@taxiturlihof.ch" className="text-blue-600 hover:underline">
-                      info@taxiturlihof.ch
+                    <a href="mailto:rasayibelec@gmail.com" className="text-blue-600 hover:underline">
+                      rasayibelec@gmail.com
                     </a>
                   </div>
                 </div>

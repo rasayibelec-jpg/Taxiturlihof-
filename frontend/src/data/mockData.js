@@ -153,7 +153,7 @@ export const coverageAreas = [
 
 export const contactInfo = {
   phone: "076 611 31 31",
-  email: "info@taxiturlihof.ch",
+  email: "rasayibelec@gmail.com",
   website: "www.taxiturlihof.ch",
   address: "Türlihof 4, 6414 Arth, Switzerland",
   hours: "Zuverlässig Service",

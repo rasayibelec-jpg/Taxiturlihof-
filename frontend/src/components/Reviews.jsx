@@ -236,7 +236,7 @@ const Reviews = () => {
                     📞 Anrufen
                   </a>
                   <a
-                    href="mailto:info@taxiturlihof.ch"
+                    href="mailto:rasayibelec@gmail.com"
                     className="inline-flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white px-4 py-3 rounded text-sm font-semibold transition-colors duration-200 border border-gray-600"
                   >
                     ✉️ E-Mail

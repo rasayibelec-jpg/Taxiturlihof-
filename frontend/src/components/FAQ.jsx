@@ -111,11 +111,11 @@ const FAQ = () => {
                 <span>076 611 31 31</span>
               </a>
               <a 
-                href="mailto:info@taxiturlihof.ch" 
+                href="mailto:rasayibelec@gmail.com" 
                 className="flex items-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors duration-200 font-semibold"
               >
                 <span>✉️</span>
-                <span>info@taxiturlihof.ch</span>
+                <span>rasayibelec@gmail.com</span>
               </a>
             </div>
           </div>

@@ -39,7 +39,7 @@ const StreamlinedContact = () => {
             </div>
             <h3 className="text-sm font-bold text-white mb-1">E-Mail</h3>
             <a 
-              href="mailto:info@taxiturlihof.ch"
+              href="mailto:rasayibelec@gmail.com"
               className="text-sm font-semibold text-yellow-500 hover:text-yellow-400 block mb-1"
             >
               E-Mail
