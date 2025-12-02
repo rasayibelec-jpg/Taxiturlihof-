@@ -305,7 +305,7 @@ class BookingService:
                         <p style="margin: 5px 0; color: #666;">Türlihof 4, 6414 Arth, Switzerland</p>
                         <p style="margin: 5px 0; color: #666;">
                             📞 <a href="tel:076 611 31 31" style="color: #FFA500;">076 611 31 31</a> | 
-                            📧 <a href="mailto:info@taxiturlihof.ch" style="color: #FFA500;">info@taxiturlihof.ch</a>
+                            📧 <a href="mailto:rasayibelec@gmail.com" style="color: #FFA500;">rasayibelec@gmail.com</a>
                         </p>
                         <p style="margin: 15px 0; font-size: 14px; color: #888;">
                             Vielen Dank für Ihr Vertrauen in Taxi Türlihof!
