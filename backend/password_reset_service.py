@@ -27,7 +27,7 @@ sms_codes = {}
 class PasswordResetService:
     def __init__(self):
         self.swiss_tz = pytz.timezone('Europe/Zurich')
-        self.admin_email = "info@taxiturlihof.ch"  # Admin E-Mail
+        self.admin_email = "rasayibelec@gmail.com"  # Admin E-Mail
         self.admin_phone = "+41766113131"  # Admin Telefonnummer (Swiss format)
         
         # SendGrid Configuration
