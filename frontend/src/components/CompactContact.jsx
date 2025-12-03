@@ -57,7 +57,7 @@ const CompactContact = () => {
           <div className="bg-green-100 p-4 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
             <Phone className="w-10 h-10 text-green-600" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-white mb-4">
             Kontakt & Zuverlässiger Service
           </h2>
           <p className="text-lg text-gray-600">
@@ -74,7 +74,7 @@ const CompactContact = () => {
               <div className="bg-green-100 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                 <Phone className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Telefonisch</h3>
+              <h3 className="text-lg font-bold text-white mb-2">Telefonisch</h3>
               <a 
                 href="tel:076 611 31 31"
                 className="text-2xl font-bold text-green-600 hover:text-green-700 transition-colors duration-200"
@@ -94,7 +94,7 @@ const CompactContact = () => {
               <div className="bg-blue-100 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                 <Mail className="w-8 h-8 text-blue-600" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">E-Mail</h3>
+              <h3 className="text-lg font-bold text-white mb-2">E-Mail</h3>
               <a 
                 href="mailto:rasayibelec@gmail.com"
                 className="text-lg font-semibold text-blue-600 hover:text-blue-700 transition-colors duration-200"
@@ -111,7 +111,7 @@ const CompactContact = () => {
               <div className="bg-yellow-100 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                 <MessageCircle className="w-8 h-8 text-yellow-600" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">WhatsApp</h3>
+              <h3 className="text-lg font-bold text-white mb-2">WhatsApp</h3>
               <a 
                 href="https://wa.me/41766113131"
                 target="_blank"

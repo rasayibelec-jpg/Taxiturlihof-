@@ -9,7 +9,7 @@ const CompactAbout = () => {
     <section className="py-8 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Card className="p-6 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl font-bold text-white mb-4">
             Über Taxi Türlihof
           </h2>
           
@@ -24,7 +24,7 @@ const CompactAbout = () => {
             <div className="border-t pt-4 text-left space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Unsere Services</h3>
+                  <h3 className="font-semibold text-white mb-2">Unsere Services</h3>
                   <ul className="space-y-1 text-sm text-gray-700">
                     <li>• Flughafentransfers (Zürich, Basel)</li>
                     <li>• Geschäfts- und Lokalfahrten</li>
@@ -33,7 +33,7 @@ const CompactAbout = () => {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Warum wir?</h3>
+                  <h3 className="font-semibold text-white mb-2">Warum wir?</h3>
                   <ul className="space-y-1 text-sm text-gray-700">
                     <li>• Nur Mercedes-Fahrzeuge</li>
                     <li>• Erfahrene, lokale Fahrer</li>
