@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Phone, MapPin, Clock, ChevronLeft, ChevronRight } from "lucide-react";
+import OptimizedImage from "./OptimizedImage";
 
 const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
