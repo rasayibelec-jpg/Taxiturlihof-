@@ -11,10 +11,13 @@ const Footer = () => {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
-              <img 
+              <OptimizedImage 
                 src="https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/lxvw2ugl_Notes_250207_194337_224.jpg"
-                alt="Taxi Türlihof Logo"
+                alt="Taxi Türlihof Logo - Ihr Taxi-Service in der Zentralschweiz"
                 className="h-12 w-auto mr-3"
+                width={48}
+                height={48}
+                loading="lazy"
               />
               <h3 className="text-2xl font-bold">
                 Taxi <span className="text-yellow-500">Türlihof</span>
