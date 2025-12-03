@@ -9,11 +9,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
-  font-weight: 500; /* Standardschrift etwas fetter */
+  font-weight: 500;
+  background-color: #0b1120;
+  color: #e5e7eb;
 }
 
 .App {
   min-height: 100vh;
+  background-color: #0b1120;
 }
 
 /* Allgemeine Schrift-Verbesserungen */
