@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Card, CardContent } from "./ui/card";
-import { Button } from "./ui/button";
-import { ChevronLeft, ChevronRight, Car, MapPin, Star } from "lucide-react";
+import React from "react";
+import { Card } from "./ui/card";
+import { Car, MapPin, Star } from "lucide-react";
+import ModernCarSlider from "./ModernCarSlider";
 
 const FleetGallery = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
