@@ -78,38 +78,9 @@ const FleetGallery = () => {
             </p>
           </div>
 
-          {/* Image Carousel */}
-          <div className="relative mb-8">
-            <div className="overflow-hidden rounded-2xl shadow-2xl">
-              <div className="relative h-96 md:h-[500px]">
-                <img
-                  src={fleetImages[currentImageIndex].url}
-                  alt={fleetImages[currentImageIndex].title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-2xl font-bold mb-2">{fleetImages[currentImageIndex].title}</h3>
-                  <p className="text-gray-200">{fleetImages[currentImageIndex].description}</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Navigation Buttons */}
-            <Button
-              onClick={prevImage}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white border-0"
-              size="lg"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </Button>
-            <Button
-              onClick={nextImage}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white border-0"
-              size="lg"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </Button>
+          {/* Modern Autoplay Slider */}
+          <div className="mb-12">
+            <ModernCarSlider images={fleetImages} autoPlayInterval={5000} />
           </div>
 
           {/* Fleet Features */}
