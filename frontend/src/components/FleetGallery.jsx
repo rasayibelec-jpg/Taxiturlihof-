@@ -62,18 +62,8 @@ const FleetGallery = () => {
     }
   ];
 
-  // Old serviceAreas array removed - now using ServicegebieteSection component
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % fleetImages.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + fleetImages.length) % fleetImages.length);
-  };
-
   return (
-    <section id="fleet" className="py-12 bg-black">
+    <section id="fleet" className="py-12 bg-[#0b1120]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Unsere Flotte */}
