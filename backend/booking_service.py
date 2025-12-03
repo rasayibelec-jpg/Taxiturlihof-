@@ -4,6 +4,7 @@ from typing import Dict, List, Optional
 from enum import Enum
 import uuid
 import logging
+import os
 from pydantic import BaseModel, Field, EmailStr
 from google_maps_service import google_maps_service
 from email_service import email_service
