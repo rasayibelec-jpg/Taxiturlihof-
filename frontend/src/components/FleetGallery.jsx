@@ -4,8 +4,6 @@ import { Car, MapPin, Star } from "lucide-react";
 import ModernCarSlider from "./ModernCarSlider";
 
 const FleetGallery = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
   const fleetImages = [
     {
       url: "https://customer-assets.emergentagent.com/job_taxi-booking-hub-2/artifacts/vzfxjeyp_20250504_053743.jpg",
