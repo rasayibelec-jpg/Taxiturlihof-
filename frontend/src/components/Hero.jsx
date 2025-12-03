@@ -110,10 +110,13 @@ const Hero = () => {
           <div className="lg:flex justify-center items-center hidden">
             <div className="relative">
               <div className="relative overflow-hidden rounded-lg shadow-2xl">
-                <img
+                <OptimizedImage
                   src={heroImages[currentImageIndex].url}
                   alt={`Taxi Türlihof - ${heroImages[currentImageIndex].title} - Mercedes Taxi Service in Luzern, Schwyz, Zug`}
                   className="w-full h-96 object-cover transform transition-transform duration-300 hover:scale-105"
+                  width={800}
+                  height={384}
+                  loading="eager"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-30 rounded-lg"></div>
                 
