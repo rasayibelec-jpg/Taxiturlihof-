@@ -85,23 +85,23 @@ const FleetGallery = () => {
 
           {/* Fleet Features */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="text-center p-6 bg-gray-900 border border-gray-800 hover:border-yellow-600 transition-all">
-              <div className="bg-gray-800 p-3 rounded-full w-14 h-14 mx-auto mb-4 flex items-center justify-center border border-gray-700">
-                <Car className="w-7 h-7 text-yellow-500" />
+            <Card className="text-center p-6 bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 hover:border-yellow-500 transition-all duration-300 shadow-xl">
+              <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 p-3 rounded-full w-14 h-14 mx-auto mb-4 flex items-center justify-center shadow-lg">
+                <Car className="w-7 h-7 text-white" />
               </div>
               <h3 className="text-base font-semibold mb-2 text-white">Mercedes-Fahrzeuge</h3>
               <p className="text-sm text-gray-400">Hochwertige Mercedes-Benz Fahrzeuge</p>
             </Card>
-            <Card className="text-center p-6 bg-gray-900 border border-gray-800 hover:border-yellow-600 transition-all">
-              <div className="bg-gray-800 p-3 rounded-full w-14 h-14 mx-auto mb-4 flex items-center justify-center border border-gray-700">
-                <Star className="w-7 h-7 text-yellow-500" />
+            <Card className="text-center p-6 bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 hover:border-yellow-500 transition-all duration-300 shadow-xl">
+              <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 p-3 rounded-full w-14 h-14 mx-auto mb-4 flex items-center justify-center shadow-lg">
+                <Star className="w-7 h-7 text-white" />
               </div>
               <h3 className="text-base font-semibold mb-2 text-white">Top-Ausstattung</h3>
               <p className="text-sm text-gray-400">Klimaanlage, Ledersitze, WLAN</p>
             </Card>
-            <Card className="text-center p-6 bg-gray-900 border border-gray-800 hover:border-yellow-600 transition-all">
-              <div className="bg-gray-800 p-3 rounded-full w-14 h-14 mx-auto mb-4 flex items-center justify-center border border-gray-700">
-                <MapPin className="w-7 h-7 text-yellow-500" />
+            <Card className="text-center p-6 bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 hover:border-yellow-500 transition-all duration-300 shadow-xl">
+              <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 p-3 rounded-full w-14 h-14 mx-auto mb-4 flex items-center justify-center shadow-lg">
+                <MapPin className="w-7 h-7 text-white" />
               </div>
               <h3 className="text-base font-semibold mb-2 text-white">GPS-Navigation</h3>
               <p className="text-sm text-gray-400">Modernste Navigationstechnik</p>
