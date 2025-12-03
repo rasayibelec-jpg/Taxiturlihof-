@@ -18,7 +18,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50">
+    <header className="bg-[#0f172a] shadow-2xl sticky top-0 z-50 border-b border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
@@ -30,8 +30,8 @@ const Header = () => {
               height={48}
               loading="eager"
             />
-            <h1 className="text-2xl font-bold text-gray-900">
-              Taxi <span className="text-yellow-600">Türlihof</span>
+            <h1 className="text-2xl font-bold text-white">
+              Taxi <span className="text-yellow-500">Türlihof</span>
             </h1>
           </div>
 
