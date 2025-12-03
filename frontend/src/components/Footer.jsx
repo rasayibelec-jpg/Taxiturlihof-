@@ -1,6 +1,7 @@
 import React from "react";
 import { Phone, Mail, MapPin, Globe } from "lucide-react";
 import { contactInfo } from "../data/mockData";
+import OptimizedImage from "./OptimizedImage";
 
 const Footer = () => {
   return (
