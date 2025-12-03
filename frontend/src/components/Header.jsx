@@ -39,19 +39,19 @@ const Header = () => {
           <nav className="hidden lg:flex items-center space-x-6">
             <Link
               to="/"
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 font-medium"
+              className="text-gray-300 hover:text-yellow-600 transition-colors duration-200 font-medium"
             >
               Home
             </Link>
             <Link
               to="/preisrechner"
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 font-medium"
+              className="text-gray-300 hover:text-yellow-600 transition-colors duration-200 font-medium"
             >
               Preisrechner
             </Link>
             <Link
               to="/buchen"
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 font-medium"
+              className="text-gray-300 hover:text-yellow-600 transition-colors duration-200 font-medium"
             >
               Buchen
             </Link>
@@ -60,7 +60,7 @@ const Header = () => {
             <div className="relative">
               <button
                 onClick={() => setIsStadteDropdownOpen(!isStadteDropdownOpen)}
-                className="flex items-center text-gray-700 hover:text-yellow-600 transition-colors duration-200 font-medium"
+                className="flex items-center text-gray-300 hover:text-yellow-600 transition-colors duration-200 font-medium"
               >
                 Dienstleistungen
                 <ChevronDown className="w-4 h-4 ml-1" />
@@ -70,42 +70,42 @@ const Header = () => {
                 <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
                   <Link
                     to="/taxi-luzern"
-                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
+                    className="block px-4 py-2 text-gray-300 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
                     onClick={() => setIsStadteDropdownOpen(false)}
                   >
                     Taxi Luzern
                   </Link>
                   <Link
                     to="/taxi-schwyz"
-                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
+                    className="block px-4 py-2 text-gray-300 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
                     onClick={() => setIsStadteDropdownOpen(false)}
                   >
                     Taxi Schwyz
                   </Link>
                   <Link
                     to="/taxi-zug"
-                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
+                    className="block px-4 py-2 text-gray-300 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
                     onClick={() => setIsStadteDropdownOpen(false)}
                   >
                     Taxi Zug
                   </Link>
                   <Link
                     to="/flughafentransfer"
-                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
+                    className="block px-4 py-2 text-gray-300 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
                     onClick={() => setIsStadteDropdownOpen(false)}
                   >
                     Flughafentransfer
                   </Link>
                   <Link
                     to="/flughafen-zurich-transfer"
-                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
+                    className="block px-4 py-2 text-gray-300 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
                     onClick={() => setIsStadteDropdownOpen(false)}
                   >
                     ✈️ Flughafen Zürich
                   </Link>
                   <Link
                     to="/flotte"
-                    className="block px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
+                    className="block px-4 py-2 text-gray-300 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
                     onClick={() => setIsStadteDropdownOpen(false)}
                   >
                     Unsere Flotte
@@ -116,7 +116,7 @@ const Header = () => {
 
             <button
               onClick={() => scrollToSection("contact")}
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 font-medium"
+              className="text-gray-300 hover:text-yellow-600 transition-colors duration-200 font-medium"
             >
               Kontakt
             </button>
@@ -133,7 +133,7 @@ const Header = () => {
             </Link>
             <Link
               to="/agb"
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 font-medium"
+              className="text-gray-300 hover:text-yellow-600 transition-colors duration-200 font-medium"
             >
               AGB
             </Link>
@@ -154,13 +154,13 @@ const Header = () => {
           <div className="hidden md:flex lg:hidden items-center space-x-3">
             <Link
               to="/preisrechner"
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 text-sm font-medium"
+              className="text-gray-300 hover:text-yellow-600 transition-colors duration-200 text-sm font-medium"
             >
               Preisrechner
             </Link>
             <Link
               to="/buchen"
-              className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 text-sm font-medium"
+              className="text-gray-300 hover:text-yellow-600 transition-colors duration-200 text-sm font-medium"
             >
               Buchen
             </Link>
@@ -186,7 +186,7 @@ const Header = () => {
 
           {/* Mobile/Tablet Menu Button */}
           <button
-            className="lg:hidden text-gray-700 hover:text-yellow-600 p-2"
+            className="lg:hidden text-gray-300 hover:text-yellow-600 p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
