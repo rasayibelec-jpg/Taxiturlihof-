@@ -7,9 +7,18 @@ import { Link } from 'react-router-dom';
 
 const PreisePage = () => {
   const beispielpreise = [
-    { von: 'Luzern', nach: 'Flughafen Zürich', preis: 'ab CHF 150' },
-    { von: 'Küssnacht', nach: 'Flughafen Zürich', preis: 'ab CHF 140' },
-    { von: 'Gersau', nach: 'Flughafen Zürich', preis: 'ab CHF 180' }
+    { von: 'Luzern', nach: 'Flughafen Zürich', preis: 'ab CHF 250' },
+    { von: 'Schwyz', nach: 'Flughafen Zürich', preis: 'ab CHF 350' },
+    { von: 'Zug', nach: 'Flughafen Zürich', preis: 'ab CHF 200' },
+    { von: 'Küssnacht', nach: 'Flughafen Zürich', preis: 'ab CHF 230' },
+    { von: 'Gersau', nach: 'Flughafen Zürich', preis: 'ab CHF 280' },
+    { von: 'Weggis', nach: 'Flughafen Zürich', preis: 'ab CHF 260' },
+    { von: 'Vitznau', nach: 'Flughafen Zürich', preis: 'ab CHF 270' },
+    { von: 'Meggen', nach: 'Flughafen Zürich', preis: 'ab CHF 240' },
+    { von: 'Kriens', nach: 'Flughafen Zürich', preis: 'ab CHF 240' },
+    { von: 'Luzern', nach: 'Flughafen Basel', preis: 'ab CHF 280' },
+    { von: 'Schwyz', nach: 'Flughafen Basel', preis: 'ab CHF 380' },
+    { von: 'Zug', nach: 'Flughafen Basel', preis: 'ab CHF 230' }
   ];
   return (
     <>
