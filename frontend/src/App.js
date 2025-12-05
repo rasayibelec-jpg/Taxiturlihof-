@@ -41,6 +41,16 @@ import TaxiRotkreuzPage from './components/TaxiRotkreuzPage';
 import AGBPage from './components/AGBPage';
 import ImpressumPage from './components/ImpressumPage';
 import DatenschutzPage from './components/DatenschutzPage';
+import TaxiBestellenPage from './components/TaxiBestellenPage';
+import BahnhofTaxiPage from './components/BahnhofTaxiPage';
+import TaxiInDerNaehePage from './components/TaxiInDerNaehePage';
+import KontaktPage from './components/KontaktPage';
+import FlughafentransferNewPage from './components/FlughafentransferNewPage';
+import PreisePage from './components/PreisePage';
+import Taxi24hPage from './components/Taxi24hPage';
+import GruppentransferPage from './components/GruppentransferPage';
+import BewertungenPage from './components/BewertungenPage';
+import UeberUnsPage from './components/UeberUnsPage';
 
 function App() {
   // Register Service Worker for PWA
