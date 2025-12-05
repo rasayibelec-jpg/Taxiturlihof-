@@ -114,6 +114,16 @@ function App() {
             <Route path="/agb" element={<AGBPage />} />
             <Route path="/impressum" element={<ImpressumPage />} />
             <Route path="/datenschutz" element={<DatenschutzPage />} />
+            <Route path="/taxi-bestellen" element={<TaxiBestellenPage />} />
+            <Route path="/bahnhof-taxi" element={<BahnhofTaxiPage />} />
+            <Route path="/taxi-in-der-naehe" element={<TaxiInDerNaehePage />} />
+            <Route path="/kontakt" element={<KontaktPage />} />
+            <Route path="/flughafentransfer-neu" element={<FlughafentransferNewPage />} />
+            <Route path="/preise" element={<PreisePage />} />
+            <Route path="/24h-taxi" element={<Taxi24hPage />} />
+            <Route path="/gruppentransfer" element={<GruppentransferPage />} />
+            <Route path="/bewertungen" element={<BewertungenPage />} />
+            <Route path="/ueber-uns" element={<UeberUnsPage />} />
           </Routes>
         </BrowserRouter>
         <Toaster />
