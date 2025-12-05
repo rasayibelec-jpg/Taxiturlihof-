@@ -16,9 +16,9 @@ const PreisePage = () => {
     { von: 'Vitznau', nach: 'Flughafen Zürich', preis: 'ab CHF 270' },
     { von: 'Meggen', nach: 'Flughafen Zürich', preis: 'ab CHF 240' },
     { von: 'Kriens', nach: 'Flughafen Zürich', preis: 'ab CHF 240' },
-    { von: 'Luzern', nach: 'Flughafen Basel', preis: 'ab CHF 280' },
-    { von: 'Schwyz', nach: 'Flughafen Basel', preis: 'ab CHF 380' },
-    { von: 'Zug', nach: 'Flughafen Basel', preis: 'ab CHF 230' }
+    { von: 'Luzern', nach: 'Flughafen Basel', preis: 'ab CHF 330' },
+    { von: 'Schwyz', nach: 'Flughafen Basel', preis: 'ab CHF 430' },
+    { von: 'Zug', nach: 'Flughafen Basel', preis: 'ab CHF 280' }
   ];
   return (
     <>
