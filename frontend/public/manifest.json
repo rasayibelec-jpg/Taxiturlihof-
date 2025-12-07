@@ -10,6 +10,7 @@
   "scope": "/",
   "lang": "de-CH",
   "categories": ["travel", "transportation", "business"],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/icons/icon-72x72.png",
