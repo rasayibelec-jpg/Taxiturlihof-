@@ -8,7 +8,7 @@ const ServicegebieteSection = () => {
   const servicegebiete = [
     {
       name: "Luzern",
-      image: "https://images.unsplash.com/photo-1566789168779-73d46d92b809?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1566789168779-73d46d92b809?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60&fm=webp",
       alt: "Taxi Service Luzern am Vierwaldstättersee",
       description: "Historische Altstadt und Kapellbrücke",
       link: "/taxi-luzern",
@@ -16,7 +16,7 @@ const ServicegebieteSection = () => {
     },
     {
       name: "Weggis & Vitznau",
-      image: "https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      image: "https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60&fm=webp", 
       alt: "Taxi Service Weggis und Vitznau am See",
       description: "Wunderschöne Fahrten rund um den See",
       link: "/taxi-weggis",
@@ -24,7 +24,7 @@ const ServicegebieteSection = () => {
     },
     {
       name: "Schwyz & Brunnen",
-      image: "https://images.unsplash.com/photo-1521292270410-a8c4d716d518?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1521292270410-a8c4d716d518?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60&fm=webp",
       alt: "Taxi Service Schwyz und Brunnen - Traditionelle Schweizer Berglandschaft", 
       description: "Traditionelle Schweizer Berglandschaft",
       link: "/taxi-schwyz",
@@ -32,7 +32,7 @@ const ServicegebieteSection = () => {
     },
     {
       name: "Zug",
-      image: "https://images.unsplash.com/photo-1541696724920-864a966cc4c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1541696724920-864a966cc4c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60&fm=webp",
       alt: "Taxi Service in Zug am Zugersee",
       description: "Moderne Stadt am Zugersee", 
       link: "/taxi-zug",
@@ -40,7 +40,7 @@ const ServicegebieteSection = () => {
     },
     {
       name: "Arth-Goldau",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60&fm=webp",
       alt: "Taxi Service Arth-Goldau am Fuße der Rigi",
       description: "Tor zu Rigi und Pilatus",
       link: "/taxi-arth-goldau", 
