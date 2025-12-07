@@ -124,18 +124,19 @@ const ModernCarSlider = ({ images, autoPlayInterval = 4000 }) => {
       </div>
 
       {/* Dot Indicators */}
-      <div className="flex justify-center mt-6 gap-2 flex-wrap">
+      <div className="flex justify-center mt-6 gap-3 flex-wrap">
         {images.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
             disabled={isTransitioning}
-            className={`transition-all duration-300 rounded-full ${
+            className={`transition-all duration-300 rounded-full p-3 ${
               index === currentIndex
-                ? 'w-8 h-3 bg-yellow-500'
-                : 'w-3 h-3 bg-gray-600 hover:bg-gray-500'
+                ? 'w-12 h-12 bg-yellow-500'
+                : 'w-12 h-12 bg-gray-600 hover:bg-gray-500'
             }`}
             aria-label={`Gehe zu Bild ${index + 1}`}
+            style={{ minWidth: '48px', minHeight: '48px' }}
           />
         ))}
       </div>
