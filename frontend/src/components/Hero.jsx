@@ -117,6 +117,7 @@ const Hero = () => {
                   width={800}
                   height={384}
                   loading="eager"
+                  fetchpriority="high"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-30 rounded-lg"></div>
                 
