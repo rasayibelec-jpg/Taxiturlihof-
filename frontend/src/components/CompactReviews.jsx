@@ -132,8 +132,10 @@ const CompactReviews = () => {
             <div className="bg-white p-3 rounded-lg shadow-sm border inline-block mb-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/pnol6tzt_IMG-20250911-WA0008.jpg"
-                alt="QR-Code"
+                alt="QR-Code für Google Bewertung"
                 className="w-16 h-16 mx-auto object-contain"
+                width="64"
+                height="64"
               />
             </div>
             <p className="text-sm text-gray-600">Bewerten</p>
