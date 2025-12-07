@@ -94,19 +94,5 @@
       "url": "tel:+41766113131",
       "icons": [{ "src": "/icons/phone-icon.png", "sizes": "96x96" }]
     }
-  ],
-  "screenshots": [
-    {
-      "src": "/screenshots/mobile-home.png",
-      "type": "image/png",
-      "sizes": "375x667",
-      "form_factor": "narrow"
-    },
-    {
-      "src": "/screenshots/desktop-home.png", 
-      "type": "image/png",
-      "sizes": "1920x1080",
-      "form_factor": "wide"
-    }
   ]
 }
