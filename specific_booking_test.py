@@ -10,7 +10,7 @@ import json
 from datetime import datetime
 
 # Test configuration
-BACKEND_URL = "https://seo-landing-page-4.preview.emergentagent.com/api"
+BACKEND_URL = "https://taxi-perf-booster.preview.emergentagent.com/api"
 
 # Exact test data as requested by user
 TEST_BOOKING_DATA = {

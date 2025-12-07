@@ -16,7 +16,7 @@ backend_dir = Path(__file__).parent / "backend"
 sys.path.insert(0, str(backend_dir))
 
 # Test configuration
-BACKEND_URL = "https://seo-landing-page-4.preview.emergentagent.com/api"
+BACKEND_URL = "https://taxi-perf-booster.preview.emergentagent.com/api"
 
 class EmailSystemTester:
     def __init__(self):

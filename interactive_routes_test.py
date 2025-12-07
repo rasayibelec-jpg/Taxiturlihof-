@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 
 # Test configuration
-BACKEND_URL = "https://seo-landing-page-4.preview.emergentagent.com/api"
+BACKEND_URL = "https://taxi-perf-booster.preview.emergentagent.com/api"
 
 class InteractiveRoutesTester:
     def __init__(self):
