@@ -13,21 +13,21 @@ const CompactServices = () => {
       title: "Lokale Fahrten",
       description: "Stadtfahrten in Luzern, Schwyz, Zug",
       shortDesc: "Ab CHF 6.60 Grundtaxe",
-      backgroundImage: "https://images.unsplash.com/photo-1628947733273-cdae71c9bfd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      backgroundImage: "https://images.unsplash.com/photo-1628947733273-cdae71c9bfd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=60&fm=webp"
     },
     {
       icon: <Plane className="w-8 h-8 text-blue-600" />,
       title: "Flughafentransfer", 
       description: "Zürich & Basel Airport",
       shortDesc: "Preis auf Anfrage",
-      backgroundImage: "https://images.unsplash.com/photo-1530521954074-e64f6810b32d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      backgroundImage: "https://images.unsplash.com/photo-1530521954074-e64f6810b32d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=60&fm=webp"
     },
     {
       icon: <Briefcase className="w-8 h-8 text-green-600" />,
       title: "Geschäftsfahrten",
       description: "Termine, Meetings, Events",
       shortDesc: "Zuverlässig & diskret",
-      backgroundImage: "https://images.unsplash.com/photo-1647281194826-11459827b123?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      backgroundImage: "https://images.unsplash.com/photo-1647281194826-11459827b123?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=60&fm=webp"
     }
   ];
 
