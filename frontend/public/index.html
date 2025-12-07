@@ -291,9 +291,18 @@
         <link rel="apple-touch-icon" sizes="152x152" href="%PUBLIC_URL%/icons/icon-152x152.png" />
         <link rel="apple-touch-icon" sizes="192x192" href="%PUBLIC_URL%/icons/icon-192x192.png" />
         
-        <!-- Google Maps JavaScript API -->
-        <script async defer
-            src="https://maps.googleapis.com/maps/js?key=AIzaSyBmJZ8Ux7_U_hWKlE50UgI8QJ-Q5wLxBfI&libraries=geometry,places&language=de&region=CH">
+        <!-- Google Maps JavaScript API - Lazy loaded via component -->
+        <script>
+            // Google Maps wird nur geladen wenn benötigt (in BookingSystem.jsx)
+            window.loadGoogleMaps = function() {
+                if (!window.google || !window.google.maps) {
+                    const script = document.createElement('script');
+                    script.src = 'https://maps.googleapis.com/maps/js?key=AIzaSyBmJZ8Ux7_U_hWKlE50UgI8QJ-Q5wLxBfI&libraries=geometry,places&language=de&region=CH';
+                    script.async = true;
+                    script.defer = true;
+                    document.head.appendChild(script);
+                }
+            };
         </script>
     </body>
 </html>
