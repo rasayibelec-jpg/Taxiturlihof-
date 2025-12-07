@@ -88,8 +88,9 @@ function App() {
     <HelmetProvider>
       <div className="App">
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
             <Route path="/taxi-luzern" element={<TaxiLuzernPage />} />
             <Route path="/taxi-schwyz" element={<TaxiSchwyzPage />} />
             <Route path="/taxi-zug" element={<TaxiZugPage />} />
