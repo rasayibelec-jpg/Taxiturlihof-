@@ -14,6 +14,8 @@ const GoogleBusinessProfile = () => {
               src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
               alt="Google" 
               className="w-8 h-8 mr-3"
+              width="32"
+              height="32"
             />
             Taxi Türlihof auf Google
           </CardTitle>
