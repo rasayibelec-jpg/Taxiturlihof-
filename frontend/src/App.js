@@ -139,7 +139,8 @@ function App() {
             <Route path="/gruppentransfer" element={<GruppentransferPage />} />
             <Route path="/bewertungen" element={<BewertungenPage />} />
             <Route path="/ueber-uns" element={<UeberUnsPage />} />
-          </Routes>
+            </Routes>
+          </Suspense>
         </BrowserRouter>
         <Toaster />
       </div>
