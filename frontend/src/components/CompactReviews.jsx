@@ -62,6 +62,8 @@ const CompactReviews = () => {
                 src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
                 alt="Google"
                 className="w-5 h-5 mr-2"
+                width="20"
+                height="20"
               />
               <h3 className="text-lg font-bold">Google</h3>
             </div>
