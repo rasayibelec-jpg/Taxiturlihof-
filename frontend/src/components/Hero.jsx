@@ -108,8 +108,8 @@ const Hero = () => {
 
           {/* Hero Image Carousel */}
           <div className="lg:flex justify-center items-center hidden">
-            <div className="relative">
-              <div className="relative overflow-hidden rounded-lg shadow-2xl">
+            <div className="relative" style={{minHeight: '384px'}}>
+              <div className="relative overflow-hidden rounded-lg shadow-2xl" style={{minHeight: '384px'}}>
                 <OptimizedImage
                   src={heroImages[currentImageIndex].url}
                   alt={`Taxi Türlihof - ${heroImages[currentImageIndex].title} - Mercedes Taxi Service in Luzern, Schwyz, Zug`}
