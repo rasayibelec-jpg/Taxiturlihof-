@@ -1,23 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
-import HomePage from "./components/HomePage";
 import { Toaster } from "./components/ui/toaster";
-import TaxiLuzernPage from './components/TaxiLuzernPage';
-import TaxiSchwyzPage from './components/TaxiSchwyzPage';
-import TaxiZugPage from './components/TaxiZugPage';
-import FlughafentransferPage from './components/FlughafentransferPage';
-import BlogPage from './components/BlogPage';
-import BlogPost from './components/BlogPost';
-import PriceCalculatorPage from './components/PriceCalculatorPage';
-import BookingPage from './components/BookingPage';
-import FlottePage from './components/FlottePage';
-import ReviewsPage from './components/ReviewsPage';
-import FlughafenZurichTransferPage from './components/FlughafenZurichTransferPage';
-import BlogLuzernSehenswuerdigkeiten from './components/BlogLuzernSehenswuerdigkeiten';
-import AdminDashboard from './components/AdminDashboard';
-import BookingLookup from './components/BookingLookup';
+
+// Critical components - loaded immediately
+import HomePage from "./components/HomePage";
+
+// Lazy-loaded components (Code Splitting)
+const TaxiLuzernPage = lazy(() => import('./components/TaxiLuzernPage'));
+const TaxiSchwyzPage = lazy(() => import('./components/TaxiSchwyzPage'));
+const TaxiZugPage = lazy(() => import('./components/TaxiZugPage'));
+const FlughafentransferPage = lazy(() => import('./components/FlughafentransferPage'));
+const BlogPage = lazy(() => import('./components/BlogPage'));
+const BlogPost = lazy(() => import('./components/BlogPost'));
+const PriceCalculatorPage = lazy(() => import('./components/PriceCalculatorPage'));
+const BookingPage = lazy(() => import('./components/BookingPage'));
+const FlottePage = lazy(() => import('./components/FlottePage'));
+const ReviewsPage = lazy(() => import('./components/ReviewsPage'));
+const FlughafenZurichTransferPage = lazy(() => import('./components/FlughafenZurichTransferPage'));
+const BlogLuzernSehenswuerdigkeiten = lazy(() => import('./components/BlogLuzernSehenswuerdigkeiten'));
+const AdminDashboard = lazy(() => import('./components/AdminDashboard'));
+const BookingLookup = lazy(() => import('./components/BookingLookup'));
 import PWATestInstructions from './components/PWATestInstructions';
 import AdminPasswordReset from './components/AdminPasswordReset';
 import GeschaeftstaximPage from './components/GeschaeftstaximPage';
