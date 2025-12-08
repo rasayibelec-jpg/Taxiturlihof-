@@ -6,57 +6,57 @@ import ModernCarSlider from "./ModernCarSlider";
 const FleetGallery = () => {
   const fleetImages = [
     {
-      url: "https://customer-assets.emergentagent.com/job_taxi-booking-hub-2/artifacts/vzfxjeyp_20250504_053743.jpg",
+      url: "/images/fleet/vzfxjeyp_20250504_053743.webp",
       title: "Mercedes-Flotte Taxi Türlihof",
       description: "Unsere komplette Mercedes-Flotte: V-Klasse Van und Premium-Limousinen bei Nacht"
     },
     {
-      url: "https://customer-assets.emergentagent.com/job_taxi-luzern-web/artifacts/1brf17uv_Screenshot_20250925_125059_Photos.jpg",
+      url: "/images/fleet/1brf17uv_Screenshot.webp",
       title: "Mercedes S-Klasse Premium",
       description: "Elegante schwarze Mercedes-Limousine in der Zentralschweiz"
     },
     {
-      url: "https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/7exvefg3_IMG-20250908-WA0001.jpg",
+      url: "/images/fleet/7exvefg3_IMG.webp",
       title: "Mercedes V-Klasse Van",
       description: "Geräumig für Familien und Gruppen bis 8 Personen"
     },
     {
-      url: "https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/o32qjjzx_IMG-20250908-WA0002.jpg", 
+      url: "/images/fleet/o32qjjzx_IMG.webp", 
       title: "Mercedes V-Klasse Premium",
       description: "Höchster Komfort für Gruppenfahrten und Flughafentransfers"
     },
     {
-      url: "https://customer-assets.emergentagent.com/job_swiss-taxi-portal/artifacts/xkyxwgjm_IMG-20250908-WA0000.jpg",
+      url: "/images/fleet/xkyxwgjm_IMG.webp",
       title: "Mercedes Taxi bei Nacht",
       description: "Zuverlässig Service - auch nachts zuverlässig unterwegs"
     },
     {
-      url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/p68khw91_20240707_163617.jpg", 
+      url: "/images/fleet/p68khw91_20240707.webp", 
       title: "Mercedes E-Klasse",
       description: "Komfort und Sicherheit auf höchstem Niveau"
     },
     {
-      url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/qrjrp7sc_20240712210744_edited_1732630664572.png",
+      url: "/images/fleet/qrjrp7sc_edited.webp",
       title: "Stadtfahrt bei Regen", 
       description: "Zuverlässig bei jedem Wetter"
     },
     {
-      url: "https://customer-assets.emergentagent.com/job_webseite-bauer/artifacts/yomelklg_20240712121846_edited_1732630664532.png",
+      url: "/images/fleet/yomelklg_edited.webp",
       title: "Mercedes mit Bergpanorama",
       description: "Spektakuläre Fahrten in der Zentralschweiz"
     },
     {
-      url: "https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/pb8e5md2_20250921_024901%281%29%281%29.jpg",
+      url: "/images/fleet/pb8e5md2_024901.webp",
       title: "Mercedes Premium-Interieur",
       description: "Luxuriöse Ledersitze mit blauer Ambientebeleuchtung"
     },
     {
-      url: "https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/nz8655g3_20250921_024811%281%29.jpg",
+      url: "/images/fleet/nz8655g3_024811.webp",
       title: "Mercedes Cockpit & Komfort",
       description: "Modernste Technologie und erstklassiger Fahrkomfort"
     },
     {
-      url: "https://customer-assets.emergentagent.com/job_taxi-luzern-app/artifacts/gf00598t_IMG-20250921-WA0005%281%29.jpg",
+      url: "/images/fleet/gf00598t_WA0005.webp",
       title: "Mercedes Luxus-Ausstattung",
       description: "Premium-Dashboard mit fortschrittlicher Infotainment-Technik"
     }
