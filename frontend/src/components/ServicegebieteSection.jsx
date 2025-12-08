@@ -77,6 +77,8 @@ const ServicegebieteSection = () => {
                 alt={gebiet.alt}
                 loading="lazy"
                 decoding="async"
+                width="400"
+                height="300"
               />
               
               {/* Title */}
