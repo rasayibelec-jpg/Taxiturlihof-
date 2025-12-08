@@ -121,6 +121,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.taxiturlihof.ch/taxi-emmen</loc>
+    <lastmod>2025-12-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.taxiturlihof.ch/taxi-rothenthurm</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
