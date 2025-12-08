@@ -40,6 +40,7 @@ const TaxiEbikonPage = lazy(() => import('./components/TaxiEbikonPage'));
 const TaxiKriensPage = lazy(() => import('./components/TaxiKriensPage'));
 const TaxiHorwPage = lazy(() => import('./components/TaxiHorwPage'));
 const TaxiRothenburgPage = lazy(() => import('./components/TaxiRothenburgPage'));
+const TaxiEmmenPage = lazy(() => import('./components/TaxiEmmenPage'));
 const TaxiRothenThurmPage = lazy(() => import('./components/TaxiRothenThurmPage'));
 const TaxiRotkreuzPage = lazy(() => import('./components/TaxiRotkreuzPage'));
 const AGBPage = lazy(() => import('./components/AGBPage'));
