@@ -109,6 +109,7 @@ function App() {
             <Route path="/taxi-kriens" element={<TaxiKriensPage />} />
             <Route path="/taxi-horw" element={<TaxiHorwPage />} />
             <Route path="/taxi-rothenburg" element={<TaxiRothenburgPage />} />
+            <Route path="/taxi-emmen" element={<TaxiEmmenPage />} />
             <Route path="/taxi-rothenthurm" element={<TaxiRothenThurmPage />} />
             <Route path="/taxi-rotkreuz" element={<TaxiRotkreuzPage />} />
             <Route path="/flughafentransfer" element={<FlughafentransferPage />} />
