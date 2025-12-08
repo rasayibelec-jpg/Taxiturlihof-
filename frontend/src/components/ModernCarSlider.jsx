@@ -65,6 +65,8 @@ const ModernCarSlider = ({ images, autoPlayInterval = 4000 }) => {
                 alt={image.title}
                 className="w-full h-full object-cover"
                 loading={index === 0 ? 'eager' : 'lazy'}
+                width="1200"
+                height="600"
               />
               
               {/* Gradient Overlay */}
