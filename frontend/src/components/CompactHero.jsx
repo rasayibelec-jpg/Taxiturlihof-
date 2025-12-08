@@ -13,7 +13,7 @@ const CompactHero = () => {
   return (
     <section 
       id="home" 
-      className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-24"
+      className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-24 min-h-[600px] md:min-h-[700px]"
       style={{
         backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://images.unsplash.com/photo-1657201512832-eb4986526c16?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=60&fm=webp")',
         backgroundSize: 'cover',
