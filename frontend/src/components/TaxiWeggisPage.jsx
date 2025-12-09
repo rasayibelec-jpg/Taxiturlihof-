@@ -5,6 +5,8 @@ import { Button } from "./ui/button";
 import { MapPin, Phone, Clock, Star, Car, Mountain, Waves } from "lucide-react";
 import SEOHead from "./SEOHead";
 import CompactCalculatorCTA from "./CompactCalculatorCTA";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const TaxiWeggisPage = () => {
   const seoData = {
