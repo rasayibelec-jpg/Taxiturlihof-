@@ -219,7 +219,7 @@ metadata:
 
 test_plan:
   current_focus: 
-    - "Business Taxi Page Button Testing - User Reported Issue"
+    - "CRITICAL Black Screen Testing - All Taxi Sub-Pages"
   stuck_tasks: []
   test_all: false
   test_priority: "critical_first"
