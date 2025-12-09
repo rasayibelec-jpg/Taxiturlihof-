@@ -547,6 +547,21 @@ frontend:
     stuck_count: 0
     priority: "critical"
     needs_retesting: false
+
+  - task: "CRITICAL Black Screen Testing - All Taxi Sub-Pages"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/App.js, All taxi page components"
+    stuck_count: 0
+    priority: "critical"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "user"
+        comment: "CRITICAL: Test ALL taxi sub-pages for black screen issue. User reported some pages show only black screen. Need to test 23 specific taxi pages for loading issues, visible content, and console errors."
+      - working: true
+        agent: "testing"
+        comment: "🎉 CRITICAL BLACK SCREEN TESTING COMPLETED SUCCESSFULLY - NO BLACK SCREEN ISSUES FOUND! Comprehensive testing of all 23 taxi sub-pages completed with 100% success rate. DETAILED TEST RESULTS: ✅ ALL 23 PAGES WORKING: /taxi-luzern, /taxi-schwyz, /taxi-zug, /taxi-weggis, /taxi-vitznau, /taxi-arth-goldau, /taxi-kussnacht, /taxi-meggen, /taxi-ebikon, /taxi-emmen, /taxi-kriens, /taxi-horw, /taxi-rothenburg, /taxi-rothenthurm, /taxi-rotkreuz, /taxi-root, /taxi-gersau, /taxi-ingenbohl, /taxi-unteraegeri, /taxi-walchwil, /taxi-bestellen, /bahnhof-taxi, /taxi-in-der-naehe, ✅ Content Verification: All pages show proper headers/navigation, main content areas, substantial text content (600-2500+ characters), images where expected, proper dark theme background (rgb(11, 17, 32)), ✅ No Black Screens: Zero pages showing black screen or missing content, ✅ Page Loading: All pages load successfully within 3 seconds, ✅ Component Rendering: All lazy-loaded components render correctly. MINOR ISSUES: WebSocket connection errors to 'ws://localhost:443/ws' detected on multiple pages (development environment issue, not affecting functionality). SUCCESS RATE: 23/23 (100%). CONCLUSION: User's reported black screen issue is NOT present - all taxi sub-pages are loading correctly with full content visibility. The issue may have been resolved or was browser-specific."
   
   - task: "Readability Fixes Across All Pages - Dark Theme Text Contrast"
     implemented: true
