@@ -73,6 +73,7 @@ const TaxiWeggisPage = () => {
       />
       
       <div className="min-h-screen bg-black">
+        <Header />
         {/* Hero Section */}
         <section 
           className="relative h-96 bg-cover bg-center bg-no-repeat flex items-center justify-center"
