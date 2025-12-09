@@ -289,6 +289,8 @@ const TaxiWeggisPage = () => {
 
         {/* Calculator CTA */}
         <CompactCalculatorCTA />
+        
+        <Footer />
       </div>
     </>
   );
