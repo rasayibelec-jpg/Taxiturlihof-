@@ -51,6 +51,21 @@ self.addEventListener('fetch', (event) => {
     return;
   }
   
+  // Force HTTPS - Upgrade HTTP to HTTPS for iOS compatibility
+  let requestUrl = new URL(event.request.url);
+  if (requestUrl.protocol === 'http:') {
+    requestUrl.protocol = 'https:';
+    const httpsRequest = new Request(requestUrl.toString(), {
+      method: event.request.method,
+      headers: event.request.headers,
+      mode: 'cors',
+      credentials: event.request.credentials,
+      redirect: 'follow'
+    });
+    event.respondWith(fetch(httpsRequest));
+    return;
+  }
+  
   // Skip external requests (Google APIs, etc.)
   if (!event.request.url.startsWith(self.location.origin)) {
     return;
