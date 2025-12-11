@@ -5,6 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#EAB308" />
         
+        <!-- Force HTTPS - Block Mixed Content -->
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        
         <!-- Critical CSS - Inline for faster FCP -->
         <style>
             body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;background-color:#0b1120;color:#e5e7eb;-webkit-font-smoothing:antialiased}
