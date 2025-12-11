@@ -1,5 +1,5 @@
 // Taxi Türlihof PWA Service Worker
-const CACHE_NAME = 'taxi-turlihof-v1.0.4';
+const CACHE_NAME = 'taxi-turlihof-v1.0.5';
 const urlsToCache = [
   '/',
   '/static/js/bundle.js',
