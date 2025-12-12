@@ -48,6 +48,32 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ============================================
+   PARALLAX EFFECT - ALL BACKGROUND SECTIONS
+   ============================================ */
+.parallax-bg {
+  background-attachment: fixed !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Mobile parallax fix - disable on small screens for performance */
+@media (max-width: 768px) {
+  .parallax-bg {
+    background-attachment: scroll !important;
+  }
+}
+
+/* Ensure background always covers full area */
+.bg-cover-full {
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
