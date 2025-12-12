@@ -52,12 +52,9 @@ const FlottePage = () => {
       
       {/* Header - mit Mercedes-Flottenbild */}
       <section 
-        className="text-white py-20 relative overflow-hidden"
+        className="parallax-bg text-white py-20 relative overflow-hidden"
         style={{
-          backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url("https://customer-assets.emergentagent.com/job_taxi-booking-hub-2/artifacts/vzfxjeyp_20250504_053743.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
+          backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url("/images/fleet/vzfxjeyp_20250504_053743.webp")'
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
