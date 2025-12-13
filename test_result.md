@@ -219,7 +219,7 @@ metadata:
 
 test_plan:
   current_focus: 
-    - "Final Verification Complete - All Pages Working"
+    - "CRITICAL iOS Background Image Issue - User Reports NO Backgrounds on Apple Devices"
   stuck_tasks: []
   test_all: false
   test_priority: "critical_first"
