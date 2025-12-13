@@ -60,8 +60,16 @@ html {
   overflow: hidden;
 }
 
-/* Mobile parallax fix - disable on small screens for performance */
-@media (max-width: 768px) {
+/* iOS Safari fix - disable parallax on ALL Apple devices */
+/* iOS doesn't support background-attachment: fixed properly */
+@supports (-webkit-touch-callout: none) {
+  .parallax-bg {
+    background-attachment: scroll !important;
+  }
+}
+
+/* Additional fallback for mobile devices */
+@media (max-width: 1366px) {
   .parallax-bg {
     background-attachment: scroll !important;
   }
