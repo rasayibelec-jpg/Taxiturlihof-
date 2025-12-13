@@ -50,7 +50,6 @@ const TaxiSchwyzPage = () => {
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1749024508888-3d1e8e6e928a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHxTY2h3eXolMjBsYW5kc2NhcGV8ZW58MHx8fHwxNzU5MDE4NDcwfDA&ixlib=rb-4.1.0&q=85')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
         }}
       >
         {/* Background overlay for better text readability */}
@@ -156,7 +155,6 @@ const TaxiSchwyzPage = () => {
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1657053136972-241e05e6623f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHw0fHxTY2h3eXolMjBsYW5kc2NhcGV8ZW58MHx8fHwxNzU5MDE4NDcwfDA&ixlib=rb-4.1.0&q=85')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-green-900/40 to-blue-900/40"></div>
@@ -260,7 +258,6 @@ const TaxiSchwyzPage = () => {
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1564703821142-e88574e6cfa8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDJ8MHwxfHNlYXJjaHwyfHxTd2lzcyUyMG1vdW50YWluc3xlbnwwfHx8fDE3NTkwMTg0NjN8MA&ixlib=rb-4.1.0&q=85')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-green-900/50 to-blue-900/50"></div>
