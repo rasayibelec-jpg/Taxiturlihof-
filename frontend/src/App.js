@@ -137,7 +137,8 @@ function App() {
             <Route path="/kontakt" element={<KontaktPage />} />
             <Route path="/flughafentransfer-neu" element={<FlughafentransferNewPage />} />
             <Route path="/preise" element={<PreisePage />} />
-            <Route path="/24h-taxi" element={<Taxi24hPage />} />
+            <Route path="/taxi-24h" element={<Taxi24hPage />} />
+            <Route path="/24h-taxi" element={<Taxi24hPage />} /> {/* Redirect from old URL */}
             <Route path="/gruppentransfer" element={<GruppentransferPage />} />
             <Route path="/bewertungen" element={<BewertungenPage />} />
             <Route path="/ueber-uns" element={<UeberUnsPage />} />
