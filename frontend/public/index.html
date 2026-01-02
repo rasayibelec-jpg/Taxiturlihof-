@@ -310,7 +310,7 @@
             window.loadGoogleMaps = function() {
                 if (!window.google || !window.google.maps) {
                     const script = document.createElement('script');
-                    script.src = 'https://maps.googleapis.com/maps/js?key=AIzaSyBmJZ8Ux7_U_hWKlE50UgI8QJ-Q5wLxBfI&libraries=geometry,places&language=de&region=CH';
+                    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBmJZ8Ux7_U_hWKlE50UgI8QJ-Q5wLxBfI&libraries=geometry,places&language=de&region=CH';
                     script.async = true;
                     script.defer = true;
                     document.head.appendChild(script);
