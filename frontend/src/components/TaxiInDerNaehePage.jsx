@@ -90,4 +90,3 @@ const TaxiInDerNaehePage = () => {
 };
 
 export default TaxiInDerNaehePage;
-export default TaxiInDerNaehePage;
