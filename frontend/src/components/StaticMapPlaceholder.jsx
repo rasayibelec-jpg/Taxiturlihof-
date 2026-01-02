@@ -28,6 +28,8 @@ const StaticMapPlaceholder = ({ onLoadMap }) => {
         width="600"
         height="400"
         loading="lazy"
+        srcSet="https://maps.googleapis.com/maps/api/staticmap?center=47.0448,8.6266&zoom=13&size=400x300&markers=color:yellow|47.0448,8.6266&key=AIzaSyBmJZ8Ux7_U_hWKlE50UgI8QJ-Q5wLxBfI 400w, https://maps.googleapis.com/maps/api/staticmap?center=47.0448,8.6266&zoom=13&size=600x400&markers=color:yellow|47.0448,8.6266&key=AIzaSyBmJZ8Ux7_U_hWKlE50UgI8QJ-Q5wLxBfI 600w"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 600px"
       />
       
       {/* Overlay */}
