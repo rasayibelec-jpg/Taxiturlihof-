@@ -8,7 +8,7 @@ import aiohttp
 import json
 import sys
 
-BACKEND_URL = "https://taxi-perf-booster.preview.emergentagent.com/api"
+BACKEND_URL = "https://taxi-fix.preview.emergentagent.com/api"
 
 class ManualPasswordResetTester:
     def __init__(self):
