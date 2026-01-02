@@ -11,7 +11,7 @@ const TaxiRootPage = () => {
     "name": "Taxi Turlihof",
     "areaServed": "Root",
     "description": "Zuverlässiger Taxi-Service in Root und Flughafentransfer.",
-    "url": "https://taxiturlihof.ch/taxi-root"
+    "url": "https://www.taxiturlihof.ch/taxi-root"
   };
 
   return (
@@ -20,7 +20,7 @@ const TaxiRootPage = () => {
         <title>Taxi Root – Taxi Turlihof | Flughafentransfer & Taxi-Service</title>
         <meta name="description" content="Taxi Turlihof - Ihr zuverlässiger Taxi-Service in Root. Flughafentransfer nach Zürich und Basel. Jetzt buchen: 076 611 31 31" />
         <meta name="keywords" content="Taxi Root, Flughafentransfer Root, Taxi Zürich Flughafen Root, Taxi Service Root" />
-        <link rel="canonical" href="https://taxiturlihof.ch/taxi-root" />
+        <link rel="canonical" href="https://www.taxiturlihof.ch/taxi-root" />
         <script type="application/ld+json">
           {JSON.stringify(schemaData)}
         </script>

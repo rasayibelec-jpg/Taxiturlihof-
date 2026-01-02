@@ -11,7 +11,7 @@ const TaxiWalchwilPage = () => {
         <title>Taxi Walchwil – Taxi Turlihof | Flughafentransfer & Taxi-Service</title>
         <meta name="description" content="Taxi Turlihof - Ihr zuverlässiger Taxi-Service in Walchwil. Flughafentransfer nach Zürich und Basel. Jetzt buchen: 076 611 31 31" />
         <meta name="keywords" content="Taxi Walchwil, Flughafentransfer Walchwil, Taxi Service Walchwil" />
-        <link rel="canonical" href="https://taxiturlihof.ch/taxi-walchwil" />
+        <link rel="canonical" href="https://www.taxiturlihof.ch/taxi-walchwil" />
       </Helmet>
       <div className="min-h-screen bg-black text-white">
         <Header />

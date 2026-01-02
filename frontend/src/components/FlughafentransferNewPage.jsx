@@ -11,7 +11,7 @@ const FlughafentransferNewPage = () => {
       <Helmet>
         <title>Taxi Türlihof – Flughafentransfer Zürich & Basel</title>
         <meta name="description" content="Direktfahrten von Luzern, Küssnacht, Gersau, Schwyz und Zug zu den Flughäfen Zürich und Basel. Fixpreise und Komfort garantiert." />
-        <link rel="canonical" href="https://taxiturlihof.ch/flughafentransfer" />
+        <link rel="canonical" href="https://www.taxiturlihof.ch/flughafentransfer" />
       </Helmet>
       <div className="min-h-screen bg-[#0b1120] text-white">
         <Header />
