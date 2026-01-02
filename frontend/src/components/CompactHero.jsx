@@ -15,7 +15,7 @@ const CompactHero = () => {
       id="home" 
       className="parallax-bg bg-gradient-to-r from-gray-900 to-gray-800 text-white py-24 min-h-[600px] md:min-h-[700px]"
       style={{
-        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://images.unsplash.com/photo-1657201512832-eb4986526c16?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=70&fm=webp")'
+        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1657201512832-eb4986526c16?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=70&fm=webp")'
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
