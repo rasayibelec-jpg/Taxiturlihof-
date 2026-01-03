@@ -10,6 +10,50 @@ const GoogleMapViewer = ({
   const mapRef = useRef(null);
   const [mapError, setMapError] = useState(false);
 
+  const initializeMap = () => {
+    if (!window.google || !window.google.maps || !mapRef.current) {
+      setMapError(true);
+      return;
+    }
+
+    try {
+      const map = new window.google.maps.Map(mapRef.current, {
+        zoom: 8,
+        center: { lat: 47.0502, lng: 8.3093 }, // Luzern
+        mapTypeId: 'roadmap'
+      });
+
+      const directionsService = new window.google.maps.DirectionsService();
+      const directionsRenderer = new window.google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: {
+          strokeColor: '#EAB308',
+          strokeWeight: 4,
+          strokeOpacity: 0.8
+        }
+      });
+
+      const request = {
+        origin: origin,
+        destination: destination,
+        travelMode: window.google.maps.TravelMode.DRIVING
+      };
+
+      directionsService.route(request, (result, status) => {
+        if (status === 'OK') {
+          directionsRenderer.setDirections(result);
+        } else {
+          console.error('Directions error:', status);
+          setMapError(true);
+        }
+      });
+
+    } catch (error) {
+      console.error('Map initialization error:', error);
+      setMapError(true);
+    }
+  };
+
   useEffect(() => {
     let timeoutId;
     
@@ -25,7 +69,6 @@ const GoogleMapViewer = ({
     };
   }, [showMap, origin, destination]);
 
-  const initializeMap = () => {
     if (!window.google || !window.google.maps || !mapRef.current) {
       setMapError(true);
       return;
