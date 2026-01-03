@@ -253,7 +253,9 @@ export const getHomePageSchema = () => ({
         "bestRating": "5"
       },
       "itemReviewed": {
-        "@id": "https://www.taxiturlihof.ch/#business"
+        "@type": "LocalBusiness",
+        "@id": "https://www.taxiturlihof.ch/#business",
+        "name": "Taxi Türlihof"
       }
     },
     {
@@ -270,7 +272,9 @@ export const getHomePageSchema = () => ({
         "bestRating": "5"
       },
       "itemReviewed": {
-        "@id": "https://www.taxiturlihof.ch/#business"
+        "@type": "LocalBusiness",
+        "@id": "https://www.taxiturlihof.ch/#business",
+        "name": "Taxi Türlihof"
       }
     },
     {
@@ -287,7 +291,9 @@ export const getHomePageSchema = () => ({
         "bestRating": "5"
       },
       "itemReviewed": {
-        "@id": "https://www.taxiturlihof.ch/#business"
+        "@type": "LocalBusiness",
+        "@id": "https://www.taxiturlihof.ch/#business",
+        "name": "Taxi Türlihof"
       }
     }
   ]
