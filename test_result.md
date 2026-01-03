@@ -615,6 +615,18 @@ frontend:
         comment: "🎉 COMPREHENSIVE READABILITY TEST COMPLETED SUCCESSFULLY ACROSS ALL 11 MAIN PAGES! Systematic testing completed with comprehensive screenshot documentation. DETAILED TEST RESULTS: ✅ All 11 Pages Tested: Homepage (/), Buchungsseite (/buchen), Preisrechner (/preisrechner), Flotte (/flotte), Taxi Luzern (/taxi-luzern), Taxi Zug (/taxi-zug), Flughafentransfer (/flughafentransfer), Geschäftsfahrten (/geschaeftsfahrten), AGB (/agb), Impressum (/impressum), Datenschutz (/datenschutz), ✅ Screenshot Documentation: 33 total screenshots captured (3 per page: header, middle, footer sections), ✅ Visual Inspection Completed: All pages systematically reviewed for text readability issues, ✅ Dark Theme Implementation: Consistent dark theme with proper contrast ratios across all pages, ✅ Text Contrast Analysis: No critical readability issues detected - all text elements have sufficient contrast against their backgrounds, ✅ Color Combinations Verified: White text on dark backgrounds working correctly, yellow/orange accent colors providing good contrast, no white-on-white or black-on-black text issues found, ✅ Page-Specific Findings: All pages maintain consistent readability standards, legal pages (AGB, Impressum, Datenschutz) have proper text formatting with good contrast, service pages maintain professional appearance with readable text, ✅ Mobile Responsiveness: Text remains readable across different viewport sizes. TECHNICAL VALIDATION: Dark theme implementation using proper CSS color schemes, consistent typography with adequate font sizes, proper background/foreground color combinations, no accessibility issues detected. SUCCESS RATE: 100% (11/11 pages passed readability test). All main pages have excellent text readability with no critical contrast issues. The website maintains professional appearance with accessible text across all sections."
 
   - task: "CRITICAL iOS Background Image Issue - User Reports NO Backgrounds on Apple Devices"
+  - task: "Frontend Regression Test - SEO & Maps Updates"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/HomePage.jsx, /app/frontend/src/components/GoogleMapViewer.jsx, /app/frontend/src/components/ModernCarSlider.jsx, /app/frontend/src/components/StaticMapPlaceholder.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "After SEO meta/canonical tweaks and image/Maps optimizations, verify that homepage, taxi subpages, booking flow and Google Maps still render correctly without black screens or JS errors on desktop & mobile. Focus on: /, /taxi-luzern, /flughafentransfer, /taxi-in-der-naehe, /taxi-weggis, /taxi-emmen, booking form and price calculator."
+
     implemented: false
     working: false
     file: "/app/frontend/src/App.css, /app/frontend/src/components/CompactHero.jsx, /app/frontend/src/components/FlottePage.jsx, /app/frontend/src/components/TaxiLuzernPage.jsx"
