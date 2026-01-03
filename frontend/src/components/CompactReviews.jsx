@@ -89,7 +89,7 @@ const CompactReviews = () => {
                 {renderStars(reviews[currentReview].rating)}
               </div>
               <p className="text-sm text-gray-700 italic text-center mb-2">
-                "{reviews[currentReview].comment}"
+                &quot;{reviews[currentReview].comment}&quot;
               </p>
               <p className="text-xs font-medium text-center">
                 - {reviews[currentReview].name}
