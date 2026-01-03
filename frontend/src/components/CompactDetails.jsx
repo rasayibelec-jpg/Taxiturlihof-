@@ -30,13 +30,13 @@ const CompactDetails = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gray-600 italic mb-2">
-                "Sehr pünktlich und freundlich. Perfekter Service!"
+                &quot;Sehr pünktlich und freundlich. Perfekter Service!&quot;
               </p>
               <p className="text-xs font-semibold text-gray-900">- Maria S.</p>
             </div>
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gray-600 italic mb-2">
-                "Saubere Mercedes-Fahrzeuge und professionelle Fahrer."
+                &quot;Saubere Mercedes-Fahrzeuge und professionelle Fahrer.&quot;
               </p>
               <p className="text-xs font-semibold text-gray-900">- Thomas M.</p>
             </div>
