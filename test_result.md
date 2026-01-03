@@ -219,10 +219,10 @@ metadata:
 
 test_plan:
   current_focus: 
-    - "FINAL VERIFICATION - All 27 Pages Testing Completed"
+    - "FRONTEND REGRESSION TESTING - SEO/Image Optimization/Google Maps Updates"
   stuck_tasks: []
   test_all: true
-  test_priority: "comprehensive_verification"
+  test_priority: "regression_testing"
 
   - task: "Online Booking System Email Debug"
     implemented: true
