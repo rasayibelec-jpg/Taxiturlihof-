@@ -617,15 +617,18 @@ frontend:
   - task: "CRITICAL iOS Background Image Issue - User Reports NO Backgrounds on Apple Devices"
   - task: "Frontend Regression Test - SEO & Maps Updates"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/components/HomePage.jsx, /app/frontend/src/components/GoogleMapViewer.jsx, /app/frontend/src/components/ModernCarSlider.jsx, /app/frontend/src/components/StaticMapPlaceholder.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "After SEO meta/canonical tweaks and image/Maps optimizations, verify that homepage, taxi subpages, booking flow and Google Maps still render correctly without black screens or JS errors on desktop & mobile. Focus on: /, /taxi-luzern, /flughafentransfer, /taxi-in-der-naehe, /taxi-weggis, /taxi-emmen, booking form and price calculator."
+      - working: true
+        agent: "testing"
+        comment: "🎉 FRONTEND REGRESSION TESTING COMPLETED SUCCESSFULLY! Comprehensive testing of recent SEO/Canonical tweaks, image optimization (srcset/sizes), and Google Maps updates completed with excellent results. DETAILED TEST RESULTS: ✅ HOMEPAGE TESTING (Desktop & Mobile): All sections loading correctly (Header, CompactHero, CompactServices, ServicegebieteSection, FleetGallery with Mercedes vehicles, Reviews, Preisrechner-CTA, Contact, Footer), Fleet gallery slider navigation and auto-play working perfectly, Mobile responsiveness excellent, No JavaScript console errors detected, SEO/Canonical and structured data implementation verified. ✅ IMPORTANT LANDING PAGES: /taxi-luzern (OK - full content, call/booking buttons), /flughafentransfer (OK - 14 interactive elements), /flughafentransfer-neu (OK - 11 interactive elements), /taxi-in-der-naehe (OK - 12 interactive elements), /taxi-weggis (OK - 18 interactive elements), /taxi-emmen (OK - 14 interactive elements). All pages render completely with no black screen issues, proper header/footer or full-screen hero designs, functional call/WhatsApp/booking buttons. ✅ BOOKING & PRICE CALCULATOR FLOW: Price calculator (/preisrechner) fully functional - successfully calculated CHF 224.12 for Luzern→Zürich route, interactive map button working, route options displayed correctly. Booking system (/buchen) fully operational - 6 input fields, 4 select fields, 1 textarea, 5 buttons, customer information form working, vehicle selection available, date/time selection functional. ✅ GOOGLE MAPS INTEGRATION: Google Maps script endpoint updated correctly, GoogleMapViewer.jsx working with proper fallback handling, price calculator shows route options and interactive map functionality. ✅ IMAGE OPTIMIZATION: ModernCarSlider.jsx with srcset/sizes implementation working perfectly - Mercedes fleet images loading with proper responsive sizing, StaticMapPlaceholder.jsx with optimized srcset working correctly. SUCCESS RATE: 100% - All regression tests passed. The recent changes (SEO/Canonical tweaks, image optimization, Google Maps updates) are working perfectly without any regressions. No critical issues detected."
 
     implemented: false
     working: false
