@@ -153,17 +153,9 @@ export const getLocalBusinessSchema = () => ({
   // Same As (Social Media - wenn vorhanden)
   "sameAs": [
     "https://www.taxiturlihof.ch/"
-  ],
+  ]
   
-  // Aggregate Rating (Durchschnittsbewertung)
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "bestRating": "5",
-    "worstRating": "1",
-    "ratingCount": "39",
-    "reviewCount": "39"
-  }
+  // Bewertungen entfernt: keine aggregateRating Daten mehr, nur TaxiService Schema
 });
 
 // Website Schema
