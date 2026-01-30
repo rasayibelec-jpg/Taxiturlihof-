@@ -206,9 +206,15 @@
         }
         </script>
         
-        <!-- Favicon -->
+        <!-- Favicon & Site Icon for Browsers and Google Search -->
+        <!-- Classic ICO fallback -->
         <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-        <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+        <!-- PNG icons (including 512x512) for modern browsers & Google site icon -->
+        <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/icons/icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="%PUBLIC_URL%/icons/icon-512x512.png" />
+        <!-- Apple Touch Icon (Homescreen) -->
+        <link rel="apple-touch-icon" href="%PUBLIC_URL%/icons/icon-192x192.png" />
+        <!-- PWA Manifest (enthält ebenfalls Icons in mehreren Größen inkl. 512x512) -->
         <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
         
         <!-- Google Places API - REMOVED: Lazy loaded via BookingSystem component -->
