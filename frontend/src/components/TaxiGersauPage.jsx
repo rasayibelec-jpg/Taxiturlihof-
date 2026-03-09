@@ -8,10 +8,16 @@ const TaxiGersauPage = () => {
   return (
     <>
       <Helmet>
-        <title>Taxi Gersau – Taxi Turlihof | Flughafentransfer & Taxi-Service</title>
-        <meta name="description" content="Taxi Turlihof - Ihr zuverlässiger Taxi-Service in Gersau. Flughafentransfer nach Zürich und Basel. Jetzt buchen: 076 611 31 31" />
-        <meta name="keywords" content="Taxi Gersau, Flughafentransfer Gersau, Taxi Service Gersau" />
-        <link rel="canonical" href="https://taxiturlihof.ch/taxi-gersau" />
+        <title>Taxi Gersau – 24h Taxi-Service am Vierwaldstättersee | Taxi Türlihof</title>
+        <meta
+          name="description"
+          content="Taxi Gersau – Ihr zuverlässiger 24h Taxi-Service am Vierwaldstättersee. Flughafentransfer Zürich/Basel, lokale Fahrten, Ausflüge und Bahnhof-Transfers mit Taxi Türlihof. Jetzt buchen: 076 611 31 31."
+        />
+        <meta
+          name="keywords"
+          content="Taxi Gersau, Taxi-Service Gersau, 24h Taxi Gersau, Flughafentransfer Gersau Zürich, Taxi Vierwaldstättersee, Taxi Brunnen Gersau, Taxi Arth-Goldau Anschluss"
+        />
+        <link rel="canonical" href="https://www.taxiturlihof.ch/taxi-gersau" />
       </Helmet>
       <div className="min-h-screen bg-black text-white">
         <Header />
